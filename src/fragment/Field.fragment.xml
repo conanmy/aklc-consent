@@ -1,0 +1,28 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1">
+    <HBox>
+        <template:if test="{= ${field>Type} === 'input'}">
+            <template:then>
+                <Input id="{field>Attribute}" value="{field>Value}" />
+            </template:then>
+            <template:elseif test="{= ${field>Type} === 'checkbox'}">
+                <Switch id="{field>Attribute}" state="{field>Value}" />
+            </template:elseif>
+            <template:elseif test="{= ${field>Type} === 'combo'}">
+                <ComboBox id="{field>Attribute}" selectedKey="{field>Value}">
+                    <template:repeat list="{field>Lookup}" var="lu">
+                        <core:Item key="{lu>Key}" text="{lu>Value}" />
+                    </template:repeat>
+                </ComboBox>
+            </template:elseif>
+            <template:elseif test="{= ${field>Type} === 'multi_combo'}">
+                <MultiComboBox id="{field>Attribute}" width="300px" selectedKeys="{field>Value}">
+                    <items>
+                        <template:repeat list="{field>Lookup}" var="lu">
+                            <core:Item key="{lu>Key}" text="{lu>Value}" />
+                        </template:repeat>
+                    </items>
+                </MultiComboBox>
+            </template:elseif>
+        </template:if>
+    </HBox>
+</core:FragmentDefinition>

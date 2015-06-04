@@ -1,0 +1,69 @@
+[{
+    "Attribute": "APP_SUBTYPES",
+    "Key": "AEV",
+    "Value": "Activity Event"
+}, {
+    "Attribute": "APP_SUBTYPES",
+    "Key": "DDR",
+    "Value": "Disposal/Deposit/Replenishment"
+}, {
+    "Attribute": "APP_SUBTYPES",
+    "Key": "DRG",
+    "Value": "Dredging"
+}, {
+    "Attribute": "APP_SUBTYPES",
+    "Key": "ETC",
+    "Value": "Extraction"
+}, {
+    "Attribute": "APP_SUBTYPES",
+    "Key": "MAR",
+    "Value": "Marina"
+}, {
+    "Attribute": "APP_SUBTYPES",
+    "Key": "MOR",
+    "Value": "Mooring"
+}, {
+    "Attribute": "APP_SUBTYPES",
+    "Key": "MRF",
+    "Value": "Marine Farm"
+}, {
+    "Attribute": "APP_SUBTYPES",
+    "Key": "OTH",
+    "Value": "Other"
+}, {
+    "Attribute": "APP_SUBTYPES",
+    "Key": "PLT",
+    "Value": "Planting"
+}, {
+    "Attribute": "APP_SUBTYPES",
+    "Key": "RCL",
+    "Value": "Reclamation"
+}, {
+    "Attribute": "APP_SUBTYPES",
+    "Key": "STR",
+    "Value": "Structure"
+}, {
+    "Attribute": "APP_SUBTYPES",
+    "Key": "VGR",
+    "Value": "Vegetation Removal"
+}, {
+    "Attribute": "DIST_REG",
+    "Key": "DIST ",
+    "Value": "District "
+}, {
+    "Attribute": "DIST_REG",
+    "Key": "REG",
+    "Value": "Regional"
+}, {
+    "Attribute": "RESOURCE_USE",
+    "Key": "RES",
+    "Value": "Residential"
+}, {
+    "Attribute": "RESOURCE_USE",
+    "Key": "NORES",
+    "Value": "Non-residential"
+}, {
+    "Attribute": "RESOURCE_USE",
+    "Key": "MU",
+    "Value": "Mixed use"
+}]

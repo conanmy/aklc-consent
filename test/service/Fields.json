@@ -1,0 +1,68 @@
+  [
+  {
+    "Attribute":"APP_SUBTYPES",
+    "Label":"Application sub-types",
+    "Type":"multi_combo",
+    "Value":"DRG,ETC"
+  },
+  {
+    "Attribute":"RETRO_APP",
+    "Label":"Retrospective consent",
+    "Type":"checkbox",
+    "Value": true
+  },
+  {
+    "Attribute":"DIST_REG",
+    "Label":"District or regional application?",
+    "Type":"combo",
+    "Value":"REG"
+  },
+  {
+    "Attribute":"DIRECT_REFERRAL",
+    "Label":"Direct referral",
+    "Type":"checkbox",
+    "Value":"FALSE"
+  },
+  {
+    "Attribute":"RESOURCE_USE",
+    "Label":"Resource use",
+    "Type":"combo",
+    "Value":"MU"
+  },
+  {
+    "Attribute":"EMERGENCY_WORKS",
+    "Label":"Emergency works",
+    "Type":"checkbox",
+    "Value":false
+  },
+  {
+    "Attribute":"TEMPORARY_ACTIVITY",
+    "Label":"Temporary Activity",
+    "Type":"checkbox",
+    "Value":true
+  },
+  {
+    "Attribute":"EXISTING_DWELLINGS",
+    "Label":"Number of existing dwellings",
+    "Type":"input",
+    "Value":"123"
+  },
+  {
+    "Attribute":"PROPOSED_APARTMENTS",
+    "Label":"Number of proposed apartments",
+    "Type":"input",
+    "Value":"Noise Workx"
+  },
+  {
+    "Attribute":"PROPOSED_TERRACED_HOUSING",
+    "Label":"Number of proposed terraced houses",
+    "Type":"input",
+    "Value":""
+  },
+  {
+    "Attribute":"PROPOSED_DETACHED_DWELLINGS",
+    "Label":"Number of detached dwellings",
+    "Type":"input",
+    "Value":""
+  }
+]

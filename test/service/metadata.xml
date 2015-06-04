@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ODataDemo" xml:lang="en" sap:schema-version="0000" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="Fields" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Attribute" />
+                </Key>
+                <Property Name="Attribute" Type="Edm.String" Nullable="false" />
+                <Property Name="Label" Type="Edm.String" />
+                <Property Name="Type" Type="Edm.String" />
+                <Property Name="Value" Type="Edm.String" />
+                <NavigationProperty Name="Lookup" Relationship="ODataDemo.FK_FieldsLookup" FromRole="FromRole_FieldsLookup" ToRole="ToRole_FieldsLookup" />
+                <NavigationProperty Name="Values" Relationship="ODataDemo.FK_FieldsValues" FromRole="FromRole_FieldsValues" ToRole="ToRole_FieldsValues" />
+            </EntityType>
+            <EntityType Name="Lookup">
+                <Key>
+                    <PropertyRef Name="Attribute" />
+                    <PropertyRef Name="Key" />
+                </Key>
+                <Property Name="Attribute" Type="Edm.String" Nullable="false" />
+                <Property Name="Key" Type="Edm.String" Nullable="false" />
+            </EntityType>
+            <Association Name="FK_FieldsLookup">
+                <End Type="ODataDemo.Fields" Multiplicity="1" Role="FromRole_FieldsLookup" />
+                <End Type="ODataDemo.Lookup" Multiplicity="*" Role="ToRole_FieldsLookup" />
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_FieldsLookup">
+                        <PropertyRef Name="Attribute" />
+                    </Principal>
+                    <Dependent Role="ToRole_FieldsLookup">
+                        <PropertyRef Name="Attribute" />
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="DemoService" m:IsDefaultEntityContainer="true">
+                <EntitySet Name="Fields" EntityType="ODataDemo.Fields" sap:content-version="1" />
+                <EntitySet Name="Lookup" EntityType="ODataDemo.Lookup" sap:content-version="1" />
+                <AssociationSet Name="FK_FieldsLookup_Assoc" Association="ODataDemo.FK_FieldsLookup" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="Fields" Role="FromRole_FieldsLookup" />
+                    <End EntitySet="Lookup" Role="ToRole_FieldsLookup" />
+                </AssociationSet>
+            </EntityContainer>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

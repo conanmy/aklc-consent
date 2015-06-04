@@ -1,0 +1,13 @@
+<mvc:View xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:layout="sap.ui.layout" xmlns:commons="sap.ui.commons" xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1" xmlns:mvc="sap.ui.core.mvc">
+    <layout:HorizontalLayout>
+        <form:SimpleForm minWidth="1024" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" title="Address" labelSpanL="4" labelSpanM="4" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2" class="editableForm">
+            <form:title>
+                <core:Title text="Process PoC" />
+            </form:title>
+            <template:repeat list="{vm>/Fields}" var="field">
+                <Label text="{field>Label}" />
+                <core:Fragment fragmentName="scenario.xmlview.fragment.Field" type="XML" />
+            </template:repeat>
+        </form:SimpleForm>
+    </layout:HorizontalLayout>
+</mvc:View>
