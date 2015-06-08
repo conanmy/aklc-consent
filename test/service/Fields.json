@@ -45,24 +45,28 @@
     "Attribute":"EXISTING_DWELLINGS",
     "Label":"Number of existing dwellings",
     "Type":"input",
+    "SubType":"Email",
     "Value":"123"
   },
   {
     "Attribute":"PROPOSED_APARTMENTS",
     "Label":"Number of proposed apartments",
     "Type":"input",
+    "SubType":"Number",
     "Value":"Noise Workx"
   },
   {
     "Attribute":"PROPOSED_TERRACED_HOUSING",
     "Label":"Number of proposed terraced houses",
     "Type":"input",
+    "SubType":"Number",
     "Value":""
   },
   {
     "Attribute":"PROPOSED_DETACHED_DWELLINGS",
     "Label":"Number of detached dwellings",
     "Type":"input",
+    "SubType":"Number",
     "Value":""
   }
 ]

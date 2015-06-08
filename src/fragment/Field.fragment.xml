@@ -2,7 +2,10 @@
     <HBox>
         <template:if test="{= ${field>Type} === 'input'}">
             <template:then>
-                <Input id="{field>Attribute}" value="{field>Value}" />
+                <Input id="{field>Attribute}" value="{
+                        path: 'field>Value',
+                        type: '.typeEmail'
+                    }" />
             </template:then>
             <template:elseif test="{= ${field>Type} === 'checkbox'}">
                 <Switch id="{field>Attribute}" state="{field>Value}" />
