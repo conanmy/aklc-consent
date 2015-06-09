@@ -2,7 +2,7 @@
     <HBox>
         <template:if test="{= ${field>Type} === 'input'}">
             <template:then>
-                <Input id="{field>Attribute}" value="{
+                <Input id="{field>Attribute}" type="{field>SubType}" value="{
                         path: 'field>Value',
                         type: '.typeEmail'
                     }" />

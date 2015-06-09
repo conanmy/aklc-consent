@@ -59,7 +59,7 @@
     "Attribute":"PROPOSED_TERRACED_HOUSING",
     "Label":"Number of proposed terraced houses",
     "Type":"input",
-    "SubType":"Number",
+    "SubType":"Date",
     "Value":""
   },
   {

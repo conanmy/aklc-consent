@@ -1,16 +1,35 @@
-<mvc:View controllerName="scenario.xmlview.controller.Detail" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:layout="sap.ui.layout" xmlns:commons="sap.ui.commons" xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1" xmlns:mvc="sap.ui.core.mvc">
-    <form:SimpleForm minWidth="1024" maxContainerCols="2" editable="true" layout="ResponsiveLayout" title="Address" labelSpanL="4" labelSpanM="2" emptySpanL="0" emptySpanM="0" columnsL="8" columnsM="4" class="editableForm">
-        <form:title>
+<mvc:View controllerName="scenario.xmlview.controller.Detail" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:layout="sap.ui.layout" xmlns:commons="sap.ui.commons" xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1" xmlns:mvc="sap.ui.core.mvc">
+    <f:Form class="editableForm">
+        <f:title>
             <core:Title text="Process PoC" />
-        </form:title>
-        <template:repeat list="{vm>/Fields}" var="field">
-            <Label text="{field>Label}" />
-            <core:Fragment fragmentName="scenario.xmlview.fragment.Field" type="XML" />
-        </template:repeat>
-        <Button text="Continue" press="handleContinue" width="8em">
-            <layoutData>
-                <layout:ResponsiveFlowLayoutData linebreak="true" />
-            </layoutData>
-        </Button>
-    </form:SimpleForm>
+        </f:title>
+        <f:layout>
+            <f:GridLayout />
+        </f:layout>
+        <f:formContainers>
+            <template:repeat list="{vm>/Fields}" var="field">
+            <f:FormContainer>
+                <f:formElements>
+                    <f:FormElement>
+                        <Label text="{field>Label}">
+                        </Label>
+                        <f:fields>
+                            <core:Fragment fragmentName="scenario.xmlview.fragment.Field" type="XML" />
+                        </f:fields>
+                    </f:FormElement>
+                </f:formElements>
+                <f:layoutData>
+                    <f:GridContainerData halfGrid="true" />
+                </f:layoutData>
+            </f:FormContainer>
+            </template:repeat>
+            <f:FormContainer>
+                <f:FormElement>
+                    <f:fields>
+                        <Button text="Continue" press="handleContinue" />
+                    </f:fields>
+                </f:FormElement>
+            </f:FormContainer>
+        </f:formContainers>
+    </f:Form>
 </mvc:View>
