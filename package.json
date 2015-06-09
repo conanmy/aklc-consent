@@ -4,7 +4,6 @@
   "description": "Master-Detail",
   "private": true,
   "scripts": {
-    // "test": "grunt",
     "start": "grunt serve"
   },
   "keywords": [],
