@@ -29,7 +29,7 @@ sap.ui.define([
                 useBatch: false
             });
             this.setModel(oModel);
-            var oLayout =new sap.ui.layout.VerticalLayout();
+            var oLayout = new sap.ui.layout.VerticalLayout();
 
             // in callback handler map OData to JSon Model - Workaround till know more
             var handler = function(oEvent) {
