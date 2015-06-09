@@ -4,7 +4,7 @@
   "description": "Master-Detail",
   "private": true,
   "scripts": {
-    "postinstall": "grunt serve"
+    "start": "grunt serve"
   },
   "keywords": [],
   "author": "SAP SE",
@@ -12,6 +12,7 @@
     "SAP SE <*@sap.com>"
   ],
   "dependencies": {
+    "grunt-cli": "^0.1.13"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
