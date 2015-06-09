@@ -11,10 +11,8 @@
   "contributors": [
     "SAP SE <*@sap.com>"
   ],
-  "dependencies": {
-    "grunt-cli": "^0.1.13"
-  },
   "devDependencies": {
+    "grunt-cli": "^0.1.13",
     "grunt": "^0.4.5",
     "eslint-plugin-openui5": "0.1.0",
     "grunt-contrib-clean": "^0.6.0",
