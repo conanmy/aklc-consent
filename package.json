@@ -4,7 +4,7 @@
   "description": "Master-Detail",
   "private": true,
   "scripts": {
-    "start": "grunt serve"
+    "start": "./node_modules/grunt/.bin/grunt serve"
   },
   "keywords": [],
   "author": "SAP SE",

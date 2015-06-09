@@ -9,8 +9,10 @@ module.exports = function(grunt) {
             tests: 'test',
             dist: 'dist',
             bower_components: 'bower_components',
-            localServerTestUrl: 'http://localhost:5000/test-resources'
+            localServerTestUrl: 'http://localhost:<%= port %>/test-resources'
         },
+
+        port: (process.env.PORT || 5000),
 
         tests: {
             opaTimeout: 900000
@@ -18,20 +20,20 @@ module.exports = function(grunt) {
 
         connect: {
             options: {
-                port: 5000,
+                port: '<%= port %>',
                 hostname: '*'
             },
             src: {
                 options: {
                     open: {
-                        target: 'http://localhost:5000/index.html'
+                        target: 'http://localhost:<%= port %>/index.html'
                     }
                 }
             },
             dist: {
                 options: {
                     open: {
-                        target: 'http://localhost:5000/build.html'
+                        target: 'http://localhost:<%= port %>/build.html'
                     }
                 }
             }
