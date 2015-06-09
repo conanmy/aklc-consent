@@ -4,7 +4,8 @@
   "description": "Master-Detail",
   "private": true,
   "scripts": {
-    "postinstall": "bower install"
+    "postinstall": "bower install",
+    "start": "./node_modules/grunt-cli/bin/grunt serve"
   },
   "keywords": [],
   "author": "SAP SE",
