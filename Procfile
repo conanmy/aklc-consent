@@ -1,1 +1,1 @@
-web: ./node_modules/grunt/lib/grunt serve
+web: ./node_modules/grunt-cli/lib/grunt serve
