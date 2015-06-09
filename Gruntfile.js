@@ -9,7 +9,7 @@ module.exports = function(grunt) {
             tests: 'test',
             dist: 'dist',
             bower_components: 'bower_components',
-            localServerTestUrl: 'http://localhost:8080/test-resources'
+            localServerTestUrl: 'http://localhost:5000/test-resources'
         },
 
         tests: {
@@ -18,20 +18,20 @@ module.exports = function(grunt) {
 
         connect: {
             options: {
-                port: 8080,
+                port: 5000,
                 hostname: '*'
             },
             src: {
                 options: {
                     open: {
-                        target: 'http://localhost:8080/index.html'
+                        target: 'http://localhost:5000/index.html'
                     }
                 }
             },
             dist: {
                 options: {
                     open: {
-                        target: 'http://localhost:8080/build.html'
+                        target: 'http://localhost:5000/build.html'
                     }
                 }
             }
