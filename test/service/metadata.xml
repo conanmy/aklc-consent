@@ -13,6 +13,14 @@
                 <NavigationProperty Name="Lookup" Relationship="ODataDemo.FK_FieldsLookup" FromRole="FromRole_FieldsLookup" ToRole="ToRole_FieldsLookup" />
                 <NavigationProperty Name="Values" Relationship="ODataDemo.FK_FieldsValues" FromRole="FromRole_FieldsValues" ToRole="ToRole_FieldsValues" />
             </EntityType>
+            <EntityType Name="Conditions" sap:content-version="1">
+                <Property Name="Title" Type="Edm.String" Nullable="false" />
+                <Property Name="Group" Type="Edm.String" />
+                <Property Name="Text" Type="Edm.String" />
+                <Property Name="ValidFrom" Type="Edm.String" />
+                <Property Name="ValidTo" Type="Edm.String" />
+                <Property Name="Final" Type="Edm.String" />
+            </EntityType>
             <EntityType Name="Lookup">
                 <Key>
                     <PropertyRef Name="Attribute" />
@@ -35,6 +43,7 @@
             </Association>
             <EntityContainer Name="DemoService" m:IsDefaultEntityContainer="true">
                 <EntitySet Name="Fields" EntityType="ODataDemo.Fields" sap:content-version="1" />
+                <EntitySet Name="Conditions" EntityType="ODataDemo.Conditions" sap:content-version="1" />
                 <EntitySet Name="Lookup" EntityType="ODataDemo.Lookup" sap:content-version="1" />
                 <AssociationSet Name="FK_FieldsLookup_Assoc" Association="ODataDemo.FK_FieldsLookup" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                     <End EntitySet="Fields" Role="FromRole_FieldsLookup" />

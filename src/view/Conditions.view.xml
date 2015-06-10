@@ -1,0 +1,43 @@
+<mvc:View xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:layout="sap.ui.layout" xmlns:commons="sap.ui.commons" xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1" xmlns:mvc="sap.ui.core.mvc">
+    <commons:RowRepeater design="Transparent" rows="{/Conditions}">
+        <f:Form>
+            <f:layout>
+                <f:ResponsiveLayout />
+            </f:layout>
+            <f:formContainers>
+                <f:FormContainer>
+                    <f:formElements>
+                        <f:FormElement>
+                            <Label text="Title">
+                            </Label>
+                            <f:fields>
+                                <Input type="Text" value="{Title}" />
+                            </f:fields>
+                        </f:FormElement>
+                        <f:FormElement>
+                            <Label text="Group">
+                            </Label>
+                            <f:fields>
+                                <Text text="{Group}" />
+                            </f:fields>
+                        </f:FormElement>
+                    </f:formElements>
+                    <f:layoutData>
+                        <f:GridContainerData halfGrid="true" />
+                    </f:layoutData>
+                </f:FormContainer>
+                <f:FormContainer>
+                    <f:formElements>
+                        <f:FormElement>
+                            <Label text="Text">
+                            </Label>
+                            <f:fields>
+                                <TextArea value="{Text}" height="200px"></TextArea>
+                            </f:fields>
+                        </f:FormElement>
+                    </f:formElements>
+                </f:FormContainer>
+            </f:formContainers>
+        </f:Form>
+    </commons:RowRepeater>
+</mvc:View>

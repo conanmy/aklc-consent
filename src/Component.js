@@ -29,7 +29,15 @@ sap.ui.define([
                 useBatch: false
             });
             this.setModel(oModel);
-            var oLayout = new sap.ui.layout.VerticalLayout();
+
+            this.view = sap.ui.view({
+                type: sap.ui.core.mvc.ViewType.XML,
+                viewName: 'scenario.xmlview.view.Conditions'
+            });
+
+            return this.view;
+
+            /*var oLayout = new sap.ui.layout.VerticalLayout();
 
             // in callback handler map OData to JSon Model - Workaround till know more
             var handler = function(oEvent) {
@@ -77,7 +85,7 @@ sap.ui.define([
             });
             oBinding.attachChange(handler);
 
-            return oLayout;
+            return oLayout;*/
         }
 
 
