@@ -1,0 +1,61 @@
+[{
+    "ProcessKey": "P1",
+    "StepKey": "DETAILS",
+    "Title": "Details",
+    "Icon": "sap-icon://activity-2",
+    "StepView": "Detail",
+    "ShowHeader": true,
+    "HeaderTitle": "Details Overview",
+    "HeaderView": "Header",
+    "Enabled": ""
+}, {
+    "ProcessKey": "P1",
+    "StepKey": "ASSIGNMENTS",
+    "Title": "Assignments",
+    "Icon": "sap-icon://citizen-connect",
+    "StepView": "Conditions",
+    "ShowHeader": false,
+    "HeaderTitle": "",
+    "HeaderView": "",
+    "Enabled": ""
+}, {
+    "ProcessKey": "P1",
+    "StepKey": "FEES",
+    "Title": "Fees",
+    "Icon": "sap-icon://loan",
+    "StepView": "View1",
+    "ShowHeader": false,
+    "HeaderView": "",
+    "HeaderTitle": "",
+    "Enabled": ""
+}, {
+    "ProcessKey": "P1",
+    "StepKey": "CORRESPONDENCE",
+    "Title": "Correspondence",
+    "Icon": "sap-icon://email",
+    "StepView": "View2",
+    "ShowHeader": false,
+    "HeaderTitle": "",
+    "HeaderView": "",
+    "Enabled": ""
+}, {
+    "ProcessKey": "P1",
+    "StepKey": "DOCUMENTS",
+    "Title": "Documents",
+    "Icon": "sap-icon://documents",
+    "StepView": "View1",
+    "ShowHeader": true,
+    "HeaderTitle": "Documents Overview",
+    "HeaderView": "Header",
+    "Enabled": ""
+}, {
+    "ProcessKey": "P1",
+    "StepKey": "TIME_RECORDING",
+    "Title": "Time Recording",
+    "Icon": "sap-icon://lateness",
+    "StepView": "View2",
+    "ShowHeader": false,
+    "HeaderTitle": "",
+    "HeaderView": "",
+    "Enabled": ""
+}]

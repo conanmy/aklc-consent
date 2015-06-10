@@ -1,0 +1,20 @@
+<mvc:View  xmlns:suite="sap.suite.ui.commons" xmlns:ux3="sap.ui.ux3" xmlns:layout="sap.ui.commons.layout" xmlns:commons="sap.ui.commons" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc">
+    <layout:MatrixLayout columns="2" rows="{Fields}">
+        <layout:rows>
+            <layout:MatrixLayoutRow>
+                <layout:cells>
+                    <layout:MatrixLayoutCell hAlign="End" vAlign="Top">
+                        <layout:content>
+                            <commons:Label text="{Label}" requiredAtBegin="false"></commons:Label>
+                        </layout:content>
+                    </layout:MatrixLayoutCell>
+                    <layout:MatrixLayoutCell vAlign="Top">
+                        <layout:content>
+                            <commons:TextView text="{Value}"></commons:TextView>
+                        </layout:content>
+                    </layout:MatrixLayoutCell>
+                </layout:cells>
+            </layout:MatrixLayoutRow>
+        </layout:rows>
+    </layout:MatrixLayout>
+</mvc:View>

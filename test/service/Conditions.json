@@ -1,18 +1,15 @@
-[
-  {
-    "Title":"S37 Condition",
-    "Group":"BC-STANDARD",
-    "Text":"Tables and TextEdit? How do I delete rows... | Apple Support ...",
+[{
+    "Title": "S37 Condition",
+    "Group": "BC-STANDARD",
+    "Text": "Tables and TextEdit? How do I delete rows... | Apple Support ...",
     "ValidFrom": "2015/06/15",
     "ValidTo": "2015/06/25",
     "Final": true
-  },
-  {
-    "Title":"Stop Work Notice Condition",
-    "Group":"BC-STANDARD",
-    "Text":"Uses TinyMCE version 3 as editor (default)",
+}, {
+    "Title": "Stop Work Notice Condition",
+    "Group": "BC-STANDARD",
+    "Text": "Uses TinyMCE version 3 as editor (default)",
     "ValidFrom": "2015/06/15",
     "ValidTo": "2015/06/25",
     "Final": false
-  }
-]
+}]

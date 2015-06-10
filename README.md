@@ -20,7 +20,3 @@ bower install
 ```javascript
 grunt serve
 ```
-
- 
-
-

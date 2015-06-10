@@ -1,0 +1,7 @@
+<mvc:View controllerName="scenario.xmlview.controller.Main" xmlns:suite="sap.suite.ui.commons" xmlns:ux3="sap.ui.ux3" xmlns:layout="sap.ui.commons.layout" xmlns:commons="sap.ui.commons" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc">
+    <suite:ThreePanelThingInspector id="TI" type="{Title}" icon="{Icon}" logo="{Logo}" sidebarWidth="226px" facets="{Steps}" facetSelected="onFacetSelected">
+        <suite:facets>
+            <suite:CountingNavigationItem text="{Title}" key="{StepKey}" ></suite:CountingNavigationItem>
+        </suite:facets>
+    </suite:ThreePanelThingInspector>
+</mvc:View>
