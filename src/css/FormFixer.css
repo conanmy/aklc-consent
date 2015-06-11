@@ -1,0 +1,14 @@
+.sapUiForm .sapMLabel,
+.sapUiForm .sapMText {
+	height: 2.5rem;
+	line-height: 2.5rem;
+}
+.sapMTokenizer {
+	width: auto !important;
+}
+.sapUiRrRow {
+	border-bottom: 1px dashed gray;
+}
+.sapUiRespGridBreak {
+	clear: none;
+}

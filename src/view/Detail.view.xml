@@ -12,6 +12,9 @@
                 <f:formElements>
                     <f:FormElement>
                         <Label text="{field>Label}">
+                            <layoutData>
+                                <layout:GridData span="L4 M4 S4" />
+                            </layoutData>
                         </Label>
                         <f:fields>
                             <core:Fragment fragmentName="scenario.xmlview.fragment.Field" type="XML" />

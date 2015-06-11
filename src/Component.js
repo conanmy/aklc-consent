@@ -13,7 +13,7 @@ sap.ui.define([
 
         metadata: {
             "rootView": "scenario.xmlview.view.Main",
-            "includes": ["css/ThreePanelViewer.css", "css/VerticalNavigationBar.css"],
+            "includes": ["css/ThreePanelViewer.css", "css/VerticalNavigationBar.css", "css/FormFixer.css"],
             "dependencies": {
                 "minUI5Version": "1.28.0",
                 "libs": ["sap.ui.core", "sap.m", "sap.ui.layout"]

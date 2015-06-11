@@ -6,15 +6,26 @@
                     <Input id="{field>Attribute}" type="{field>SubType}" value="{
                             path: 'field>Value',
                             type: '.typeEmail'
-                        }" />
+                        }">
+                        <layoutData>
+                            <layout:GridData span="L8 M8 S12" />
+                        </layoutData>
+                    </Input>
                 </template:then>
                 <template:else>
-                    <Slider value="9" min="0" max="10" class="sapUiSmallMarginBottom" />
+                    <Slider value="9" min="0" max="10" class="sapUiSmallMarginBottom">
+                        <layoutData>
+                            <layout:GridData span="L8 M8 S12" />
+                        </layoutData>
+                    </Slider>
                 </template:else>
             </template:if>
         </template:then>
         <template:elseif test="{= ${field>Type} === 'checkbox'}">
             <Switch id="{field>Attribute}" state="{field>Value}" customTextOn="Yes" customTextOff="No">
+                <layoutData>
+                    <layout:GridData span="L8 M8 S12" />
+                </layoutData>
             </Switch>
         </template:elseif>
         <template:elseif test="{= ${field>Type} === 'combo'}">
@@ -22,6 +33,9 @@
                 <template:repeat list="{field>Lookup}" var="lu">
                     <core:Item key="{lu>Key}" text="{lu>Value}" />
                 </template:repeat>
+                <layoutData>
+                    <layout:GridData span="L8 M8 S12" />
+                </layoutData>
             </ComboBox>
         </template:elseif>
         <template:elseif test="{= ${field>Type} === 'multi_combo'}">
@@ -31,6 +45,9 @@
                         <core:Item key="{lu>Key}" text="{lu>Value}" />
                     </template:repeat>
                 </items>
+                <layoutData>
+                    <layout:GridData span="L8 M8 S12" />
+                </layoutData>
             </MultiComboBox>
         </template:elseif>
     </template:if>

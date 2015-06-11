@@ -10,13 +10,13 @@
                         <f:FormElement>
                             <Label text="Condition">
                                 <layoutData>
-                                    <layout:GridData span="L2 M2 S12" />
+                                    <layout:GridData textalign="right" span="L3 M3 S12" />
                                 </layoutData>
                             </Label>
                             <f:fields>
                                 <Input type="Text" value="{Title}">
                                     <layoutData>
-                                        <layout:GridData span="L10 M10 S12" />
+                                        <layout:GridData span="L9 M9 S12" />
                                     </layoutData>
                                 </Input>
                             </f:fields>
@@ -24,13 +24,13 @@
                         <f:FormElement>
                             <Label text="Group">
                                 <layoutData>
-                                    <layout:GridData span="L2 M2 S12" />
+                                    <layout:GridData span="L3 M3 S12" />
                                 </layoutData>
                             </Label>
                             <f:fields>
                                 <Text text="{Group}">
                                     <layoutData>
-                                        <layout:GridData span="L10 M10 S12" />
+                                        <layout:GridData span="L9 M9 S12" />
                                     </layoutData>
                                 </Text>
                             </f:fields>
@@ -38,13 +38,13 @@
                         <f:FormElement>
                             <Label text="Valid from date">
                                 <layoutData>
-                                    <layout:GridData span="L2 M2 S12" />
+                                    <layout:GridData span="L3 M3 S12" />
                                 </layoutData>
                             </Label>
                             <f:fields>
                                 <Input type="Date" value="{ValidFrom}">
                                     <layoutData>
-                                        <layout:GridData span="L10 M10 S12" />
+                                        <layout:GridData span="L9 M9 S12" />
                                     </layoutData>
                                 </Input>
                             </f:fields>
@@ -52,13 +52,13 @@
                         <f:FormElement>
                             <Label text="Valid to date">
                                 <layoutData>
-                                    <layout:GridData span="L2 M2 S12" />
+                                    <layout:GridData span="L3 M3 S12" />
                                 </layoutData>
                             </Label>
                             <f:fields>
                                 <Input type="Date" value="{ValidTo}">
                                     <layoutData>
-                                        <layout:GridData span="L10 M10 S12" />
+                                        <layout:GridData span="L9 M9 S12" />
                                     </layoutData>
                                 </Input>
                             </f:fields>
@@ -66,13 +66,13 @@
                         <f:FormElement>
                             <Label text="Final indicator">
                                 <layoutData>
-                                    <layout:GridData span="L2 M2 S12" />
+                                    <layout:GridData span="L3 M3 S12" />
                                 </layoutData>
                             </Label>
                             <f:fields>
                                 <Switch state="{Final}">
                                     <layoutData>
-                                        <layout:GridData span="L10 M10 S12" />
+                                        <layout:GridData span="L9 M9 S12" />
                                     </layoutData>
                                 </Switch>
                             </f:fields>
@@ -91,7 +91,7 @@
                                 </layoutData>
                             </Label>
                             <f:fields>
-                                <openui5:CKEditor value="{Text}" toolbar="myToolbar" height="100px"/>
+                                <openui5:CKEditor value="{Text}" toolbar="myToolbar" height="100px" />
                             </f:fields>
                         </f:FormElement>
                     </f:formElements>
