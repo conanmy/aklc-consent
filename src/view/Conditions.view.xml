@@ -1,4 +1,4 @@
-<mvc:View xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:layout="sap.ui.layout" xmlns:commons="sap.ui.commons" xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1" xmlns:mvc="sap.ui.core.mvc">
+<mvc:View xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:openui5="openui5" xmlns:layout="sap.ui.layout" xmlns:commons="sap.ui.commons" xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1" xmlns:mvc="sap.ui.core.mvc">
     <commons:RowRepeater design="Transparent" rows="{/Conditions}">
         <f:Form>
             <f:layout>
@@ -91,11 +91,7 @@
                                 </layoutData>
                             </Label>
                             <f:fields>
-                                <TextArea value="{Text}" height="200px">
-                                    <layoutData>
-                                    <layout:GridData span="L10 M10 S12" />
-                                </layoutData>
-                                </TextArea>
+                                <openui5:CKEditor value="{Text}" toolbar="myToolbar" height="100px"/>
                             </f:fields>
                         </f:FormElement>
                     </f:formElements>
