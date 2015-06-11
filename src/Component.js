@@ -10,7 +10,7 @@
 
         metadata: {
             "rootView": "scenario.xmlview.view.Main",
-            "includes" : ["css/ThreePanelViewer.css", "css/VerticalNavigationBar.css"],
+            "includes": ["css/ThreePanelViewer.css", "css/VerticalNavigationBar.css"],
             "dependencies": {
                 "minUI5Version": "1.28.0",
                 "libs": ["sap.ui.core", "sap.m", "sap.ui.layout"]
@@ -43,7 +43,7 @@
 
             UIComponent.prototype.init.apply(this, arguments);
             this.getRouter().initialize();
-        } 
+        }
 
     });
 
