@@ -45,24 +45,28 @@
           "Attribute": "EXISTING_DWELLINGS",
           "Label": "Number of existing dwellings",
           "Type": "input",
+          "SubType": "Number",
           "Value": "123"
       }, {
           "StepKey": "DETAILS",
           "Attribute": "PROPOSED_APARTMENTS",
-          "Label": "Number of proposed apartments",
+          "Label": "Due date",
           "Type": "input",
-          "Value": "22"
+          "SubType": "Date",
+          "Value": "2015/06/12"
       }, {
           "StepKey": "DETAILS",
           "Attribute": "PROPOSED_TERRACED_HOUSING",
           "Label": "Number of proposed terraced houses",
           "Type": "input",
+          "SubType": "Text",
           "Value": ""
       }, {
           "StepKey": "DETAILS",
           "Attribute": "PROPOSED_DETACHED_DWELLINGS",
-          "Label": "Number of detached dwellings",
+          "Label": "Email of the applicant",
           "Type": "input",
+          "SubType": "Email",
           "Value": ""
       }, {
           "StepKey": "DOCUMENTS",
