@@ -69,7 +69,7 @@ module.exports = function(grunt) {
                 options: {
                     resources: {
                         cwd: '<%= dir.webapp %>',
-                        prefix: 'sap/ui/demo/masterdetail'
+                        prefix: 'scenario/xmlview'
                     },
                     dest: '<%= dir.dist %>'
                 },
