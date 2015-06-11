@@ -4,8 +4,8 @@
     "description": "Proof of concept",
     "private": true,
     "scripts": {
-        "postinstall": "bower install",
-        "start": "./node_modules/grunt-cli/bin/grunt serve"
+        "postinstall": "bower install && grunt build",
+        "start": "./node_modules/grunt-cli/bin/grunt serve:dist"
     },
     "keywords": [],
     "author": "",
