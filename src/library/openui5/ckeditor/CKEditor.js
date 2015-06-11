@@ -8,13 +8,13 @@
 //Define location of CKEditor js file
 jQuery.sap.registerResourcePath('ckeditor', '//cdnjs.cloudflare.com/ajax/libs/ckeditor/4.3.2/ckeditor');
 window.CKEDITOR_BASEPATH = '//cdnjs.cloudflare.com/ajax/libs/ckeditor/4.3.2/';
-sap.ui.define(['jquery.sap.global', 'sap/ui/core/Control', 'openui5/CKEditorToolbar', 'ckeditor'],
+sap.ui.define(['jquery.sap.global', 'sap/ui/core/Control', 'openui5/ckeditor/CKEditorToolbar', 'ckeditor'],
     function(jQuery, Control, CKEditorToolbar, Editor) {
         'use strict';
 
         Editor = window.CKEDITOR;
 
-        var CKEditor = Control.extend('openui5.CKEditor', {
+        var CKEditor = Control.extend('openui5.ckeditor.CKEditor', {
             metadata: {
                 properties: {
                     'value': {

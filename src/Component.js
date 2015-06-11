@@ -1,12 +1,12 @@
-﻿jQuery.sap.registerModulePath("openui5", [jQuery.sap.getModulePath("scenario.xmlview"), "library"].join("/"));
+﻿jQuery.sap.registerModulePath("openui5", [jQuery.sap.getModulePath("scenario.xmlview"), "library/openui5"].join("/"));
 
 sap.ui.define([
     "sap/ui/core/UIComponent",
     "sap/ui/model/resource/ResourceModel",
     "sap/ui/model/odata/v2/ODataModel",
+    "openui5/ckeditor/CKEditorToolbar",
     "scenario/xmlview/Router",
-    "openui5/ckeditor"
-], function(UIComponent, ResourceModel, ODataModel) {
+], function(UIComponent, ResourceModel, ODataModel, CKEditorToolbar) {
     "use strict";
 
     return UIComponent.extend("scenario.xmlview.Component", {
@@ -39,7 +39,7 @@ sap.ui.define([
         },
 
         init: function() {
-            openui5.CKEditorToolbar.myToolbar = [
+            CKEditorToolbar.myToolbar = [
                 ['Source'],
                 ['Cut', 'Copy', 'Paste', 'PasteText'],
                 ['Undo', 'Redo'],
