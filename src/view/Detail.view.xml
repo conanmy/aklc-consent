@@ -4,7 +4,7 @@
             <core:Title text="Process PoC" />
         </f:title>
         <f:layout>
-            <f:GridLayout />
+            <f:ResponsiveGridLayout />
         </f:layout>
         <f:formContainers>
             <template:repeat list="{vm>/Fields}" var="field">
@@ -18,9 +18,6 @@
                         </f:fields>
                     </f:FormElement>
                 </f:formElements>
-                <f:layoutData>
-                    <f:GridContainerData halfGrid="true" />
-                </f:layoutData>
             </f:FormContainer>
             </template:repeat>
             <f:FormContainer>
@@ -29,6 +26,9 @@
                         <Button text="Continue" press="handleContinue" />
                     </f:fields>
                 </f:FormElement>
+                <f:layoutData>
+                    <layout:GridData span="L12 M12 S12" />
+                </f:layoutData>
             </f:FormContainer>
         </f:formContainers>
     </f:Form>

@@ -2,40 +2,106 @@
     <commons:RowRepeater design="Transparent" rows="{/Conditions}">
         <f:Form>
             <f:layout>
-                <f:ResponsiveLayout />
+                <f:ResponsiveGridLayout columnsM="2" />
             </f:layout>
             <f:formContainers>
                 <f:FormContainer>
                     <f:formElements>
                         <f:FormElement>
-                            <Label text="Title">
+                            <Label text="Condition">
+                                <layoutData>
+                                    <layout:GridData span="L2 M2 S12" />
+                                </layoutData>
                             </Label>
                             <f:fields>
-                                <Input type="Text" value="{Title}" />
+                                <Input type="Text" value="{Title}">
+                                    <layoutData>
+                                        <layout:GridData span="L10 M10 S12" />
+                                    </layoutData>
+                                </Input>
                             </f:fields>
                         </f:FormElement>
                         <f:FormElement>
                             <Label text="Group">
+                                <layoutData>
+                                    <layout:GridData span="L2 M2 S12" />
+                                </layoutData>
                             </Label>
                             <f:fields>
-                                <Text text="{Group}" />
+                                <Text text="{Group}">
+                                    <layoutData>
+                                        <layout:GridData span="L10 M10 S12" />
+                                    </layoutData>
+                                </Text>
+                            </f:fields>
+                        </f:FormElement>
+                        <f:FormElement>
+                            <Label text="Valid from date">
+                                <layoutData>
+                                    <layout:GridData span="L2 M2 S12" />
+                                </layoutData>
+                            </Label>
+                            <f:fields>
+                                <Input type="Date" value="{ValidFrom}">
+                                    <layoutData>
+                                        <layout:GridData span="L10 M10 S12" />
+                                    </layoutData>
+                                </Input>
+                            </f:fields>
+                        </f:FormElement>
+                        <f:FormElement>
+                            <Label text="Valid to date">
+                                <layoutData>
+                                    <layout:GridData span="L2 M2 S12" />
+                                </layoutData>
+                            </Label>
+                            <f:fields>
+                                <Input type="Date" value="{ValidTo}">
+                                    <layoutData>
+                                        <layout:GridData span="L10 M10 S12" />
+                                    </layoutData>
+                                </Input>
+                            </f:fields>
+                        </f:FormElement>
+                        <f:FormElement>
+                            <Label text="Final indicator">
+                                <layoutData>
+                                    <layout:GridData span="L2 M2 S12" />
+                                </layoutData>
+                            </Label>
+                            <f:fields>
+                                <Switch state="{Final}">
+                                    <layoutData>
+                                        <layout:GridData span="L10 M10 S12" />
+                                    </layoutData>
+                                </Switch>
                             </f:fields>
                         </f:FormElement>
                     </f:formElements>
                     <f:layoutData>
-                        <f:GridContainerData halfGrid="true" />
+                        <layout:GridData span="L6 M5 S12" />
                     </f:layoutData>
                 </f:FormContainer>
                 <f:FormContainer>
                     <f:formElements>
                         <f:FormElement>
                             <Label text="Text">
+                                <layoutData>
+                                    <layout:GridData span="L2 M2 S12" />
+                                </layoutData>
                             </Label>
                             <f:fields>
-                                <TextArea value="{Text}" height="200px"></TextArea>
+                                <TextArea value="{Text}" height="200px">
+                                    <layoutData>
+                                    <layout:GridData span="L10 M10 S12" />
+                                </layoutData>
+                                </TextArea>
                             </f:fields>
                         </f:FormElement>
                     </f:formElements>
+                    <f:layoutData>
+                        <layout:GridData span="L6 M7 S12" />
+                    </f:layoutData>
                 </f:FormContainer>
             </f:formContainers>
         </f:Form>
