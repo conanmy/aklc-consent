@@ -10,7 +10,7 @@
                         <f:FormElement>
                             <Label text="Condition">
                                 <layoutData>
-                                    <layout:GridData textalign="right" span="L3 M3 S12" />
+                                    <layout:GridData span="L3 M3 S12" />
                                 </layoutData>
                             </Label>
                             <f:fields>

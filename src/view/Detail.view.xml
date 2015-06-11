@@ -13,7 +13,7 @@
                     <f:FormElement>
                         <Label text="{field>Label}">
                             <layoutData>
-                                <layout:GridData span="L4 M4 S4" />
+                                <layout:GridData span="L4 M4 S12" />
                             </layoutData>
                         </Label>
                         <f:fields>
