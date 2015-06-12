@@ -52,6 +52,8 @@
                        oEvent.preventDefault();
                    }
                });
+
+
            };
 
            ThreePanelThingInspector.prototype.setShowHeader = function(showHeader) {

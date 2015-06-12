@@ -1,9 +1,11 @@
-   sap.ui.define(['sap/ui/core/mvc/Controller'],
-       function(Controller) {
+   sap.ui.define(['sap/ui/core/mvc/Controller', 'scenario/xmlview/utils/Formatter'],
+       function(Controller, Formatter) {
            "use strict";
 
            var BaseController = Controller.extend("scenario.xmlview.controller.BaseController", {
-               constructor: function() {},
+               constructor: function() {
+
+               },
 
                getComponent: function() {
                    var sComponentId = sap.ui.core.Component.getOwnerIdFor(this.getView());
@@ -22,8 +24,8 @@
                    return this.getComponent().isMock();
                },
 
-               getPage: function() {
-                   return this.getView().getContent()[0];
+               getFormatter: function() {
+                   return Formatter;
                }
            });
 

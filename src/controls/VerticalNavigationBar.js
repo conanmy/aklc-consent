@@ -23,13 +23,13 @@
                    this._oBarItemsMap = {};
                }
 
-               var that = this;
+               // var that = this;
 
-               jQuery(".sapSuiteTvNavBarItemLink").mousemove(function() {
-                   that._showTooltip(jQuery(this).attr("id"));
-               }).mouseleave(function(oEvent) {
-                   that._hideTooltip(jQuery(this).attr("id"));
-               });
+               // jQuery(".sapSuiteTvNavBarItemLink").mousemove(function() {
+               //     that._showTooltip(jQuery(this).attr("id"));
+               // }).mouseleave(function(oEvent) {
+               //     that._hideTooltip(jQuery(this).attr("id"));
+               // });
            };
 
            VerticalNavigationBar.prototype.exit = function() {

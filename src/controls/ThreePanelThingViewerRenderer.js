@@ -66,6 +66,8 @@
                    oRm.write("/>");
                    oRm.write("</footer>");
                }
+
+               this.renderToolbar(oRm, oControl);
                oRm.write("</div>");
            };
 
