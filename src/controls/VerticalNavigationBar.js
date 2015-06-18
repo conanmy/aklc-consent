@@ -4,14 +4,21 @@
 
            var VerticalNavigationBar = NavigationBar.extend("scenario.xmlview.controls.VerticalNavigationBar");
 
-           VerticalNavigationBar.prototype._handleActivation = function(oEvent) {
-               // add forwarding to parent since IE doesn't support 'pointer-events:none;'
-               // if (oEvent.target.tagName === "SPAN" ) {
-               //     oEvent.target = oEvent.target.parentElement;
-               // }
+           VerticalNavigationBar.CLASSES = {
+               NAVBAR: "sapSuiteTvNavBar",
+               NAVBAR_UPPERCASE: "sapUiUx3NavBarUpperCase",
+               NAVBAR_LIST: "sapSuiteTvNavBarList",
+               NAVBAR_ITEM: "sapSuiteTvNavBarItem",
+               NAVBAR_ITEM_SELECTED: "sapUiUx3NavBarItemSel",
+               NAVBAR_ITEM_LINK: "sapSuiteTvNavBarItemLink",
+               NAVBAR_ICON: "sapSuiteTvNavBarIcon",
+               NAVBAR_ICON_DIV: "sapSuiteTvNavBarIconDiv",
+               ITEM_NAME: "sapSuiteTvNavBarItemName",
+           };
 
+           VerticalNavigationBar.prototype._handleActivation = function(oEvent) {
                if (!oEvent.target.id) {
-                   oEvent.target = jQuery(oEvent.target).closest(".sapSuiteTvNavBarItemLink")[0];
+                   oEvent.target = jQuery(oEvent.target).closest("." + VerticalNavigationBar.CLASSES.NAVBAR_ITEM_LINK)[0];
                }
                sap.ui.ux3.NavigationBar.prototype._handleActivation.call(this, oEvent);
            };
@@ -22,14 +29,6 @@
                if (!this._oBarItemsMap) {
                    this._oBarItemsMap = {};
                }
-
-               // var that = this;
-
-               // jQuery(".sapSuiteTvNavBarItemLink").mousemove(function() {
-               //     that._showTooltip(jQuery(this).attr("id"));
-               // }).mouseleave(function(oEvent) {
-               //     that._hideTooltip(jQuery(this).attr("id"));
-               // });
            };
 
            VerticalNavigationBar.prototype.exit = function() {
@@ -39,47 +38,6 @@
 
            VerticalNavigationBar.prototype._handleScroll = function() {};
 
-           VerticalNavigationBar.prototype._showTooltip = function(sTargetId) {
-               var oItem = this._oBarItemsMap[sTargetId];
-               if (!oItem) {
-                   oItem = sap.ui.getCore().byId(sTargetId);
 
-                   if (oItem) {
-                       this._oBarItemsMap[sTargetId] = oItem;
-
-                       var oTooltip = new sap.ui.commons.RichTooltip({
-                           text: oItem.getTooltip_AsString() || oItem.getText()
-                       });
-
-                       oTooltip.addStyleClass("sapSuiteTvNavBarItemTltp");
-
-                       oTooltip._currentControl = oItem;
-                       oItem.addDelegate(oTooltip);
-                       oItem.setAggregation("tooltip", oTooltip, true);
-                   }
-               }
-
-               if (oItem && !oItem.doOpen) {
-                   oItem.doOpen = true;
-                   oItem.openTimer = setTimeout(function() {
-                       oItem.getTooltip().openPopup(oItem);
-
-                       oItem.closeTimer = setTimeout(function() {
-                           oItem.getTooltip().closePopup();
-                           oItem.doOpen = false;
-                       }, 10000);
-                   }, 2000);
-               }
-           };
-
-           VerticalNavigationBar.prototype._hideTooltip = function(sTargetId) {
-               var oItem = this._oBarItemsMap[sTargetId];
-               if (oItem) {
-                   oItem.doOpen = false;
-                   clearTimeout(oItem.openTimer);
-                   clearTimeout(oItem.closeTimer);
-                   oItem.getTooltip().closePopup();
-               }
-           };
            return VerticalNavigationBar;
        }, /* bExport= */ true);

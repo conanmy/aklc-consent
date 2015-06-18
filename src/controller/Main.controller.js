@@ -197,8 +197,6 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
             iPrevIndex = (iIndex > 0) ? iIndex - 1 : undefined;
 
 
-
-
             this.oThingInspector.removeAllActions();
             this.oThingInspector.getActionBar().setAlwaysShowMoreMenu(false);
 
@@ -295,7 +293,6 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
                     oFacetContent.addContent(oDetailView);
 
                 };
-
 
                 var oBinding = oModel.bindList("Fields", oContext, null, null, {
                     expand: "Lookup"
