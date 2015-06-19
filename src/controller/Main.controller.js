@@ -193,7 +193,7 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
             var iPrevIndex = 0;
 
 
-            iNextIndex = (iIndex < aSteps.length) ? iIndex + 1 : undefined;
+            iNextIndex = (iIndex < aSteps.length - 1) ? iIndex + 1 : undefined;
             iPrevIndex = (iIndex > 0) ? iIndex - 1 : undefined;
 
 

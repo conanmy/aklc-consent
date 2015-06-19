@@ -1,120 +1,163 @@
 /* ============================================= */
 /* CSS for control sap.suite.ui.commons/VerticalNavigationBar.control */
 /* ============================================= */
+
 .sapSuiteTvNavBar {
-/*  background-color: #ffffff;
+    /*  background-color: #ffffff;
   background-color: rgba(255, 255, 255, 0.85);*/
-  outline: 0;
+    
+    outline: 0;
 }
+
 .sapSuiteTvNavBarList {
-  margin: 0;
-  padding: 0;
-  white-space: nowrap;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
 }
+
 .sapSuiteTvNavBarItem {
-  height: 8rem;  /*32px;*/
-  overflow: hidden;
-  color: #000000;
+    height: 8rem;
+    /*32px;*/
+    
+    overflow: hidden;
+    color: #000000;
 }
+
 .sapSuiteTvNavBarItem.sapUiUx3NavBarItemSel {
-  background-color: #ffffff;
-  color: #007cc0;
-  font: bold 14px arial;
+    background-color: #ffffff;
+    color: #007cc0;
+    font: bold 14px arial;
 }
-.sapSuiteTvNavBarItemLink:hover{
-  background-color: rgba(248, 248, 248, 0.85);
-  color: #007cc0;
-}
+
 .sapSuiteTvNavBarItemLink:active {
-  background-color: #a9a9a9;
-  color: #ffffff;
+    background-color: #a9a9a9;
+    color: #ffffff;
 }
+
 .sapSuiteTvNavBarItemLink {
-  display: block;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 7px 0 7px 0;
-  color: inherit;
-  font-size: 14px;
-  font-family: Arial, Helvetica, sans-serif;
-  text-decoration: none;
-  text-transform: none;
-  outline: 0;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 7px 0 7px 0;
+    color: inherit;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    text-transform: none;
+    outline: 0;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
 }
+
 .sapSuiteTvNavBarItem.sapUiUx3NavBarItemSel > a {
-  color: #ffffff;
-  font-size: 14px;
-  font-weight: bold;
-  padding: 7px 0 7px 0;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 7px 0 7px 0;
 }
+
 .sapSuiteTvNavBarItemLink > span {
-  pointer-events: none;
-  vertical-align: bottom;
+    pointer-events: none;
+    vertical-align: bottom;
 }
+
 .sapSuiteTvNavBarItemName {
-  text-align: center;
-  /*margin-left: 10px;*/
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100%;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
+    text-align: center;
+    /*margin-left: 10px;*/
+    
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
 }
+
 .sapSuiteTvNavBarItemTltp.sapUiRtt {
-  border-radius: 3px;
-  border: 1px #848484 solid;
-  width: auto;
-  height: auto;
-  box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.4);
-  background-color: #ffffff;
+    border-radius: 3px;
+    border: 1px #848484 solid;
+    width: auto;
+    height: auto;
+    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.4);
+    background-color: #ffffff;
 }
+
 .sapSuiteTvNavBarItemTltp .sapUiRttContentContainer {
-  padding: 0px;
+    padding: 0px;
 }
+
 .sapSuiteTvNavBarItemTltp .sapUiRttContent {
-  min-width: 0px;
-  padding: 0px 5px 0px 5px;
-  color: #d3d3d3;
+    min-width: 0px;
+    padding: 0px 5px 0px 5px;
+    color: #d3d3d3;
 }
 /* added */
+
 .sapSuiteTvNavBarIconDiv {
-  text-align: center;
-  margin-bottom: 10px;
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100%;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
- } 
+    text-align: center;
+    margin-bottom: 10px;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    opacity: .5;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
 .sapSuiteTvNavBarIcon {
-  display: inline-block;
-  line-height: 4.75rem;
-  overflow: hidden;
-  font-size: 3.5rem;
-  background: #ffffff;
-  -moz-border-radius: 4rem;
-  border-top-left-radius: 4rem;
-  border-top-right-radius: 4rem;
-  border-bottom-right-radius: 4rem;
-  border-bottom-left-radius: 4rem;
-  border: 1px solid #009de0;
-  width: 5rem;
-  height: 5rem;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -webkit-user-select: none
-}
-.sapSuiteTvNavBarItemLink:hover .sapSuiteTvNavBarIcon {
-  color: #007cc0;
+    display: inline-block;
+    line-height: 4.75rem;
+    overflow: hidden;
+    font-size: 3.5rem;
+    background: #ffffff;
+    -moz-border-radius: 4rem;
+    border-top-left-radius: 4rem;
+    border-top-right-radius: 4rem;
+    border-bottom-right-radius: 4rem;
+    border-bottom-left-radius: 4rem;
+    border: 1px solid #009de0;
+    width: 5rem;
+    height: 5rem;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none
 }
 
+.sapSuiteTvNavBarItem[data-sap-ui-vnb-step-active="true"] >.sapSuiteTvNavBarItemLink:hover {
+    background-color: rgba(248, 248, 248, 0.85);
+    color: #007cc0;
+}
 
+.sapSuiteTvNavBarItem[data-sap-ui-vnb-step-active="true"] >.sapSuiteTvNavBarItemLink:hover .sapSuiteTvNavBarIcon {
+    color: #007cc0;
+}
+
+.sapSuiteTvNavBarItem[data-sap-ui-vnb-step-active="true"] * .sapSuiteTvNavBarIconDiv {
+  opacity: 1;
+    /*    background: #f2f2f2;
+    border-color: #dddddd*/
+
+    /*color: hsl(0, 0%, 20%);*/
+}
+
+.sapSuiteTvNavBarItem[data-sap-ui-vnb-step-active="true"] * .sapSuiteTvNavBarIconAccept {
+    position: absolute;
+    visibility: visible;
+}
+
+.sapSuiteTvNavBarIconAccept {
+    visibility: hidden;
+    ;
+}
+
+.sapSuiteTvNavBarItem[data-sap-ui-vnb-step-current="true"] >.sapSuiteTvNavBarItemLink {
+    background-color: #ffffff;
+    color: #007cc0;
+    font: bold 14px arial;
+}
 }

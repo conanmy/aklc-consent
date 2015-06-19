@@ -1,8 +1,9 @@
-   sap.ui.define(["sap/ui/ux3/NavigationBarRenderer", "sap/ui/core/Renderer"],
-       function(NavigationBarRenderer, Renderer) {
+   sap.ui.define(["sap/ui/ux3/NavigationBarRenderer", "sap/ui/core/Renderer", "./VerticalNavigationBar"],
+       function(NavigationBarRenderer, Renderer, VerticalNavigationBar) {
            "use strict";
 
-           var CLASSES = scenario.xmlview.controls.VerticalNavigationBar.CLASSES;
+           var CLASSES = VerticalNavigationBar.CLASSES;
+           var ATTRIBUTES = VerticalNavigationBar.ATTRIBUTES;
 
            var VerticalNavigationBarRenderer = Renderer.extend("scenario.xmlview.controls.VerticalNavigationBarRenderer");
            VerticalNavigationBarRenderer.render = function(oRm, oControl) {
@@ -22,7 +23,7 @@
                oRm.writeControlData(oControl);
                oRm.writeAttribute("role", "navigation");
                oRm.addClass(CLASSES.NAVBAR);
-               oRm.addClass(CLASSES.NAVBAR_UPPERCASE);
+               // oRm.addClass(CLASSES.NAVBAR_UPPERCASE);
                oRm.writeClasses();
                oRm.write(">");
            };
@@ -56,25 +57,18 @@
            VerticalNavigationBarRenderer.renderSteps = function(oRm, oControl) {
                var iStepCount = oControl.getItems().length;
 
-               for (var i = 0; i < iStepCount; i++) {
+               for (var i = 1; i <= iStepCount; i++) {
                    this.startStep(oRm, oControl, i);
                    this.renderAnchor(oRm, oControl, i);
                    this.endStep(oRm);
                    this.renderArrow(oRm, oControl); //??
                }
-
            };
 
            VerticalNavigationBarRenderer.startStep = function(oRm, oControl, iStepNumber) {
-               var oItem = oControl.getItems()[iStepNumber];
-               var selectedItemId = oControl.getSelectedItem();
-               var bIsSelected = (oItem.getId() === selectedItemId);
-
                oRm.write("<li");
                oRm.addClass(CLASSES.NAVBAR_ITEM);
-               if (bIsSelected) {
-                   oRm.addClass(CLASSES.NAVBAR_ITEM_SELECTED);
-               }
+               oRm.writeAttribute(ATTRIBUTES.STEP, iStepNumber);
                oRm.writeClasses();
                oRm.write(">");
 
@@ -85,7 +79,7 @@
            };
 
            VerticalNavigationBarRenderer.renderAnchor = function(oRm, oControl, iStepNumber) {
-               var oItem = oControl.getItems()[iStepNumber];
+               var oItem = oControl.getItems()[iStepNumber - 1];
 
                oRm.write("<div");
                oRm.writeAttribute("id", oItem.getId());
@@ -110,6 +104,7 @@
                        };
                    }
                    oRm.writeIcon(sIcon, CLASSES.NAVBAR_ICON, oIconAttr);
+                   oRm.writeIcon("sap-icon://accept", CLASSES.NAVBAR_ICON_ACCEPT);
                }
                oRm.write("</div>");
 
@@ -128,8 +123,9 @@
            VerticalNavigationBarRenderer.renderArrow = function(oRm, oControl) {
                oRm.write("<span");
                oRm.writeAttribute("id", oControl.getId() + "-arrow");
-               oRm.writeAttribute("style", "display:none;");
-               oRm.write("></span>");
+               // oRm.writeAttribute("style", "display:none;");
+               oRm.addClass();
+               oRm.write("; class='sapSuiteTvNavBarArrow'></span>");
            };
            return VerticalNavigationBarRenderer;
        }, /* bExport= */ true);
