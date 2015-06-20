@@ -41,8 +41,7 @@ sap.ui.define(["sap/ui/ux3/ThingViewer", "scenario/xmlview/controls/ThreePanelTh
         ThreePanelThingViewer.prototype.init = function() {
             ThingViewer.prototype.init.apply(this);
             var that = this;
-            this._oNavBar = new VerticalNavigationBar();
-            this.setAggregation("navBar", this._oNavBar);
+
 
             var fnAttachSelect = function(oControlEvent) {
                 var item = oControlEvent.getParameters().item;
@@ -57,7 +56,6 @@ sap.ui.define(["sap/ui/ux3/ThingViewer", "scenario/xmlview/controls/ThreePanelTh
                 }
             }.bind(this);
 
-            this._oNavBar.attachSelect(fnAttachSelect);
 
             this._iSelectedMenuItem = 0;
             this._oMenuButton = new sap.ui.commons.Button({
@@ -212,6 +210,7 @@ sap.ui.define(["sap/ui/ux3/ThingViewer", "scenario/xmlview/controls/ThreePanelTh
             this._toggleHeaderContent();
             return this;
         };
+
 
 
         return ThreePanelThingViewer;

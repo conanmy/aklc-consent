@@ -16,7 +16,7 @@ sap.ui.define([
             "includes": ["css/ThreePanelViewer.css", "css/VerticalNavigationBar.css", "css/FormFixer.css"],
             "dependencies": {
                 "minUI5Version": "1.28.0",
-                "libs": ["sap.ui.core", "sap.m", "sap.ui.layout"]
+                "libs": []
             },
 
             "config": {

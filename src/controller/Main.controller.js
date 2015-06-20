@@ -11,19 +11,6 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
 
             this.oThingInspector = this.getView().byId("TI");
             this.oModel = this.getComponent().getModel();
-
-            // TODO - which control has this action
-            this.oThingInspector.getActionBar().attachActionSelected(this.onActionSelected.bind(this));
-
-            //Actions of the ThingInspector
-            this.oActionForward = new sap.ui.ux3.ThingAction({
-                id: "forward",
-                text: "Forward",
-            });
-            this.oActionBackward = new sap.ui.ux3.ThingAction({
-                id: "backward",
-                text: "Backward",
-            });
         },
 
         /**
@@ -75,7 +62,6 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
             } else {
                 this.setSelectedFacet(this.sStepKey);
                 this.setContent(this.getStepPathContext());
-                this.setActionBar();
             }
 
         },
@@ -138,7 +124,6 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
             this.getView().setBindingContext(oContext);
             this.setSelectedFacet(this.sStepKey);
             this.setContent(this.getStepPathContext());
-            this.setActionBar();
         },
 
         /**
@@ -154,69 +139,10 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
 
         },
 
-
-        onActionSelected: function(oEvent) {
-            var oAction = oEvent.getParameter("action");
-            var sActionId = oAction.getId();
-
-            if (sActionId == "forward") {
-                this.navToProcess(this.sProcessKey, this.sNextStep);
-            }
-
-            if (sActionId == "backward") {
-                this.navToProcess(this.sProcessKey, this.sPreviousStep);
-
-            }
-
-
-        },
-
         getStepTitle: function(sPath) {
             var oContext = this.oModel.getContext('/' + sPath);
             return oContext.getObject().Title;
         },
-
-        setActionBar: function() {
-            this.sPreviousStep = undefined;
-            this.sNextStep = undefined;
-
-            var aSteps = this.getView().getBindingContext().getObject().Steps.__list;
-            var sFind = "StepKey='" + this.sStepKey + "'";
-
-            var fnFilter = function(value, index) {
-                return (value.indexOf(sFind) > -1);
-            };
-
-            var sPath = aSteps.filter(fnFilter)[0];
-            var iIndex = aSteps.indexOf(sPath);
-            var iNextIndex = 0;
-            var iPrevIndex = 0;
-
-
-            iNextIndex = (iIndex < aSteps.length - 1) ? iIndex + 1 : undefined;
-            iPrevIndex = (iIndex > 0) ? iIndex - 1 : undefined;
-
-
-            this.oThingInspector.removeAllActions();
-            this.oThingInspector.getActionBar().setAlwaysShowMoreMenu(false);
-
-            if (iPrevIndex !== undefined) {
-                var oPrevContext = this.oModel.getContext('/' + aSteps[iPrevIndex]);
-                this.sPreviousStep = oPrevContext.getObject().StepKey;
-                this.oActionBackward.setText(oPrevContext.getObject().Title);
-                this.oThingInspector.addAction(this.oActionBackward);
-            }
-
-            if (iNextIndex !== undefined) {
-                var oNextContext = this.oModel.getContext('/' + aSteps[iNextIndex]);
-                this.sNextStep = oNextContext.getObject().StepKey;
-                this.oActionForward.setText(oNextContext.getObject().Title);
-                this.oThingInspector.addAction(this.oActionForward);
-            }
-
-        },
-
-
 
         /**
          * Set the facet content based on the selected key

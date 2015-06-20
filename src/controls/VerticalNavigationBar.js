@@ -12,7 +12,7 @@
                NAVBAR_ITEM_SELECTED: "sapUiUx3NavBarItemSel",
                NAVBAR_ITEM_LINK: "sapSuiteTvNavBarItemLink",
                NAVBAR_ICON: "sapSuiteTvNavBarIcon",
-               NAVBAR_ICON_ACCEPT : "sapSuiteTvNavBarIconAccept",
+               NAVBAR_ICON_ACCEPT: "sapSuiteTvNavBarIconAccept",
                NAVBAR_ICON_DIV: "sapSuiteTvNavBarIconDiv",
                ITEM_NAME: "sapSuiteTvNavBarItemName",
            };
@@ -31,26 +31,30 @@
                this._currentStep = 1;
                this._activeStep = 3;
                this._cachedSteps = null;
+               this._stepCount = 0;
 
            };
 
            VerticalNavigationBar.prototype.onAfterRendering = function() {
                sap.ui.ux3.NavigationBar.prototype.onAfterRendering.apply(this);
 
+               this._cacheDOMElements();
+               if (this._cachedSteps.length === 0) {
+                   return;
+               }
+               if (this.getSelectedItem()) {
+                   this._updateSelection(this.getSelectedItem());
+               }
                var zeroBasedActiveStep = this._activeStep - 1,
                    zeroBasedCurrentStep = this._currentStep - 1;
 
-               this._cacheDOMElements();
-               if (this._cachedSteps.length > 0) {
-                   this._updateStepNavigation(zeroBasedActiveStep);
-                   this._updateStepCurrentAttribute(zeroBasedCurrentStep);
-                   this._updateStepActiveAttribute(zeroBasedActiveStep);
-                   this._removeStepAriaDisabledAttribute(zeroBasedActiveStep);
-               }
+               this._stepCount = this._cachedSteps.length;
+               this._updateStepNavigation(zeroBasedActiveStep);
+               this._updateStepCurrentAttribute(zeroBasedCurrentStep);
+               this._updateStepActiveAttribute(zeroBasedActiveStep);
+               this._removeStepAriaDisabledAttribute(zeroBasedActiveStep);
 
-               if (!this._oBarItemsMap) {
-                   this._oBarItemsMap = {};
-               }
+
            };
 
            VerticalNavigationBar.prototype.exit = function() {
@@ -76,8 +80,6 @@
                        this._updateSelection(sTargetId);
                    }
                }
-
-               // sap.ui.ux3.NavigationBar.prototype._handleActivation.call(this, oEvent);
            };
 
            VerticalNavigationBar.prototype.onsapspace = function(oEvent) {
@@ -124,8 +126,68 @@
            };
 
 
-           VerticalNavigationBar.prototype._updateSelection = function(sItemId) {
 
+
+           VerticalNavigationBar.prototype._moveToStep = function(newStep) {
+               var stepCount = this.getStepCount(),
+                   oldStep = this.getCurrentStep();
+
+               if (newStep > stepCount) {
+                   return this;
+               }
+
+               // if (newStep > this._activeStep) {
+               this._updateActiveStep(newStep);
+               // }
+
+               var oItem = this._getItem(newStep);
+               if (this.fireSelect({
+                       item: oItem,
+                       itemId: oItem.getId()
+                   })) {
+                   this.setAssociation("selectedItem", oItem, true); // avoid rerendering, animate
+               }
+
+
+               return this._updateCurrentStep(newStep, oldStep);
+           };
+
+
+
+           VerticalNavigationBar.prototype.previousStep = function() {
+               var currentStep = this.getCurrentStep();
+
+               if (currentStep < 2) {
+                   return this;
+               }
+
+               return this._moveToStep(currentStep - 1);
+           };
+
+           VerticalNavigationBar.prototype.nextStep = function() {
+               return this._moveToStep(this.getCurrentStep() + 1);
+           };
+
+           VerticalNavigationBar.prototype.getPreviousItem = function() {
+               return this.getItems()[this.getCurrentStep() - 2];
+           };
+
+           VerticalNavigationBar.prototype.getNextItem = function() {
+               return this.getItems()[this.getCurrentStep()];
+           };
+
+           VerticalNavigationBar.prototype._getItem = function(newStep) {
+               var stepCount = this.getStepCount();
+
+               if (newStep > stepCount) {
+                   return this;
+               }
+
+               return this.getItems()[newStep - 1];
+           };
+
+
+           VerticalNavigationBar.prototype._updateSelection = function(sItemId) {
 
                this._menuInvalid = true;
                var oItem = sap.ui.getCore().byId(sItemId);
@@ -135,19 +197,6 @@
                }
                this._updateCurrentStep(this._getStepNumber(oItem.getDomRef()));
                this._updateStepActiveAttribute(this._activeStep - 1);
-
-               // update the css classes to make the selected item larger etc.
-               // var $newSel = jQuery.sap.byId(sItemId);
-               // $newSel.attr("tabindex", "0").attr(VerticalNavigationBar.ATTRIBUTES.ARIA_CHECKED, "true");
-               // $newSel.parent().addClass(VerticalNavigationBar.CLASSES.NAVBAR_ITEM_SELECTED);
-               // $newSel.parent().parent().children().each(function() {
-               //     var a = this.firstChild;
-               //     if (a && (a.id != sItemId) && (a.className.indexOf("Dummy") == -1)) {
-               //         jQuery(a).attr("tabindex", "-1"); // includes arrow and dummy, but does not hurt TODO?
-               //         jQuery(a).parent().removeClass(VerticalNavigationBar.CLASSES.NAVBAR_ITEM_SELECTED);
-               //         jQuery(a).attr(VerticalNavigationBar.ATTRIBUTES.ARIA_CHECKED, "false");
-               //     }
-               // });
 
                // let the ItemNavigation know about the new selection
                var iSelectedDomIndex = $(oDomRef).parent().index();
@@ -254,12 +303,6 @@
             * @private
             */
            VerticalNavigationBar.prototype._updateStepActiveAttribute = function(newIndex, oldIndex) {
-               // if (oldIndex !== undefined) {
-               //     this._cachedSteps[oldIndex]
-               //         .removeAttribute(VerticalNavigationBar.ATTRIBUTES.ACTIVE_STEP);
-               // }
-
-
                var iStepCount = this._cachedSteps.length;
 
                for (var i = 0; i < iStepCount; i++) {
@@ -319,6 +362,10 @@
                this._cachedSteps[newIndex].children[0]
                    .setAttribute(
                        VerticalNavigationBar.ATTRIBUTES.ARIA_LABEL, "Selected");
+           };
+
+           VerticalNavigationBar.prototype.getStepCount = function() {
+               return this._stepCount;
            };
 
            return VerticalNavigationBar;

@@ -128,6 +128,8 @@
     -webkit-user-select: none
 }
 
+.sapSuiteTvNavBarItemLink:hover {}
+
 .sapSuiteTvNavBarItem[data-sap-ui-vnb-step-active="true"] >.sapSuiteTvNavBarItemLink:hover {
     background-color: rgba(248, 248, 248, 0.85);
     color: #007cc0;
@@ -138,26 +140,26 @@
 }
 
 .sapSuiteTvNavBarItem[data-sap-ui-vnb-step-active="true"] * .sapSuiteTvNavBarIconDiv {
-  opacity: 1;
-    /*    background: #f2f2f2;
-    border-color: #dddddd*/
-
-    /*color: hsl(0, 0%, 20%);*/
+    opacity: 1;
 }
 
 .sapSuiteTvNavBarItem[data-sap-ui-vnb-step-active="true"] * .sapSuiteTvNavBarIconAccept {
-    position: absolute;
     visibility: visible;
 }
 
 .sapSuiteTvNavBarIconAccept {
+    position: absolute;
     visibility: hidden;
-    ;
+    width: 1rem;
 }
 
 .sapSuiteTvNavBarItem[data-sap-ui-vnb-step-current="true"] >.sapSuiteTvNavBarItemLink {
     background-color: #ffffff;
     color: #007cc0;
     font: bold 14px arial;
+}
+
+.sapUiUx3ActionBarItemRight {
+    outline: 0;
 }
 }
