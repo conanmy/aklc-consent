@@ -50,6 +50,7 @@ sap.ui.define([
             var oModel = new ODataModel(this.getMetadata().getConfig().serviceUrl, {
                 useBatch: false
             });
+            oModel.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
             this.setModel(oModel);
 
             UIComponent.prototype.init.apply(this, arguments);
