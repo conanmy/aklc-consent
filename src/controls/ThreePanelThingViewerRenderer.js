@@ -23,9 +23,9 @@
                oRm.write("<nav");
                oRm.writeAttribute("id", oControl.getId() + "-navigation");
                oRm.addClass("sapSuiteTvNav");
-               if (!oControl.getLogo()) {
-                   oRm.addClass("sapSuiteTvNavNoLogo");
-               }
+
+               oRm.addClass("sapSuiteTvNavNoLogo");
+
                oRm.writeClasses();
                oRm.addStyle("width", oControl.getSidebarWidth());
                oRm.writeStyles();
@@ -49,23 +49,7 @@
                this.renderFacetContent(oRm, oControl);
                oRm.write("</div>");
 
-               if (oControl.getLogo()) {
-                   oRm.write("<footer");
-                   oRm.writeAttribute("id", oControl.getId() + "-footer");
-                   oRm.addClass("sapSuiteTvLogo");
-                   oRm.writeClasses();
-                   oRm.addStyle("width", oControl.getSidebarWidth());
-                   oRm.writeStyles();
-                   oRm.write(">");
-                   oRm.write("<img");
-                   oRm.writeAttribute("id", oControl.getId() + "-logo");
-                   oRm.writeAttribute("role", "presentation");
-                   oRm.writeAttributeEscaped("src", oControl.getLogo());
-                   oRm.addClass("sapSuiteTvLogoIcon");
-                   oRm.writeClasses();
-                   oRm.write("/>");
-                   oRm.write("</footer>");
-               }
+               this.renderToolbar(oRm, oControl);
                oRm.write("</div>");
            };
 

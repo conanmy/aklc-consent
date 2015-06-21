@@ -11,7 +11,6 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
 
             this.oThingInspector = this.getView().byId("TI");
             this.oModel = this.getComponent().getModel();
-
         },
 
         /**
@@ -140,6 +139,11 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
 
         },
 
+        getStepTitle: function(sPath) {
+            var oContext = this.oModel.getContext('/' + sPath);
+            return oContext.getObject().Title;
+        },
+
         /**
          * Set the facet content based on the selected key
          * @param {[type]} sKey [description]
@@ -152,6 +156,8 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
             //remove existing content
             this.oThingInspector.removeAllFacetContent();
             this.oThingInspector.removeAllHeaderContent();
+
+
 
             // show header details
             this.oThingInspector.setShowHeader(oStep.ShowHeader);
@@ -213,7 +219,6 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
                     oFacetContent.addContent(oDetailView);
 
                 };
-
 
                 var oBinding = oModel.bindList("Fields", oContext, null, null, {
                     expand: "Lookup"

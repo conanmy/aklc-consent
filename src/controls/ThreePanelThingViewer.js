@@ -41,21 +41,21 @@ sap.ui.define(["sap/ui/ux3/ThingViewer", "scenario/xmlview/controls/ThreePanelTh
         ThreePanelThingViewer.prototype.init = function() {
             ThingViewer.prototype.init.apply(this);
             var that = this;
-            this._oNavBar = new VerticalNavigationBar();
-            this.setAggregation("navBar", this._oNavBar);
 
-            this._oNavBar.attachSelect(function(oControlEvent) {
+
+            var fnAttachSelect = function(oControlEvent) {
                 var item = oControlEvent.getParameters().item;
-                if (that.fireFacetSelected({
+                if (this.fireFacetSelected({
                         id: item.getId(),
                         key: item.getKey(),
                         item: item
                     })) {
-                    that.setSelectedFacet(item);
+                    this.setSelectedFacet(item);
                 } else {
                     oControlEvent.preventDefault();
                 }
-            });
+            }.bind(this);
+
 
             this._iSelectedMenuItem = 0;
             this._oMenuButton = new sap.ui.commons.Button({
@@ -210,6 +210,7 @@ sap.ui.define(["sap/ui/ux3/ThingViewer", "scenario/xmlview/controls/ThreePanelTh
             this._toggleHeaderContent();
             return this;
         };
+
 
 
         return ThreePanelThingViewer;
