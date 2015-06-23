@@ -20,6 +20,16 @@
     "Enabled": ""
 }, {
     "ProcessKey": "P1",
+    "StepKey": "PARTIES",
+    "Title": "Parties Involved",
+    "Icon": "sap-icon://company-view",
+    "StepView": "Parties",
+    "ShowHeader": false,
+    "HeaderView": "",
+    "HeaderTitle": "",
+    "Enabled": ""
+}, {
+    "ProcessKey": "P1",
     "StepKey": "FEES",
     "Title": "Fees",
     "Icon": "sap-icon://loan",

@@ -1,0 +1,37 @@
+<mvc:View controllerName="" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+    <Table id="idProductsTable" inset="false" items="{/Parties}" mode="MultiSelect">
+        <headerToolbar>
+            <Toolbar>
+                <Title text="Parties Involved" level="H2"/>
+            </Toolbar>
+        </headerToolbar>
+        <columns>
+            <Column width="12em">
+                <Text text="Partner Function" />
+            </Column>
+            <Column minScreenWidth="Tablet" demandPopin="true">
+                <Text text="Name" />
+            </Column>
+            <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Right">
+                <Text text="Partner ID" />
+            </Column>
+            <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+                <Text text="Address" />
+            </Column>
+            <Column width="6em">
+                <Text text="Action" />
+            </Column>
+        </columns>
+        <items>
+            <ColumnListItem vAlign="Middle">
+                <cells>
+                    <Input type="Text" value="{Function}" />
+                    <Input type="Text" value="{Name}" />
+                    <Input type="Text" value="{ID}" />
+                    <Input type="Text" value="{Address}" />
+                    <Button text="Save" />
+                </cells>
+            </ColumnListItem>
+        </items>
+    </Table>
+</mvc:View>
