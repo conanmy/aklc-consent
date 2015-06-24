@@ -30,16 +30,6 @@
     "Enabled": ""
 }, {
     "ProcessKey": "P1",
-    "StepKey": "FEES",
-    "Title": "Fees",
-    "Icon": "sap-icon://loan",
-    "StepView": "View1",
-    "ShowHeader": false,
-    "HeaderView": "",
-    "HeaderTitle": "",
-    "Enabled": ""
-}, {
-    "ProcessKey": "P1",
     "StepKey": "CORRESPONDENCE",
     "Title": "Correspondence",
     "Icon": "sap-icon://email",
