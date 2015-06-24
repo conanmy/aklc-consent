@@ -9,6 +9,11 @@
                            type: "boolean",
                            group: "Misc",
                            defaultValue: true
+                       },
+                       "sidebarWidth": {
+                           type: "sap.ui.core.CSSSize",
+                           group: "Misc",
+                           defaultValue: '224px'
                        }
                    }
                }
