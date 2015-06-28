@@ -2,13 +2,11 @@
 
 sap.ui.define([
     "sap/ui/core/UIComponent",
-    "sap/ui/model/resource/ResourceModel",
-    "sap/ui/model/odata/v2/ODataModel",
-    "openui5/ckeditor/CKEditorToolbar",
-    "scenario/xmlview/Router",
-], function(UIComponent, ResourceModel, ODataModel, CKEditorToolbar) {
+    "scenario/xmlview/ApplicationController",
+    "scenario/xmlview/Router"
+], function(UIComponent, ApplicationController) {
     "use strict";
-
+    var oApplicationController = null;
     return UIComponent.extend("scenario.xmlview.Component", {
 
         metadata: {
@@ -20,8 +18,11 @@ sap.ui.define([
             },
 
             "config": {
-                "i18nBundle": "scenario.xmlview.i18n.i18n",
-                "serviceUrl": "here/goes/your/serviceUrl/"
+                "resourceBundle": "i18n/i18n.properties",
+                "serviceConfig": {
+                    "name": "namehere",
+                    "serviceUrl": "here/goes/your/serviceUrl/"
+                }
             },
 
             "routing": {
@@ -38,23 +39,31 @@ sap.ui.define([
             }
         },
 
+        /**
+         * [exit description]
+         * @return {[type]} [description]
+         */
+        exit: function() {
+            oApplicationController.exit();
+            oApplicationController = null;
+        },
+
+        /**
+         * [init description]
+         * @return {[type]} [description]
+         */
         init: function() {
-            CKEditorToolbar.myToolbar = [
-                ['Source'],
-                ['Cut', 'Copy', 'Paste', 'PasteText'],
-                ['Undo', 'Redo'],
-                ['Bold', 'Italic', 'Underline'],
-                ['BulletedList', 'NumberedList', 'Blockquote']
-            ];
-
-            var oModel = new ODataModel(this.getMetadata().getConfig().serviceUrl, {
-                useBatch: false
-            });
-            oModel.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
-            this.setModel(oModel);
-
+            oApplicationController = new ApplicationController(this);
             UIComponent.prototype.init.apply(this, arguments);
-            this.getRouter().initialize();
+            oApplicationController.init();
+        },
+
+        /**
+         * [getApplicationController description]
+         * @return {[type]} [description]
+         */
+        getApplicationController: function() {
+            return oApplicationController;
         }
 
     });

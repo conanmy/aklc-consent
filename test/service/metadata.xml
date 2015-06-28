@@ -38,6 +38,7 @@
                 <Property Name="Label" Type="Edm.String" />
                 <Property Name="Type" Type="Edm.String" />
                 <Property Name="Value" Type="Edm.String" />
+                <Property Name="Required" Type="Edm.Boolean" />
                 <NavigationProperty Name="Lookup" Relationship="ODataDemo.FK_FieldsLookup" FromRole="FromRole_FieldsLookup" ToRole="ToRole_FieldsLookup" />
             </EntityType>
             <EntityType Name="Lookup">

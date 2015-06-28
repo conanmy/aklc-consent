@@ -3,6 +3,7 @@
            "use strict";
 
            var BaseController = Controller.extend("scenario.xmlview.controller.BaseController", {
+               _oModel: null, // the oData model used by this App
                constructor: function() {
 
                },
@@ -18,10 +19,6 @@
 
                getRouter: function() {
                    return sap.ui.core.UIComponent.getRouterFor(this);
-               },
-
-               isMock: function() {
-                   return this.getComponent().isMock();
                },
 
                getFormatter: function() {

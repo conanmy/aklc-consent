@@ -1,90 +1,103 @@
   [{
-          "StepKey": "DETAILS",
-          "Attribute": "APP_SUBTYPES",
-          "Label": "Application sub-types",
-          "Type": "multi_combo",
-          "Value": "DRG,ETC"
-      }, {
-          "StepKey": "DETAILS",
-          "Attribute": "RETRO_APP",
-          "Label": "Retrospective consent",
-          "Type": "checkbox",
-          "Value": true
-      }, {
-          "StepKey": "DETAILS",
-          "Attribute": "DIST_REG",
-          "Label": "District or regional application?",
-          "Type": "combo",
-          "Value": "REG"
-      }, {
-          "StepKey": "DETAILS",
-          "Attribute": "DIRECT_REFERRAL",
-          "Label": "Direct referral",
-          "Type": "checkbox",
-          "Value": "FALSE"
-      }, {
-          "StepKey": "DETAILS",
-          "Attribute": "RESOURCE_USE",
-          "Label": "Resource use",
-          "Type": "combo",
-          "Value": "MU"
-      }, {
-          "StepKey": "DETAILS",
-          "Attribute": "EMERGENCY_WORKS",
-          "Label": "Emergency works",
-          "Type": "checkbox",
-          "Value": false
-      }, {
-          "StepKey": "DETAILS",
-          "Attribute": "TEMPORARY_ACTIVITY",
-          "Label": "Temporary Activity",
-          "Type": "checkbox",
-          "Value": true
-      }, {
-          "StepKey": "DETAILS",
-          "Attribute": "EXISTING_DWELLINGS",
-          "Label": "Number of existing dwellings",
-          "Type": "input",
-          "SubType": "Number",
-          "Value": "123"
-      }, {
-          "StepKey": "DETAILS",
-          "Attribute": "PROPOSED_APARTMENTS",
-          "Label": "Due date",
-          "Type": "input",
-          "SubType": "Date",
-          "Value": "2015/06/12"
-      }, {
-          "StepKey": "DETAILS",
-          "Attribute": "PROPOSED_TERRACED_HOUSING",
-          "Label": "Number of proposed terraced houses",
-          "Type": "input",
-          "SubType": "Text",
-          "Value": ""
-      }, {
-          "StepKey": "DETAILS",
-          "Attribute": "PROPOSED_DETACHED_DWELLINGS",
-          "Label": "Email of the applicant",
-          "Type": "input",
-          "SubType": "Email",
-          "Value": ""
-      }, {
-          "StepKey": "DOCUMENTS",
-          "Attribute": "APP_SUBTYPES",
-          "Label": "Application sub-types",
-          "Type": "multi_combo",
-          "Value": "DRG,ETC"
-      }, {
-          "StepKey": "DOCUMENTS",
-          "Attribute": "RETRO_APP",
-          "Label": "Retrospective consent",
-          "Type": "checkbox",
-          "Value": true
-      }, {
-          "StepKey": "DOCUMENTS",
-          "Attribute": "DIST_REG",
-          "Label": "District or regional application?",
-          "Type": "combo",
-          "Value": "REG"
-      }
-  ]
+      "StepKey": "DETAILS",
+      "Attribute": "APP_SUBTYPES",
+      "Label": "Application sub-types",
+      "Type": "multi_combo",
+      "Value": ["ETC", "DRG"],
+      "Required": true
+  }, {
+      "StepKey": "DETAILS",
+      "Attribute": "RETRO_APP",
+      "Label": "Retrospective consent",
+      "Type": "checkbox",
+      "Value": true,
+      "Required": true
+  }, {
+      "StepKey": "DETAILS",
+      "Attribute": "DIST_REG",
+      "Label": "District or regional application?",
+      "Type": "combo",
+      "Value": "REG",
+      "Required": true
+  }, {
+      "StepKey": "DETAILS",
+      "Attribute": "DIRECT_REFERRAL",
+      "Label": "Direct referral",
+      "Type": "checkbox",
+      "Value": false,
+      "Required": true
+  }, {
+      "StepKey": "DETAILS",
+      "Attribute": "RESOURCE_USE",
+      "Label": "Resource use",
+      "Type": "combo",
+      "Value": "MU",
+      "Required": true
+  }, {
+      "StepKey": "DETAILS",
+      "Attribute": "EMERGENCY_WORKS",
+      "Label": "Emergency works",
+      "Type": "checkbox",
+      "Value": false,
+      "Required": true
+  }, {
+      "StepKey": "DETAILS",
+      "Attribute": "TEMPORARY_ACTIVITY",
+      "Label": "Temporary Activity",
+      "Type": "checkbox",
+      "Value": true,
+      "Required": true
+  }, {
+      "StepKey": "DETAILS",
+      "Attribute": "EXISTING_DWELLINGS",
+      "Label": "Number of existing dwellings",
+      "Type": "input",
+      "SubType": "Number",
+      "Value": "123",
+      "Required": true
+  }, {
+      "StepKey": "DETAILS",
+      "Attribute": "PROPOSED_APARTMENTS",
+      "Label": "Due date",
+      "Type": "input",
+      "SubType": "Date",
+      "Value": "20150612",
+      "Required": true
+  }, {
+      "StepKey": "DETAILS",
+      "Attribute": "PROPOSED_TERRACED_HOUSING",
+      "Label": "Number of proposed terraced houses",
+      "Type": "input",
+      "SubType": "Text",
+      "Value": "",
+      "Required": true
+  }, {
+      "StepKey": "DETAILS",
+      "Attribute": "PROPOSED_DETACHED_DWELLINGS",
+      "Label": "Email of the applicant",
+      "Type": "input",
+      "SubType": "Email",
+      "Value": "",
+      "Required": true
+  }, {
+      "StepKey": "DOCUMENTS",
+      "Attribute": "APP_SUBTYPES",
+      "Label": "Application sub-types",
+      "Type": "multi_combo",
+      "Value": "DRG,ETC",
+      "Required": true
+  }, {
+      "StepKey": "DOCUMENTS",
+      "Attribute": "RETRO_APP",
+      "Label": "Retrospective consent",
+      "Type": "checkbox",
+      "Value": true,
+      "Required": true
+  }, {
+      "StepKey": "DOCUMENTS",
+      "Attribute": "DIST_REG",
+      "Label": "District or regional application?",
+      "Type": "combo",
+      "Value": "REG",
+      "Required": true
+  }]

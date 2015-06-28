@@ -130,7 +130,7 @@
 
 .sapSuiteTvNavBarItemLink:hover {}
 
-.sapSuiteTvNavBarItem[data-sap-ui-vnb-step-active="true"] >.sapSuiteTvNavBarItemLink:hover {
+.sapSuiteTvNavBarItem:[data-sap-ui-vnb-step-active="true"] >.sapSuiteTvNavBarItemLink:hover {
     background-color: rgba(248, 248, 248, 0.85);
     color: #007cc0;
 }
