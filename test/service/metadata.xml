@@ -72,6 +72,13 @@
                 <Property Name="Name" Type="Edm.String" />
                 <Property Name="Address" Type="Edm.String" />
             </EntityType>
+            <EntityType Name="PartyFunctions" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ID" />
+                </Key>
+                <Property Name="ID" Type="Edm.String" Nullable="false" />
+                <Property Name="Function" Type="Edm.String" Nullable="false" />
+            </EntityType>
             <Association Name="FK_ProcessSteps">
                 <End Type="ODataDemo.Process" Multiplicity="1" Role="FromRole_ProcessSteps" />
                 <End Type="ODataDemo.Steps" Multiplicity="*" Role="ToRole_ProcessSteps" />
@@ -115,6 +122,7 @@
                 <EntitySet Name="Lookup" EntityType="ODataDemo.Lookup" sap:content-version="1" />
                 <EntitySet Name="Conditions" EntityType="ODataDemo.Conditions" sap:content-version="1" />
                 <EntitySet Name="Parties" EntityType="ODataDemo.Parties" sap:content-version="1" />
+                <EntitySet Name="PartyFunctions" EntityType="ODataDemo.PartyFunctions" sap:content-version="1" />
                 <AssociationSet Name="FK_ProcessSteps_Assoc" Association="ODataDemo.FK_ProcessSteps" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                     <End EntitySet="Process" Role="FromRole_ProcessSteps" />
                     <End EntitySet="Steps" Role="ToRole_ProcessSteps" />

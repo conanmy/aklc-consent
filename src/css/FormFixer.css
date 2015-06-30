@@ -12,3 +12,7 @@
 .sapUiRespGridBreak {
 	clear: none;
 }
+.select-list-page section {
+	position: relative;
+	top: 0 !important;
+}

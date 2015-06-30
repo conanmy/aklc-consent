@@ -13,10 +13,10 @@
     "StepKey": "ASSIGNMENTS",
     "Title": "Assignments",
     "Icon": "sap-icon://citizen-connect",
-    "StepView": "Conditions",
-    "ShowHeader": false,
-    "HeaderTitle": "",
-    "HeaderView": "",
+    "StepView": "SelectList",
+    "ShowHeader": true,
+    "HeaderTitle": "Conditions",
+    "HeaderView": "Conditions",
     "Enabled": ""
 }, {
     "ProcessKey": "P1",
