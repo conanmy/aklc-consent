@@ -13,20 +13,20 @@
     "StepKey": "ASSIGNMENTS",
     "Title": "Assignments",
     "Icon": "sap-icon://citizen-connect",
-    "StepView": "SelectList",
-    "ShowHeader": true,
-    "HeaderTitle": "Conditions",
-    "HeaderView": "Conditions",
+    "StepView": "Conditions",
+    "ShowHeader": false,
+    "HeaderTitle": "",
+    "HeaderView": "",
     "Enabled": ""
 }, {
     "ProcessKey": "P1",
     "StepKey": "PARTIES",
     "Title": "Parties Involved",
     "Icon": "sap-icon://company-view",
-    "StepView": "Parties",
-    "ShowHeader": false,
-    "HeaderView": "",
-    "HeaderTitle": "",
+    "StepView": "SelectList",
+    "ShowHeader": true,
+    "HeaderView": "PartyList",
+    "HeaderTitle": "Parties Involved",
     "Enabled": ""
 }, {
     "ProcessKey": "P1",
