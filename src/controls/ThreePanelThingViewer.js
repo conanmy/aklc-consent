@@ -28,20 +28,16 @@ sap.ui.define(["sap/ui/ux3/ThingViewer", "scenario/xmlview/controls/ThreePanelTh
                         group: "Misc",
                         defaultValue: '224px'
                     }
-                },
-                aggregations: {
-                    "menuContent": {
-                        type: "sap.ui.commons.Link",
-                        multiple: true,
-                        singularName: "menuContent"
-                    }
                 }
             }
         });
         ThreePanelThingViewer.prototype.init = function() {
             ThingViewer.prototype.init.apply(this);
-            var that = this;
+            this.fAnyEventHandlerProxy = jQuery.proxy(this.onAnyEvent, this);
 
+            //NavBar
+            this._oNavBar = new VerticalNavigationBar();
+            this.setAggregation("navBar", this._oNavBar);
 
             var fnAttachSelect = function(oControlEvent) {
                 var item = oControlEvent.getParameters().item;
@@ -50,35 +46,93 @@ sap.ui.define(["sap/ui/ux3/ThingViewer", "scenario/xmlview/controls/ThreePanelTh
                         key: item.getKey(),
                         item: item
                     })) {
+
                     this.setSelectedFacet(item);
+                    this._setActions();
                 } else {
                     oControlEvent.preventDefault();
                 }
             }.bind(this);
 
+            this._getNavBar().attachSelect(fnAttachSelect);
 
-            this._iSelectedMenuItem = 0;
-            this._oMenuButton = new sap.ui.commons.Button({
-                id: this.getId() + "-menu-button",
-                tooltip: "",
-                lite: true,
-                press: function() {
-                    that._toggleMenuPopup();
-                }
+            var fnAfterRendering = function() {
+                this._setActions();
+            }.bind(this);
+
+            this._getNavBar().addDelegate({
+                onAfterRendering: fnAfterRendering
             });
-            this._oMenuButton.addStyleClass("sapSuiteTvTitleMb");
-            this.fAnyEventHandlerProxy = jQuery.proxy(this.onAnyEvent, this);
+
+            //Actions
+            this._oActionNext = new sap.ui.commons.Button({ //new ThingAction({
+                id: "next",
+                icon: "sap-icon://navigation-right-arrow",
+                iconFirst: false,
+                press: this.nextStep.bind(this),
+                visible: false
+            });
+
+            this._oActionPrevious = new sap.ui.commons.Button({ //new ThingAction({
+                id: "previous",
+                icon: "sap-icon://navigation-left-arrow",
+                press: this.previousStep.bind(this),
+                visible: false
+            });
         };
 
         ThreePanelThingViewer.prototype.exit = function() {
-            this._oMenuButton.destroy();
             jQuery.sap.unbindAnyEvent(this.fAnyEventHandlerProxy);
         };
 
         ThreePanelThingViewer.prototype.onAfterRendering = function() {
-            this._bMenuOpened = false;
-            this._updateMenuPopup();
             this._toggleHeaderContent();
+
+            this.getActionBar().attachActionSelected(this._actionSelected.bind(this));
+            this.getActionBar().setAlwaysShowMoreMenu(false);
+            this.removeAllActions();
+            this.getActionBar().insertAggregation("_businessActionButtons", this._oActionNext, 0, true);
+            this.getActionBar().insertAggregation("_businessActionButtons", this._oActionPrevious, 0, true);
+        };
+
+        // Implementation of API method removeAllActions
+        ThreePanelThingViewer.prototype.removeAllActions = function() {
+            var result;
+            if (this.getActionBar()) {
+                result = this.getActionBar().removeAllBusinessActions();
+            }
+            return result;
+        };
+
+        ThreePanelThingViewer.prototype._setNextAction = function() {
+            var oItem = this._getNavBar().getNextItem();
+            return (oItem) ? oItem.getText() : undefined;
+        };
+
+        ThreePanelThingViewer.prototype._setPreviousAction = function() {
+            var oItem = this._getNavBar().getPreviousItem();
+            return (oItem) ? oItem.getText() : undefined;
+        };
+
+        ThreePanelThingViewer.prototype._actionSelected = function(oEvent) {
+            var oAction = oEvent.getParameter("action");
+            var sActionId = oAction.getId();
+
+            if (sActionId == "next") {
+                this._nextStep();
+            }
+
+            if (sActionId == "previous") {
+                this._previousStep();
+            }
+        };
+
+        ThreePanelThingViewer.prototype.nextStep = function() {
+            this._getNavBar().nextStep();
+        };
+
+        ThreePanelThingViewer.prototype.previousStep = function() {
+            this._getNavBar().previousStep();
         };
 
         ThreePanelThingViewer.prototype.selectDefaultFacet = function() {
@@ -86,33 +140,22 @@ sap.ui.define(["sap/ui/ux3/ThingViewer", "scenario/xmlview/controls/ThreePanelTh
             return this;
         };
 
-        ThreePanelThingViewer.prototype._toggleMenuPopup = function() {
-            jQuery.sap.byId(this.getId() + "-menu-popup").toggle();
-            this._bMenuOpened = !this._bMenuOpened;
 
-            if (this._bMenuOpened) {
-                jQuery.sap.bindAnyEvent(this.fAnyEventHandlerProxy);
-                this.getMenuContent()[0].focus();
-                this._iSelectedMenuItem = 0;
+        ThreePanelThingViewer.prototype._setActions = function() {
+            if (this._setNextAction()) {
+                this._oActionNext.setVisible(true);
+                this._oActionNext.setText(this._setNextAction());
             } else {
-                jQuery.sap.unbindAnyEvent(this.fAnyEventHandlerProxy);
+                this._oActionNext.setVisible(false);
             }
-        };
 
-        ThreePanelThingViewer.prototype._updateMenuPopup = function() {
-            var iHeaderWidth = jQuery.sap.byId(this.getId() + "-header").width();
-            var oMenuPopup = jQuery.sap.byId(this.getId() + "-menu-popup");
-            var sStyle = sap.ui.getCore().getConfiguration().getRTL() ? "right" : "left";
-            var iSize = this.getMenuContent().length;
+            if (this._setPreviousAction()) {
+                this._oActionPrevious.setVisible(true);
+                this._oActionPrevious.setText(this._setPreviousAction());
+            } else {
+                this._oActionPrevious.setVisible(false);
+            }
 
-            oMenuPopup.css(sStyle, (iHeaderWidth - 22) + "px");
-            oMenuPopup.children().each(function(index) {
-                var $this = jQuery(this);
-                $this.attr("tabindex", "-1");
-                $this.attr("role", "menuitem");
-                $this.attr("aria-posinset", index + 1);
-                $this.attr("aria-setsize", iSize);
-            });
         };
 
         ThreePanelThingViewer.prototype._rerenderFacetContent = function() {
@@ -157,61 +200,15 @@ sap.ui.define(["sap/ui/ux3/ThingViewer", "scenario/xmlview/controls/ThreePanelTh
             }
         };
 
-        ThreePanelThingViewer.prototype.onAnyEvent = function(oEvent) {
-            if (this._bMenuOpened && (oEvent.type == "mousedown" || oEvent.type == "focusin")) {
-                var oSource = oEvent.target;
-                var oDomRef = jQuery.sap.domById(this.getId() + "-menu-popup");
-
-                if (!jQuery.sap.containsOrEquals(oDomRef, oSource) || oSource.tagName == "BODY") {
-                    this._toggleMenuPopup();
-                }
-            }
-        };
-
-        ThreePanelThingViewer.prototype.onsapescape = function() {
-            if (this._bMenuOpened) {
-                this._toggleMenuPopup();
-                this._oMenuButton.focus();
-            }
-        };
-
-        ThreePanelThingViewer.prototype.onsapnext = function(oEvent) {
-            if (this._bMenuOpened) {
-                var aMenuContent = this.getMenuContent();
-                this._iSelectedMenuItem++;
-
-                if (this._iSelectedMenuItem >= aMenuContent.length) {
-                    this._iSelectedMenuItem = 0;
-                }
-
-                aMenuContent[this._iSelectedMenuItem].focus();
-                oEvent.preventDefault();
-                oEvent.stopPropagation();
-            }
-        };
-
-        ThreePanelThingViewer.prototype.onsapprevious = function(oEvent) {
-            if (this._bMenuOpened) {
-                var aMenuContent = this.getMenuContent();
-                this._iSelectedMenuItem--;
-
-                if (this._iSelectedMenuItem < 0) {
-                    this._iSelectedMenuItem = aMenuContent.length - 1;
-                }
-
-                aMenuContent[this._iSelectedMenuItem].focus();
-                oEvent.preventDefault();
-                oEvent.stopPropagation();
-            }
-        };
-
         ThreePanelThingViewer.prototype.setShowHeader = function(bShowHeader) {
             this.setProperty("showHeader", bShowHeader, true);
             this._toggleHeaderContent();
             return this;
         };
 
-
+        ThreePanelThingViewer.prototype._getNavBar = function() {
+            return this._oNavBar;
+        };
 
         return ThreePanelThingViewer;
     }, /* bExport= */ true);

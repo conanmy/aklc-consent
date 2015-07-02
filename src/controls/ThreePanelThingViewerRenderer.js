@@ -10,6 +10,8 @@
                oRm.writeClasses();
                oRm.write(">");
 
+
+
                oRm.write("<header");
                oRm.writeAttribute("id", oControl.getId() + "-header");
                oRm.addClass("sapSuiteTvTitle");
@@ -17,21 +19,13 @@
                oRm.addStyle("width", oControl.getSidebarWidth());
                oRm.writeStyles();
                oRm.write(">");
-               this.renderHeader(oRm, oControl);
+               // this.renderHeader(oRm, oControl);
                oRm.write("</header>");
 
-               oRm.write("<nav");
-               oRm.writeAttribute("id", oControl.getId() + "-navigation");
-               oRm.addClass("sapSuiteTvNav");
 
-               oRm.addClass("sapSuiteTvNavNoLogo");
+               this.renderNavBar(oRm, oControl);
 
-               oRm.writeClasses();
-               oRm.addStyle("width", oControl.getSidebarWidth());
-               oRm.writeStyles();
-               oRm.write(">");
-               oRm.renderControl(oControl._getNavBar());
-               oRm.write("</nav>");
+               this.renderBanner(oRm, oControl);
 
                oRm.write("<aside");
                oRm.writeAttribute("id", oControl.getId() + "-headerContent");
@@ -53,9 +47,23 @@
                oRm.write("</div>");
            };
 
-           ThreePanelThingViewerRenderer.renderHeader = function(oRm, oControl) {
-               var iMenuContentLength = oControl.getMenuContent().length;
+           ThreePanelThingViewerRenderer.renderNavBar = function(oRm, oControl) {
+               oRm.write("<nav");
+               oRm.writeAttribute("id", oControl.getId() + "-navigation");
+               oRm.addClass("sapSuiteTvNav");
 
+               oRm.addClass("sapSuiteTvNavNoLogo");
+
+               oRm.writeClasses();
+               oRm.addStyle("width", oControl.getSidebarWidth());
+               oRm.writeStyles();
+               oRm.write(">");
+               oRm.renderControl(oControl._getNavBar());
+               oRm.write("</nav>");
+           };
+
+
+           ThreePanelThingViewerRenderer.renderHeader = function(oRm, oControl) {
                oRm.write("<div");
                oRm.addClass("sapSuiteTvTitleBar");
                oRm.writeClasses();
@@ -68,10 +76,6 @@
                    oRm.addClass("sapSuiteTvTitleIcon");
                    oRm.writeClasses();
                    oRm.write("/>");
-               }
-
-               if (iMenuContentLength > 0) {
-                   oRm.renderControl(oControl._oMenuButton);
                }
 
                oRm.write("<div");
@@ -106,9 +110,33 @@
                oRm.writeEscaped(oControl.getSubtitle());
                oRm.write("</div>");
                oRm.write("</div>");
-
-               this.renderFlyOutMenu(oRm, oControl);
            };
+
+           ThreePanelThingViewerRenderer.renderBanner = function(oRm, oControl) {
+               var iLeft = parseInt(oControl.getSidebarWidth()) + 20 + "px";
+
+               oRm.write("<div");
+               oRm.writeAttribute("role", "Navigation");
+               oRm.addClass("sapUiUx3TVBanner");
+               oRm.writeClasses();
+               oRm.addStyle("left", iLeft);
+               oRm.writeStyles();
+               oRm.write(">");
+               // oRm.write("<div role='Navigation' class='sapUiUx3TVBanner'>");
+               // oRm.renderControl(oControl._getNavBar());
+               oRm.write("</div>");
+
+           };
+
+           ThreePanelThingViewerRenderer.renderToolbar = function(oRm, oControl) {
+               // render Toolbar
+               if (oControl.getActionBar()) {
+                   oRm.write("<div id='" + oControl.getId() + "-toolbar' class='sapUiUx3TVToolbar'>");
+                   oRm.renderControl(oControl.getActionBar());
+                   oRm.write("</div>");
+               }
+           };
+
 
            ThreePanelThingViewerRenderer.renderFacetContent = function(oRm, oControl) {
                var aFacetContent = oControl.getFacetContent();
@@ -145,24 +173,6 @@
                    oRm.write("</div>");
                    oRm.write("</div>");
                }
-           };
-
-           ThreePanelThingViewerRenderer.renderFlyOutMenu = function(oRm, oControl) {
-               oRm.write("<div");
-               oRm.writeAttribute("id", oControl.getId() + "-menu-popup");
-               oRm.writeAttribute("role", "menu");
-               oRm.addClass("sapSuiteTvPopupMenu");
-               oRm.writeClasses();
-               oRm.write(">");
-
-               var aMenuContent = oControl.getMenuContent();
-               for (var i = 0; i < aMenuContent.length; i++) {
-                   var oMenuItem = aMenuContent[i];
-                   oMenuItem.addStyleClass("sapSuiteTvPopupMenuLink");
-                   oRm.renderControl(oMenuItem);
-               }
-
-               oRm.write("</div>");
            };
            return ThreePanelThingViewerRenderer;
        }, /* bExport= */ true);
