@@ -197,6 +197,7 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
                             path: sLookupPath,
                             template: oTemplate
                         },
+                        placeholder: oData.Placeholder,
                         layoutData: oLayoutData
                     });
                     break;
@@ -211,6 +212,7 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
                             path: sLookupPath,
                             template: oTemplate
                         },
+                        placeholder: oData.Placeholder,
                         layoutData: oLayoutData
                     });
                     break;
@@ -221,6 +223,7 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
                             path: sValuePath
                         },
                         change: this.onInputChange.bind(this),
+                        placeholder: oData.Placeholder,
                         layoutData: oLayoutData
                     });
                     break;
@@ -240,7 +243,7 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
 
         },
 
-        onTest: function(oEvent){
+        onTest: function(oEvent) {
             this._checkAndMarkEmptyMandatoryFields();
         },
 
