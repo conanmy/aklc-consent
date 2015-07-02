@@ -11,6 +11,7 @@
       "Label": "Retrospective consent",
       "Type": "checkbox",
       "Value": true,
+      "Placeholder": "Enter me",
       "Required": true
   }, {
       "StepKey": "DETAILS",
@@ -25,6 +26,7 @@
       "Label": "Direct referral",
       "Type": "checkbox",
       "Value": false,
+      "Placeholder": "Enter me",
       "Required": true
   }, {
       "StepKey": "DETAILS",
@@ -32,6 +34,7 @@
       "Label": "Resource use",
       "Type": "combo",
       "Value": "MU",
+      "Placeholder": "Enter me",
       "Required": true
   }, {
       "StepKey": "DETAILS",
@@ -39,6 +42,7 @@
       "Label": "Emergency works",
       "Type": "checkbox",
       "Value": false,
+      "Placeholder": "Enter me",
       "Required": true
   }, {
       "StepKey": "DETAILS",
@@ -46,6 +50,7 @@
       "Label": "Temporary Activity",
       "Type": "checkbox",
       "Value": true,
+      "Placeholder": "Enter me",
       "Required": true
   }, {
       "StepKey": "DETAILS",
@@ -54,6 +59,7 @@
       "Type": "input",
       "SubType": "Number",
       "Value": "123",
+      "Placeholder": "Enter me",
       "Required": true
   }, {
       "StepKey": "DETAILS",
@@ -62,6 +68,7 @@
       "Type": "input",
       "SubType": "Date",
       "Value": "20150612",
+      "Placeholder": "Enter me",
       "Required": true
   }, {
       "StepKey": "DETAILS",
@@ -70,6 +77,7 @@
       "Type": "input",
       "SubType": "Text",
       "Value": "",
+      "Placeholder": "Enter me",
       "Required": true
   }, {
       "StepKey": "DETAILS",
@@ -78,6 +86,7 @@
       "Type": "input",
       "SubType": "Email",
       "Value": "",
+      "Placeholder": "Enter me",
       "Required": true
   }, {
       "StepKey": "DOCUMENTS",
@@ -85,6 +94,7 @@
       "Label": "Application sub-types",
       "Type": "multi_combo",
       "Value": "DRG,ETC",
+      "Placeholder": "Enter me",
       "Required": true
   }, {
       "StepKey": "DOCUMENTS",
@@ -92,6 +102,7 @@
       "Label": "Retrospective consent",
       "Type": "checkbox",
       "Value": true,
+      "Placeholder": "Enter me",
       "Required": true
   }, {
       "StepKey": "DOCUMENTS",
@@ -99,5 +110,6 @@
       "Label": "District or regional application?",
       "Type": "combo",
       "Value": "REG",
+      "Placeholder": "Enter me",
       "Required": true
   }]

@@ -1,0 +1,12 @@
+[
+  {
+    "ProcessKey":"P1",
+    "PartnerFunctionCode":11,
+    "PartnerNumber":100
+  },
+  {
+    "ProcessKey":"P1",
+    "PartnerFunctionCode":12,
+    "PartnerNumber":101
+  }
+]
