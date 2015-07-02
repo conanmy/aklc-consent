@@ -20,13 +20,13 @@
     "Enabled": ""
 }, {
     "ProcessKey": "P1",
-    "StepKey": "PARTIES",
-    "Title": "Parties Involved",
+    "StepKey": "PARTNERS",
+    "Title": "Partners Involved",
     "Icon": "sap-icon://company-view",
     "StepView": "SelectList",
     "ShowHeader": true,
-    "HeaderView": "PartyList",
-    "HeaderTitle": "Parties Involved",
+    "HeaderView": "PartnerList",
+    "HeaderTitle": "Partners Involved",
     "Enabled": ""
 }, {
     "ProcessKey": "P1",

@@ -1,13 +1,12 @@
 <mvc:View controllerName="" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
-    <List id="idList" items="{/Parties}">
+    <List id="idList" items="{/Partners}">
         <items>
             <ObjectListItem
-                title="{Function}"
+                title="{FirstName}"
                 press="onListItemPress">
                 <attributes>
-                    <ObjectAttribute text="{Name}" title="Name" />
-                    <ObjectAttribute text="{ID}" title="ID" />
-                    <ObjectAttribute text="{Address}" title="Address" />
+                    <ObjectAttribute text="{FirstName}" title="Name" />
+                    <ObjectAttribute text="{Address1}" title="Address" />
                 </attributes>
             </ObjectListItem>
         </items>

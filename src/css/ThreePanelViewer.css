@@ -120,7 +120,8 @@
 
 .sapSuiteTvHeader .sapUiUx3TVHeaderContainer {
     padding: 11px 10px 2px 10px;
-    width: auto;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .sapSuiteTvHeader .sapUiUx3TVHeaderGroupTitle {
