@@ -71,14 +71,14 @@
                     <PropertyRef Name="PartnerNumber" />
                 </Key>
                 <Property Name="ProcessKey" Type="Edm.String" Nullable="false" />
-                <Property Name="PartnerFunctionCode" Type="Edm.String" Nullable="false" />
-                <Property Name="PartnerNumber" Type="Edm.String" />
+                <Property Name="PartnerFunctionCode" Type="Edm.Int32" Nullable="false" />
+                <Property Name="PartnerNumber" Type="Edm.Int32" />
             </EntityType>
             <EntityType Name="Partners" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="PartnerNumber" />
                 </Key>
-                <Property Name="PartnerNumber" Type="Edm.String" />
+                <Property Name="PartnerNumber" Type="Edm.Int32" />
                 <Property Name="FirstName" Type="Edm.String" />
                 <Property Name="LastName" Type="Edm.String" />
                 <Property Name="Company" Type="Edm.String" />
@@ -97,15 +97,14 @@
                     <PropertyRef Name="PartnerNumber" />
                     <PropertyRef Name="PartnerFunctionCode" />
                 </Key>
-                <Property Name="PartnerNumber" Type="Edm.String" />
-                <Property Name="PartnerFunctionCode" Type="Edm.String" Nullable="false" />
+                <Property Name="PartnerNumber" Type="Edm.Int32" />
+                <Property Name="PartnerFunctionCode" Type="Edm.Int32" Nullable="false" />
             </EntityType>
             <EntityType Name="PartnerFunctions" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="PartnerFunctionCode" />
                 </Key>
-                <Property Name="PartnerFunctionCode" Type="Edm.String" Nullable="false" />
-                <Property Name="PartnerNumber" Type="Edm.String" />
+                <Property Name="PartnerFunctionCode" Type="Edm.Int32" Nullable="false" />
                 <Property Name="Description" Type="Edm.String" />
                 <Property Name="CountLow" Type="Edm.Int16" Nullable="false" sap:label="No. of occurrences" />
                 <Property Name="CountHigh" Type="Edm.Int16" Nullable="false" sap:label="No. of occurrences" />
@@ -206,7 +205,7 @@
                     <End EntitySet="Fields" Role="FromRole_FieldsLookup" />
                     <End EntitySet="Lookup" Role="ToRole_FieldsLookup" />
                 </AssociationSet>
-                <AssociationSet Name="FK_PartnerRelations_Assoc" Association="ODataDemo.FK_PartnersPartnerRelations" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                <AssociationSet Name="FK_PartnersPartnerRelations_Assoc" Association="ODataDemo.FK_PartnersPartnerRelations" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                     <End EntitySet="Partners" Role="FromRole_PartnersPartnerRelations" />
                     <End EntitySet="PartnerRelations" Role="ToRole_PartnersPartnerRelations" />
                 </AssociationSet>

@@ -6,14 +6,14 @@
             </Toolbar>
         </subHeader>
         <content>
-            <List id="idList" items="{/PartnerFunctions('1')/PartnersRole}" selectionChange="onSelectionChange" mode="MultiSelect" includeItemInSelection="true">
+            <List id="idList" items="{/PartnerFunctions(13)/PartnerRelations}" selectionChange="onSelectionChange" mode="MultiSelect" includeItemInSelection="true">
                 <infoToolbar>
                     <Toolbar visible="false" id="idInfoToolbar">
                         <Label id="idFilterLabel" />
                     </Toolbar>
                 </infoToolbar>
                 <items>
-                    <StandardListItem title="{/Partners/FirstName}" description="{/Partners/FirstName}" />
+                    <StandardListItem title="{PartnerNumber}" description="{PartnerNumber}" />
                 </items>
             </List>
         </content>
