@@ -23,7 +23,7 @@
     "StepKey": "PARTNERS",
     "Title": "Partners Involved",
     "Icon": "sap-icon://company-view",
-    "StepView": "NameSelectList",
+    "StepView": "SelectList",
     "ShowHeader": true,
     "HeaderView": "PartnerList",
     "HeaderTitle": "Partners Involved",

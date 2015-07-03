@@ -185,6 +185,21 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
             oFacetContent.addContent(this._getView(sStepViewName));
 
             this._oThingInspector.addFacetContent(oFacetContent);
+
+            if (oStep.StepKey === 'PARTNERS') {
+                var that = this;
+                that.getOwnerComponent().getEventBus().subscribe('SelectList', 'selected', function(channel, eventId, params) {
+                    console.log('selected' + params.path);
+                    oFacetContent.removeContent(that._getView(sStepViewName));
+                    oFacetContent.addContent(that._getView(sViewPath + 'NameSelectList'));
+
+                    that.getOwnerComponent().getEventBus().subscribe('NameSelectList', 'selected', function(channel, eventId, params) {
+                        console.log('selected' + params.path);
+                        oFacetContent.removeContent(that._getView(sViewPath + 'NameSelectList'));
+                        oFacetContent.addContent(that._getView(sStepViewName));
+                    });
+                });
+            }
         },
 
         _getView: function(sStepViewName) {

@@ -1,4 +1,4 @@
-<mvc:View controllerName="scenario.xmlview.controller.SelectList" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+<mvc:View controllerName="scenario.xmlview.controller.NameSelectList" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
     <Page showHeader="false" class="select-list-page">
         <subHeader>
             <Toolbar>
@@ -6,7 +6,7 @@
             </Toolbar>
         </subHeader>
         <content>
-            <List id="idList" items="{/PartnerFunctions(13)/PartnerRelations}" selectionChange="onSelectionChange" mode="MultiSelect" includeItemInSelection="true">
+            <List id="idList" items="{/PartnerFunctions(13)/PartnerRelations}" selectionChange="onSelectionChange" mode="SingleSelectMaster" includeItemInSelection="true">
                 <infoToolbar>
                     <Toolbar visible="false" id="idInfoToolbar">
                         <Label id="idFilterLabel" />

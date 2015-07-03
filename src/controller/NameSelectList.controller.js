@@ -1,6 +1,6 @@
 sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseController) {
     "use strict";
-    return BaseController.extend("scenario.xmlview.controller.SelectList", {
+    return BaseController.extend("scenario.xmlview.controller.NameSelectList", {
         onInit: function(evt) {},
 
         onSearch: function(oEvt) {
@@ -10,7 +10,7 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
             var sQuery = oEvt.getSource().getValue();
             if (sQuery && sQuery.length > 0) {
                 var filter = new sap.ui.model.Filter(
-                    "Description",
+                    "FirstName",
                     sap.ui.model.FilterOperator.Contains,
                     sQuery
                 );
@@ -28,7 +28,7 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
             var listItem = oEvt.mParameters.listItem;
             var itemPath = listItem.getBindingContextPath();
             this.oView.oViewData.oComponent.getEventBus().publish(
-                'SelectList',
+                'NameSelectList',
                 'selected',
                 {path: itemPath}
             );

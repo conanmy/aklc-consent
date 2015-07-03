@@ -6,14 +6,9 @@
             </Toolbar>
         </subHeader>
         <content>
-            <List id="idList" items="{/PartnerFunctions}" selectionChange="onSelectionChange" mode="MultiSelect" includeItemInSelection="true">
-                <infoToolbar>
-                    <Toolbar visible="false" id="idInfoToolbar">
-                        <Label id="idFilterLabel" />
-                    </Toolbar>
-                </infoToolbar>
+            <List id="idList" items="{/PartnerFunctions}" selectionChange="onSelectionChange" mode="SingleSelectMaster" includeItemInSelection="true">
                 <items>
-                    <StandardListItem title="{Description}" description="{Description}" />
+                    <StandardListItem title="{Description}" />
                 </items>
             </List>
         </content>
