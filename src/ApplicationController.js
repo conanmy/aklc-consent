@@ -48,7 +48,7 @@ sap.ui.define([
             ];
 
             // set data model
-            this._oModel = new sap.ui.model.odata.v2.ODataModel(sServiceUrl, {
+            this._oModel = new ODataModel(sServiceUrl, {
                 json: true,
                 defaultBindingMode: sap.ui.model.BindingMode.TwoWay,
                 useBatch: true,

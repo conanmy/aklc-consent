@@ -1,12 +1,10 @@
-<mvc:View controllerName="" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
-    <List id="idList" items="{/Partners}">
+<mvc:View controllerName="scenario.xmlview.controller.PartnerList" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc">
+    <List id="idList" items="{path: '/AssignedPartners', sorter: [{path:'PartnerNumber', descending: true}],  parameters: { expand: 'PartnerFunctions,Partners'}}">
         <items>
-            <ObjectListItem
-                title="{FirstName}"
-                press="onListItemPress">
+            <ObjectListItem title="{PartnerFunctions/Description}" press="onListItemPress">
                 <attributes>
-                    <ObjectAttribute text="{FirstName}" title="Name" />
-                    <ObjectAttribute text="{Address1}" title="Address" />
+                    <ObjectAttribute text="{Partners/FirstName} {Partners/LastName} ( {PartnerNumber} ) " title="Name" />
+                    <ObjectAttribute text="{Partners/Address1}" title="Address" />
                 </attributes>
             </ObjectListItem>
         </items>

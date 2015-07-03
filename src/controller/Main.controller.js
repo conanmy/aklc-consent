@@ -186,15 +186,18 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
 
             this._oThingInspector.addFacetContent(oFacetContent);
 
+            //TODO = please remove
             if (oStep.StepKey === 'PARTNERS') {
+
                 var that = this;
-                that.getOwnerComponent().getEventBus().subscribe('SelectList', 'selected', function(channel, eventId, params) {
-                    console.log('selected' + params.path);
+                that.getOwnerComponent().getEventBus().subscribe('SelectList', 'selected', function(sChannel, sEventId, oParams) {
+                    console.log('selected' + oParams.path);
                     oFacetContent.removeContent(that._getView(sStepViewName));
+                    oFacetContent.bindElement(oParams.path);
                     oFacetContent.addContent(that._getView(sViewPath + 'NameSelectList'));
 
-                    that.getOwnerComponent().getEventBus().subscribe('NameSelectList', 'selected', function(channel, eventId, params) {
-                        console.log('selected' + params.path);
+                    that.getOwnerComponent().getEventBus().subscribe('NameSelectList', 'selected', function(sChannel, sEventId, oParams) {
+                        console.log('selected' + oParams.path);
                         oFacetContent.removeContent(that._getView(sViewPath + 'NameSelectList'));
                         oFacetContent.addContent(that._getView(sStepViewName));
                     });

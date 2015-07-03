@@ -1,9 +1,9 @@
 sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseController) {
     "use strict";
     return BaseController.extend("scenario.xmlview.controller.NameSelectList", {
-        onInit: function(evt) {},
+        onInit: function(oEvent) {},
 
-        onSearch: function(oEvt) {
+        onSearch: function(oEvent) {
 
             // add filter for search
             var aFilters = [];
@@ -23,9 +23,9 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
             binding.filter(aFilters, "Application");
         },
 
-        onSelectionChange: function(oEvt) {
+        onSelectionChange: function(oEvent) {
 
-            var listItem = oEvt.mParameters.listItem;
+            var listItem = oEvt.getParameters().listItem;
             var itemPath = listItem.getBindingContextPath();
             this.oView.oViewData.oComponent.getEventBus().publish(
                 'NameSelectList',

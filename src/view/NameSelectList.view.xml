@@ -6,14 +6,14 @@
             </Toolbar>
         </subHeader>
         <content>
-            <List id="idList" items="{/PartnerFunctions(13)/PartnerRelations}" selectionChange="onSelectionChange" mode="SingleSelectMaster" includeItemInSelection="true">
+            <List id="idList" items="{path: 'PartnerRelations', parameters: { expand: 'Partners'}}" selectionChange="onSelectionChange" mode="SingleSelectMaster" includeItemInSelection="true">
                 <infoToolbar>
                     <Toolbar visible="false" id="idInfoToolbar">
                         <Label id="idFilterLabel" />
                     </Toolbar>
                 </infoToolbar>
                 <items>
-                    <StandardListItem title="{PartnerNumber}" description="{PartnerNumber}" />
+                    <StandardListItem title="{Partners/FirstName} {Partners/LastName} ( {PartnerNumber} )" />
                 </items>
             </List>
         </content>
