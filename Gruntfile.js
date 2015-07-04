@@ -166,7 +166,7 @@ module.exports = function(grunt) {
     grunt.registerTask('lint', ['eslint:all']);
 
     // Build task
-    grunt.registerTask('build', ['clean', 'openui5_preload', 'copy']);
+    grunt.registerTask('build', ['lint', 'clean','openui5_preload', 'copy']);
     grunt.registerTask('buildRun', ['build', 'serve:dist']);
 
     // Test task
