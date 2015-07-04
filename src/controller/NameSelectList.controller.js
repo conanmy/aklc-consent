@@ -7,7 +7,7 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
 
             // add filter for search
             var aFilters = [];
-            var sQuery = oEvt.getSource().getValue();
+            var sQuery = oEvent.getSource().getValue();
             if (sQuery && sQuery.length > 0) {
                 var filter = new sap.ui.model.Filter(
                     "FirstName",
@@ -25,7 +25,7 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
 
         onSelectionChange: function(oEvent) {
 
-            var listItem = oEvt.getParameters().listItem;
+            var listItem = oEvent.getParameters().listItem;
             var itemPath = listItem.getBindingContextPath();
             this.oView.oViewData.oComponent.getEventBus().publish(
                 'NameSelectList',

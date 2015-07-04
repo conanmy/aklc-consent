@@ -92,7 +92,7 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
          * @return {[type]}          [description]
          */
         getStepPathContext: function() {
-            var aSteps = this.getView().getBindingContext().getObject().Steps.__list;
+            // var aSteps = this.getView().getBindingContext().getObject().Steps.__list;
             var sPath = "/" + this._oModel.createKey(this._sStepsCollection, {
                 ProcessKey: this._sProcessKey,
                 StepKey: this._sStepKey
@@ -191,13 +191,13 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
 
                 var that = this;
                 that.getOwnerComponent().getEventBus().subscribe('SelectList', 'selected', function(sChannel, sEventId, oParams) {
-                    console.log('selected' + oParams.path);
+                    // console.log('selected' + oParams.path);
                     oFacetContent.removeContent(that._getView(sStepViewName));
                     oFacetContent.bindElement(oParams.path);
                     oFacetContent.addContent(that._getView(sViewPath + 'NameSelectList'));
 
                     that.getOwnerComponent().getEventBus().subscribe('NameSelectList', 'selected', function(sChannel, sEventId, oParams) {
-                        console.log('selected' + oParams.path);
+                        // console.log('selected' + oParams.path);
                         oFacetContent.removeContent(that._getView(sViewPath + 'NameSelectList'));
                         oFacetContent.addContent(that._getView(sStepViewName));
                     });

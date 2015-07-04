@@ -113,7 +113,7 @@
            };
 
            ThreePanelThingViewerRenderer.renderBanner = function(oRm, oControl) {
-               var iLeft = parseInt(oControl.getSidebarWidth()) + 20 + "px";
+               var iLeft = parseInt(oControl.getSidebarWidth(),10) + 20 + "px";
 
                oRm.write("<div");
                oRm.writeAttribute("role", "Navigation");

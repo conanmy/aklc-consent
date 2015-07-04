@@ -199,7 +199,7 @@
                this._updateStepActiveAttribute(this._activeStep - 1);
 
                // let the ItemNavigation know about the new selection
-               var iSelectedDomIndex = $(oDomRef).parent().index();
+               var iSelectedDomIndex = jQuery(oDomRef).parent().index();
                if (iSelectedDomIndex > 0) {
                    iSelectedDomIndex--; // if a selected element is found, its index in the ItemNavigation is the DOM index minus the dummy element, which is the first sibling
                }

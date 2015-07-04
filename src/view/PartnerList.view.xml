@@ -3,7 +3,7 @@
         <items>
             <ObjectListItem title="{PartnerFunctions/Description}" press="onListItemPress">
                 <attributes>
-                    <ObjectAttribute text="{Partners/FirstName} {Partners/LastName} ( {PartnerNumber} ) " title="Name" />
+                    <ObjectAttribute text="{Partners/FirstName} {Partners/LastName} ( {PartnerNumber} )" title="Name" />
                     <ObjectAttribute text="{Partners/Address1}" title="Address" />
                 </attributes>
             </ObjectListItem>
