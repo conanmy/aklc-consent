@@ -1,7 +1,9 @@
 sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseController) {
     "use strict";
     return BaseController.extend("scenario.xmlview.controller.NameSelectList", {
-        onInit: function(oEvent) {},
+        onInit: function(oEvent) {
+            this.targetList = this.getView().byId("nameSelectList");
+        },
 
         onSearch: function(oEvent) {
 
@@ -10,7 +12,7 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
             var sQuery = oEvent.getSource().getValue();
             if (sQuery && sQuery.length > 0) {
                 var filter = new sap.ui.model.Filter(
-                    "FirstName",
+                    "Partners/FirstName",
                     sap.ui.model.FilterOperator.Contains,
                     sQuery
                 );
@@ -18,8 +20,7 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
             }
 
             // update list binding
-            var list = this.getView().byId("idList");
-            var binding = list.getBinding("items");
+            var binding = this.targetList.getBinding("items");
             binding.filter(aFilters, "Application");
         },
 
@@ -32,6 +33,7 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
                 'selected',
                 {path: itemPath}
             );
+            this.targetList.removeSelections();
         }
     });
 });

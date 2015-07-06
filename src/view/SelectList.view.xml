@@ -6,7 +6,7 @@
             </Toolbar>
         </subHeader>
         <content>
-            <List id="idList" items="{/PartnerFunctions}" selectionChange="onSelectionChange" mode="SingleSelectMaster" includeItemInSelection="true">
+            <List id="selectList" items="{/PartnerFunctions}" selectionChange="onSelectionChange" mode="SingleSelectMaster" includeItemInSelection="true">
                 <items>
                     <StandardListItem title="{Description}" />
                 </items>
