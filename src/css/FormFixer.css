@@ -16,3 +16,9 @@
 	position: relative;
 	top: 0 !important;
 }
+.assigned-partner-list-item .sapMLIBIconDel {
+    visibility: hidden;
+}
+.assigned-partner-list-item:hover .sapMLIBIconDel {
+    visibility: visible;
+}

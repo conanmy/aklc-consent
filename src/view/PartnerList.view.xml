@@ -1,7 +1,8 @@
 <mvc:View controllerName="scenario.xmlview.controller.PartnerList" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc">
-    <List id="idList" items="{path: '/AssignedPartners', sorter: [{path:'PartnerNumber', descending: true}],  parameters: { expand: 'PartnerFunctions,Partners'}}">
+    <List id="partnerList" mode="Delete"
+    delete="handleDelete" items="{path: '/AssignedPartners', sorter: [{path:'PartnerNumber', descending: true}],  parameters: { expand: 'PartnerFunctions,Partners'}}">
         <items>
-            <ObjectListItem title="{PartnerFunctions/Description}" press="onListItemPress">
+            <ObjectListItem title="{PartnerFunctions/Description}" press="onListItemPress" class="assigned-partner-list-item">
                 <attributes>
                     <ObjectAttribute text="{Partners/FirstName} {Partners/LastName} ( {PartnerNumber} )" title="Name" />
                     <ObjectAttribute text="{Partners/Address1}" title="Address" />
