@@ -222,6 +222,15 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
                         oFacetContent.addContent(that._getView(sStepViewName));
                     }
                 );
+
+                that.getOwnerComponent().getEventBus().subscribe(
+                    "NameSelectList",
+                    "backButtonPressed",
+                    function() {
+                        oFacetContent.removeAllContent();
+                        oFacetContent.addContent(that._getView(sStepViewName));
+                    }
+                );
             }
         },
 

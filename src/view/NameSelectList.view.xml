@@ -3,6 +3,7 @@
         <subHeader>
             <Toolbar>
                 <SearchField liveChange="onSearch" width="100%" />
+                <Button icon="sap-icon://action" press="goBack" ariaLabelledBy="actionButtonLabel"/>
             </Toolbar>
         </subHeader>
         <content>

@@ -29,11 +29,18 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
             var listItem = oEvent.getParameters().listItem;
             var itemPath = listItem.getBindingContextPath();
             this.oView.oViewData.oComponent.getEventBus().publish(
-                'NameSelectList',
-                'selected',
+                "NameSelectList",
+                "selected",
                 {path: itemPath}
             );
             this.targetList.removeSelections();
+        },
+
+        goBack: function() {
+            this.oView.oViewData.oComponent.getEventBus().publish(
+                "NameSelectList",
+                "backButtonPressed"
+            );
         }
     });
 });
