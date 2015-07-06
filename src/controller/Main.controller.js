@@ -141,7 +141,7 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
         },
 
         getStepTitle: function(sPath) {
-            var oContext = this._oModel.getContext('/' + sPath);
+            var oContext = this._oModel.getContext("/" + sPath);
             return oContext.getObject().Title;
         },
 
@@ -187,21 +187,41 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
             this._oThingInspector.addFacetContent(oFacetContent);
 
             //TODO = please remove
-            if (oStep.StepKey === 'PARTNERS') {
+            if (oStep.StepKey === "PARTNERS") {
 
                 var that = this;
-                that.getOwnerComponent().getEventBus().subscribe('SelectList', 'selected', function(sChannel, sEventId, oParams) {
-                    // console.log('selected' + oParams.path);
-                    oFacetContent.removeContent(that._getView(sStepViewName));
-                    oFacetContent.bindElement(oParams.path);
-                    oFacetContent.addContent(that._getView(sViewPath + 'NameSelectList'));
+                that.getOwnerComponent().getEventBus().subscribe(
+                    "SelectList",
+                    "selected",
+                    function(sChannel, sEventId, oParams) {
+                        oFacetContent.removeAllContent();
+                        oFacetContent.bindElement(oParams.path);
+                        oFacetContent.addContent(that._getView(sViewPath + "NameSelectList"));
+                    }
+                );
 
-                    that.getOwnerComponent().getEventBus().subscribe('NameSelectList', 'selected', function(sChannel, sEventId, oParams) {
-                        // console.log('selected' + oParams.path);
-                        oFacetContent.removeContent(that._getView(sViewPath + 'NameSelectList'));
+                that.getOwnerComponent().getEventBus().subscribe(
+                    "NameSelectList",
+                    "selected",
+                    function(sChannel, sEventId, oParams) {
+                        var path = oParams.path;
+                        var numberMark = "PartnerNumber=";
+                        var codeMark = "PartnerFunctionCode=";
+                        var PartnerNumber = path.substring(path.indexOf(numberMark) + numberMark.length, path.indexOf(",")) - 0;
+                        var PartnerFunctionCode = path.substring(path.indexOf(codeMark) + codeMark.length, path.indexOf(")")) - 0;
+                        
+                        that._oModel.create(
+                            "/AssignedPartners",
+                            {
+                                PartnerNumber: PartnerNumber,
+                                PartnerFunctionCode: PartnerFunctionCode,
+                                ProcessKey: "P1"
+                            }
+                        );
+                        oFacetContent.removeAllContent();
                         oFacetContent.addContent(that._getView(sStepViewName));
-                    });
-                });
+                    }
+                );
             }
         },
 
