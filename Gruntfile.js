@@ -21,13 +21,7 @@ module.exports = function(grunt) {
         connect: {
             options: {
                 port: '<%= port %>',
-                hostname: '*',
-                middleware: function(connect, options, middlewares) {
-                    
-                    middlewares.unshift(require('connect-gzip').staticGzip(__dirname,  { matchType: /javascript/ }));
-
-                    return middlewares;
-                }
+                hostname: '*'
             },
             src: {
                 options: {
