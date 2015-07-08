@@ -101,7 +101,7 @@
                 </Key>
                 <Property Name="PartnerNumber" Type="Edm.Int32" />
                 <Property Name="PartnerFunctionCode" Type="Edm.Int32" Nullable="false" />
-                <NavigationProperty Name="Partners" Relationship="ODataDemo.FK_PartnersPartnerRelations" FromRole="PartnerRelations" ToRole="Partners" />
+                <NavigationProperty Name="Partners" Relationship="ODataDemo.FK_PartnerRelationsPartners" FromRole="FromRole_PartnerRelationsPartners" ToRole="ToRole_PartnerRelationsPartners" />
             </EntityType>
             <EntityType Name="PartnerFunctions" sap:content-version="1">
                 <Key>
@@ -150,7 +150,7 @@
                     </Dependent>
                 </ReferentialConstraint>
             </Association>
-            <Association Name="ODataDemo.FK_PartnersPartnerRelations">
+            <Association Name="FK_PartnersPartnerRelations">
                 <End Type="ODataDemo.Partners" Multiplicity="1" Role="Partners" />
                 <End Type="ODataDemo.PartnerRelations" Multiplicity="1" Role="PartnerRelations" />
                 <ReferentialConstraint>
@@ -162,7 +162,19 @@
                     </Dependent>
                 </ReferentialConstraint>
             </Association>
-            <Association Name="ODataDemo.FK_PartnerFunctionsPartnerRelations">
+            <Association Name="FK_PartnerRelationsPartners">
+                <End Type="ODataDemo.PartnerRelations" Multiplicity="1" Role="FromRole_PartnerRelationsPartners" />
+                <End Type="ODataDemo.Partners" Multiplicity="1" Role="ToRole_PartnerRelationsPartners" />
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_PartnerRelationsPartners">
+                        <PropertyRef Name="PartnerNumber" />
+                    </Principal>
+                    <Dependent Role="ToRole_PartnerRelationsPartners">
+                        <PropertyRef Name="PartnerNumber" />
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="FK_PartnerFunctionsPartnerRelations">
                 <End Type="ODataDemo.PartnerFunctions" Multiplicity="1" Role="FromRole_PartnerFunctionsPartnerRelations" />
                 <End Type="ODataDemo.PartnerRelations" Multiplicity="*" Role="ToRole_PartnerFunctionsPartnerRelations" />
                 <ReferentialConstraint>
@@ -174,7 +186,7 @@
                     </Dependent>
                 </ReferentialConstraint>
             </Association>
-            <Association Name="ODataDemo.FK_AssignedPartnersPartners">
+            <Association Name="FK_AssignedPartnersPartners">
                 <End Type="ODataDemo.AssignedPartners" Multiplicity="1" Role="AssignedPartners" />
                 <End Type="ODataDemo.Partnera" Multiplicity="1" Role="Partners" />
                 <ReferentialConstraint>
@@ -186,7 +198,7 @@
                     </Dependent>
                 </ReferentialConstraint>
             </Association>
-            <Association Name="ODataDemo.FK_ProcessAssignedPartners">
+            <Association Name="FK_ProcessAssignedPartners">
                 <End Type="ODataDemo.Process" Multiplicity="1" Role="FromRole_ProcessAssignedPartners" />
                 <End Type="ODataDemo.AssignedPartners" Multiplicity="*" Role="ToRole_ProcessAssignedPartners" />
                 <ReferentialConstraint>
@@ -198,7 +210,7 @@
                     </Dependent>
                 </ReferentialConstraint>
             </Association>
-            <Association Name="ODataDemo.FK_AssignedPartnersPartnerFunctions">
+            <Association Name="FK_AssignedPartnersPartnerFunctions">
                 <End Type="ODataDemo.AssignedPartners" Multiplicity="1" Role="AssignedPartners2" />
                 <End Type="ODataDemo.PartnerFunctions" Multiplicity="1" Role="PartnerFunctions" />
                 <ReferentialConstraint>
@@ -235,6 +247,10 @@
                 <AssociationSet Name="FK_PartnersPartnerRelations_Assoc" Association="ODataDemo.FK_PartnersPartnerRelations" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                     <End EntitySet="Partners" Role="Partners" />
                     <End EntitySet="PartnerRelations" Role="PartnerRelations" />
+                </AssociationSet>
+                <AssociationSet Name="FK_PartnerRelationsPartners_Assoc" Association="ODataDemo.FK_PartnerRelationsPartners" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="PartnerRelations" Role="FromRole_PartnerRelationsPartners" />
+                    <End EntitySet="Partners" Role="ToRole_PartnerRelationsPartners" />
                 </AssociationSet>
                 <AssociationSet Name="FK_PartnerFunctionsPartnerRelations_Assoc" Association="ODataDemo.FK_PartnerFunctionsPartnerRelations" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                     <End EntitySet="PartnerFunctions" Role="FromRole_PartnerFunctionsPartnerRelations" />
