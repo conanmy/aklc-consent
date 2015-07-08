@@ -114,6 +114,13 @@
                 <Property Name="TransactionType" Type="Edm.String" MaxLength="4" />
                 <NavigationProperty Name="PartnerRelations" Relationship="ODataDemo.FK_PartnerFunctionsPartnerRelations" FromRole="FromRole_PartnerFunctionsPartnerRelations" ToRole="ToRole_PartnerFunctionsPartnerRelations" />
             </EntityType>
+            <EntityType Name="PartnerFunctionFilters" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Key" />
+                </Key>
+                <Property Name="Type" Type="String" />
+                <Property Name="Key" Type="String" Nullable="false" />
+            </EntityType>
             <Association Name="FK_ProcessSteps">
                 <End Type="ODataDemo.Process" Multiplicity="1" Role="FromRole_ProcessSteps" />
                 <End Type="ODataDemo.Steps" Multiplicity="*" Role="ToRole_ProcessSteps" />
@@ -220,6 +227,7 @@
                 <EntitySet Name="Partners" EntityType="ODataDemo.Partners" sap:content-version="1" />
                 <EntitySet Name="PartnerRelations" EntityType="ODataDemo.PartnerRelations" sap:content-version="1" />
                 <EntitySet Name="PartnerFunctions" EntityType="ODataDemo.PartnerFunctions" sap:content-version="1" />
+                <EntitySet Name="PartnerFunctionFilters" EntityType="ODataDemo.PartnerFunctionFilters" sap:content-version="1" />
                 <AssociationSet Name="FK_ProcessSteps_Assoc" Association="ODataDemo.FK_ProcessSteps" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                     <End EntitySet="Process" Role="FromRole_ProcessSteps" />
                     <End EntitySet="Steps" Role="ToRole_ProcessSteps" />

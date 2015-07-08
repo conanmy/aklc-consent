@@ -3,6 +3,22 @@
         <subHeader>
             <Toolbar>
                 <SearchField liveChange="onSearch" width="100%" />
+                <FacetFilter
+                    id="idFacetFilter"
+                    type="Light"
+                    showPersonalization="true"
+                    showReset="true"
+                    reset="handleFacetFilterReset"
+                    lists="{/PartnerFunctionFilters}">
+                    <lists>
+                        <FacetFilterList
+                            title="{Type}"
+                            key="{Key}"
+                            multiselect="true"
+                            listClose="handleListClose">
+                        </FacetFilterList>
+                    </lists>
+                </FacetFilter>
             </Toolbar>
         </subHeader>
         <content>
