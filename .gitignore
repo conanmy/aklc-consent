@@ -26,3 +26,4 @@ bower_components
 # Ignore dist folder
 dist
 test/service/output.json
+.sublime-grunt.cache

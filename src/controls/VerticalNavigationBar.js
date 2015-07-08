@@ -29,7 +29,7 @@
            VerticalNavigationBar.prototype.init = function() {
                NavigationBar.prototype.init.apply(this);
                this._currentStep = 1;
-               this._activeStep = 3;
+               this._activeStep = 1;
                this._cachedSteps = null;
                this._stepCount = 0;
 
@@ -125,8 +125,9 @@
                return this._currentStep;
            };
 
-
-
+           VerticalNavigationBar.prototype.setActiveSteps = function(newStep) {
+               this._activeStep = newStep;
+           };
 
            VerticalNavigationBar.prototype._moveToStep = function(newStep) {
                var stepCount = this.getStepCount(),

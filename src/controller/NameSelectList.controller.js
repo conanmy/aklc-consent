@@ -1,8 +1,11 @@
 sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseController) {
     "use strict";
     return BaseController.extend("scenario.xmlview.controller.NameSelectList", {
+        sCollection: "/Partners",
+        sExpand: "PartnerRelations",
+        
         onInit: function(oEvent) {
-            this.targetList = this.getView().byId("nameSelectList");
+            this.oList = this.getView().byId("nameSelectList");
         },
 
         onSearch: function(oEvent) {
@@ -11,29 +14,29 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
             var aFilters = [];
             var sQuery = oEvent.getSource().getValue();
             if (sQuery && sQuery.length > 0) {
-                var filter = new sap.ui.model.Filter(
+                var oFilter = new sap.ui.model.Filter(
                     "Partners/FirstName",
                     sap.ui.model.FilterOperator.Contains,
                     sQuery
                 );
-                aFilters.push(filter);
+                aFilters.push(oFilter);
             }
 
             // update list binding
-            var binding = this.targetList.getBinding("items");
-            binding.filter(aFilters, "Application");
+            var oBinding = this.oList.getBinding("items");
+            oBinding.filter(aFilters); //, "Application");
         },
 
         onSelectionChange: function(oEvent) {
 
-            var listItem = oEvent.getParameters().listItem;
-            var itemPath = listItem.getBindingContextPath();
+            var oItem = oEvent.getParameters().listItem;
+            var sPath = oItem.getBindingContextPath();
             this.oView.oViewData.oComponent.getEventBus().publish(
                 "NameSelectList",
                 "selected",
-                {path: itemPath}
+                {path: sPath}
             );
-            this.targetList.removeSelections();
+            this.oList.removeSelections();
         },
 
         goBack: function() {

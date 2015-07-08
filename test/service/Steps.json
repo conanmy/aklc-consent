@@ -7,7 +7,8 @@
     "ShowHeader": true,
     "HeaderTitle": "Details Overview",
     "HeaderView": "Header",
-    "Enabled": ""
+    "Current": false,
+    "Active": true
 }, {
     "ProcessKey": "P1",
     "StepKey": "ASSIGNMENTS",
@@ -17,7 +18,8 @@
     "ShowHeader": false,
     "HeaderTitle": "",
     "HeaderView": "",
-    "Enabled": ""
+    "Current": false,
+    "Active": true
 }, {
     "ProcessKey": "P1",
     "StepKey": "PARTNERS",
@@ -27,7 +29,8 @@
     "ShowHeader": true,
     "HeaderView": "PartnerList",
     "HeaderTitle": "Partners Involved",
-    "Enabled": ""
+    "Current": true,
+    "Active": false
 }, {
     "ProcessKey": "P1",
     "StepKey": "CORRESPONDENCE",
@@ -37,7 +40,8 @@
     "ShowHeader": false,
     "HeaderTitle": "",
     "HeaderView": "",
-    "Enabled": ""
+    "Current": false,
+    "Active": false
 }, {
     "ProcessKey": "P1",
     "StepKey": "DOCUMENTS",
@@ -47,7 +51,8 @@
     "ShowHeader": true,
     "HeaderTitle": "Documents Overview",
     "HeaderView": "Header",
-    "Enabled": ""
+    "Current": false,
+    "Active": false
 }, {
     "ProcessKey": "P1",
     "StepKey": "TIME_RECORDING",
@@ -57,5 +62,6 @@
     "ShowHeader": false,
     "HeaderTitle": "",
     "HeaderView": "",
-    "Enabled": ""
+    "Current": false,
+    "Active": false
 }]

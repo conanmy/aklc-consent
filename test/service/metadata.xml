@@ -26,7 +26,8 @@
                 <Property Name="ShowHeader" Type="Edm.Boolean" />
                 <Property Name="HeaderTitle" Type="Edm.String" />
                 <Property Name="HeaderView" Type="Edm.String" />
-                <Property Name="Enabled" Type="Edm.Boolean" />
+                <Property Name="Active" Type="Edm.Boolean" />
+                <Property Name="Current" Type="Edm.Boolean" />
                 <NavigationProperty Name="Fields" Relationship="ODataDemo.FK_StepsFields" FromRole="FromRole_StepsFields" ToRole="ToRole_StepsFields" />
             </EntityType>
             <EntityType Name="Fields" sap:content-version="1">

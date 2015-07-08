@@ -135,6 +135,10 @@ sap.ui.define(["sap/ui/ux3/ThingViewer", "scenario/xmlview/controls/ThreePanelTh
             this._getNavBar().previousStep();
         };
 
+        ThreePanelThingViewer.prototype.setActiveSteps = function(iSteps){
+            this._getNavBar().setActiveSteps(iSteps);
+        };
+
         ThreePanelThingViewer.prototype.selectDefaultFacet = function() {
             this._selectDefault();
             return this;

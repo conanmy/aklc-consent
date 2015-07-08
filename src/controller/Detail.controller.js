@@ -4,6 +4,7 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
         _aInputFields: null,
         _aMandatoryFields: null,
         onInit: function() {
+            BaseController.prototype.onInit.apply(this);
             sap.ui.getCore().attachValidationError(function(evt) {
                 var control = evt.getParameter("element");
                 if (control && control.setValueState) {
@@ -17,15 +18,37 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
                 }
             });
 
-            this._oView = this.getView();
-            this._oApplicationController = this.oView.getViewData().oComponent.getApplicationController();
-            this._oModel = this.oView.getViewData().oComponent.getModel();
+            this.whenThereIsData = function(oElementBinding) {
+                var sPath = oElementBinding.getPath(),
+                    oModel = oElementBinding.getModel();
+
+                return new Promise(function(fnSuccess, fnReject) {
+                    //Check if the data is already on the client
+                    if (!oModel.getProperty(sPath)) {
+                        // Check that the object specified actually was found.
+                        oElementBinding.attachEventOnce("dataReceived", function() {
+                            var oData = oModel.getProperty(sPath);
+                            if (!oData) {
+                                fnReject();
+                            } else {
+                                fnSuccess(sPath);
+                            }
+                        }, this);
+                    } else {
+                        fnSuccess(sPath);
+                    }
+                });
+            };
         },
 
         onBeforeRendering: function() {
-            if (this._oModel.oMetadata.isLoaded()) {
-                this._getData(false);
-            }
+            this.whenThereIsData(this._oView.getBindingContext()).then(
+                function(sPath) {
+                    if (this._oModel.oMetadata.isLoaded()) {
+                        this._getData(false);
+                    }
+                }.bind(this)
+            );
         },
 
         _getData: function(bRefresh) {
@@ -34,7 +57,6 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
             var oParams = {
                 expand: "Fields/Lookup"
             };
-
             var fnCallback = this._bindView.bind(this);
 
             this._oModel.createBindingContext(sPath, null, oParams, fnCallback, bRefresh);

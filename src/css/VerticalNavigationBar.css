@@ -159,6 +159,10 @@
     font: bold 14px arial;
 }
 
+.sapSuiteTvNavBarItem[data-sap-ui-vnb-step-current="true"] * .sapSuiteTvNavBarIconDiv {
+    opacity: 1;
+}
+
 .sapUiUx3ActionBarItemRight {
     outline: 0;
 }
