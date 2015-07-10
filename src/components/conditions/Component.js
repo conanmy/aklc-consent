@@ -1,9 +1,9 @@
+jQuery.sap.registerModulePath("openui5", [jQuery.sap.getModulePath("aklc.cm"), "library/openui5"].join("/"));
 sap.ui.define([
         'jquery.sap.global',
         'sap/ui/core/UIComponent',
-        'sap/ui/commons/Button'
     ],
-    function(jQuery, UIComponent, Button) {
+    function(jQuery, UIComponent) {
         "use strict";
 
 
@@ -14,7 +14,7 @@ sap.ui.define([
                 rootView: "aklc.cm.components.conditions.view.Main",
                 dependencies: {
                     version: "1.8",
-                    libs: ["sap.ui.core"]
+                    libs: ["sap.ui.core", "openui5.ckeditor"]
                 },
                 properties: {
                     componentData: "",
@@ -39,6 +39,15 @@ sap.ui.define([
                 this._oEventBus = oComponentData.eventBus;
                 this.setModel(oComponentData.model);
             }
+
+            openui5.ckeditor.CKEditorToolbar.myToolbar = [
+                ['Source'],
+                ['Cut', 'Copy', 'Paste', 'PasteText'],
+                ['Undo', 'Redo'],
+                ['Bold', 'Italic', 'Underline'],
+                ['BulletedList', 'NumberedList', 'Blockquote']
+            ];
+
 
             UIComponent.prototype.init.apply(this);
         };

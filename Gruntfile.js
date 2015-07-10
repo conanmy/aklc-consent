@@ -76,7 +76,23 @@ module.exports = function(grunt) {
                 },
                 components: true,
                 compress: true
-            }
+            },
+            library: {
+                options: {
+                    resources: {
+                        cwd: '<%= dir.webapp %>/library/openui5/ckeditor',
+                        prefix: 'openui5/ckeditor',
+                        src: [
+                            '*.js',
+                            '{i18n,fragments,utils,view}/*.{js,json,xml,html,properties}'
+                        ]
+                    },
+                    dest: '<%= dir.webapp %>/library/openui5/ckeditor',
+                    compress: true
+                },
+                libraries: 'openui5/ckeditor',
+                prefix: 'library/openui5/ckeditor'
+            },
         },
 
         clean: {
@@ -166,7 +182,7 @@ module.exports = function(grunt) {
     grunt.registerTask('lint', ['eslint:all']);
 
     // Build task
-    grunt.registerTask('build', ['lint', 'clean','openui5_preload', 'copy']);
+    grunt.registerTask('build', ['lint', 'clean', 'openui5_preload', 'copy']);
     grunt.registerTask('buildRun', ['build', 'serve:dist']);
 
     // Test task

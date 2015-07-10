@@ -1,6 +1,4 @@
-﻿jQuery.sap.registerModulePath("openui5", [jQuery.sap.getModulePath("aklc.cm"), "library/openui5"].join("/"));
-
-sap.ui.define([
+﻿sap.ui.define([
     "sap/ui/core/UIComponent",
     "./ApplicationController",
     "./Router"

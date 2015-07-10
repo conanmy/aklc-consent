@@ -4,6 +4,7 @@
 	},
 	"globals": {
 		"sap": true,
+		"openui5": true,
 		"jQuery": true,
 		"ok": true,
 		"strictEqual": true,

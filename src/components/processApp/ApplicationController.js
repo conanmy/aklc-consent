@@ -2,9 +2,8 @@ sap.ui.define([
     "sap/ui/base/Object",
     "sap/ui/model/resource/ResourceModel",
     "sap/ui/model/odata/v2/ODataModel",
-    "openui5/ckeditor/CKEditorToolbar",
     "sap/m/BusyDialog",
-], function(Object, ResourceModel, ODataModel, CKEditorToolbar, BusyDialog) {
+], function(Object, ResourceModel, ODataModel, BusyDialog) {
     "use strict";
     // This class is a helper class which is instantiated by each S3 controller. It is used to handle the approval/rejection dialog.
     return Object.extend("aklc.cm.components.processApp.ApplicationController", {
@@ -38,14 +37,6 @@ sap.ui.define([
             });
             this._oComponent.setModel(oI18nModel, "i18n");
             this._oResourceBundle = oI18nModel.getResourceBundle();
-
-            CKEditorToolbar.myToolbar = [
-                ['Source'],
-                ['Cut', 'Copy', 'Paste', 'PasteText'],
-                ['Undo', 'Redo'],
-                ['Bold', 'Italic', 'Underline'],
-                ['BulletedList', 'NumberedList', 'Blockquote']
-            ];
 
             // set data model
             this._oModel = new ODataModel(sServiceUrl, {
