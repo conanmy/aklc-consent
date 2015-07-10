@@ -70,7 +70,7 @@ module.exports = function(grunt) {
                 options: {
                     resources: {
                         cwd: '<%= dir.webapp %>',
-                        prefix: 'scenario/xmlview'
+                        prefix: 'aklc/cm'
                     },
                     dest: '<%= dir.dist %>'
                 },

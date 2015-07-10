@@ -7,9 +7,9 @@ sap.ui.define([
 ], function(Object, ResourceModel, ODataModel, CKEditorToolbar, BusyDialog) {
     "use strict";
     // This class is a helper class which is instantiated by each S3 controller. It is used to handle the approval/rejection dialog.
-    return Object.extend("scenario.xmlview.ApplicationController", {
+    return Object.extend("aklc.cm.components.processApp.ApplicationController", {
 
-        _oComponent: null, // the Component (scenario.xmlview.Component)
+        _oComponent: null, // the Component (aklc.cm.Component)
         _oResourceBundle: null, // the resource bundle used by this app
         _oModel: null, // the oData model used by this App
         _oInitBusyDialog: null, //Busy Dialog
@@ -30,7 +30,7 @@ sap.ui.define([
 
             // always use absolute paths relative to our own component
             // (relative paths will fail if running in the Fiori Launchpad)
-            var sRootPath = jQuery.sap.getModulePath("scenario.xmlview");
+            var sRootPath = jQuery.sap.getModulePath("aklc.cm");
 
             // set i18n model
             var oI18nModel = new sap.ui.model.resource.ResourceModel({

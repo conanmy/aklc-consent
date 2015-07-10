@@ -1,6 +1,6 @@
-sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseController) {
+sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
     "use strict";
-    return BaseController.extend("scenario.xmlview.controller.NameSelectList", {
+    return BaseController.extend("aklc.cm.controller.NameSelectList", {
         sCollection: "/Partners",
         sExpand: "PartnerRelations",
         

@@ -1,0 +1,3 @@
+<mvc:View controllerName="aklc.cm.components.test.controller.Main" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+    <Button type="Reject" text="test" />
+</mvc:View>

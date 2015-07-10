@@ -1,6 +1,6 @@
-sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseController) {
+sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
     "use strict";
-    return BaseController.extend("scenario.xmlview.controller.SelectList", {
+    return BaseController.extend("aklc.cm.controller.SelectList", {
         onInit: function(evt) {
             this.targetList = this.getView().byId("selectList");
         },

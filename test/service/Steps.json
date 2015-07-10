@@ -3,21 +3,15 @@
     "StepKey": "DETAILS",
     "Title": "Details",
     "Icon": "sap-icon://activity-2",
-    "StepView": "Detail",
-    "ShowHeader": true,
-    "HeaderTitle": "Details Overview",
-    "HeaderView": "Header",
-    "Current": false,
+    "Component": "test1",
+    "Current": true,
     "Active": true
 }, {
     "ProcessKey": "P1",
     "StepKey": "ASSIGNMENTS",
     "Title": "Assignments",
     "Icon": "sap-icon://citizen-connect",
-    "StepView": "Conditions",
-    "ShowHeader": false,
-    "HeaderTitle": "",
-    "HeaderView": "",
+    "Component": "conditions",
     "Current": false,
     "Active": true
 }, {
@@ -25,21 +19,15 @@
     "StepKey": "PARTNERS",
     "Title": "Partners Involved",
     "Icon": "sap-icon://company-view",
-    "StepView": "SelectList",
-    "ShowHeader": true,
-    "HeaderView": "PartnerList",
-    "HeaderTitle": "Partners Involved",
-    "Current": true,
+    "Component": "test",
+    "Current": false,
     "Active": false
 }, {
     "ProcessKey": "P1",
     "StepKey": "CORRESPONDENCE",
     "Title": "Correspondence",
     "Icon": "sap-icon://email",
-    "StepView": "View2",
-    "ShowHeader": false,
-    "HeaderTitle": "",
-    "HeaderView": "",
+    "Component": "test",
     "Current": false,
     "Active": false
 }, {
@@ -47,10 +35,7 @@
     "StepKey": "DOCUMENTS",
     "Title": "Documents",
     "Icon": "sap-icon://documents",
-    "StepView": "View1",
-    "ShowHeader": true,
-    "HeaderTitle": "Documents Overview",
-    "HeaderView": "Header",
+    "Component": "test",
     "Current": false,
     "Active": false
 }, {
@@ -58,10 +43,7 @@
     "StepKey": "TIME_RECORDING",
     "Title": "Time Recording",
     "Icon": "sap-icon://lateness",
-    "StepView": "View2",
-    "ShowHeader": false,
-    "HeaderTitle": "",
-    "HeaderView": "",
+    "Component": "test",
     "Current": false,
     "Active": false
 }]

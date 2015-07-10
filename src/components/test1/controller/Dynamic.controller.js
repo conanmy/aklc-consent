@@ -1,69 +1,47 @@
-sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseController) {
+sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
     "use strict";
-    return BaseController.extend("scenario.xmlview.controller.Detail", {
+    return BaseController.extend("aklc.cm.components.test1.controller.Dynamic", {
         _aInputFields: null,
         _aMandatoryFields: null,
         onInit: function() {
             BaseController.prototype.onInit.apply(this);
-            sap.ui.getCore().attachValidationError(function(evt) {
-                var control = evt.getParameter("element");
-                if (control && control.setValueState) {
-                    control.setValueState("Error");
-                }
-            });
-            sap.ui.getCore().attachValidationSuccess(function(evt) {
-                var control = evt.getParameter("element");
-                if (control && control.setValueState) {
-                    control.setValueState("None");
-                }
-            });
-
-            this.whenThereIsData = function(oElementBinding) {
-                var sPath = oElementBinding.getPath(),
-                    oModel = oElementBinding.getModel();
-
-                return new Promise(function(fnSuccess, fnReject) {
-                    //Check if the data is already on the client
-                    if (!oModel.getProperty(sPath)) {
-                        // Check that the object specified actually was found.
-                        oElementBinding.attachEventOnce("dataReceived", function() {
-                            var oData = oModel.getProperty(sPath);
-                            if (!oData) {
-                                fnReject();
-                            } else {
-                                fnSuccess(sPath);
-                            }
-                        }, this);
-                    } else {
-                        fnSuccess(sPath);
-                    }
-                });
-            };
         },
 
-        onBeforeRendering: function() {
-            this.whenThereIsData(this._oView.getBindingContext()).then(
-                function(sPath) {
-                    if (this._oModel.oMetadata.isLoaded()) {
-                        this._getData(false);
-                    }
-                }.bind(this)
-            );
+        /**
+         * [onContextChanged description]
+         * @param  {[type]} sChannel [description]
+         * @param  {[type]} sEvent   [description]
+         * @param  {[type]} oData    [description]
+         * @return {[type]}          [description]
+         */
+        onContextChanged: function(sChannel, sEvent, oData) {
+            this.getData(true, oData.context.getPath());
         },
 
-        _getData: function(bRefresh) {
-            var oContext = this._oView.getBindingContext();
-            var sPath = oContext.getPath();
+        /**
+         * [getData description]
+         * @param  {[type]} bRefresh [description]
+         * @param  {[type]} sPath    [description]
+         * @return {[type]}          [description]
+         */
+        getData: function(bRefresh, sPath) {
+            // var oContext = this._oView.getBindingContext();
+            // var sPath = oContext.getPath();
             var oParams = {
                 expand: "Fields/Lookup"
             };
-            var fnCallback = this._bindView.bind(this);
+            var fnCallback = this.bindView.bind(this);
 
             this._oModel.createBindingContext(sPath, null, oParams, fnCallback, bRefresh);
 
         },
 
-        _bindView: function(oContext) {
+        /**
+         * [bindView description]
+         * @param  {[type]} oContext [description]
+         * @return {[type]}          [description]
+         */
+        bindView: function(oContext) {
             if (!oContext) {
                 return;
             }
@@ -81,17 +59,17 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
             this._aMandatoryFields = [];
 
             oData.Fields.__list.forEach(function(sPath, index) {
-                var oContainer = this._createFormContainer(this._oModel.getContext('/' + sPath));
+                var oContainer = this.createFormContainer(this._oModel.getContext('/' + sPath));
                 this._oForm.insertFormContainer(oContainer, index);
             }.bind(this));
         },
 
 
         /**
-         * [_getMandatoryFields description]
+         * [getMandatoryFields description]
          * @return {[type]} [description]
          */
-        _getMandatoryFields: function() {
+        getMandatoryFields: function() {
             return this._aMandatoryFields;
         },
 
@@ -102,16 +80,16 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
          */
         onInputChange: function(oEvent) {
             var oField = oEvent.getSource();
-            this._fieldChange(oField);
+            this.fieldChange(oField);
         },
 
         /**
-         * [_fieldChange description]
+         * [fieldChange description]
          * @param  {[type]} oControl [description]
          * @return {[type]}          [description]
          */
-        _fieldChange: function(oControl) {
-            this._setDirty();
+        fieldChange: function(oControl) {
+            this.setDirty();
 
             // Removes previous error state
             if (oControl.setValueState) {
@@ -121,17 +99,17 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
         },
 
         /**
-         * [_setDirty description]
+         * [setDirty description]
          */
-        _setDirty: function() {
+        setDirty: function() {
 
         },
 
         /**
-         * [_getInputFields description]
+         * [getInputFields description]
          * @return {[type]} [description]
          */
-        _getInputFields: function() {
+        getInputFields: function() {
             return this._aInputFields;
         },
 
@@ -139,7 +117,7 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
          * [_resetValueStates description]
          * @return {[type]} [description]
          */
-        _resetValueStates: function() {
+        resetValueStates: function() {
             this._aInputFields.forEach(function(oControl) {
                 oControl.setValueState(sap.ui.core.ValueState.None);
             });
@@ -149,7 +127,7 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
          * [_fieldWithErrorState description]
          * @return {[type]} [description]
          */
-        _fieldWithErrorState: function() {
+        fieldWithErrorState: function() {
             this._aInputFields.some(function(oControl) {
                 return (oControl.getValueState() === sap.ui.core.ValueState.Error);
             });
@@ -159,7 +137,7 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
          * [_checkAndMarkEmptyMandatoryFields description]
          * @return {[type]} [description]
          */
-        _checkAndMarkEmptyMandatoryFields: function() {
+        checkAndMarkEmptyMandatoryFields: function() {
             var bErrors = false;
             // Check that inputs are not empty or space.
             // This does not happen during data binding because this is only triggered by changes.
@@ -179,7 +157,7 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
          * @param  {[type]} oContext [description]
          * @return {[type]}          [description]
          */
-        _createFormContainer: function(oContext) {
+        createFormContainer: function(oContext) {
             var oData = oContext.getObject();
             var sValuePath = oContext.getPath() + "/Value";
             var sLookupPath = oContext.getPath() + "/Lookup";
@@ -266,61 +244,7 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
         },
 
         onTest: function(oEvent) {
-            this._checkAndMarkEmptyMandatoryFields();
-        },
-
-        handleContinue: function(evt) {
-            // collect input controls
-            var view = this.getView();
-            var inputs = [
-                view.byId("EXISTING_DWELLINGS")
-            ];
-
-            // check that inputs are not empty
-            // this does not happen during data binding as this is only triggered by changes
-            jQuery.each(inputs, function(i, input) {
-                if (!input.getValue()) {
-                    input.setValueState("Error");
-                }
-            });
-
-            // check states of inputs
-            var canContinue = true;
-            jQuery.each(inputs, function(i, input) {
-                if (input.getValueState() === "Error") {
-                    canContinue = false;
-                    return false;
-                }
-            });
-
-            // output result
-            if (canContinue) {
-                sap.m.MessageToast.show("The input is correct. You could now continue to the next screen.");
-            } else {
-                jQuery.sap.require("sap.m.MessageBox");
-                sap.m.MessageBox.alert("Complete your input first.");
-            }
-        },
-
-        /**
-         * This is a custom model type for validating email
-         */
-        typeEmail: sap.ui.model.SimpleType.extend("email", {
-            formatValue: function(oValue) {
-                return oValue;
-            },
-            parseValue: function(oValue) {
-                //parsing step takes place before validating step, value can be altered
-                return oValue;
-            },
-            validateValue: function(oValue) {
-                // The following Regex is NOT a completely correct one and only used for demonstration purposes.
-                // RFC 5322 cannot even checked by a Regex and the Regex for RFC 822 is very long and complex.
-                var mailregex = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;
-                if (!oValue.match(mailregex)) {
-                    throw new sap.ui.model.ValidateException("'" + oValue + "' is not a valid email address");
-                }
-            }
-        })
+            this.checkAndMarkEmptyMandatoryFields();
+        }
     });
 });

@@ -1,6 +1,6 @@
-sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseController) {
+sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/core/ComponentContainer"], function(Controller, ComponentContainer) {
     "use strict";
-    return BaseController.extend("scenario.xmlview.controller.Main", {
+    return Controller.extend("aklc.cm.components.processApp.controller.Main", {
         _sProceessCollection: "/Process", //Process Collection
         _sStepsCollection: "Steps", //Step Collection
         _sProcessKey: "", //Current Process
@@ -11,9 +11,12 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
         _sNextStep: undefined,
 
         onInit: function() {
-            this.getRouter().attachRouteMatched(this.routeMatched.bind(this));
+            this._oComponent = sap.ui.component(sap.ui.core.Component.getOwnerIdFor(this.getView()));
+            this._oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+            this._oRouter.attachRouteMatched(this.routeMatched.bind(this));
             this._oThingInspector = this.getView().byId("TI");
-            this._oModel = this.getComponent().getModel();
+            this._oModel = this._oComponent.getModel();
+            this._oContainer = new ComponentContainer(this.createId("CONTAINTER"));
         },
 
         /**
@@ -22,7 +25,6 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
          * @return {[type]}        [description]
          */
         routeMatched: function(oEvent) {
-            var oArguments = oEvent.getParameter("arguments");
             switch (oEvent.getParameter("name")) {
                 case "empty":
                     return this.onEmptyRoute(oEvent);
@@ -39,7 +41,7 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
          * @param  {[type]} sStepKey   [description]
          */
         navToProcess: function(sProcesKey, sStepKey) {
-            this.getRouter().navTo("process", {
+            this._oRouter.navTo("process", {
                 processkey: sProcesKey,
                 stepkey: sStepKey
             }, true);
@@ -112,7 +114,7 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
          * Set the step key selected
          * @param {[type]} sStepKey [description]
          */
-        _setSelectedFacet: function(sStepKey) {
+        setSelectedFacet: function(sStepKey) {
             var fnFilter = function(oItem) {
                 return oItem.getKey() === sStepKey;
             };
@@ -133,23 +135,23 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
             this.getView().setBindingContext(oContext);
 
             // set the number of active steps
-            this._oThingInspector.setActiveSteps(this._getActiveSteps(oContext));
+            this._oThingInspector.setActiveSteps(this.getActiveSteps(oContext));
 
             // if step key wasnt provided navigate to the active step key
             if (!this._sStepKey) {
-                return this.navToProcess(this._sProcessKey, this._getCurrentKey(oContext));
+                return this.navToProcess(this._sProcessKey, this.getCurrentKey(oContext));
             }
 
-            this._setSelectedFacet(this._sStepKey);
-            this._setContent(this.getStepPathContext());
+            this.setSelectedFacet(this._sStepKey);
+            this.setContent(this.getStepPathContext());
         },
 
         /**
-         * [_getActiveSteps description]
+         * [getActiveSteps description]
          * @param  {[type]} oContext [description]
          * @return {[type]}          [description]
          */
-        _getActiveSteps: function(oContext) {
+        getActiveSteps: function(oContext) {
             var aSteps = oContext.getObject().Steps.__list;
             var fnFilter = function(sPath) {
                 var oData = this._oModel.getContext("/" + sPath).getObject();
@@ -164,7 +166,7 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
          * @param  {[type]} oContext [description]
          * @return {[type]}          [description]
          */
-        _getCurrentKey: function(oContext) {
+        getCurrentKey: function(oContext) {
             var aSteps = oContext.getObject().Steps.__list;
             var sDefaultStepPath = "/" + aSteps[0];
 
@@ -187,7 +189,6 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
          */
         onFacetSelected: function(oEvent) {
             // set content
-            var oSelectedItem = oEvent.getParameters("item").item;
             this._sNextStep = oEvent.getParameter("key");
 
             //on facet selected needed to trigger validation
@@ -207,75 +208,60 @@ sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseContr
             oData.WhenValid.promise.then(function() {
                 this.navToProcess(this._sProcessKey, this._sNextStep);
             }.bind(this));
-            this.getEventBus().publish(this._sStepViewName, "CheckValid", oData);
-        },
-
-        getStepTitle: function(sPath) {
-            var oContext = this._oModel.getContext("/" + sPath);
-            return oContext.getObject().Title;
+            this._oComponent.getEventBus().publish(this._oSubscription.channel, this._oSubscription.events.checkValid, oData);
         },
 
         /**
          * Set the facet content based on the selected key
          * @param {[type]} sKey [description]
          */
-        _setContent: function(oContext) {
+        setContent: function(oContext) {
             var oStep = oContext.getObject();
-            var sViewPath = "scenario.xmlview.view.";
-
-            this._sStepViewName = sViewPath + oStep.StepView;
-
+            var sComponentPath = "aklc.cm.components.";
 
             //remove existing content
             this._oThingInspector.removeAllFacetContent();
-            this._oThingInspector.removeAllHeaderContent();
-
-
-            // show header details
-            this._oThingInspector.setShowHeader(oStep.ShowHeader);
-            if (oStep.ShowHeader && oStep.HeaderView) {
-                var sHeaderViewName = sViewPath + oStep.HeaderView;
-                // Header content thing group with view embeded
-                var oHeaderContent = new sap.ui.ux3.ThingGroup({
-                    title: oStep.HeaderTitle,
-                    content: [
-                        this._getView(sHeaderViewName)
-                    ]
-                });
-                oHeaderContent.setModel(this._oModel);
-                oHeaderContent.bindElement(oContext.getPath());
-                this._oThingInspector.addHeaderContent(oHeaderContent);
-            }
 
             var oFacetContent = new sap.ui.ux3.ThingGroup({
                 title: oStep.Title
             });
 
+            var sId = this.createId("COMP_" + oStep.StepKey);
+            var sCompName = sComponentPath + oStep.Component;
+            var oComponent = this.getComponentById(sId, sCompName);
+            this._oContainer.setComponent(oComponent);
+
             oFacetContent.bindElement(oContext.getPath());
-            oFacetContent.addContent(this._getView(this._sStepViewName));
-
+            oFacetContent.addContent(this._oContainer);
             this._oThingInspector.addFacetContent(oFacetContent);
-        },
-        
-        _getView: function(sStepViewName) {
-            //TODO: refactor to application controller
-            if (this._oViewRegistry[sStepViewName]) {
-                return this._oViewRegistry[sStepViewName];
-            }
-            var oViewData = {
-                oComponent: this.getComponent()
-            };
 
-            var oView = sap.ui.view({
-                type: sap.ui.core.mvc.ViewType.XML,
-                viewName: sStepViewName,
-                viewData: oViewData
+            this._oSubscription = oComponent.getEventBusSubscription();
+            this._oComponent.getEventBus().publish(this._oSubscription.channel, this._oSubscription.events.contextChanged, {
+                context: oContext
             });
+            return;
+        },
 
-            this._oViewRegistry[sStepViewName] = oView;
-
-            return oView;
-        }
+        /**
+         * [getComponentById description]
+         * @param  {[type]} sId       [description]
+         * @param  {[type]} sCompName [description]
+         * @return {[type]}           [description]
+         */
+        getComponentById: function(sId, sCompName) {
+            var oComponent = sap.ui.getCore().getComponent(sId);
+            if (!oComponent) {
+                oComponent = sap.ui.component({
+                    name: sCompName,
+                    id: sId,
+                    componentData: {
+                        model: this._oModel,
+                        eventBus: this._oComponent.getEventBus()
+                    }
+                });
+            }
+            return oComponent;
+        },
     });
 
 });

@@ -1,8 +1,8 @@
-sap.ui.define(["sap/ui/ux3/ThingViewer", "scenario/xmlview/controls/ThreePanelThingViewerRenderer", "scenario/xmlview/controls/VerticalNavigationBar"],
+sap.ui.define(["sap/ui/ux3/ThingViewer", "./ThreePanelThingViewerRenderer", "./VerticalNavigationBar"],
     function(ThingViewer, ThreePanelThingViewerRenderer, VerticalNavigationBar) {
         "use strict";
 
-        var ThreePanelThingViewer = ThingViewer.extend("scenario.xmlview.controls.ThreePanelThingViewer", {
+        var ThreePanelThingViewer = ThingViewer.extend("aklc.cm.controls.ThreePanelThingViewer", {
             metadata: {
 
                 // ---- object ----

@@ -1,4 +1,4 @@
-<mvc:View xmlns:suite="sap.suite.ui.commons" xmlns:ux3="sap.ui.ux3" xmlns:layout="sap.ui.commons.layout" xmlns:commons="sap.ui.commons" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc">
+<mvc:View xmlns:suite="sap.suite.ui.commons" controllerName="aklc.cm.components.test1.controller.View1" xmlns:ux3="sap.ui.ux3" xmlns:layout="sap.ui.commons.layout" xmlns:commons="sap.ui.commons" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc">
     <layout:MatrixLayout columns="2" rows="{Fields}">
         <layout:rows>
             <layout:MatrixLayoutRow>

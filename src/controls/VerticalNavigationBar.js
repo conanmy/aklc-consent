@@ -2,7 +2,7 @@
        function(NavigationBar) {
            "use strict";
 
-           var VerticalNavigationBar = NavigationBar.extend("scenario.xmlview.controls.VerticalNavigationBar");
+           var VerticalNavigationBar = NavigationBar.extend("aklc.cm.controls.VerticalNavigationBar");
 
            VerticalNavigationBar.CLASSES = {
                NAVBAR: "sapSuiteTvNavBar",

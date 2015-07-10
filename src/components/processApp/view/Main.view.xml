@@ -1,4 +1,4 @@
-<mvc:View controllerName="scenario.xmlview.controller.Main" xmlns:suite="scenario.xmlview.controls" xmlns:ux3="sap.ui.ux3" xmlns:layout="sap.ui.commons.layout" xmlns:commons="sap.ui.commons" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc">
+<mvc:View controllerName="aklc.cm.components.processApp.controller.Main" xmlns:suite="aklc.cm.controls" xmlns:ux3="sap.ui.ux3" xmlns:layout="sap.ui.commons.layout" xmlns:commons="sap.ui.commons" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc">
     <suite:ThreePanelThingViewer id="TI" type="{Title}" sidebarWidth="160px" facets="{Steps}" facetSelected="onFacetSelected">
         <suite:facets>
             <suite:NavigationItem text="{Title}" key="{StepKey}" icon="{Icon}"></suite:NavigationItem>

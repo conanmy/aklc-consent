@@ -1,17 +1,17 @@
-﻿jQuery.sap.registerModulePath("openui5", [jQuery.sap.getModulePath("scenario.xmlview"), "library/openui5"].join("/"));
+﻿jQuery.sap.registerModulePath("openui5", [jQuery.sap.getModulePath("aklc.cm"), "library/openui5"].join("/"));
 
 sap.ui.define([
     "sap/ui/core/UIComponent",
-    "scenario/xmlview/ApplicationController",
-    "scenario/xmlview/Router"
+    "./ApplicationController",
+    "./Router"
 ], function(UIComponent, ApplicationController) {
     "use strict";
     var oApplicationController = null;
-    return UIComponent.extend("scenario.xmlview.Component", {
+    return UIComponent.extend("aklc.cm.components.processApp.Component", {
 
         metadata: {
-            "rootView": "scenario.xmlview.view.Main",
-            "includes": ["css/ThreePanelViewer.css", "css/VerticalNavigationBar.css", "css/FormFixer.css"],
+            "rootView": "aklc.cm.components.processApp.view.Main",
+            "includes": ["../../css/ThreePanelViewer.css", "../../css/VerticalNavigationBar.css", "../../css/FormFixer.css"],
             "dependencies": {
                 "minUI5Version": "1.28.0",
                 "libs": []
@@ -27,7 +27,7 @@ sap.ui.define([
 
             "routing": {
                 "config": {
-                    "routerClass": "scenario.xmlview.Router"
+                    "routerClass": "aklc.cm.components.processApp.Router"
                 },
                 "routes": [{
                     "pattern": "",

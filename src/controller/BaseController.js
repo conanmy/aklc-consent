@@ -1,40 +1,54 @@
-   sap.ui.define(['sap/ui/core/mvc/Controller', 'scenario/xmlview/utils/Formatter'],
-       function(Controller, Formatter) {
+   sap.ui.define(['sap/ui/core/mvc/Controller'],
+       function(Controller) {
            "use strict";
 
-           var BaseController = Controller.extend("scenario.xmlview.controller.BaseController", {
-               _oModel: null, // the oData model used by this App
+           var BaseController = Controller.extend("aklc.cm.controller.BaseController", {
                onInit: function() {
                    this._oView = this.getView();
-                   this._oComponent = this._oView.getViewData().oComponent;
-                   this._oApplicationController = this.getComponent().getApplicationController();
                    this._oModel = this.getComponent().getModel();
-                   this.getEventBus().subscribe(this._oView.sViewName, "CheckValid", this.onCheckValid, this);
+
+                   var oSubscription = this.getComponent().getEventBusSubscription();
+                   this.getEventBus().subscribe(oSubscription.channel, oSubscription.events.contextChanged, this.onContextChanged, this);
+                   this.getEventBus().subscribe(oSubscription.channel, oSubscription.events.checkValid, this.onCheckValid, this);
                },
 
+               /**
+                * [getComponent description]
+                * @return {[type]} [description]
+                */
                getComponent: function() {
-                   if (this._oComponent) {
-                       return this._oComponent;
-                   }
                    var sComponentId = sap.ui.core.Component.getOwnerIdFor(this.getView());
                    return sap.ui.component(sComponentId);
                },
 
+               /**
+                * [getEventBus description]
+                * @return {[type]} [description]
+                */
                getEventBus: function() {
                    return this.getComponent().getEventBus();
                },
 
-               getRouter: function() {
-                   return sap.ui.core.UIComponent.getRouterFor(this);
+               /**
+                * Empty handler for context change event
+                * @param  {[type]} sChannel [description]
+                * @param  {[type]} sEvent   [description]
+                * @param  {[type]} oData    [description]
+                */
+               onContextChanged: function(sChannel, sEvent, oData) {
+                  //default behviour
+                  this.getView().setBindingContext(oData.context);
                },
 
-               getFormatter: function() {
-                   return Formatter;
-               },
-
+               /**
+                * Empty handler for check valid event
+                * @param  {[type]} sChannel [description]
+                * @param  {[type]} sEvent   [description]
+                * @param  {[type]} oData    [description]
+                */
                onCheckValid: function(sChannel, sEvent, oData) {
-                //TODO add validation method
-                oData.WhenValid.resolve();
+                   //default behaviour
+                   oData.WhenValid.resolve();
                }
 
 

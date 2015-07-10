@@ -1,6 +1,6 @@
-sap.ui.define(["scenario/xmlview/controller/BaseController"], function(BaseController) {
+sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
     "use strict";
-    return BaseController.extend("scenario.xmlview.controller.PartnerList", {
+    return BaseController.extend("aklc.cm.controller.PartnerList", {
         onListItemPress: function(oEvent) {},
         handleDelete: function(oEvent) {
             var oModel = oEvent.getSource().getBindingContext().oModel;

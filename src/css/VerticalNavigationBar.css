@@ -166,4 +166,12 @@
 .sapUiUx3ActionBarItemRight {
     outline: 0;
 }
+
+.sapUiUfdSpltCont {
+    overflow: hidden;
+    position: absolute;
+    display: block;
+    height: 100%;
+    width: 100%;
+}
 }

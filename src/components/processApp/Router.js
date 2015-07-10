@@ -1,6 +1,6 @@
 sap.ui.define(["sap/ui/core/routing/Router", "sap/ui/core/routing/History"], function(Router, History) {
     "use strict";
-    return Router.extend("scenario.xmlview.Router", {
+    return Router.extend("aklc.cm.components.processApp.Router", {
         myNavBack: function(route, data) {
             var history = sap.ui.core.routing.History.getInstance();
             var url = this.getURL(route, data);
