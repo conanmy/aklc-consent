@@ -215,11 +215,10 @@ html[data-sap-ui-browser="ie8"] .sapSuiteTvPopupMenu {
     padding: 10px 0px 0px 0px;
 }
 
-
 .sapUiUx3TVFacetThingGroupContent .sapUiUfdSpltCont {
     overflow: hidden;
     position: absolute;
     display: block;
     height: 100%;
-    width: 100%;
+    width: 85%;
 }

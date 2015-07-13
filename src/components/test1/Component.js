@@ -8,10 +8,12 @@ sap.ui.define([
 
             metadata: {
                 rootView: "aklc.cm.components.test1.view.Main",
+                handleValidation: true,
                 dependencies: {
                     version: "1.8",
                     libs: ["sap.ui.core"]
                 },
+                includes: ["css/FormFixer.css"],
                 properties: {
                     componentData: "",
                     eventBusSubscription: {

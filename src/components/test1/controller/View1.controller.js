@@ -7,7 +7,10 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
 
         onContextChanged: function(sChannel, sEvent, oData) {
             this.getView().setBindingContext(oData.context);
+        },
+
+        onCheckValid: function(sChannel, sEvent, oData) {
+            return false;
         }
     });
 });
- 

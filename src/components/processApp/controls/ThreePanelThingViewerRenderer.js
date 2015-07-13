@@ -10,8 +10,6 @@
                oRm.writeClasses();
                oRm.write(">");
 
-
-
                oRm.write("<header");
                oRm.writeAttribute("id", oControl.getId() + "-header");
                oRm.addClass("sapSuiteTvTitle");

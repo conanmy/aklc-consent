@@ -5,7 +5,7 @@
            var CLASSES = VerticalNavigationBar.CLASSES;
            var ATTRIBUTES = VerticalNavigationBar.ATTRIBUTES;
 
-           var VerticalNavigationBarRenderer = Renderer.extend("aklc.cm.controls.VerticalNavigationBarRenderer");
+           var VerticalNavigationBarRenderer = Renderer.extend("aklc.cm.components.processApp.controls.VerticalNavigationBarRenderer");
            VerticalNavigationBarRenderer.render = function(oRm, oControl) {
                if (!oControl.getVisible()) { // return immediately if control is invisible
                    return;

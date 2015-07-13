@@ -12,58 +12,70 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
          * @param  {[type]} sChannel [description]
          * @param  {[type]} sEvent   [description]
          * @param  {[type]} oData    [description]
-         * @return {[type]}          [description]
          */
         onContextChanged: function(sChannel, sEvent, oData) {
-            this.getData(true, oData.context.getPath());
+            this.getData(oData.context).then(this.createFormContent.bind(this));
         },
 
         /**
          * [getData description]
          * @param  {[type]} bRefresh [description]
-         * @param  {[type]} sPath    [description]
-         * @return {[type]}          [description]
+         * @param  {[type]} oContext
          */
-        getData: function(bRefresh, sPath) {
-            // var oContext = this._oView.getBindingContext();
-            // var sPath = oContext.getPath();
-            var oParams = {
-                expand: "Fields/Lookup"
-            };
-            var fnCallback = this.bindView.bind(this);
+        getData: function(oContext) {
+            return new Promise(function(fnResolve, fnReject) {
+                var fnCallback = function() {
+                    oBinding.detachChange(fnCallback);
+                    fnResolve(oBinding);
+                };
 
-            this._oModel.createBindingContext(sPath, null, oParams, fnCallback, bRefresh);
+                // use separate binding with filters to avoid rerendering on changes
+                var oFilter = new sap.ui.model.Filter("StepKey", "EQ", this._oModel.getProperty("StepKey", oContext));
+                var oBinding = this._oModel.bindList("/Fields", null, null, [oFilter], {
+                    expand: "Lookup"
+                }).initialize();
 
+                oBinding.attachChange(fnCallback);
+                oBinding.getContexts();
+            }.bind(this));
         },
 
         /**
-         * [bindView description]
+         * create form content
          * @param  {[type]} oContext [description]
          * @return {[type]}          [description]
          */
-        bindView: function(oContext) {
-            if (!oContext) {
+        createFormContent: function(oBinding) {
+            if (this.bAlready || !oBinding) {
                 return;
             }
-
-            if (this.bAlready) {
-                return;
-            }
-
-            this._oForm = this._oView.byId("DETAIL_FORM");
-            var oData = oContext.getObject();
 
             this.bAlready = true;
+
+            this._oForm = this._oView.byId("DETAIL_FORM");
 
             this._aInputFields = [];
             this._aMandatoryFields = [];
 
-            oData.Fields.__list.forEach(function(sPath, index) {
-                var oContainer = this.createFormContainer(this._oModel.getContext('/' + sPath));
+            oBinding.getContexts().forEach(function(oContext, index) {
+                var oContainer = this.createFormContainer(oContext);
                 this._oForm.insertFormContainer(oContainer, index);
             }.bind(this));
         },
 
+        /**
+         * [onCheckValid description]
+         * @param  {[type]} sChannel [description]
+         * @param  {[type]} sEvent   [description]
+         * @param  {[type]} oData    [description]
+         */
+        onCheckValid: function(sChannel, sEvent, oData) {
+            if (!this.checkAndMarkEmptyMandatoryFields()) {
+                oData.WhenValid.resolve();
+            } else {
+                jQuery.sap.log.info("Dynamic View - validation errors");
+            }
+        },
 
         /**
          * [getMandatoryFields description]
@@ -89,20 +101,12 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
          * @return {[type]}          [description]
          */
         fieldChange: function(oControl) {
-            this.setDirty();
+            // this.setDirty();
 
             // Removes previous error state
             if (oControl.setValueState) {
                 oControl.setValueState(sap.ui.core.ValueState.None);
             }
-
-        },
-
-        /**
-         * [setDirty description]
-         */
-        setDirty: function() {
-
         },
 
         /**
@@ -114,7 +118,7 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
         },
 
         /**
-         * [_resetValueStates description]
+         * [resetValueStates description]
          * @return {[type]} [description]
          */
         resetValueStates: function() {
@@ -124,7 +128,7 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
         },
 
         /**
-         * [_fieldWithErrorState description]
+         * [fieldWithErrorState description]
          * @return {[type]} [description]
          */
         fieldWithErrorState: function() {
@@ -134,17 +138,49 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
         },
 
         /**
-         * [_checkAndMarkEmptyMandatoryFields description]
+         * [checkAndMarkEmptyMandatoryFields description]
          * @return {[type]} [description]
          */
         checkAndMarkEmptyMandatoryFields: function() {
             var bErrors = false;
+
+            var oMessageProcessor = new sap.ui.core.message.ControlMessageProcessor();
+            var oMessageManager = sap.ui.getCore().getMessageManager();
+            oMessageManager.registerMessageProcessor(oMessageProcessor);
+
             // Check that inputs are not empty or space.
             // This does not happen during data binding because this is only triggered by changes.
             this._aMandatoryFields.forEach(function(oControl) {
-                if (!oControl.getValue() || oControl.getValue().trim() === "") {
-                    bErrors = true;
-                    oControl.setValueState(sap.ui.core.ValueState.Error);
+                switch (oControl.getMetadata().getName()) {
+                    case "sap.m.ComboBox":
+                        if (!oControl.getSelectedKey()) {
+                            bErrors = true;
+                            oControl.setValueState(sap.ui.core.ValueState.Error);
+                        }
+                        break;
+                    case "sap.m.Input":
+                        if (!oControl.getValue() || oControl.getValue().trim() === "") {
+                            bErrors = true;
+                            oControl.setValueState(sap.ui.core.ValueState.Error);
+
+                            oMessageManager.addMessages(
+                                new sap.ui.core.message.Message({
+                                    message: "custom message",
+                                    type: sap.ui.core.MessageType.Error,
+                                    target: oControl.getId() + "/value",
+                                    processor: oMessageProcessor
+                                })
+                            );
+
+                        }
+                        break;
+                    case "sap.m.MultiComboBox":
+                        if (oControl.getSelectedKeys().length === 0) {
+                            bErrors = true;
+                            oControl.setValueState(sap.ui.core.ValueState.Error);
+                        }
+                        break;
+                    default:
                 }
             });
 
@@ -153,12 +189,10 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
 
         /**
          * [createFormElements description]
-         * @param  {[type]} sId      [description]
          * @param  {[type]} oContext [description]
-         * @return {[type]}          [description]
          */
         createFormContainer: function(oContext) {
-            var oData = oContext.getObject();
+            var oData = this._oModel.getProperty(null, oContext);
             var sValuePath = oContext.getPath() + "/Value";
             var sLookupPath = oContext.getPath() + "/Lookup";
             var oControl;
@@ -228,8 +262,7 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
                     });
                     break;
             }
-
-
+            sap.ui.getCore().getMessageManager().registerObject(oControl, true);
             this._aInputFields.push(oControl);
             if (oData.Required) {
                 this._aMandatoryFields.push(oControl);
@@ -240,11 +273,6 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
                     fields: [oLabel, oControl],
                 })
             });
-
         },
-
-        onTest: function(oEvent) {
-            this.checkAndMarkEmptyMandatoryFields();
-        }
     });
 });

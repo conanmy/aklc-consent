@@ -2,7 +2,7 @@
        function(NavigationBar) {
            "use strict";
 
-           var VerticalNavigationBar = NavigationBar.extend("aklc.cm.controls.VerticalNavigationBar");
+           var VerticalNavigationBar = NavigationBar.extend("aklc.cm.components.processApp.controls.VerticalNavigationBar");
 
            VerticalNavigationBar.CLASSES = {
                NAVBAR: "sapSuiteTvNavBar",
@@ -32,7 +32,6 @@
                this._activeStep = 1;
                this._cachedSteps = null;
                this._stepCount = 0;
-
            };
 
            VerticalNavigationBar.prototype.onAfterRendering = function() {
@@ -54,12 +53,22 @@
                this._updateStepActiveAttribute(zeroBasedActiveStep);
                this._removeStepAriaDisabledAttribute(zeroBasedActiveStep);
 
-
+               this.bInvalidated = false;
            };
 
            VerticalNavigationBar.prototype.exit = function() {
                this._oBarItemsMap = null;
                sap.ui.ux3.NavigationBar.prototype.exit.apply(this);
+           };
+
+           VerticalNavigationBar.prototype.invalidate = function(oSource) {
+               if (this.bInvalidated === true) {
+                   return;
+               } else {
+                   this.bInvalidated = true;
+               }
+
+               NavigationBar.prototype.invalidate.apply(this, arguments);
            };
 
            VerticalNavigationBar.prototype._handleActivation = function(oEvent) {
@@ -71,15 +80,9 @@
 
                var oItem = sap.ui.getCore().byId(sTargetId);
                if (oItem && (sTargetId != this.getSelectedItem()) && (oItem instanceof sap.ui.ux3.NavigationItem) && this._canSelectItem(oItem.getDomRef())) {
-                   // select the item and fire the event
-                   if (this.fireSelect({
-                           item: oItem,
-                           itemId: sTargetId
-                       })) {
-                       this.setAssociation("selectedItem", oItem, true); // avoid rerendering, animate
-                       this._updateSelection(sTargetId);
-                   }
+                   this._fireSelect(oItem);
                }
+
            };
 
            VerticalNavigationBar.prototype.onsapspace = function(oEvent) {
@@ -107,10 +110,6 @@
                }
 
                var sItemId = (!vItem || (typeof vItem == "string")) ? vItem : vItem.getId();
-               //check is active step
-               // if (!this._canSelectItem()) {
-               //     return;
-               // }
 
                this.setAssociation("selectedItem", vItem, true); // avoid rerendering
                this._updateSelection(sItemId); // animate selection
@@ -129,52 +128,67 @@
                this._activeStep = newStep;
            };
 
-           VerticalNavigationBar.prototype._moveToStep = function(newStep) {
-               var stepCount = this.getStepCount(),
-                   oldStep = this.getCurrentStep();
+
+           VerticalNavigationBar.prototype._selectStep = function(newStep) {
+               var stepCount = this.getStepCount();
 
                if (newStep > stepCount) {
                    return this;
                }
 
-               // if (newStep > this._activeStep) {
-               this._updateActiveStep(newStep);
-               // }
-
                var oItem = this._getItem(newStep);
-               if (this.fireSelect({
-                       item: oItem,
-                       itemId: oItem.getId()
-                   })) {
-                   this.setAssociation("selectedItem", oItem, true); // avoid rerendering, animate
-               }
-
-
-               return this._updateCurrentStep(newStep, oldStep);
+               this._fireSelect(oItem);
            };
 
+           // VerticalNavigationBar.prototype._moveToStep = function(newStep) {
+           //     var stepCount = this.getStepCount(),
+           //         oldStep = this.getCurrentStep();
 
+           //     if (newStep > stepCount) {
+           //         return this;
+           //     }
 
-           VerticalNavigationBar.prototype.previousStep = function() {
-               var currentStep = this.getCurrentStep();
+           //     if (newStep > this._activeStep) {
+           //         this._updateActiveStep(newStep);
+           //     }
 
-               if (currentStep < 2) {
-                   return this;
-               }
+           //     var oItem = this._getItem(newStep);
+           //     if (this.fireSelect({
+           //             item: oItem,
+           //             itemId: oItem.getId()
+           //         })) {
+           //         this.setAssociation("selectedItem", oItem, true); // avoid rerendering, animate
+           //     }
+           //     return this._updateCurrentStep(newStep, oldStep);
+           // };
 
-               return this._moveToStep(currentStep - 1);
+           VerticalNavigationBar.prototype._fireSelect = function(oItem) {
+               this.fireSelect({
+                   item: oItem,
+                   itemId: oItem.getId()
+               });
            };
 
-           VerticalNavigationBar.prototype.nextStep = function() {
-               return this._moveToStep(this.getCurrentStep() + 1);
-           };
 
            VerticalNavigationBar.prototype.getPreviousItem = function() {
-               return this.getItems()[this.getCurrentStep() - 2];
+               var iCurrentStep = this.getCurrentStep();
+               var iPreviousStep = iCurrentStep - 2;
+
+               if (iPreviousStep < 0) {
+                   return undefined;
+               }
+
+               return this.getItems()[iPreviousStep];
            };
 
            VerticalNavigationBar.prototype.getNextItem = function() {
-               return this.getItems()[this.getCurrentStep()];
+               var iNextStep = this.getCurrentStep();
+
+               if (iNextStep > this.iStepCount) {
+                   return undefined;
+               }
+
+               return this.getItems()[iNextStep];
            };
 
            VerticalNavigationBar.prototype._getItem = function(newStep) {
@@ -189,7 +203,6 @@
 
 
            VerticalNavigationBar.prototype._updateSelection = function(sItemId) {
-
                this._menuInvalid = true;
                var oItem = sap.ui.getCore().byId(sItemId);
                var oDomRef = oItem.getDomRef();

@@ -11,11 +11,6 @@
                 <form:formElements>
                     <form:FormElement>
                         <form:fields>
-                            <Button text="Test" press="onTest">
-                                <layoutData>
-                                    <FlexItemData growFactor="1" />
-                                </layoutData>
-                            </Button>
                         </form:fields>
                     </form:FormElement>
                 </form:formElements>

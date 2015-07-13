@@ -2,7 +2,7 @@ sap.ui.define(["sap/ui/ux3/ThingViewer", "./ThreePanelThingViewerRenderer", "./V
     function(ThingViewer, ThreePanelThingViewerRenderer, VerticalNavigationBar) {
         "use strict";
 
-        var ThreePanelThingViewer = ThingViewer.extend("aklc.cm.controls.ThreePanelThingViewer", {
+        var ThreePanelThingViewer = ThingViewer.extend("aklc.cm.components.processApp.controls.ThreePanelThingViewer", {
             metadata: {
 
                 // ---- object ----
@@ -37,29 +37,20 @@ sap.ui.define(["sap/ui/ux3/ThingViewer", "./ThreePanelThingViewerRenderer", "./V
 
             //NavBar
             this._oNavBar = new VerticalNavigationBar();
-            this.setAggregation("navBar", this._oNavBar);
+              this.setAggregation("navBar", this._oNavBar);
 
-            var fnAttachSelect = function(oControlEvent) {
-                var item = oControlEvent.getParameters().item;
-                if (this.fireFacetSelected({
-                        id: item.getId(),
-                        key: item.getKey(),
-                        item: item
-                    })) {
-
-                    this.setSelectedFacet(item);
-                    this._setActions();
-                } else {
-                    oControlEvent.preventDefault();
-                }
+            var fnAttachSelect = function(oEvent) {
+                var oItem = oEvent.getParameters().item;
+                this._fireFacetSelected(oItem);
             }.bind(this);
 
             this._getNavBar().attachSelect(fnAttachSelect);
 
-            var fnAfterRendering = function() {
+            var fnAfterRendering = function(){
                 this._setActions();
             }.bind(this);
 
+            //needs a DOM for setting actions
             this._getNavBar().addDelegate({
                 onAfterRendering: fnAfterRendering
             });
@@ -88,11 +79,23 @@ sap.ui.define(["sap/ui/ux3/ThingViewer", "./ThreePanelThingViewerRenderer", "./V
         ThreePanelThingViewer.prototype.onAfterRendering = function() {
             this._toggleHeaderContent();
 
-            this.getActionBar().attachActionSelected(this._actionSelected.bind(this));
+            // this.getActionBar().attachActionSelected(this._actionSelected.bind(this));
             this.getActionBar().setAlwaysShowMoreMenu(false);
             this.removeAllActions();
             this.getActionBar().insertAggregation("_businessActionButtons", this._oActionNext, 0, true);
             this.getActionBar().insertAggregation("_businessActionButtons", this._oActionPrevious, 0, true);
+        };
+
+        // Implementation of API method
+        ThreePanelThingViewer.prototype.setSelectedFacet = function(selectedFacet) {
+            var oldSelectedFacet = this.getSelectedFacet();
+            this.setAssociation("selectedFacet", selectedFacet, true);
+            var newSelectedFacet = this.getSelectedFacet();
+
+            if (oldSelectedFacet != newSelectedFacet) {
+                this._getNavBar().setSelectedItem(newSelectedFacet);
+                this._setActions();
+            }
         };
 
         // Implementation of API method removeAllActions
@@ -114,28 +117,29 @@ sap.ui.define(["sap/ui/ux3/ThingViewer", "./ThreePanelThingViewerRenderer", "./V
             return (oItem) ? oItem.getText() : undefined;
         };
 
-        ThreePanelThingViewer.prototype._actionSelected = function(oEvent) {
-            var oAction = oEvent.getParameter("action");
-            var sActionId = oAction.getId();
-
-            if (sActionId == "next") {
-                this._nextStep();
-            }
-
-            if (sActionId == "previous") {
-                this._previousStep();
-            }
-        };
-
         ThreePanelThingViewer.prototype.nextStep = function() {
-            this._getNavBar().nextStep();
+            var oItem = this._getNavBar().getNextItem();
+            if (oItem) {
+                this._fireFacetSelected(oItem);
+            }
         };
 
         ThreePanelThingViewer.prototype.previousStep = function() {
-            this._getNavBar().previousStep();
+            var oItem = this._getNavBar().getPreviousItem();
+            if (oItem) {
+                this._fireFacetSelected(oItem);
+            }
         };
 
-        ThreePanelThingViewer.prototype.setActiveSteps = function(iSteps){
+        ThreePanelThingViewer.prototype._fireFacetSelected = function(oItem) {
+            this.fireFacetSelected({
+                id: oItem.getId(),
+                key: oItem.getKey(),
+                item: oItem
+            });
+        };
+
+        ThreePanelThingViewer.prototype.setActiveSteps = function(iSteps) {
             this._getNavBar().setActiveSteps(iSteps);
         };
 
