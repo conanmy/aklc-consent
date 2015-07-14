@@ -1,6 +1,6 @@
 sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
     "use strict";
-    return BaseController.extend("aklc.cm.controller.SelectList", {
+    return BaseController.extend("aklc.cm.components.partner.controller.SelectList", {
         onInit: function(evt) {
             this.targetList = this.getView().byId("selectList");
         },

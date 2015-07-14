@@ -3,14 +3,14 @@
     "FirstName": "Frank",
     "LastName": "Ma",
     "Company": "Frank Ma Enterprises",
-    "Address1": "",
+    "Address1": "135 Albert Street",
     "Address2": "",
     "City": "Auckland",
     "State": "",
     "PostCode": 9999,
     "Country": "New Zealand",
-    "Telephone": 123456789,
-    "Email": ""
+    "Telephone": "123456789",
+    "Email": "frankma@council.govt"
 }, {
     "PartnerNumber": 101,
     "FirstName": "John ",
@@ -22,58 +22,58 @@
     "State": "",
     "PostCode": 2500,
     "Country": "Australia",
-    "Telephone": 6144424242,
-    "Email": ""
+    "Telephone": "6144424242",
+    "Email": "johnpaterson@council.govt"
 }, {
     "PartnerNumber": 102,
     "FirstName": "Jonah",
     "LastName": "Lomou",
     "Company": "Fast Deliveries",
-    "Address1": "",
+    "Address1": "90 Owens Road",
     "Address2": "",
     "City": "Auckland",
     "State": "",
     "PostCode": 9999,
     "Country": "",
-    "Telephone": null,
-    "Email": ""
+    "Telephone": "0213456789",
+    "Email": "jonahlomou@council.govt"
 }, {
     "PartnerNumber": 103,
     "FirstName": "John ",
     "LastName": "Smith",
-    "Company": "",
-    "Address1": "",
+    "Company": "SAP",
+    "Address1": "4-114 St Geroge Bay Road",
     "Address2": "",
     "City": "",
     "State": "",
     "PostCode": 9999,
     "Country": "",
-    "Telephone": null,
-    "Email": ""
+    "Telephone": "0213456789",
+    "Email": "johnsmith@council.govt"
 }, {
     "PartnerNumber": 104,
     "FirstName": "Karen",
     "LastName": "Jones",
-    "Company": "",
-    "Address1": "",
+    "Company": "second phrase",
+    "Address1": "102 Manauka Road",
     "Address2": "",
     "City": "",
     "State": "",
     "PostCode": 9999,
     "Country": "",
-    "Telephone": null,
-    "Email": ""
+    "Telephone": "0238898988",
+    "Email": "karenjones@council.govt"
 }, {
     "PartnerNumber": 105,
     "FirstName": "Jane",
     "LastName": "Doe",
-    "Company": "",
-    "Address1": "",
+    "Company": "auckland council",
+    "Address1": "3 City Road",
     "Address2": "",
     "City": "",
     "State": "",
     "PostCode": 9999,
     "Country": "",
-    "Telephone": null,
-    "Email": ""
+    "Telephone": "0213456789",
+    "Email": "janedoe@council.govt"
 }]

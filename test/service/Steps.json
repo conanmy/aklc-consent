@@ -19,7 +19,7 @@
     "StepKey": "PARTNERS",
     "Title": "Partners Involved",
     "Icon": "sap-icon://company-view",
-    "Component": "test",
+    "Component": "partner",
     "Current": false,
     "Active": false
 }, {

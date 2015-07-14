@@ -1,8 +1,9 @@
 sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
     "use strict";
-    return BaseController.extend("aklc.cm.controller.NameSelectList", {
+    return BaseController.extend("aklc.cm.components.partner.controller.NameSelectList", {
         sCollection: "/Partners",
         sExpand: "PartnerRelations",
+        selectedPath: null,
         
         onInit: function(oEvent) {
             this.oList = this.getView().byId("nameSelectList");
@@ -29,21 +30,50 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
 
         onSelectionChange: function(oEvent) {
 
-            var oItem = oEvent.getParameters().listItem;
-            var sPath = oItem.getBindingContextPath();
-            this.oView.oViewData.oComponent.getEventBus().publish(
-                "NameSelectList",
-                "selected",
-                {path: sPath}
-            );
-            this.oList.removeSelections();
+            var listItem = oEvent.getParameters().listItem;
+            var itemPath = listItem.getBindingContextPath();
+            this.selectedPath = itemPath;
+
+            this.getView().byId("partnerObject").bindElement(itemPath + "/Partners");
+            this.getView().byId("partnerDetails").setVisible(true);
         },
 
         goBack: function() {
             this.oView.oViewData.oComponent.getEventBus().publish(
                 "NameSelectList",
-                "backButtonPressed"
+                "goBack"
             );
+            this.reset();
+        },
+
+        onSave: function() {
+            var path = this.selectedPath;
+            var numberMark = "PartnerNumber=";
+            var codeMark = "PartnerFunctionCode=";
+            var PartnerNumber = path.substring(
+                path.indexOf(numberMark) + numberMark.length,
+                path.indexOf(",")
+            ) - 0;
+            var PartnerFunctionCode = path.substring(
+                path.indexOf(codeMark) + codeMark.length,
+                path.indexOf(")")
+            ) - 0;
+
+            this.getView().getModel().create(
+                "/AssignedPartners",
+                {
+                    PartnerNumber: PartnerNumber,
+                    PartnerFunctionCode: PartnerFunctionCode,
+                    ProcessKey: "P1"
+                }
+            );
+
+            this.goBack();
+        },
+
+        reset: function() {
+            this.getView().byId("partnerDetails").setVisible(false);
+            this.oList.removeSelections();
         }
     });
 });
