@@ -34,7 +34,6 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
                 "PartnerList",
                 "selected",
                 function(sChannel, sEventId, oParams) {
-                    var nameList = that._getView(basePath + "NameSelectList");
                     var path = oParams.path;
                     var numberMark = "PartnerNumber=";
                     var codeMark = "PartnerFunctionCode=";
@@ -46,18 +45,20 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
                         path.indexOf(codeMark) + codeMark.length,
                         path.indexOf(",PartnerNumber")
                     ) - 0;
+
+                    container.removeAllContent();
+                    var nameList = that._getView(basePath + "NameSelectList");
                     nameList.bindElement(
                         "/PartnerFunctions(" + PartnerFunctionCode + ")"
                     );
-                    container.removeAllContent();
                     container.addContent(nameList);
                     var partnerObject = nameList.byId("partnerObject");
-                    // partnerObject.bindElement(
-                        // "/PartnerRelations(PartnerNumber="
-                            // + PartnerNumber + ",PartnerFunctionCode="
-                            // + PartnerFunctionCode + ")/Partners"
-                    // );
-                    partnerObject.setVisible(true);
+                    partnerObject.bindElement(
+                        "/PartnerRelations(PartnerNumber="
+                            + PartnerNumber + ",PartnerFunctionCode="
+                            + PartnerFunctionCode + ")/Partners"
+                    );
+                    nameList.byId("partnerDetails").setVisible(true);
                 }
             );
         },
