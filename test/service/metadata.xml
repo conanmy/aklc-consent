@@ -71,6 +71,8 @@
                 <Property Name="ProcessKey" Type="Edm.String" Nullable="false" />
                 <Property Name="PartnerFunctionCode" Type="Edm.Int32" Nullable="false" />
                 <Property Name="PartnerNumber" Type="Edm.Int32" />
+                <Property Name="ValidFrom" Type="Edm.DateTime" Nullable="false" />
+                <Property Name="ValidTo" Type="Edm.DateTime" Nullable="false" />
                 <NavigationProperty Name="Partners" Relationship="ODataDemo.FK_AssignedPartnersPartners" FromRole="AssignedPartners" ToRole="Partners" />
                 <NavigationProperty Name="PartnerFunctions" Relationship="ODataDemo.FK_AssignedPartnersPartnerFunctions" FromRole="AssignedPartners2" ToRole="PartnerFunctions" />
             </EntityType>

@@ -1,13 +1,22 @@
 <mvc:View controllerName="aklc.cm.components.partner.controller.PartnerList" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc">
-    <List id="partnerList" mode="Delete"
-    delete="handleDelete" items="{path: '/AssignedPartners', sorter: [{path:'PartnerNumber', descending: true}],  parameters: { expand: 'PartnerFunctions,Partners'}}">
+    <IconTabBar select="handleIconTabBarSelect">
         <items>
-            <ObjectListItem type="Active" title="{PartnerFunctions/Description}" press="onListItemPress" class="assigned-partner-list-item">
-                <attributes>
-                    <ObjectAttribute text="{Partners/FirstName} {Partners/LastName} ( {PartnerNumber} )" title="Name" />
-                    <ObjectAttribute text="{Partners/Address1}" title="Address" />
-                </attributes>
-            </ObjectListItem>
+            <IconTabFilter text="All" key="All" />
+            <IconTabFilter text="Active" key="Active" />
+            <IconTabFilter text="Historic" key="Historic" />
         </items>
-    </List>
+        <content>
+            <List id="partnerList" mode="Delete"
+            delete="handleDelete" items="{path: '/AssignedPartners', sorter: [{path:'PartnerNumber', descending: true}],  parameters: { expand: 'PartnerFunctions,Partners'}}">
+                <items>
+                    <ObjectListItem type="Active" title="{PartnerFunctions/Description}" press="onListItemPress" class="assigned-partner-list-item">
+                        <attributes>
+                            <ObjectAttribute text="{Partners/FirstName} {Partners/LastName} ( {PartnerNumber} )" title="Name" />
+                            <ObjectAttribute text="{Partners/Address1}" title="Address" />
+                        </attributes>
+                    </ObjectListItem>
+                </items>
+            </List>
+        </content>
+    </IconTabBar>
 </mvc:View>

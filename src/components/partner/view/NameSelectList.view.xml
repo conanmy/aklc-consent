@@ -14,12 +14,12 @@
                     <ObjectAttribute text="Address: {Address1}, PostCode: {PostCode}" />
                 </attributes>
             </ObjectHeader>
-            <Toolbar height="auto">
+            <Toolbar height="auto" id="partnerDates">
                 <Label text="ValidFrom" />
                 <DatePicker
                     id="DPValidFrom"
+                    value="{path:'ValidFrom', type:'sap.ui.model.type.Date'}"
                     placeholder="Enter Date ..."
-                    change="handleChangeValidFrom"
                     valueFormat="yyyy-MM-dd"
                     class="sapUiSmallMarginBottom"
                     width="150px" />
@@ -27,8 +27,8 @@
                 <Label text="ValidTo" />
                 <DatePicker
                     id="DPValidTo"
+                    value="{path:'ValidTo', type:'sap.ui.model.type.Date'}"
                     placeholder="Enter Date ..."
-                    change="handleChangeValidTo"
                     valueFormat="yyyy-MM-dd"
                     class="sapUiSmallMarginBottom"
                     width="150px" />

@@ -64,7 +64,9 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
                 {
                     PartnerNumber: PartnerNumber,
                     PartnerFunctionCode: PartnerFunctionCode,
-                    ProcessKey: "P1"
+                    ProcessKey: "P1",
+                    ValidFrom: new Date(this.getView().byId("DPValidFrom").getValue()),
+                    ValidTo: new Date(this.getView().byId("DPValidTo").getValue())
                 }
             );
 
