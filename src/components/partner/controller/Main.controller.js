@@ -36,12 +36,12 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
                 function(sChannel, sEventId, oParams) {
                     var nameList = that._getView(basePath + "NameSelectList");
                     var path = oParams.path;
-                    var numberMark = "PartnerNumber=";
+                    // var numberMark = "PartnerNumber=";
                     var codeMark = "PartnerFunctionCode=";
-                    var PartnerNumber = path.substring(
-                        path.indexOf(numberMark) + numberMark.length,
-                        path.indexOf(")")
-                    ) - 0;
+                    // var PartnerNumber = path.substring(
+                    //     path.indexOf(numberMark) + numberMark.length,
+                    //     path.indexOf(")")
+                    // ) - 0;
                     var PartnerFunctionCode = path.substring(
                         path.indexOf(codeMark) + codeMark.length,
                         path.indexOf(",PartnerNumber")

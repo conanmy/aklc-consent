@@ -6,11 +6,9 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/core/ComponentContainer", "
             _sStepsCollection: "Steps", //Step Collection
             _sProcessKey: "", //Current Process
             _sStepKey: "", //Current Task
-            _sStepViewName: "", //Current Step View
             _oThingInspector: null, //Thing Inspector control
-            _oViewRegistry: [], //registry of views
-            _sNextStep: undefined,
             _bNewProcess: false,
+            _oViewModel: null, //View Model
 
             onInit: function() {
                 this._oComponent = sap.ui.component(sap.ui.core.Component.getOwnerIdFor(this.getView()));
@@ -73,6 +71,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/core/ComponentContainer", "
 
                 this._sNextStep = undefined;
 
+                // determine if new process
                 if (this._sProcessKey !== oArguments.processkey) {
                     (this._sProcessKey = oArguments.processkey);
                     bReload = true;
@@ -172,7 +171,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/core/ComponentContainer", "
                 this._oViewModel.setData({
                     Steps: aSteps
                 });
-           },
+            },
 
             /**
              * get the number of currently active steps
@@ -180,10 +179,9 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/core/ComponentContainer", "
              * @return {integet]}     active steps
              */
             getActiveSteps: function(oContext) {
-                var aSteps = oContext.getObject().Steps.__list;
+                var aSteps = this._oModel.getProperty(this._sStepsCollection, oContext);
                 var fnFilter = function(sPath) {
-                    var oData = this._oModel.getContext("/" + sPath).getObject();
-                    return oData.Active;
+                    return this._oModel.getProperty("/" + sPath).Active;
                 }.bind(this);
 
                 return aSteps.filter(fnFilter).length;
@@ -195,32 +193,26 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/core/ComponentContainer", "
              * @return {string}          step key
              */
             getCurrentKey: function(oContext) {
-                var aSteps = oContext.getObject().Steps.__list;
+                var aSteps = this._oModel.getProperty(this._sStepsCollection, oContext);
                 var sDefaultStepPath = "/" + aSteps[0];
 
                 var fnFilter = function(sPath) {
-                    var oData = this._oModel.getContext("/" + sPath).getObject();
-                    return oData.Current;
+                    return this._oModel.getProperty("/" + sPath).Current;
                 }.bind(this);
 
-                var sCurrentStepPath = aSteps.filter(fnFilter)[0];
+                var sCurrentStepPath = aSteps.filter(fnFilter)[0] ? "/" + aSteps.filter(fnFilter)[0] : "";
                 if (!sCurrentStepPath) {
                     sCurrentStepPath = sDefaultStepPath;
                 }
 
-                return this._oModel.getContext("/" + sCurrentStepPath).getObject().StepKey;
+                return this._oModel.getProperty(sCurrentStepPath).StepKey;
             },
 
             /**
-             * On Facet selected set the applicable content
+             * [checkValid description]
+             * @return {[type]} [description]
              */
-            onFacetSelected: function(oEvent) {
-                // set content
-                this._sNextStep = oEvent.getParameter("key");
-
-                //on facet selected needed to trigger validation
-                //
-                //if valid need to update current step to active and nav to next step
+            checkValid: function() {
                 var oDefer = function() {
                     var result = {};
                     result.promise = new Promise(function(resolve, reject) {
@@ -229,29 +221,18 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/core/ComponentContainer", "
                     });
                     return result;
                 };
-
-                var fnOnSuccess = function() {
-
-                };
-
-                var fnOnError = function(oError) {
-
-                };
-
-                var fNSubmit = function() {
-                    this._submitChanges(fnOnSuccess, fnOnError);
-                }.bind(this);
-
-                var fnNav = function() {
-                    this.navToProcess(this._sProcessKey, this._sNextStep);
-                }.bind(this);
-
                 var oData = {};
                 oData.WhenValid = oDefer();
-                oData.WhenValid.promise.then(fNSubmit).then(fnNav);
                 this._oComponent.getEventBus().publish(this._oSubscription.channel, this._oSubscription.events.checkValid, oData);
+                return oData.WhenValid.promise;
             },
 
+            /**
+             * [_submitChanges description]
+             * @param  {[type]} fnOnSuccess [description]
+             * @param  {[type]} fnOnError   [description]
+             * @return {[type]}             [description]
+             */
             _submitChanges: function(fnOnSuccess, fnOnError) {
                 return new Promise(function(fnResolve, fnReject) {
                     var oContext = this.getStepPathContext();
@@ -260,7 +241,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/core/ComponentContainer", "
                     if (!oContext.getProperty("Active", oContext)) {
                         this._oModel.setProperty("Active", true, oContext);
                     }
-
 
                     if (this._oModel.hasPendingChanges()) {
                         this._oModel.submitChanges({
@@ -274,11 +254,42 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/core/ComponentContainer", "
             },
 
             /**
+             * On Facet selected set the applicable content
+             */
+            onFacetSelected: function(oEvent) {
+                // get next step id from event
+                this._sNextStep = oEvent.getParameter("key");
+
+   
+                var fnOnSuccess = function() {
+                    //TODO
+                };
+
+                var fnOnError = function(oError) {
+                    //TODO
+                };
+
+                var fNSubmit = function() {
+                    this._submitChanges(fnOnSuccess, fnOnError);
+                }.bind(this);
+
+                var fnNav = function() {
+                    this.navToProcess(this._sProcessKey, this._sNextStep);
+                }.bind(this);
+
+
+                // trigger validation on step, if successful save and navigate
+                this.checkValid().then(fNSubmit).then(fnNav);
+            },
+
+
+
+            /**
              * Set the facet content based on the selected key
              * @param {[type]} sKey [description]
              */
             setContent: function(oContext) {
-                var oStep = oContext.getObject();
+                var oStep = this._oModel.getObject(oContext.getPath());
                 var sComponentPath = "aklc.cm.components.";
 
                 //remove existing content
@@ -325,5 +336,4 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/core/ComponentContainer", "
                 return oComponent;
             },
         });
-
     });

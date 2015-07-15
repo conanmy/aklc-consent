@@ -5,8 +5,6 @@ sap.ui.define([
     ],
     function(jQuery, UIComponent) {
         "use strict";
-
-
         // new Component
         var Component = UIComponent.extend("aklc.cm.components.conditions.Component", {
 
