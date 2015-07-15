@@ -30,8 +30,8 @@
 }
 
 .sapSuiteTvNavBarItemLink:active {
-    background-color: #a9a9a9;
-    color: #ffffff;
+    /*background-color: #a9a9a9;*/
+    color: #000000;
 }
 
 .sapSuiteTvNavBarItemLink {

@@ -7,3 +7,9 @@ before_script:
     - bower install
 after_success:
     - git push -f git@heroku.com:aklc-consent-demo.git master
+notifications:
+     email:
+         recipients:
+             - john.patterson@secondphase.com.au
+         on_success: change
+         on_failure: always

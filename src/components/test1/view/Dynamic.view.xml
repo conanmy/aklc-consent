@@ -1,4 +1,4 @@
-<mvc:View controllerName="aklc.cm.components.test1.controller.Dynamic" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:layout="sap.ui.layout" xmlns:commons="sap.ui.commons" xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1" xmlns:mvc="sap.ui.core.mvc">
+<mvc:View controllerName="aklc.cm.components.test1.controller.Dynamic" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:mvc="sap.ui.core.mvc">
     <form:Form class="editableForm" id="DETAIL_FORM">
         <form:title>
             <core:Title text="Process PoC" />

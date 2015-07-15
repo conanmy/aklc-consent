@@ -3,6 +3,7 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
     return BaseController.extend("aklc.cm.components.test1.controller.Dynamic", {
         _aInputFields: null,
         _aMandatoryFields: null,
+        _oForm: null, // Form control
         onInit: function() {
             BaseController.prototype.onInit.apply(this);
         },
@@ -144,6 +145,7 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
         checkAndMarkEmptyMandatoryFields: function() {
             var bErrors = false;
 
+            //TODO - single mm needs to be injected from parent component
             var oMessageProcessor = new sap.ui.core.message.ControlMessageProcessor();
             var oMessageManager = sap.ui.getCore().getMessageManager();
             oMessageManager.registerMessageProcessor(oMessageProcessor);
@@ -171,7 +173,6 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
                                     processor: oMessageProcessor
                                 })
                             );
-
                         }
                         break;
                     case "sap.m.MultiComboBox":
