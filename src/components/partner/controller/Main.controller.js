@@ -1,4 +1,4 @@
-sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
+sap.ui.define(["aklc/cm/controller/BaseController", "sap/m/MessageBox"], function(BaseController, MessageBox) {
     "use strict";
     return BaseController.extend("aklc.cm.components.partner.controller.Main", {
         _oViewRegistry: [],
@@ -82,11 +82,15 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
         onCheckValid: function(sChannel, sEvent, oData){
             if (this.getView().byId("splitContainer").getContent()[0].sViewName
                 === this._basePath + "NameSelectList") {
-                if (window.confirm("Your current editing will be discarded.")) {
-                    oData.WhenValid.resolve();
-                } else {
-                    jQuery.sap.log.info("Dynamic View - validation errors");
-                }
+                MessageBox.confirm("Your current editing will be discarded.", {
+                    onClose: function(oAction) {
+                        if (oAction === "OK") {
+                            oData.WhenValid.resolve();
+                        } else {
+                            jQuery.sap.log.info("Dynamic View - validation errors");
+                        }
+                    }
+                });
             } else {
                 oData.WhenValid.resolve();
             }
