@@ -30,6 +30,9 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
             } else {
                 oBinding.filter([]);
             }
+        },
+        onCheckValid: function(sChannel, sEvent, oData) {
+            return false;
         }
     });
 });

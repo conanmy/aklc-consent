@@ -2,18 +2,20 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
     "use strict";
     return BaseController.extend("aklc.cm.components.partner.controller.Main", {
         _oViewRegistry: [],
+        _basePath: "aklc.cm.components.partner.view.",
 
         onInit: function() {
+            BaseController.prototype.onInit.apply(this);
+
             var that = this;
             var container = that.getView().byId("splitContainer");
-            var basePath = "aklc.cm.components.partner.view.";
-            container.addContent(that._getView(basePath + "SelectList"));
+            container.addContent(that._getView(that._basePath + "SelectList"));
             that.getOwnerComponent().getEventBus().subscribe(
                 'SelectList',
                 'selected',
                 function(sChannel, sEventId, oParams) {
                     container.removeAllContent();
-                    var nameList = that._getView(basePath + "NameSelectList");
+                    var nameList = that._getView(that._basePath + "NameSelectList");
                     nameList.bindElement(oParams.path);
                     container.addContent(nameList);
                 }
@@ -25,7 +27,7 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
                 function() {
                     container.removeAllContent();
                     container.addContent(
-                        that._getView(basePath + "SelectList")
+                        that._getView(that._basePath + "SelectList")
                     );
                 }
             );
@@ -42,7 +44,7 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
                     ) - 0;
 
                     container.removeAllContent();
-                    var nameList = that._getView(basePath + "NameSelectList");
+                    var nameList = that._getView(that._basePath + "NameSelectList");
                     nameList.bindElement(
                         "/PartnerFunctions(" + PartnerFunctionCode + ")"
                     );
@@ -75,6 +77,19 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
             this._oViewRegistry[sStepViewName] = oView;
 
             return oView;
+        },
+
+        onCheckValid: function(sChannel, sEvent, oData){
+            if (this.getView().byId("splitContainer").getContent()[0].sViewName
+                === this._basePath + "NameSelectList") {
+                if (window.confirm("Your current editing will be discarded.")) {
+                    oData.WhenValid.resolve();
+                } else {
+                    jQuery.sap.log.info("Dynamic View - validation errors");
+                }
+            } else {
+                oData.WhenValid.resolve();
+            }
         }
     });
 });
