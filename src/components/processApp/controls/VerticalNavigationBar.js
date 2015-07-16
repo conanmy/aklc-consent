@@ -140,35 +140,12 @@
                this._fireSelect(oItem);
            };
 
-           // VerticalNavigationBar.prototype._moveToStep = function(newStep) {
-           //     var stepCount = this.getStepCount(),
-           //         oldStep = this.getCurrentStep();
-
-           //     if (newStep > stepCount) {
-           //         return this;
-           //     }
-
-           //     if (newStep > this._activeStep) {
-           //         this._updateActiveStep(newStep);
-           //     }
-
-           //     var oItem = this._getItem(newStep);
-           //     if (this.fireSelect({
-           //             item: oItem,
-           //             itemId: oItem.getId()
-           //         })) {
-           //         this.setAssociation("selectedItem", oItem, true); // avoid rerendering, animate
-           //     }
-           //     return this._updateCurrentStep(newStep, oldStep);
-           // };
-
            VerticalNavigationBar.prototype._fireSelect = function(oItem) {
                this.fireSelect({
                    item: oItem,
                    itemId: oItem.getId()
                });
            };
-
 
            VerticalNavigationBar.prototype.getPreviousItem = function() {
                var iCurrentStep = this.getCurrentStep();

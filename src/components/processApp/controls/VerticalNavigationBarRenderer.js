@@ -10,11 +10,9 @@
                if (!oControl.getVisible()) { // return immediately if control is invisible
                    return;
                }
-
                this.startNavigator(oRm, oControl);
                this.renderList(oRm, oControl);
                this.endNavigator(oRm);
-
            };
 
            VerticalNavigationBarRenderer.startNavigator = function(oRm, oControl) {
@@ -114,8 +112,6 @@
                oRm.write(">");
                oRm.writeEscaped(oItem.getText());
                oRm.write("</div>");
-
-
                oRm.write("</div>");
 
            };

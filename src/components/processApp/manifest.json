@@ -47,9 +47,7 @@
             "libs": {
                 "sap.m": {},
                 "sap.ui.layout":{},
-                "sap.ui.commons": {
-                    "minVersion": "1.22.0"
-                },
+                "sap.ui.commons": {},
                 "sap.ui.ux3": {}
             }
         },
