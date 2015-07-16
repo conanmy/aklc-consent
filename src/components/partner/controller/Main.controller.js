@@ -10,7 +10,7 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
             var that = this;
             var container = that.getView().byId("splitContainer");
             container.addContent(that._getView(that._basePath + "SelectList"));
-            that.getOwnerComponent().getEventBus().subscribe(
+            that.getEventBus().subscribe(
                 'SelectList',
                 'selected',
                 function(sChannel, sEventId, oParams) {
@@ -21,7 +21,7 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
                 }
             );
 
-            that.getOwnerComponent().getEventBus().subscribe(
+            that.getEventBus().subscribe(
                 "NameSelectList",
                 "goBack",
                 function() {
@@ -32,7 +32,7 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
                 }
             );
 
-            that.getOwnerComponent().getEventBus().subscribe(
+            that.getEventBus().subscribe(
                 "PartnerList",
                 "selected",
                 function(sChannel, sEventId, oParams) {

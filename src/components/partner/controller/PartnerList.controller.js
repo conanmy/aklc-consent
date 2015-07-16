@@ -3,7 +3,7 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
     return BaseController.extend("aklc.cm.components.partner.controller.PartnerList", {
         onListItemPress: function(oEvent) {
             var itemPath = oEvent.oSource.getBindingContextPath();
-            this.getOwnerComponent().getEventBus().publish(
+            this.getEventBus().publish(
                 "PartnerList",
                 "selected",
                 {

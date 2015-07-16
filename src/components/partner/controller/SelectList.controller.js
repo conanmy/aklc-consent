@@ -28,7 +28,7 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
 
             var listItem = oEvt.mParameters.listItem;
             var itemPath = listItem.getBindingContextPath();
-            this.oView.oViewData.oComponent.getEventBus().publish(
+            this.getEventBus().publish(
                 'SelectList',
                 'selected',
                 {path: itemPath}
