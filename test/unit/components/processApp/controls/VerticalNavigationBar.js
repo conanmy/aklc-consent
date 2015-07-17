@@ -7,7 +7,7 @@ sap.ui.define(
 
         QUnit.module("VerticalNavigationBar");
 
-        oVerticalNavigationBar = new VerticalNavigationBar();
+        var oVerticalNavigationBar = new VerticalNavigationBar();
         oVerticalNavigationBar.placeAt("qunit-fixture");
         var oItem1 = new NavigationItem({
             key: "item1",

@@ -13,6 +13,13 @@
 		"strictEqual": true,
 		"module": true,
 		"QUnit": true,
+		"asyncTest": false,
+		"deepEqual": false,
+		"equal": false,
+		"expect": false,
+		"module": false,
+		"raises": false,
+		"start": false,
 		"sinon": true
 	},
 	"plugins": [
