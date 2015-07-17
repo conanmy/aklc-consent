@@ -6,7 +6,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/core/ComponentContainer", "
             _sStepsCollection: "Steps", //Step Collection
             _sProcessKey: "", //Current Process
             _sStepKey: "", //Current Task
-            _oThingInspector: null, //Thing Inspector control
+            _oProcessViewer: null, //Thing Inspector control
             _bNewProcess: false,
             _oViewModel: null, //View Model
 
@@ -14,7 +14,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/core/ComponentContainer", "
                 this._oComponent = sap.ui.component(sap.ui.core.Component.getOwnerIdFor(this.getView()));
                 this._oRouter = sap.ui.core.UIComponent.getRouterFor(this);
                 this._oRouter.attachRouteMatched(this.routeMatched.bind(this));
-                this._oThingInspector = this.getView().byId("TI");
+                this._oProcessViewer = this.getView().byId("TI");
                 this._oModel = this._oComponent.getModel();
                 this._oContainer = new ComponentContainer(this.createId("CONTAINTER"));
                 this._oViewModel = new JSONModel({});
@@ -123,8 +123,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/core/ComponentContainer", "
                 var fnFilter = function(oItem) {
                     return oItem.getKey() === sStepKey;
                 };
-                var oItem = this._oThingInspector.getFacets().filter(fnFilter)[0];
-                this._oThingInspector.setSelectedFacet(oItem);
+                var oItem = this._oProcessViewer.getFacets().filter(fnFilter)[0];
+                this._oProcessViewer.setSelectedFacet(oItem);
             },
 
             /**
@@ -143,7 +143,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/core/ComponentContainer", "
                 }
 
                 // set the number of active steps
-                this._oThingInspector.setActiveSteps(this.getActiveSteps(oContext));
+                this._oProcessViewer.setActiveSteps(this.getActiveSteps(oContext));
 
                 // if step key wasnt provided navigate to the active step key
                 if (!this._sStepKey) {
@@ -293,7 +293,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/core/ComponentContainer", "
                 var sComponentPath = "aklc.cm.components.";
 
                 //remove existing content
-                this._oThingInspector.removeAllFacetContent();
+                this._oProcessViewer.removeAllFacetContent();
 
                 var oFacetContent = new sap.ui.ux3.ThingGroup({
                     title: oStep.Title
@@ -306,7 +306,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/core/ComponentContainer", "
 
                 oFacetContent.bindElement(oContext.getPath());
                 oFacetContent.addContent(this._oContainer);
-                this._oThingInspector.addFacetContent(oFacetContent);
+                this._oProcessViewer.addFacetContent(oFacetContent);
 
                 this._oSubscription = oComponent.getEventBusSubscription();
                 this._oComponent.getEventBus().publish(this._oSubscription.channel, this._oSubscription.events.contextChanged, {

@@ -4,10 +4,11 @@ sap.ui.define(
         "aklc/cm/components/processApp/controls/NavigationItem",
         "sap/ui/model/json/JSONModel",
         "aklc/cm/components/processApp/controls/VerticalNavigationBar",
+        "sap/ui/qunit/QUnitUtils"
     ],
     function(ProcessViewer, NavigationItem, JSONModel) {
         "use strict";
-
+        var QUtils = window.qutils;
         jQuery.sap.includeStyleSheet("../../src/components/processApp/css/ThreePanelViewer.css", "ThreePanelViewer");
         jQuery.sap.includeStyleSheet("../../src/components/processApp/css/VerticalNavigationBar.css", "VerticalNavigationBar");
 
@@ -17,7 +18,7 @@ sap.ui.define(
             icon: "sap-icon://overlay"
         }, {
             key: "contacts",
-            text: "Contacts Lorem Ipsum Dolores",
+            text: "Contacts",
             icon: "sap-icon://citizen-connect"
         }, {
             key: "items",
@@ -62,6 +63,25 @@ sap.ui.define(
         }];
 
         var oOverviewData = oContactsData;
+
+        var oFacet = {};
+
+        //event handler for facet event, action and standard action events, for close and open event
+        function facetSelectedEventHandler(oEvent) {
+
+            ok(true, "facet select event handler has been executed."); // this test tests by just being counted in the respective test
+            var sId = oEvent.getParameter("id");
+            var sKey = oEvent.getParameter("key");
+            equal(sKey, oFacet.key, oFacet.text + " Facet should be selected");
+            var oTG1 = new sap.ui.ux3.ThingGroup({
+                title: "Block1"
+            });
+            oTG1.addContent(new sap.ui.commons.Button(oProcessViewer.getId() + sKey + "FacetButton", {
+                text: sKey
+            }));
+            oProcessViewer.destroyFacetContent().addFacetContent(oTG1);
+            oProcessViewer.setSelectedFacet(sId);
+        }
 
         var oFacetContentTemplate = new sap.ui.ux3.ThingGroup({
             title: "{title}",
@@ -112,72 +132,124 @@ sap.ui.define(
                 path: "/facetContent",
                 template: oFacetContentTemplate
             },
-            facetSelected: function(oEvent) {
-                var sFacetKey = oEvent.getParameters().key;
-                oProcessViewer.setContent(sFacetKey);
-            }
+            facetSelected: facetSelectedEventHandler
         });
 
         oProcessViewer.setModel(oModel);
+        oProcessViewer.setActiveSteps(5);
         oProcessViewer.setSelectedFacet(oProcessViewer.getFacets()[0]);
-        oProcessViewer.placeAt("uiArea1");
+        oProcessViewer.placeAt("qunit-fixture");
 
-        module("Appearance");
+        QUnit.module("Appearance");
 
-        test("ProcessViewer exists", function() {
-
+        QUnit.test("ProcessViewer exists", function() {
             var oDomRef = jQuery.sap.domById(oProcessViewer.getId());
             ok(oDomRef, "Rendered ProcessViewer should exist in the page");
             equal(oDomRef.className, "sapUiUx3TV", "Rendered ProcessViewer should have the class 'sapUiUx3TV'");
         });
 
-        // test("Title Icon is rendered", function() {
-        //     var oSwatch = jQuery.sap.domById(oProcessViewer.getId() + "-swatch");
-        //     ok(oSwatch, "Title Icon should exist in the page");
-        //     equal(oSwatch.className, "sapSuiteTvTitleIcon", "Rendered title icon should have the class 'sapSuiteTvTitleIcon'");
-        // });
-
-        // test("Title bar is rendered", function() {
-        //     var oTitle = jQuery.sap.domById(oProcessViewer.getId() + "-header");
-        //     ok(oTitle, "Title should exist in the page");
-        //     equal(oTitle.className, "sapSuiteTvTitle", "Rendered title should have the class 'sapSuiteTvTitle'");
-        // });
-
-        // test("Menu button exists", function() {
-        //     var menuButton = jQuery.sap.domById(oProcessViewer.getId() + "-menu-button");
-        //     notDeepEqual(menuButton, [], "menu button found: " + menuButton);
-        // });
-
-        test("Vertical navigation exists", function() {
+        //NavBar
+        QUnit.test("Vertical navigation exists", function() {
             var oNavBar = jQuery.sap.domById(oProcessViewer.getId() + "-navigation");
             ok(oNavBar, "Vertical navigation should exist in the page");
             equal(oNavBar.className, "sapSuiteTvNav", "Rendered vertical navigation bar should have the class 'sapSuiteTvNav'");
         });
 
-        test("Items", function() {
+        QUnit.test("Navbar Items", function() {
             //number of navigation items must be the same as number of facets
             var facets = oProcessViewer.getFacets();
+            equal(facets.length, oNavBarData.length, "Number of facets equals model data");
             // var $facets = jQuery(".sapSuiteTvNavBarList");
             for (var i = 0; i < facets.length; i++) {
                 ok(jQuery.sap.domById(facets[i].sId), "Rendered ThingViewer Item " + facets[i].sId + " should exist in the page");
             }
         });
 
-        // test("Header exists", function() {
-        //     var oHeader = jQuery.sap.domById(oProcessViewer.getId() + "-headerContent");
-        //     ok(oHeader, "Header should exist in the page");
-        //     equal(oHeader.className, "sapSuiteTvHeader", "Rendered header should have the class 'sapSuiteTvHeader'");
-        // });
+        //ActionBar
+        QUnit.test("Toolbar", function() {
+            var oActionBar = oProcessViewer.getActionBar();
+            ok(oActionBar, "ActionBar should exist");
+            ok(jQuery(".sapUiUx3ActionBar")[0], "ActionBar rendering ok");
+            oProcessViewer.setActionBar();
+            sap.ui.getCore().applyChanges();
+            ok(!jQuery(".sapUiUx3ActionBar")[0], "ActionBar should be destroyed");
+            oProcessViewer.setActionBar(oActionBar);
+        });
 
-        test("Facet content exists", function() {
+        //Action check next and previous
+        QUnit.test("Action - Next", function() {
+            var oActionBar = oProcessViewer.getActionBar();
+            var oButtons = oActionBar.getAggregation("_businessActionButtons");
+
+            var oPreviousBtn = oButtons[0];
+            var oNextBtn = oButtons[1];
+
+            ok(!oPreviousBtn.getVisible(), "Previous Button should not be visible");
+            ok(oNextBtn.getVisible(), "Next Button should  be visible");
+
+            ok(!jQuery.sap.domById(oPreviousBtn.getId()), "Previous Button was not rendered");
+            ok(jQuery.sap.domById(oNextBtn.getId()), "Next Button was rendered");
+
+            equal(oPreviousBtn.getText(), "", "first step no previous step");
+            equal(oNextBtn.getText(), oNavBarData[1].text, "she be the second entries text");
+
+        });
+
+        QUnit.test("Facet content exists", function() {
             var oFacetContent = jQuery.sap.domById(oProcessViewer.getId() + "-facetContent");
             ok(oFacetContent, "Facet content should exist in the page");
             equal(oFacetContent.className, "sapSuiteTvFacet", "Rendered facet content should have the class 'sapSuiteTvFacet'");
-            oProcessViewer.destroy();
+
         });
 
-        module("Behaviour");
- 
+        QUnit.module("Behaviour");
+        QUnit.asyncTest("FacetSelected Events", function() {
+            expect(13);
+            oFacet = oNavBarData[4];
+            var oItem = oProcessViewer.getFacets().filter(function(o) {
+                return o.getKey() === oFacet.key;
+            })[0];
+            QUtils.triggerMouseEvent(jQuery.sap.domById(oItem.sId), "click", 1, 1, 1, 1);
+            setTimeout(
+                function() {
+                    ok(jQuery.sap.domById(oProcessViewer.getId() + oFacet.key + "FacetButton"), "Rendered Facet Content for facet " + oFacet.key + " should exist in the page");
+                    var iIndex = oNavBarData.indexOf(oFacet);
+                    var sPreviousTxt = oNavBarData[iIndex - 1].text;
+                    var sNextTxt = oNavBarData[iIndex + 1].text;
+                    var oActionBar = oProcessViewer.getActionBar();
+                    var oButtons = oActionBar.getAggregation("_businessActionButtons");
+
+                    var oPreviousBtn = oButtons[0];
+                    var oNextBtn = oButtons[1];
+
+                    ok(oPreviousBtn.getVisible(), "Previous Button should be visible");
+                    ok(oNextBtn.getVisible(), "Next Button should  be visible");
+                    equal(oPreviousBtn.getText(), sPreviousTxt, "Previous button text should be" + sPreviousTxt);
+                    equal(oNextBtn.getText(), sNextTxt, "Previous button text should be" + sNextTxt);
+
+                    oFacet = oNavBarData[iIndex + 1];
+                    QUtils.triggerMouseEvent(jQuery.sap.domById(oNextBtn.sId), "click", 1, 1, 1, 1);
+                    setTimeout(
+                        function() {
+                            ok(jQuery.sap.domById(oProcessViewer.getId() + oFacet.key + "FacetButton"), "Rendered Facet Content for facet " + oFacet.key + " should exist in the page");
+                            iIndex = oNavBarData.indexOf(oFacet);
+                            oFacet = oNavBarData[iIndex - 1];
+                            QUtils.triggerMouseEvent(jQuery.sap.domById(oPreviousBtn.sId), "click", 1, 1, 1, 1);
+                            setTimeout(
+                                function() {
+                                    ok(jQuery.sap.domById(oProcessViewer.getId() + oFacet.key + "FacetButton"), "Rendered Facet Content for facet " + oFacet.key + " should exist in the page");
+                                    start();
+                                }, 1000);
+                        }, 500);
+                }, 1000);
+        });
+
+        QUnit.test("Destroy and remove control", function() {
+            oProcessViewer.destroy();
+            var oDomRef = jQuery.sap.domById(oProcessViewer.getId());
+            ok(!oDomRef, "Rendered ProcessViewer should not exist in the page after destruction");
+        });
+
     }
 
 );

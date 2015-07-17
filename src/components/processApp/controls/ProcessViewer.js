@@ -66,20 +66,22 @@ sap.ui.define(["sap/ui/ux3/ThingViewer", "sap/ui/ux3/ActionBar", "./ProcessViewe
 
             this.setAggregation("actionBar", oActionBar);
 
-            this._oActionNext = new sap.ui.commons.Button({ //new ThingAction({
+            this._oActionNext = new sap.ui.commons.Button({  
                 id: "next",
                 icon: "sap-icon://navigation-right-arrow",
                 iconFirst: false,
-                press: this.nextStep.bind(this),
+                press: this.gotoNextStep.bind(this),
                 visible: false
             });
 
-            this._oActionPrevious = new sap.ui.commons.Button({ //new ThingAction({
+            this._oActionPrevious = new sap.ui.commons.Button({  
                 id: "previous",
                 icon: "sap-icon://navigation-left-arrow",
-                press: this.previousStep.bind(this),
+                press: this.gotoPreviousStep.bind(this),
                 visible: false
             });
+
+            this.addNavigationActions();
         };
 
         ProcessViewer.prototype.exit = function() {
@@ -90,12 +92,6 @@ sap.ui.define(["sap/ui/ux3/ThingViewer", "sap/ui/ux3/ActionBar", "./ProcessViewe
             jQuery.sap.unbindAnyEvent(this.fAnyEventHandlerProxy);
         };
 
-        ProcessViewer.prototype.onAfterRendering = function() {
-            this.removeAllActions();
-            this.addNavigationActions();
-        };
-
-        // Implementation of API method
         ProcessViewer.prototype.setSelectedFacet = function(selectedFacet) {
             var oldSelectedFacet = this.getSelectedFacet();
             this.setAssociation("selectedFacet", selectedFacet, true);
@@ -107,15 +103,6 @@ sap.ui.define(["sap/ui/ux3/ThingViewer", "sap/ui/ux3/ActionBar", "./ProcessViewe
             }
         };
 
-        // Implementation of API method removeAllActions
-        ProcessViewer.prototype.removeAllActions = function() {
-            var result;
-            if (this.getActionBar()) {
-                result = this.getActionBar().removeAllBusinessActions();
-            }
-            return result;
-        };
-
         ProcessViewer.prototype.addNavigationActions = function() {
             if (this.getActionBar()) {
                 this.getActionBar().insertAggregation("_businessActionButtons", this._oActionNext, 0, true);
@@ -123,24 +110,24 @@ sap.ui.define(["sap/ui/ux3/ThingViewer", "sap/ui/ux3/ActionBar", "./ProcessViewe
             }
         };
 
-        ProcessViewer.prototype._setNextAction = function() {
+        ProcessViewer.prototype._getNextAction = function() {
             var oItem = this._getNavBar().getNextItem();
             return (oItem) ? oItem.getText() : undefined;
         };
 
-        ProcessViewer.prototype._setPreviousAction = function() {
+        ProcessViewer.prototype._getPreviousAction = function() {
             var oItem = this._getNavBar().getPreviousItem();
             return (oItem) ? oItem.getText() : undefined;
         };
 
-        ProcessViewer.prototype.nextStep = function() {
+        ProcessViewer.prototype.gotoNextStep = function() {
             var oItem = this._getNavBar().getNextItem();
             if (oItem) {
                 this._fireFacetSelected(oItem);
             }
         };
 
-        ProcessViewer.prototype.previousStep = function() {
+        ProcessViewer.prototype.gotoPreviousStep = function() {
             var oItem = this._getNavBar().getPreviousItem();
             if (oItem) {
                 this._fireFacetSelected(oItem);
@@ -159,23 +146,18 @@ sap.ui.define(["sap/ui/ux3/ThingViewer", "sap/ui/ux3/ActionBar", "./ProcessViewe
             this._getNavBar().setActiveSteps(iSteps);
         };
 
-        ProcessViewer.prototype.selectDefaultFacet = function() {
-            this._selectDefault();
-            return this;
-        };
-
 
         ProcessViewer.prototype._setActions = function() {
-            if (this._setNextAction()) {
+            if (this._getNextAction()) {
                 this._oActionNext.setVisible(true);
-                this._oActionNext.setText(this._setNextAction());
+                this._oActionNext.setText(this._getNextAction());
             } else {
                 this._oActionNext.setVisible(false);
             }
 
-            if (this._setPreviousAction()) {
+            if (this._getPreviousAction()) {
                 this._oActionPrevious.setVisible(true);
-                this._oActionPrevious.setText(this._setPreviousAction());
+                this._oActionPrevious.setText(this._getPreviousAction());
             } else {
                 this._oActionPrevious.setVisible(false);
             }

@@ -7,9 +7,6 @@
 
            var VerticalNavigationBarRenderer = Renderer.extend("aklc.cm.components.processApp.controls.VerticalNavigationBarRenderer");
            VerticalNavigationBarRenderer.render = function(oRm, oControl) {
-               if (!oControl.getVisible()) { // return immediately if control is invisible
-                   return;
-               }
                this.startNavigator(oRm, oControl);
                this.renderList(oRm, oControl);
                this.endNavigator(oRm);
@@ -21,7 +18,6 @@
                oRm.writeControlData(oControl);
                oRm.writeAttribute("role", "navigation");
                oRm.addClass(CLASSES.NAVBAR);
-               // oRm.addClass(CLASSES.NAVBAR_UPPERCASE);
                oRm.writeClasses();
                oRm.write(">");
            };

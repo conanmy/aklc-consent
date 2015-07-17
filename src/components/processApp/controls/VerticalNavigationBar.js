@@ -32,26 +32,27 @@
                this._activeStep = 1;
                this._cachedSteps = null;
                this._stepCount = 0;
-           };
+           }; 
 
            VerticalNavigationBar.prototype.onAfterRendering = function() {
                sap.ui.ux3.NavigationBar.prototype.onAfterRendering.apply(this);
 
-               this._cacheDOMElements();
-               if (this._cachedSteps.length === 0) {
-                   return;
-               }
-               if (this.getSelectedItem()) {
-                   this._updateSelection(this.getSelectedItem());
-               }
-               var zeroBasedActiveStep = this._activeStep - 1,
-                   zeroBasedCurrentStep = this._currentStep - 1;
+               if (this.getItems().length !== 0) {
+                   this._cacheDOMElements();
+                   jQuery.sap.assert(this._cachedSteps.length !== 0, "Should have cached steps.");
 
-               this._stepCount = this._cachedSteps.length;
-               this._updateStepNavigation(zeroBasedActiveStep);
-               this._updateStepCurrentAttribute(zeroBasedCurrentStep);
-               this._updateStepActiveAttribute(zeroBasedActiveStep);
-               this._removeStepAriaDisabledAttribute(zeroBasedActiveStep);
+                   if (this.getSelectedItem()) {
+                       this._updateSelection(this.getSelectedItem());
+                   }
+                   var zeroBasedActiveStep = this._activeStep - 1,
+                       zeroBasedCurrentStep = this._currentStep - 1;
+
+                   this._stepCount = this._cachedSteps.length;
+                   this._updateStepNavigation(zeroBasedActiveStep);
+                   this._updateStepCurrentAttribute(zeroBasedCurrentStep);
+                   this._updateStepActiveAttribute(zeroBasedActiveStep);
+                   this._removeStepAriaDisabledAttribute(zeroBasedActiveStep);
+               }
 
                this.bInvalidated = false;
            };
@@ -72,6 +73,7 @@
            };
 
            VerticalNavigationBar.prototype._handleActivation = function(oEvent) {
+               // if icon is clicked go up to nearest link
                if (!oEvent.target.id) {
                    oEvent.target = jQuery(oEvent.target).closest("." + VerticalNavigationBar.CLASSES.NAVBAR_ITEM_LINK)[0];
                }
@@ -85,10 +87,6 @@
 
            };
 
-           VerticalNavigationBar.prototype.onsapspace = function(oEvent) {
-               this._handleActivation(oEvent);
-           };
-
            VerticalNavigationBar.prototype.onclick = function(oEvent) {
                this._handleActivation(oEvent);
            };
@@ -97,17 +95,13 @@
 
 
            VerticalNavigationBar.prototype._cacheDOMElements = function() {
-               var domRef = this.getDomRef();
-
-               this._cachedSteps = domRef.querySelectorAll("." + VerticalNavigationBar.CLASSES.NAVBAR_ITEM);
+               this._cachedSteps = this.getDomRef().querySelectorAll("." + VerticalNavigationBar.CLASSES.NAVBAR_ITEM);
            };
 
            VerticalNavigationBar.prototype._checkOverflow = function(oListDomRef, of_back, of_fw) {};
 
            VerticalNavigationBar.prototype.setSelectedItem = function(vItem) {
-               if (!this.getDomRef()) {
-                   return;
-               }
+               jQuery.sap.assert(this.getDomRef(), "Should have a domref.");
 
                var sItemId = (!vItem || (typeof vItem == "string")) ? vItem : vItem.getId();
 
@@ -126,18 +120,6 @@
 
            VerticalNavigationBar.prototype.setActiveSteps = function(newStep) {
                this._activeStep = newStep;
-           };
-
-
-           VerticalNavigationBar.prototype._selectStep = function(newStep) {
-               var stepCount = this.getStepCount();
-
-               if (newStep > stepCount) {
-                   return this;
-               }
-
-               var oItem = this._getItem(newStep);
-               this._fireSelect(oItem);
            };
 
            VerticalNavigationBar.prototype._fireSelect = function(oItem) {
@@ -160,24 +142,8 @@
 
            VerticalNavigationBar.prototype.getNextItem = function() {
                var iNextStep = this.getCurrentStep();
-
-               if (iNextStep > this.iStepCount) {
-                   return undefined;
-               }
-
                return this.getItems()[iNextStep];
            };
-
-           VerticalNavigationBar.prototype._getItem = function(newStep) {
-               var stepCount = this.getStepCount();
-
-               if (newStep > stepCount) {
-                   return this;
-               }
-
-               return this.getItems()[newStep - 1];
-           };
-
 
            VerticalNavigationBar.prototype._updateSelection = function(sItemId) {
                this._menuInvalid = true;
@@ -247,7 +213,6 @@
 
            };
 
-
            /**
             * Allows focus on active steps
             * @param  {number} index - The index of the last focusable Step. Zero-based
@@ -257,9 +222,7 @@
                var navDomRef = this.getDomRef();
                var aFocusableSteps = [];
 
-               if (this._cachedSteps.length === 0) {
-                   return false;
-               }
+               jQuery.sap.assert(this._cachedSteps.length !== 0, "Should have a cached steps.");
 
                for (var i = 0; i <= index; i++) {
                    aFocusableSteps.push(this._cachedSteps[i].children[0]);
@@ -306,7 +269,6 @@
 
            };
 
-
            /**
             * Removes the Step aria-disabled attribute from the DOM structure of the Control
             * @param {number} index - The index at which the attribute should be removed. Zero-based
@@ -317,24 +279,6 @@
                this._cachedSteps[index].children[0]
                    .removeAttribute(VerticalNavigationBar.ATTRIBUTES.ARIA_DISABLED);
            };
-
-           /**
-            * Updates the active step in the control instance as well as the DOM structure
-            * @param {number} newStep - The step number to which active step will be set. Non zero-based
-            * @param {number} oldStep - The step number to which active step was set. Non zero-based
-            * @returns {sap.m.WizardProgressNavigator} Pointer to the control instance for chaining
-            * @private
-            */
-           VerticalNavigationBar.prototype._updateActiveStep = function(newStep, oldStep) {
-               var zeroBasedNewStep = newStep - 1,
-                   zeroBasedOldStep = (oldStep || this._activeStep) - 1;
-
-               this._activeStep = newStep;
-               this._updateStepNavigation(zeroBasedNewStep);
-               this._removeStepAriaDisabledAttribute(zeroBasedNewStep);
-               this._updateStepActiveAttribute(zeroBasedNewStep, zeroBasedOldStep);
-           };
-
 
            /**
             * Updates the Step aria-label attribute in the DOM structure of the Control
@@ -353,10 +297,6 @@
                this._cachedSteps[newIndex].children[0]
                    .setAttribute(
                        VerticalNavigationBar.ATTRIBUTES.ARIA_LABEL, "Selected");
-           };
-
-           VerticalNavigationBar.prototype.getStepCount = function() {
-               return this._stepCount;
            };
 
            return VerticalNavigationBar;
