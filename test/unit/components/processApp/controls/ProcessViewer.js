@@ -238,16 +238,23 @@ sap.ui.define(
                             setTimeout(
                                 function() {
                                     ok(jQuery.sap.domById(oProcessViewer.getId() + oFacet.key + "FacetButton"), "Rendered Facet Content for facet " + oFacet.key + " should exist in the page");
-                                    start();
-                                }, 1000);
-                        }, 500);
-                }, 1000);
+                                    QUnit.start();
+                                }, 0);
+                        }, 0);
+                }, 0);
         });
 
-        QUnit.test("Destroy and remove control", function() {
-            oProcessViewer.destroy();
-            var oDomRef = jQuery.sap.domById(oProcessViewer.getId());
-            ok(!oDomRef, "Rendered ProcessViewer should not exist in the page after destruction");
+        QUnit.asyncTest("Destroy and remove control", function() {
+            expect(1);
+            
+            setTimeout(
+                function() {
+                    oProcessViewer.destroy();
+                    var oDomRef = jQuery.sap.domById(oProcessViewer.getId());
+                    ok(!oDomRef, "Rendered ProcessViewer should not exist in the page after destruction");
+                    QUnit.start();
+                }, 1000);
+
         });
 
     }

@@ -2,7 +2,23 @@
        function(NavigationBar) {
            "use strict";
 
-           var VerticalNavigationBar = NavigationBar.extend("aklc.cm.components.processApp.controls.VerticalNavigationBar");
+           var VerticalNavigationBar = NavigationBar.extend("aklc.cm.components.processApp.controls.VerticalNavigationBar", {
+               metadata: {
+                   properties: {
+                       currentStep: {
+                           type: "int",
+                           group: "Data",
+                           defaultValue: 0
+                       },
+
+                       activeSteps: {
+                           type: "int",
+                           group: "Data",
+                           defaultValue: 0
+                       }
+                   }
+               }
+           });
 
            VerticalNavigationBar.CLASSES = {
                NAVBAR: "sapSuiteTvNavBar",
@@ -28,11 +44,10 @@
 
            VerticalNavigationBar.prototype.init = function() {
                NavigationBar.prototype.init.apply(this);
-               this._currentStep = 1;
-               this._activeStep = 1;
+               // this._currentStep = 0;
+               // this._activeStep = 0;
                this._cachedSteps = null;
-               this._stepCount = 0;
-           }; 
+           };
 
            VerticalNavigationBar.prototype.onAfterRendering = function() {
                sap.ui.ux3.NavigationBar.prototype.onAfterRendering.apply(this);
@@ -44,10 +59,10 @@
                    if (this.getSelectedItem()) {
                        this._updateSelection(this.getSelectedItem());
                    }
-                   var zeroBasedActiveStep = this._activeStep - 1,
-                       zeroBasedCurrentStep = this._currentStep - 1;
+                   var zeroBasedActiveStep = this.getActiveSteps() ? this.getActiveSteps() - 1 : undefined;
+                   var zeroBasedCurrentStep = this.getCurrentStep() ? this.getCurrentStep() - 1 : 0;
 
-                   this._stepCount = this._cachedSteps.length;
+
                    this._updateStepNavigation(zeroBasedActiveStep);
                    this._updateStepCurrentAttribute(zeroBasedCurrentStep);
                    this._updateStepActiveAttribute(zeroBasedActiveStep);
@@ -63,11 +78,11 @@
            };
 
            VerticalNavigationBar.prototype.invalidate = function(oSource) {
-               if (this.bInvalidated === true) {
-                   return;
-               } else {
-                   this.bInvalidated = true;
-               }
+               // if (this.bInvalidated === true) {
+               //     return;
+               // } else {
+               //     this.bInvalidated = true;
+               // }
 
                NavigationBar.prototype.invalidate.apply(this, arguments);
            };
@@ -114,14 +129,6 @@
                return (oDomRef && this._isStep(oDomRef) && this._isActiveStep(this._getStepNumber(oDomRef)));
            };
 
-           VerticalNavigationBar.prototype.getCurrentStep = function() {
-               return this._currentStep;
-           };
-
-           VerticalNavigationBar.prototype.setActiveSteps = function(newStep) {
-               this._activeStep = newStep;
-           };
-
            VerticalNavigationBar.prototype._fireSelect = function(oItem) {
                this.fireSelect({
                    item: oItem,
@@ -153,7 +160,7 @@
                    return;
                }
                this._updateCurrentStep(this._getStepNumber(oItem.getDomRef()));
-               this._updateStepActiveAttribute(this._activeStep - 1);
+               this._updateStepActiveAttribute(this.getActiveSteps() - 1); //this._activeStep - 1);
 
                // let the ItemNavigation know about the new selection
                var iSelectedDomIndex = jQuery(oDomRef).parent().index();
@@ -192,7 +199,7 @@
             * @private
             */
            VerticalNavigationBar.prototype._isActiveStep = function(stepNumber) {
-               return stepNumber <= this._activeStep;
+               return stepNumber <= this.getActiveSteps();
            };
 
 
@@ -203,11 +210,12 @@
             * @returns {sap.m.VerticalNavigationBar} Pointer to the control instance for chaining
             * @private
             */
-           VerticalNavigationBar.prototype._updateCurrentStep = function(newStep, oldStep) {
+           VerticalNavigationBar.prototype._updateCurrentStep = function(newStep) {
                var zeroBasedNewStep = newStep - 1,
-                   zeroBasedOldStep = (oldStep || this.getCurrentStep()) - 1;
+                   zeroBasedOldStep = this.getCurrentStep() ? this.getCurrentStep() - 1 : undefined;
 
-               this._currentStep = newStep;
+               // this._currentStep = newStep;
+               this.setCurrentStep(newStep);
                this._updateStepCurrentAttribute(zeroBasedNewStep, zeroBasedOldStep);
                this._updateStepAriaLabelAttribute(zeroBasedNewStep, zeroBasedOldStep);
 
@@ -276,8 +284,10 @@
             * @private
             */
            VerticalNavigationBar.prototype._removeStepAriaDisabledAttribute = function(index) {
-               this._cachedSteps[index].children[0]
-                   .removeAttribute(VerticalNavigationBar.ATTRIBUTES.ARIA_DISABLED);
+               if (index) {
+                   this._cachedSteps[index].children[0]
+                       .removeAttribute(VerticalNavigationBar.ATTRIBUTES.ARIA_DISABLED);
+               }
            };
 
            /**
