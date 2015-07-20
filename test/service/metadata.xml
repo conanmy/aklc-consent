@@ -161,10 +161,10 @@
                 <End Type="ODataDemo.Partners" Multiplicity="1" Role="Partners" />
                 <End Type="ODataDemo.PartnerRelations" Multiplicity="1" Role="PartnerRelations" />
                 <ReferentialConstraint>
-                    <Principal Role="PartnerRelations">
+                    <Principal Role="Partners">
                         <PropertyRef Name="PartnerNumber" />
                     </Principal>
-                    <Dependent Role="Partners">
+                    <Dependent Role="PartnerRelations">
                         <PropertyRef Name="PartnerNumber" />
                     </Dependent>
                 </ReferentialConstraint>

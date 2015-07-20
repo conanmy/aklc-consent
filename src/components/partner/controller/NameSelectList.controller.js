@@ -25,7 +25,7 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
 
             // update list binding
             var oBinding = this.oList.getBinding("items");
-            oBinding.filter(aFilters); //, "Application");
+            oBinding.filter(aFilters);
         },
 
         onSelectionChange: function(oEvent) {
