@@ -35,18 +35,18 @@
             </Toolbar>
             <Button text="Save" press="onSave" />
         </Panel>
+        <Toolbar>
+            <SearchField liveChange="onSearch" width="100%" />
+        </Toolbar>
+        <List id="nameSelectList" items="{path: 'PartnerRelations', parameters: { expand: 'Partners' }}" selectionChange="onSelectionChange" mode="SingleSelectMaster" includeItemInSelection="true">
+            <infoToolbar>
+                <Toolbar visible="false" id="idInfoToolbar">
+                    <Label id="idFilterLabel" />
+                </Toolbar>
+            </infoToolbar>
+            <items>
+                <StandardListItem title="{Partners/FirstName} {Partners/LastName} ( {PartnerNumber} )" />
+            </items>
+        </List>
     </Panel>
-    <Toolbar>
-        <SearchField liveChange="onSearch" width="100%" />
-    </Toolbar>
-    <List id="nameSelectList" items="{path: 'PartnerRelations', parameters: { expand: 'Partners', operationMode: 'Client'}}" selectionChange="onSelectionChange" mode="SingleSelectMaster" includeItemInSelection="true">
-        <infoToolbar>
-            <Toolbar visible="false" id="idInfoToolbar">
-                <Label id="idFilterLabel" />
-            </Toolbar>
-        </infoToolbar>
-        <items>
-            <StandardListItem title="{Partners/FirstName} {Partners/LastName} ( {PartnerNumber} )" />
-        </items>
-    </List>
 </mvc:View>

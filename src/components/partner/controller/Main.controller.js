@@ -37,19 +37,14 @@ sap.ui.define(["aklc/cm/controller/BaseController", "sap/m/MessageBox"], functio
                 "selected",
                 function(sChannel, sEventId, oParams) {
                     var path = oParams.path;
-                    var codeMark = "PartnerFunctionCode=";
-                    var PartnerFunctionCode = path.substring(
-                        path.indexOf(codeMark) + codeMark.length,
-                        path.indexOf(",PartnerNumber")
-                    ) - 0;
-
-                    container.removeAllContent();
                     var nameList = that._getView(that._basePath + "NameSelectList");
+                    if (!that.isInNameSelectList()) {
+                        container.removeAllContent();
+                        container.addContent(nameList);
+                    }
                     nameList.bindElement(
-                        "/PartnerFunctions(" + PartnerFunctionCode + ")"
+                        "/PartnerFunctions(" + that._getPartnerFunctionCode(path) + ")"
                     );
-                    container.addContent(nameList);
-                    
                     nameList.byId("partnerObject").bindElement(
                         path + "/Partners"
                     );
@@ -57,6 +52,19 @@ sap.ui.define(["aklc/cm/controller/BaseController", "sap/m/MessageBox"], functio
                     nameList.byId("partnerDetails").setVisible(true);
                 }
             );
+        },
+
+        /**
+         * get function code from path
+         * @param  {string} path given path of the selected assigned partner
+         * @return {number} function code
+         */
+        _getPartnerFunctionCode: function(path) {
+            var codeMark = "PartnerFunctionCode=";
+            return path.substring(
+                path.indexOf(codeMark) + codeMark.length,
+                path.indexOf(",PartnerNumber")
+            ) - 0;
         },
 
         _getView: function(sStepViewName) {
@@ -79,15 +87,23 @@ sap.ui.define(["aklc/cm/controller/BaseController", "sap/m/MessageBox"], functio
             return oView;
         },
 
+        /**
+         * check if the right column is in name select list
+         * @return {Boolean}
+         */
+        isInNameSelectList: function() {
+            return this.getView().byId("splitContainer").getContent()[0].sViewName
+                === (this._basePath + "NameSelectList");
+        },
+        
         onCheckValid: function(sChannel, sEvent, oData){
-            if (this.getView().byId("splitContainer").getContent()[0].sViewName
-                === this._basePath + "NameSelectList") {
+            if (this.isInNameSelectList()) {
                 MessageBox.confirm("Your current editing will be discarded.", {
                     onClose: function(oAction) {
                         if (oAction === "OK") {
                             oData.WhenValid.resolve();
                         } else {
-                            jQuery.sap.log.info("Dynamic View - validation errors");
+                            jQuery.sap.log.info("Partners - validation errors");
                         }
                     }
                 });

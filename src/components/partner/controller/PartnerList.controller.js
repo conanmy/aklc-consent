@@ -11,11 +11,13 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
                 }
             );
         },
+
         handleDelete: function(oEvent) {
             var oModel = oEvent.getSource().getBindingContext().oModel;
             var itemPath = oEvent.getParameters().listItem.getBindingContextPath();
             oModel.remove(itemPath);
         },
+        
         handleIconTabBarSelect: function(oEvent) {
             var oBinding = this.getView().byId("partnerList").getBinding("items");
             var sKey = oEvent.getParameter("selectedKey");
@@ -31,6 +33,14 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
                 oBinding.filter([]);
             }
         },
+
+        /**
+         * onCheckValid
+         * we need to return false when validation not needed for this part
+         * but needed for other parts of the module.
+         * as in baseController the default action is resolve
+         * so the promise will be resolved if any part is default
+         */
         onCheckValid: function(sChannel, sEvent, oData) {
             return false;
         }
