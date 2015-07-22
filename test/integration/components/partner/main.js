@@ -1,3 +1,4 @@
+/*global opaTest*/
 sap.ui.define([], function() {
 
 	module("Controls by id");
