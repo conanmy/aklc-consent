@@ -1,10 +1,11 @@
-sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
+sap.ui.define(["aklc/cm/controller/BaseController", "sap/m/MessageBox"],
+	function(BaseController, MessageBox) {
     "use strict";
     return BaseController.extend("aklc.cm.components.partner.controller.NameSelectList", {
         sCollection: "/Partners",
         sExpand: "PartnerRelations",
         selectedPath: null,
-        
+
         onInit: function(oEvent) {
             this.oList = this.getView().byId("nameSelectList");
         },
@@ -59,14 +60,21 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
                 path.indexOf(")")
             ) - 0;
 
+            var ValidFrom = this.getView().byId("DPValidFrom").getValue();
+            var ValidTo = this.getView().byId("DPValidTo").getValue();
+            if (!ValidTo || !ValidFrom) {
+                MessageBox.alert("You should select the valid dates.");
+                return false;
+            }
+
             this.getView().getModel().create(
                 "/AssignedPartners",
                 {
                     PartnerNumber: PartnerNumber,
                     PartnerFunctionCode: PartnerFunctionCode,
                     ProcessKey: "P1",
-                    ValidFrom: new Date(this.getView().byId("DPValidFrom").getValue()),
-                    ValidTo: new Date(this.getView().byId("DPValidTo").getValue())
+                    ValidFrom: new Date(ValidFrom),
+                    ValidTo: new Date(ValidTo)
                 }
             );
 
