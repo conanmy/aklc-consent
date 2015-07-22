@@ -5,7 +5,7 @@ sap.ui.define(
         "sap/ui/qunit/QUnitUtils"
     ],
     function(VerticalNavigationBar, NavigationItem) {
-
+        "use strict";
         QUnit.module("VerticalNavigationBar");
         var QUtils = window.qutils;
         jQuery.sap.includeStyleSheet("../../src/components/processApp/css/VerticalNavigationBar.css", "VerticalNavigationBar");

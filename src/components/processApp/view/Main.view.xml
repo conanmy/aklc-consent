@@ -3,9 +3,5 @@
         <suite:facets>
             <suite:NavigationItem text="{vm>Title}" key="{vm>StepKey}" icon="{vm>Icon}"></suite:NavigationItem>
         </suite:facets>
-<!--         <suite:actionBar>
-            <ux3:ActionBar showUpdate="false" showFollow="false" showFlag="false" showFavorite="flag" showOpen="false">
-            </ux3:ActionBar>
-        </suite:actionBar> -->
     </suite:ProcessViewer>
 </mvc:View>

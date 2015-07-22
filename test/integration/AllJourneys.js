@@ -1,8 +1,9 @@
 sap.ui.define([
 	"sap/ui/base/Object"
-], function (Ui5Object) {
+], function(Ui5Object) {
+	"use strict";
 	return Ui5Object.extend("aklc.cm.test.integration.AllJourneys", {
-		start: function (oConfig) {
+		start: function(oConfig) {
 			oConfig = oConfig || {};
 
 			jQuery.sap.require("sap.ui.qunit.qunit-css");

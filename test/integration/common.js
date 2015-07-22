@@ -1,13 +1,14 @@
 sap.ui.define(
-    [
+	[
 
-    ],
-    function() {
-        QUnit.module("initialization");
+	],
+	function() {
+		"use strict";
+		QUnit.module("initialization");
 
-        QUnit.test("dummy test", function() {
-            // Assert
-            assert.strictEqual(1, 1, "dummy test");
-        });
-    }
+		QUnit.test("dummy test", function() {
+			// Assert
+			assert.strictEqual(1, 1, "dummy test");
+		});
+	}
 );

@@ -5,6 +5,7 @@ sap.ui.define(
         "sap/ui/thirdparty/sinon-qunit"
     ],
     function(MainController) {
+        "use strict";
         QUnit.module("initialization");
 
         QUnit.test("dummy test", function() {

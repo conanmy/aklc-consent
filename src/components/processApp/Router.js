@@ -1,4 +1,5 @@
-sap.ui.define(["sap/ui/core/routing/Router", "sap/ui/core/routing/History"], function(Router, History) {
+sap.ui.define(["sap/ui/core/routing/Router", "sap/ui/core/routing/History"], 
+    function(Router, History) {
     "use strict";
     return Router.extend("aklc.cm.components.processApp.Router", {
         myNavBack: function(route, data) {
