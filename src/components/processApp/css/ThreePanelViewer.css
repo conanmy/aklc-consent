@@ -1,14 +1,9 @@
-/* ============================================= */
-/* CSS for control sap.suite.ui.commons/ThreePanelThingViewer.control */
-/* ============================================= */
-
 .sapUiUx3TV {
     background-color: #ffffff;
     overflow: hidden;
     height: 100%;
     /*min-height: 800px;*/
     /*background-image: url(../img/img_bg_ti.png);*/
-    
     background-position: bottom left;
     background-repeat: no-repeat;
 }
@@ -75,7 +70,6 @@
     top: 30px;
     /*230px;*/
     /*bottom: 196px;*/
-    
     left: 10px;
     overflow-y: auto;
     min-height: 64px;
@@ -221,4 +215,8 @@ html[data-sap-ui-browser="ie8"] .sapSuiteTvPopupMenu {
     display: block;
     height: 100%;
     width: 85%;
+}
+
+.sapUiUx3TVToolbar button:focus {
+    outline: 0;
 }

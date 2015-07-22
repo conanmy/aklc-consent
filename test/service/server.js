@@ -4,7 +4,6 @@ sap.ui.define([
 	"use strict";
 
 	return {
-
 		_sServiceUrl : "here/goes/your/serviceUrl/",
 		_sModulePath : "aklc.cm.service",
 
@@ -21,7 +20,6 @@ sap.ui.define([
 					rootUri: this._sServiceUrl
 				}),
 				sPath = jQuery.sap.getModulePath(this._sModulePath),
-				// TODO: replace this at template generator step with Master List Entity Set
 				sEntity = "Objects",
 				sErrorParam = oUriParameters.get("errorType"),
 				iErrorCode = sErrorParam === "badRequest" ? 400 : 500;
@@ -63,6 +61,4 @@ sap.ui.define([
 			jQuery.sap.log.info("Running the app with mock data");
 		}
 	};
-
 });
-

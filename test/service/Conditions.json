@@ -1,33 +1,33 @@
 [{
-    "Key": "1",
-    "Title": "S37 Condition",
-    "Group": "BC-STANDARD",
-    "Text": "This consent shall not commence until such times as the following charges.",
-    "ValidFrom": "",
-    "ValidTo": "",
-    "Final": true
+	"Key": "1",
+	"Title": "S37 Condition",
+	"Group": "BC-STANDARD",
+	"Text": "This consent shall not commence until such times as the following charges.",
+	"ValidFrom": "",
+	"ValidTo": "",
+	"Final": true
 }, {
-    "Key": "2",
-    "Title": "Stop Work Notice Condition",
-    "Group": "BC-STANDARD",
-    "Text": "The proposed dwellling addtions shall be carried out in accordance with the plans and all information submitted.",
-    "ValidFrom": "",
-    "ValidTo": "",
-    "Final": false
+	"Key": "2",
+	"Title": "Stop Work Notice Condition",
+	"Group": "BC-STANDARD",
+	"Text": "The proposed dwellling addtions shall be carried out in accordance with the plans and all information submitted.",
+	"ValidFrom": "",
+	"ValidTo": "",
+	"Final": false
 }, {
-    "Key": "3",
-    "Title": "S3 Condition",
-    "Group": "BC",
-    "Text": "Tables and TextEdit? How do I delete rows... | Apple Support ...",
-    "ValidFrom": "",
-    "ValidTo": "",
-    "Final": true
+	"Key": "3",
+	"Title": "S3 Condition",
+	"Group": "BC",
+	"Text": "Tables and TextEdit? How do I delete rows... | Apple Support ...",
+	"ValidFrom": "",
+	"ValidTo": "",
+	"Final": true
 }, {
-    "Key": "4",
-    "Title": "Notice Condition",
-    "Group": "STANDARD",
-    "Text": "TinyMCE version 3 as editor (default)",
-    "ValidFrom": "",
-    "ValidTo": "",
-    "Final": false
+	"Key": "4",
+	"Title": "Notice Condition",
+	"Group": "STANDARD",
+	"Text": "TinyMCE version 3 as editor (default)",
+	"ValidFrom": "",
+	"ValidTo": "",
+	"Final": false
 }]

@@ -39,7 +39,6 @@
 	  	"eol-last": 0,
 	  	"eqeqeq":	1,
 	  	"global-strict": 2,
-	  	"global-strict": 2,
 	  	"guard-for-in": 1,
 	  	"key-spacing": [0,{"afterColon":true,"beforeColon":false}],
 	  	"line-endings": 0,

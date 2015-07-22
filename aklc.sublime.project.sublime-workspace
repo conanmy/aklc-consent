@@ -1,0 +1,1228 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"D",
+				"Directions"
+			],
+			[
+				"Pol",
+				"Polygon"
+			],
+			[
+				"MAP",
+				"MAP_POSITION"
+			],
+			[
+				"u",
+				"undefined"
+			],
+			[
+				"dis",
+				"disableDefaultUi"
+			],
+			[
+				"des",
+				"destroy"
+			],
+			[
+				"Par",
+				"Partners"
+			],
+			[
+				"_sS",
+				"_sStepsCollection"
+			],
+			[
+				"oC",
+				"oContext"
+			],
+			[
+				"Na",
+				"NavigationBar"
+			],
+			[
+				"fnOn",
+				"fnOnSuccess"
+			],
+			[
+				"fnO",
+				"fnOnError"
+			],
+			[
+				"cked",
+				"CKEditorToolbar"
+			],
+			[
+				"getV",
+				"getViewData"
+			],
+			[
+				"_getA",
+				"_getActiveSteps"
+			],
+			[
+				"_sO",
+				"_sProcessKey"
+			],
+			[
+				"oA",
+				"oActiveStep"
+			],
+			[
+				"Ste",
+				"StepKey"
+			],
+			[
+				"s",
+				"sActiveKey"
+			],
+			[
+				"sSt",
+				"sStepViewName"
+			],
+			[
+				"To",
+				"ToRole_PartnerRelationsPartners"
+			],
+			[
+				"FromRole",
+				"FromRole_PartnerRelationsPartners"
+			],
+			[
+				"Pa",
+				"PartnerFunctionCode"
+			],
+			[
+				"Partner",
+				"PartnerNumber"
+			],
+			[
+				"Ass",
+				"AssignedPartners"
+			],
+			[
+				"form",
+				"formContainers"
+			],
+			[
+				"lay",
+				"layoutData"
+			],
+			[
+				"oF",
+				"oFormContainer"
+			],
+			[
+				"setB",
+				"setBindingContext"
+			],
+			[
+				"oCo",
+				"oControl"
+			],
+			[
+				"b",
+				"byId"
+			],
+			[
+				"sC",
+				"sConfirmationNumber"
+			],
+			[
+				"_oD",
+				"_oCDController"
+			],
+			[
+				"ref",
+				"refreshUnPlannedServices"
+			],
+			[
+				"a",
+				"aPrev"
+			],
+			[
+				"o",
+				"oModel"
+			],
+			[
+				"SOR",
+				"SORNumber"
+			],
+			[
+				"fnM",
+				"fnMapPlanned"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"St",
+				"StepKey"
+			],
+			[
+				"ind",
+				"indexOf"
+			],
+			[
+				"getBid",
+				"getBindingContext"
+			],
+			[
+				"oP",
+				"oParams"
+			],
+			[
+				"getPa",
+				"getParameter"
+			],
+			[
+				"na",
+				"navToProcess"
+			],
+			[
+				"sF",
+				"sFilterPath"
+			],
+			[
+				"step",
+				"stepkey"
+			],
+			[
+				"get",
+				"getParameter"
+			],
+			[
+				"sPr",
+				"sProcessKey"
+			],
+			[
+				"oTh",
+				"oThingGroup"
+			],
+			[
+				"this",
+				"oThingInspector"
+			],
+			[
+				"getO",
+				"getOverViewData"
+			],
+			[
+				"oD",
+				"oDetailView"
+			],
+			[
+				"i",
+				"Input"
+			],
+			[
+				"p",
+				"padding-right"
+			],
+			[
+				"data",
+				"dataModel"
+			],
+			[
+				"S",
+				"S5_OperationDetails"
+			],
+			[
+				"sO",
+				"sOperation"
+			],
+			[
+				"parse",
+				"parseInt"
+			],
+			[
+				"Cha",
+				"ChangeDateTime"
+			],
+			[
+				"Re",
+				"ReasonCode"
+			],
+			[
+				"O",
+				"Operation"
+			],
+			[
+				"Operation",
+				"OperationSLA"
+			],
+			[
+				"oS",
+				"oServicesList"
+			],
+			[
+				"oE",
+				"oExpand"
+			],
+			[
+				"sT",
+				"sTextId"
+			],
+			[
+				"ca",
+				"case"
+			],
+			[
+				"m",
+				"mConfig"
+			],
+			[
+				"call",
+				"callback"
+			],
+			[
+				"Col",
+				"ColumnListItem"
+			],
+			[
+				"oT",
+				"oTemplate"
+			],
+			[
+				"preload",
+				"preloadPattern"
+			],
+			[
+				"resource",
+				"resourceFiles"
+			],
+			[
+				"res",
+				"resourceMap"
+			],
+			[
+				"iP",
+				"iPressNewLine"
+			],
+			[
+				"w",
+				"waitFor"
+			],
+			[
+				"op",
+				"opaTest"
+			],
+			[
+				"wri",
+				"writeln"
+			],
+			[
+				"i1",
+				"i18nModel"
+			],
+			[
+				"getR",
+				"getRootPath"
+			],
+			[
+				"str",
+				"stringify"
+			],
+			[
+				"pro",
+				"property"
+			],
+			[
+				"ob",
+				"objToString"
+			],
+			[
+				"st",
+				"stringify"
+			],
+			[
+				"r",
+				"registerTask"
+			],
+			[
+				"operat",
+				"operationFilter"
+			],
+			[
+				"Wor",
+				"WorkOrderNumber"
+			],
+			[
+				"setV",
+				"setViewModel"
+			],
+			[
+				"C",
+				"ConfirmationItems"
+			],
+			[
+				"oConfirm",
+				"oConfrimModel"
+			],
+			[
+				"conf",
+				"confirmations"
+			],
+			[
+				"Con",
+				"ConfirmationNumber"
+			],
+			[
+				"sWork",
+				"sWorkOrderNumber"
+			],
+			[
+				"oIte",
+				"oItemData"
+			],
+			[
+				"oI",
+				"oItemObj"
+			],
+			[
+				"PO",
+				"PONumber"
+			],
+			[
+				"Order",
+				"orderNumberInput"
+			],
+			[
+				"fu",
+				"function"
+			],
+			[
+				"xm",
+				"xmlns"
+			],
+			[
+				"bind",
+				"bindElement"
+			],
+			[
+				"De",
+				"Detail"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "src/components/processApp/controller/Main.controller.js",
+			"settings":
+			{
+				"buffer_size": 12900,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 459.0,
+		"last_filter": "save",
+		"selected_items":
+		[
+			[
+				"save",
+				"Project: Save As"
+			],
+			[
+				"add",
+				"Project: Add Folder"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"menu",
+				"View: Toggle Menu"
+			],
+			[
+				"g",
+				"Grunt: Kill Running Tasks"
+			],
+			[
+				"grunt",
+				"Grunt"
+			],
+			[
+				"gr",
+				"Grunt"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"inde",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Remove Package"
+			],
+			[
+				"packa",
+				"Package Control: Remove Package"
+			],
+			[
+				"package",
+				"Package Control: Remove Package"
+			],
+			[
+				"pack",
+				"Package Control: Remove Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 531.0
+	},
+	"console":
+	{
+		"height": 162.0,
+		"history":
+		[
+			"import urllib.request,os,sys; exec(\"if sys.version_info < (3,) or os.name != 'nt': raise OSError('This code is for Windows ST3 only!')\"); pr='Preferences.sublime-settings'; ip='ignored_packages'; n='Package Control'; s=sublime.load_settings(pr); ig=s.get(ip); ig.append(n); s.set(ip,ig); sublime.save_settings('Preferences.sublime-settings'); pf=n+'.sublime-package'; urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler())); by=urllib.request.urlopen('https://packagecontrol.io/'+pf.replace(' ','%20')).read(); open(os.path.join(sublime.installed_packages_path(),pf),'wb').write(by); ig.remove(n); s.set(ip,ig); sublime.save_settings(pr); print('Package Control: 3.0.0 upgrade successful!')",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": false,
+		"show_minimap": true,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": true
+	},
+	"expanded_folders":
+	[
+		"/C/sapui5/apps/poc1",
+		"/C/sapui5/apps/poc1/bower_components/openui5-sap.m",
+		"/C/sapui5/apps/poc1/bower_components/openui5-sap.m/resources",
+		"/C/sapui5/apps/poc1/bower_components/openui5-sap.m/resources/sap",
+		"/C/sapui5/apps/poc1/src",
+		"/C/sapui5/apps/poc1/src/components",
+		"/C/sapui5/apps/poc1/src/components/conditions",
+		"/C/sapui5/apps/poc1/src/components/conditions/controller",
+		"/C/sapui5/apps/poc1/src/components/processApp",
+		"/C/sapui5/apps/poc1/src/components/processApp/controller",
+		"/C/sapui5/apps/poc1/src/components/processApp/i18n"
+	],
+	"file_history":
+	[
+		"/C/sapui5/apps/poc1/src/components/processApp/Component.js",
+		"/C/sapui5/apps/poc1/src/components/conditions/Component.js",
+		"/C/sapui5/apps/poc1/src/components/conditions/controller/Main.controller.js",
+		"/C/Users/John/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/Users/John/AppData/Roaming/Sublime Text 3/Packages/Package Control/Package Control.sublime-settings",
+		"/C/sapui5/apps/poc1/bower_components/openui5-sap.m/.bower.json",
+		"/C/sapui5/apps/poc1/.editorconfig",
+		"/C/Users/John/AppData/Roaming/Sublime Text 3/Packages/HTML-CSS-JS Prettify/.jsbeautifyrc",
+		"/C/sapui5/apps/openui5-googlemaps/package.json",
+		"/C/sapui5/apps/karmatest/package.json",
+		"/C/sapui5/apps/openui5-googlemaps/karma.conf.js",
+		"/C/sapui5/apps/karmatest/karma.conf.js",
+		"/C/sapui5/apps/openui5-googlemaps/npm-debug.log",
+		"/C/sapui5/apps/openui5-googlemaps/shippable.yml",
+		"/C/sapui5/apps/openui5-googlemaps/README.md",
+		"/C/sapui5/apps/openui5-googlemaps/gulpfile.js",
+		"/C/sapui5/apps/openui5-googlemaps/src/Map.js",
+		"/C/sapui5/apps/openui5-googlemaps/travis.yml",
+		"/C/sapui5/apps/openui5-googlemaps/test/allTests.js",
+		"/C/sapui5/apps/openui5-googlemaps/test/loadScripts.js",
+		"/C/sapui5/apps/openui5-googlemaps/test/Waypoint.js",
+		"/C/sapui5/apps/openui5-googlemaps/test/MapUtils.js",
+		"/C/sapui5/apps/openui5-googlemaps/.gitignore",
+		"/C/sapui5/apps/openui5-googlemaps/test/Map.js",
+		"/C/Users/John/AppData/Local/Temp/Temp1_jasper07-openui5-googlemaps-0.0.17-0-g5441421.zip/jasper07-openui5-googlemaps-5441421/openui5/googlemaps/library-preload.json",
+		"/C/sapui5/apps/openui5-googlemaps/openui5/googlemaps/library-dbg.js",
+		"/C/sapui5/apps/openui5-googlemaps/openui5/googlemaps/library-all.js",
+		"/C/sapui5/apps/openui5-googlemaps/openui5/googlemaps/library-preload.json",
+		"/C/sapui5/apps/openui5-googlemaps/node_modules/gulp-ui5-preload/index.js",
+		"/C/sapui5/apps/openui5-googlemaps/dist/Component-preload.js",
+		"/C/sapui5/apps/openui5-googlemaps/test/unitTests.qunit.html",
+		"/C/sapui5/apps/openui5-googlemaps/index.html",
+		"/C/sapui5/apps/openui5-googlemaps/.git/config",
+		"/C/sapui5/apps/openui5-googlemaps/src/library.js",
+		"/C/sapui5/apps/openui5-googlemaps/test/Marker.js",
+		"/C/sapui5/apps/openui5-googlemaps/test/Polygon.js",
+		"/C/sapui5/apps/openui5-googlemaps/test/Polyline.js",
+		"/C/sapui5/apps/openui5-googlemaps/.jshintrc",
+		"/C/Users/John/AppData/Roaming/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
+		"/C/Users/John/AppData/Roaming/Sublime Text 3/Packages/HTML-CSS-JS Prettify/HTMLPrettify.sublime-settings",
+		"/C/sapui5/apps/poc1/src/components/processApp/controller/Main.controller.js",
+		"/C/sapui5/apps/poc1/.travis.yml",
+		"/C/sapui5/apps/poc1/src/components/processApp/css/ThreePanelViewer.css",
+		"/C/sapui5/apps/poc1/src/components/processApp/controls/ProcessViewer.js",
+		"/C/sapui5/apps/poc1/src/components/processApp/controls/VerticalNavigationBar.js",
+		"/C/sapui5/apps/poc1/src/components/processApp/view/Main.view.xml",
+		"/C/sapui5/apps/poc1/src/components/processApp/Router.js",
+		"/C/sapui5/apps/poc1/src/components/partner/view/NameSelectList.view.xml",
+		"/C/sapui5/apps/poc1/src/components/partner/controller/NameSelectList.controller.js",
+		"/C/Users/John/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
+		"/C/sapui5/apps/poc1/.eslintrc",
+		"/C/sapui5/apps/poc1/test/unit/components/processApp/controls/ProcessViewer.js",
+		"/C/sapui5/apps/poc1/test/unit/components/processApp/controls/VerticalNavigationBar.js",
+		"/C/sapui5/apps/poc1/test/service/server.js",
+		"/C/sapui5/apps/poc1/test/unit/components/processApp/controller/Main.controller.js",
+		"/C/sapui5/apps/poc1/test/integration/AllJourneys.js",
+		"/C/sapui5/apps/poc1/test/integration/common.js",
+		"/C/sapui5/apps/poc1/src/components/processApp/controls/VerticalNavigationBarRenderer.js",
+		"/C/openui5/src/sap.ui.ux3/src/sap/ui/ux3/NavigationBar.js",
+		"/C/openui5/src/sap.ui.demokit/src/sap/ui/demokit/explored/view/sample.controller.js",
+		"/C/openui5/src/sap.ui.ux3/test/sap/ui/ux3/qunit/NavigationBar.qunit.html",
+		"/C/openui5/src/sap.m/test/sap/m/qunit/ActionSheet.qunit.html",
+		"/C/openui5/src/sap.m/src/sap/m/ListBase.js",
+		"/C/openui5/src/sap.ui.commons/src/sap/ui/commons/RowRepeater.js",
+		"/C/openui5/src/sap.ui.layout/src/sap/ui/layout/form/Form.js",
+		"/C/openui5/src/sap.ui.unified/src/sap/ui/unified/Menu.js",
+		"/C/openui5/src/sap.m/src/sap/m/IconTabHeader.js",
+		"/C/openui5/src/sap.ui.commons/src/sap/ui/commons/ComboBox.js",
+		"/C/openui5/target/openui5-sap.ui.ux3/resources/sap/ui/ux3/ThingInspector.js",
+		"/C/openui5/src/sap.ui.ux3/test/sap/ui/ux3/qunit/ThingViewer.qunit.html",
+		"/C/openui5/src/sap.m/test/sap/m/qunit/ActionSelect.qunit.html",
+		"/C/openui5/src/sap.m/test/sap/m/qunit/Carousel.qunit.js",
+		"/C/openui5/src/sap.ui.core/test/sap/ui/core/qunit/AnyView.qunit.js",
+		"/C/openui5/target/openui5-sap.ui.core/test-resources/sap/ui/core/qunit/AnyView.qunit.js",
+		"/C/openui5/src/sap.ui.core/src/sap/ui/qunit/QUnitUtils.js",
+		"/C/openui5/src/sap.ui.core/src/sap/ui/test/Opa5.js",
+		"/C/openui5/src/sap.ui.ux3/test/sap/ui/ux3/qunit/ThingInspector.qunit.html",
+		"/C/openui5/target/openui5/test-resources/sap/ui/ux3/qunit/ThingViewer.qunit.html",
+		"/C/openui5/src/sap.m/test/sap/m/qunit/Select.qunit.html",
+		"/C/openui5/src/sap.m/src/sap/m/Carousel.js",
+		"/C/sapui5/sdk/122/test-resources/sap/uiext/inbox/qunit/controller/InboxControllerFactory.qunit.html",
+		"/C/openui5/src/sap.m/src/sap/m/FacetFilter.js",
+		"/C/sapui5/sdk/122/test-resources/sap/suite/ui/commons/qunit/ThreePanelThingViewer.qunit.html",
+		"/C/openui5/target/openui5/resources/sap/ui/qunit/QUnitUtils.js",
+		"/C/sapui5/apps/fappspurchaseordersmanage.js",
+		"/C/openui5/src/sap.m/test/sap/m/demokit/tutorial/walkthrough/12/webapp/manifest.json",
+		"/C/openui5/src/sap.m/test/sap/m/demokit/tutorial/walkthrough/17/webapp/manifest.json",
+		"/C/openui5/src/sap.m/test/sap/m/demokit/tutorial/walkthrough/27/webapp/manifest.json",
+		"/C/openui5/src/sap.ui.core/test/sap/ui/core/qunit/component/inherit/parent/manifest.json",
+		"/C/sapui5/apps/poc1/src/components/partner/controller/Main.controller.js",
+		"/C/sapui5/apps/poc1/src/components/processApp/css/VerticalNavigationBar.css",
+		"/C/sapui5/apps/poc1/src/components/test1/Component.js",
+		"/C/sapui5/apps/poc1/src/components/test1/controller/Dynamic.controller.js",
+		"/C/sapui5/apps/poc1/src/components/processApp/manifest.json",
+		"/C/sapui5/apps/poc1/dist/components/processApp/manifest.json",
+		"/C/sapui5/apps/poc1/src/components/test1/css/FormFixer.css",
+		"/C/sapui5/apps/poc1/src/components/processApp/controls/ThreePanelThingViewerRenderer.js",
+		"/C/sapui5/apps/poc1/src/components/processApp/controls/ThreePanelThingViewer.js",
+		"/C/sapui5/apps/poc1/bower_components/openui5-sap.ui.core/resources/sap/ui/core/UIComponent.js",
+		"/C/openui5/src/sap.ui.ux3/src/sap/ui/ux3/ThingViewer.js",
+		"/C/openui5/src/sap.m/test/sap/m/semantic/SemanticPage.html",
+		"/C/openui5/src/sap.ui.core/test/sap/ui/core/qunit/messages/messages.qunit.html",
+		"/C/openui5/src/sap.ui.core/test/sap/ui/core/samples/databinding/DatabindingMessages.html",
+		"/C/openui5/src/sap.ui.core/src/sap/ui/core/Component.js",
+		"/C/openui5/src/sap.ui.core/src/sap/ui/core/ComponentContainer.js",
+		"/C/openui5/src/sap.ui.core/src/sap/ui/core/ComponentMetadata.js",
+		"/C/openui5/src/sap.ui.core/test/sap/ui/core/qunit/component/v2/manifest.json",
+		"/C/openui5/src/sap.m/test/sap/m/demokit/tutorial/walkthrough/11/webapp/manifest.json",
+		"/C/openui5/src/sap.m/src/sap/m/OverflowToolbarAssociativePopoverControls.js",
+		"/C/openui5/src/sap.m/src/sap/m/OverflowToolbar.js",
+		"/C/sapui5/apps/poc1/src/css/ThreePanelViewer.css",
+		"/C/sapui5/apps/poc1/src/library/openui5/ckeditor/library.js",
+		"/C/sapui5/apps/poc1/src/library/openui5/ckeditor/library-preload.json",
+		"/C/sapui5/apps/poc1/test/service/Steps.json",
+		"/C/sapui5/apps/poc1/build.html",
+		"/C/sapui5/apps/poc1/Gruntfile.js",
+		"/C/openui5/src/sap.ui.core/test/sap/ui/core/demokit/sample/ViewTemplate/tiny/Component.js",
+		"/C/openui5/src/sap.ui.core/test/sap/ui/core/qunit/messages/components/Component.js",
+		"/C/openui5/src/sap.ui.core/test/sap/ui/core/demokit/sample/ViewTemplate/types/Component.js",
+		"/C/sapui5/apps/auktest/bower_components/openui5-sap.ui.core/resources/sap/ui/thirdparty/datajs.js",
+		"/C/sapui5/apps/auktest/bower_components/openui5-sap.m/test-resources/sap/m/demokit/master-detail/test/unit/controller/App.controller.js",
+		"/C/sapui5/apps/poc1/src/controller/BaseController.js",
+		"/C/sapui5/apps/poc1/bower_components/openui5-sap.m/test-resources/sap/m/demokit/master-detail/src/controller/Detail.controller.js",
+		"/C/sapui5/apps/poc1/bower_components/openui5-sap.ui.core/resources/jquery.sap.resources.js",
+		"/C/sapui5/apps/poc1/bower_components/openui5-sap.ui.core/resources/sap-ui-core-dbg.js",
+		"/C/sapui5/apps/poc1/bower_components/openui5-sap.ui.core/resources/sap/ui/model/resource/ResourceModel.js",
+		"/C/sapui5/apps/poc1/bower_components/openui5-sap.ui.core/resources/sap/ui/core/ElementMetadata.js",
+		"/C/sapui5/apps/poc1/src/controller/Main.controller.js"
+	],
+	"find":
+	{
+		"height": 68.0
+	},
+	"find_in_files":
+	{
+		"height": 117.0,
+		"where_history":
+		[
+			"*controller.js",
+			"*.js",
+			"*qunit*",
+			"*.js",
+			"*qunit*",
+			"*.js",
+			"*qunit*",
+			"*",
+			"*.js",
+			"*.html",
+			"*",
+			"*.js",
+			"*qunit.html",
+			"*.js",
+			"*.html",
+			"*.js",
+			"*.html",
+			"-*/bower_components/*,*.js",
+			"-*bower*,*.js",
+			"-*\\bower_components\\*,*.js",
+			"-\\bower_components\\*,*.js",
+			"-*\\bower_components\\*,*.js",
+			"Component.js",
+			"manifest.json",
+			"mainfest.json",
+			"-*/bower_components/*,*.js",
+			"-\\bower_components\\,*.js",
+			"-*\\bower_components*,*.js",
+			"*.js",
+			"Component.js",
+			"*.js",
+			"manifest.json",
+			"*.js",
+			"*.html",
+			"*orm*.js",
+			"*.js",
+			"Component.js",
+			"*.js",
+			"component.js",
+			"*.html",
+			"*.js",
+			"*.html",
+			"*.js",
+			"Component.js",
+			"*",
+			"Component.js",
+			"*.js",
+			"*.html",
+			"*.js",
+			"*controller.js",
+			"*.js",
+			"-node_modules\\*,*.js",
+			"-\\node_modules\\*,*.js",
+			"-\\node_modules\\,*.js",
+			"-/node_modules/,*.js",
+			"-node_modules/,*.js",
+			"*.js",
+			"C:\\sapui5\\apps\\poc1\\bower_components,*.js",
+			"*.js",
+			"*.html",
+			"*.js",
+			"*",
+			"*.html",
+			"*.js",
+			"*.controller.js",
+			"*.js",
+			"*.xml",
+			"*.js",
+			"*.xml",
+			"*.js",
+			"*.xml",
+			"*.js",
+			"*.xml",
+			"*.js",
+			"*.xml",
+			"*.js",
+			"*.xml",
+			"*.js",
+			"*.html",
+			"*.js ",
+			"*.js,C:\\sapui5\\apps\\tsl\\asm\\confirmations",
+			"C:\\sapui5\\apps\\tsl\\asm\\confirmations",
+			"*.js",
+			"component.js",
+			"*Renderer.js",
+			"*.html",
+			"*",
+			"*,C:\\sapui5\\apps\\xmlscenario",
+			"*,C:\\sapui5\\apps\\xmlscenario\\view",
+			"*",
+			"C:\\sapui5\\apps\\xmlscenario\\view",
+			"*.js",
+			"*.html",
+			"*",
+			"*.js",
+			"*.xml",
+			"*.html",
+			"*.js",
+			"*.xml",
+			"*controller*js",
+			"*js",
+			"*dbg.js",
+			"*",
+			"*.js",
+			"*.xml",
+			"*.js",
+			"*.controller.js",
+			"*.js",
+			"*.xml",
+			"*.js",
+			"target/*.xml",
+			"target/",
+			"*",
+			"*.html",
+			"*.js",
+			"*.xml",
+			"*.js",
+			"*",
+			"*.js",
+			"",
+			"*.js",
+			"*.xml",
+			"*.js",
+			"*dbg.js",
+			"*.js",
+			"*.xml",
+			"*.js",
+			"*.xml"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"function",
+			"lint",
+			"test",
+			"ui5preload",
+			"streamify",
+			"uglif",
+			"gulpif",
+			" gulpif",
+			"prettydata",
+			"gulp-ui5",
+			"quni",
+			"paths",
+			"getPaths",
+			"this._dragging",
+			"isDragging",
+			"dragg",
+			"setZoom",
+			".getZoomControl",
+			"zoomControl",
+			"zoomC",
+			"_upda",
+			"createMap",
+			"_getMapOptions",
+			"DisableDefaultU",
+			"DisableDefaultUI",
+			"disableDefault",
+			"disableDefaultUi",
+			"'build",
+			"gh",
+			"placea",
+			"bump",
+			"MAP_ID",
+			"map4",
+			" ok",
+			" strict",
+			"placeA",
+			"new",
+			"hint",
+			"header",
+			"'",
+			"PartnerRe",
+			"partnerOb",
+			"bind",
+			"'",
+			",\n",
+			"QUnit",
+			"eventHandler",
+			"expected",
+			"bNoInvalidate",
+			"this._bNoInvalidate",
+			"_bSuppressInvalidate",
+			"invalidate.apply(this, arguments);",
+			"start()",
+			"start",
+			"stop",
+			"oParam",
+			"activ",
+			"data-sap-ui-",
+			"data-sap-ui-vnb",
+			"_rerender",
+			"_rerenderFacetContent",
+			"data",
+			"NavigationBar",
+			"assert",
+			"onsapspace",
+			"FacetButton",
+			"facetSelectedEventHandle",
+			" c =",
+			"new Thing",
+			"facetSelectedEventHandle",
+			"facetSelectedEventHandler",
+			"jQuery.sap.domById",
+			"navigationi",
+			"\"FacetSelected Event\"",
+			"CountingNavigationItem",
+			"BarItemTemplate",
+			"window.qutils",
+			"Utils",
+			"sap/ui/qunit/QUnitUtils",
+			"QUtils",
+			", QUtils",
+			"qutil",
+			"qutils",
+			"activities",
+			"destroy",
+			"exit",
+			"destroyFacets",
+			"destroy",
+			"destroyActions",
+			"destro",
+			"prototype.destroy",
+			"actionBar",
+			"setC",
+			"fileuploader",
+			"attachMe",
+			" ",
+			"attachment",
+			"attachMenet",
+			"tattachment",
+			"libs",
+			"dependencies",
+			"libs",
+			"depend",
+			"sap",
+			".m",
+			"js",
+			"getObject()",
+			"d",
+			"get",
+			"getObject()",
+			"getObject",
+			"oStep",
+			"getOb",
+			"sapSuiteTvNavBarItem",
+			"step-current",
+			"data-sap-ui-vnb-step-current",
+			"numbermar",
+			"PartnerNumbe",
+			"sNextStep",
+			"ViewRegistry",
+			"that",
+			"new P",
+			"bA",
+			"lookup",
+			"facets",
+			"renderAncho",
+			"navbar",
+			"setContent"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			" QUnit.ok",
+			" QUnit.strict",
+			"\"",
+			"\"Current\"",
+			"Enabled\": false, \"Active\": false",
+			" \"Enabled\": false, \"Active\": false",
+			"oList",
+			"form:",
+			"unified:",
+			"form:",
+			"VerticalNavigationBarRenderer",
+			"VerticalNavigationBar",
+			"ThreePanelThingViewerRenderer",
+			"ThreePanelThingViewer",
+			"ThreePanelThingInspector.",
+			"ThreePanelThingInspector\n",
+			"ThreePanelThingInspector.\n",
+			"ThreePanelThingInspector",
+			"false,",
+			"\"StepKey\"",
+			"\"ProcessKey",
+			"\"Enabled\":true",
+			"   \"ShowHeader\": false,",
+			"commons",
+			"layout:",
+			"ux3:",
+			"commons:",
+			"layout:",
+			"ux3:",
+			"suite:",
+			"layout",
+			"suite",
+			"ux3",
+			"",
+			"scenario.xmlview",
+			"scenario.view.",
+			"view",
+			"NewConfirmDetail",
+			"R",
+			"iCheckAListItemValue",
+			"CurrentStatusText",
+			"theOperationNavigationButtonHasCorrectEnabledState",
+			"\"ReadyToSave\": false,",
+			"\"IsDirty\":false, \"ReadyToSave\"",
+			"\"ReadyToSave\"",
+			"ReadyToSave",
+			"true",
+			" ",
+			"",
+			"ActualDateTime",
+			"SLAStartDateTime",
+			"\"0040",
+			"\"0010",
+			"\"0020",
+			"\"0030",
+			"\"0040",
+			"\"0020",
+			"\"0010",
+			"CurrentStatus",
+			"",
+			"\"Address\"",
+			"cart",
+			"Floc",
+			"FlocDescription",
+			" \"ShowAddButton\": true,",
+			"ShowAddButton",
+			"vendorinvoices",
+			"Assertion",
+			"PropertyStrictEquals",
+			"vendorinvoices",
+			"	\"Currency\": \"AUD\",\"PaymentTerms\"",
+			"List",
+			"",
+			"<Text",
+			"",
+			"<Text",
+			"",
+			"<table:AnalyticalColumn ",
+			"</table:AnalyticalColumn>",
+			"table:AnalyticalColumn ",
+			"oTable",
+			"",
+			"StatusText",
+			"WorkOrderNumber",
+			"",
+			"tsl.asm.common.view.BaseController",
+			"tsl.asm.common.view.ListBaseController",
+			"vendorinvoices",
+			"objToString",
+			"CONF>\\",
+			"this.oConfirmModel",
+			"\"HasErrors\": false",
+			"\"SORNumberEdit\": false,",
+			"\"ConfirmationNumber\": \"\"",
+			"\"IsFinal\": false,",
+			"\"IsFinal\": true,",
+			"\"ShowText\": false",
+			"\"ShowPrice\": false",
+			"false",
+			"true",
+			"\"PlannedUnit\"",
+			"\"110062898\",",
+			"\"110062895\",",
+			"\"110062879\",",
+			"\"450000801\",",
+			"\"110062878\",",
+			"\"Operation\": \"00030\",",
+			"\"Operation\": \"00020\",",
+			"\"Operation\": \"00010\",",
+			"/sapui5/hana/",
+			"sapui5/hana/",
+			"oItemData",
+			"oPrintMaterialLabel",
+			"util"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": false
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "src/components/processApp/controller/Main.controller.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 12900,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								923,
+								923
+							]
+						],
+						"settings":
+						{
+							"editorconfig": true,
+							"ensure_newline_at_eof_on_save": true,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false,
+							"trim_trailing_white_space_on_save": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 32.0
+	},
+	"input":
+	{
+		"height": 38.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 28.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "aklc.sublime.project.sublime-project",
+	"replace":
+	{
+		"height": 60.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"routes",
+				"react-tweets\\routes.js"
+			],
+			[
+				"istitembase",
+				"latest\\resources\\sap\\m\\ListItemBase-dbg.js"
+			],
+			[
+				"columnlistitem",
+				"latest\\resources\\sap\\m\\ColumnListItem-dbg.js"
+			],
+			[
+				"s3_pro",
+				"SD_SO_CRE\\view\\S3_Product-dbg.controller.js"
+			],
+			[
+				"dialog.controller",
+				"pp_matshort_dt\\fragments\\DirectCallDialog.controller.js"
+			],
+			[
+				"frament-dbg.js",
+				"1.24.2\\resources\\sap\\ui\\core\\Fragment-dbg.js"
+			],
+			[
+				"deta",
+				"view\\Detail.controller.js"
+			],
+			[
+				"i",
+				"index.html"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 625.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 475.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 364.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

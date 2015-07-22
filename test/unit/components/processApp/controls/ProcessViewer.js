@@ -66,22 +66,6 @@ sap.ui.define(
 
         var oFacet = {};
 
-        //event handler for facet event, action and standard action events, for close and open event
-        function facetSelectedEventHandler(oEvent) {
-
-            ok(true, "facet select event handler has been executed."); // this test tests by just being counted in the respective test
-            var sId = oEvent.getParameter("id");
-            var sKey = oEvent.getParameter("key");
-            equal(sKey, oFacet.key, oFacet.text + " Facet should be selected");
-            var oTG1 = new sap.ui.ux3.ThingGroup({
-                title: "Block1"
-            });
-            oTG1.addContent(new sap.ui.commons.Button(oProcessViewer.getId() + sKey + "FacetButton", {
-                text: sKey
-            }));
-            oProcessViewer.destroyFacetContent().addFacetContent(oTG1);
-            oProcessViewer.setSelectedFacet(sId);
-        }
 
         var oFacetContentTemplate = new sap.ui.ux3.ThingGroup({
             title: "{title}",
@@ -134,6 +118,23 @@ sap.ui.define(
             },
             facetSelected: facetSelectedEventHandler
         });
+
+                //event handler for facet event, action and standard action events, for close and open event
+        function facetSelectedEventHandler(oEvent) {
+
+            ok(true, "facet select event handler has been executed."); // this test tests by just being counted in the respective test
+            var sId = oEvent.getParameter("id");
+            var sKey = oEvent.getParameter("key");
+            equal(sKey, oFacet.key, oFacet.text + " Facet should be selected");
+            var oTG1 = new sap.ui.ux3.ThingGroup({
+                title: "Block1"
+            });
+            oTG1.addContent(new sap.ui.commons.Button(oProcessViewer.getId() + sKey + "FacetButton", {
+                text: sKey
+            }));
+            oProcessViewer.destroyFacetContent().addFacetContent(oTG1);
+            oProcessViewer.setSelectedFacet(sId);
+        }
 
         oProcessViewer.setModel(oModel);
         oProcessViewer.setActiveSteps(5);
@@ -257,6 +258,5 @@ sap.ui.define(
 
         });
 
-    }
+    });
 
-);
