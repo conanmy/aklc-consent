@@ -13,7 +13,7 @@ sap.ui.define([
 			jQuery.sap.require("sap.ui.test.Opa5");
 
 			jQuery.sap.require("aklc.cm.test.integration.common");
-
+			jQuery.sap.require("aklc.cm.test.integration.components.partner.main");
 		}
 	});
 });
