@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Application under test</title>
+		<meta http-equiv='X-UA-Compatible' content='IE=edge' />
+		<meta charset="UTF-8">
+		<script
+			id="sap-ui-bootstrap"
+			src="/resources/sap-ui-core.js"
+			data-sap-ui-libs="sap.m"
+			data-sap-ui-xx-bindingSyntax="complex"
+			data-sap-ui-theme="sap_bluecrystal"
+			data-sap-ui-preload="async"
+			data-sap-ui-resourceroots='{
+				"aklc.cm": "../../../../src/",
+				"aklc.cm.service": "../../../../test/service/"
+			}' >
+		</script>
+		<script>
+		sap.ui.getCore().attachInit(function() {
+			sap.ui.require([
+				"aklc/cm/service/server",
+				"sap/ui/core/ComponentContainer",
+				"aklc/cm/components/partner/Component"
+			], function(server, ComponentContainer, Component) {
+				// set up test service for local testing
+				server.init();
+
+				// initialize the UI component
+				new ComponentContainer({
+					component: new Component({
+						id: "testComponent"
+					})
+				}).placeAt("content");
+			});
+		});
+		</script>
+	</head>
+	<body class='sapUiBody' id='content'></body>
+</html>
