@@ -1,11 +1,11 @@
 sap.ui.define([
 	"sap/ui/core/util/MockServer"
-], function (MockServer) {
+], function(MockServer) {
 	"use strict";
 
 	return {
-		_sServiceUrl : "here/goes/your/serviceUrl/",
-		_sModulePath : "aklc.cm.service",
+		_sServiceUrl: "here/goes/your/serviceUrl/",
+		_sModulePath: "aklc.cm.service",
 
 		/**
 		 * Initializes the mock server. You can configure the delay with the URL parameter "serverDelay"
@@ -14,7 +14,7 @@ sap.ui.define([
 		 * @public
 		 */
 
-		init : function () {
+		init: function() {
 			var oUriParameters = jQuery.sap.getUriParameters(),
 				oMockServer = new MockServer({
 					rootUri: this._sServiceUrl
@@ -27,21 +27,23 @@ sap.ui.define([
 
 			// configure mock server with a delay of 1s
 			MockServer.config({
-				autoRespond : true,
-				autoRespondAfter : (oUriParameters.get("serverDelay") || 1000)
+				autoRespond: true,
+				autoRespondAfter: (oUriParameters.get("serverDelay") || 1000)
 			});
 
 			oMockServer.simulate(sPath + "/metadata.xml", sPath);
 			var aRequests = oMockServer.getRequests(),
-				fnResponse = function (iErrCode, sMessage, aRequest) {
-					aRequest.response = function(oXhr){
-						oXhr.respond(iErrCode, {"Content-Type": "text/plain;charset=utf-8"}, sMessage);
+				fnResponse = function(iErrCode, sMessage, aRequest) {
+					aRequest.response = function(oXhr) {
+						oXhr.respond(iErrCode, {
+							"Content-Type": "text/plain;charset=utf-8"
+						}, sMessage);
 					};
 				};
 
 			// handling the metadata error test
 			if (oUriParameters.get("metadataError")) {
-				aRequests.forEach( function ( aEntry ) {
+				aRequests.forEach(function(aEntry) {
 					if (aEntry.path.toString().indexOf("$metadata") > -1) {
 						fnResponse(500, "metadata Error", aEntry);
 					}
@@ -50,7 +52,7 @@ sap.ui.define([
 
 			// Handling request errors
 			if (sErrorParam) {
-				aRequests.forEach( function ( aEntry ) {
+				aRequests.forEach(function(aEntry) {
 					if (aEntry.path.toString().indexOf(sEntity) > -1) {
 						fnResponse(iErrorCode, sErrorParam, aEntry);
 					}
