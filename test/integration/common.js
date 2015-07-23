@@ -30,12 +30,11 @@ sap.ui.define([
 				return this;
 			},
 
-
 			iShouldSeeTheDefaultHash: function() {
 				return this.waitFor({
 					success: function() {
 						var oHashChanger = Opa5.getHashChanger(),
-						sHash = oHashChanger.getHash();
+							sHash = oHashChanger.getHash();
 						QUnit.strictEqual(sHash, "process/P1/step/Default", "The Hash should be empty");
 					},
 					errorMessage: "The Hash is not Correct!"
