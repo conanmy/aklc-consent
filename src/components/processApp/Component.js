@@ -14,7 +14,6 @@ sap.ui.define([
 		 * [init description]
 		 */
 		init: function() {
-			jQuery.sap.log.error("Component INIT");
 			var oModel = new ODataModel(
 				"here/goes/your/serviceUrl/",
 				{

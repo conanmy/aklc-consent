@@ -1,7 +1,6 @@
 sap.ui.require(
 	[
-		"sap/ui/test/Opa5",
-		"aklc/cm/test/integration/Common"
+		"sap/ui/test/Opa5"
 	],
 	function(Opa5) {
 		"use strict";

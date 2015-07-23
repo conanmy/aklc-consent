@@ -1,7 +1,6 @@
 sap.ui.define([
-	"sap/ui/base/Object",
-	"aklc/cm/test/integration/Common"
-], function(Ui5Object, Common) {
+	"sap/ui/base/Object"
+], function(Ui5Object) {
 	"use strict";
 	return Ui5Object.extend("aklc.cm.test.integration.AllJourneys", {
 		start: function(oConfig) {
@@ -13,7 +12,7 @@ sap.ui.define([
 			jQuery.sap.require("sap.ui.test.Opa5");
 
 			// common functionality
-			jQuery.sap.require("aklc.cm.test.integration.Common");
+			jQuery.sap.require("aklc.cm.test.integration.components.Common");
 
 			// components
 			jQuery.sap.require("aklc.cm.test.integration.components.ProcessApp");

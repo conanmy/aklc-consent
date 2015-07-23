@@ -4,7 +4,7 @@ sap.ui.define([
 	function(Opa5) {
 		"use strict";
 		// some utility functionality for all Page Objects deriving from it
-		return Opa5.extend("aklc.cm.test.integration.Common", {
+		return Opa5.extend("aklc.cm.test.integration.components.Common", {
 			constructor: function(oConfig) {
 				Opa5.apply(this, arguments);
 				this._oConfig = oConfig;
