@@ -14,7 +14,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/core/ComponentContainer", "
 				this._oComponent = sap.ui.component(sap.ui.core.Component.getOwnerIdFor(this.getView()));
 				this._oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 				this._oRouter.attachRouteMatched(this.routeMatched.bind(this));
-				this._oProcessViewer = this.getView().byId("TI");
+				this._oProcessViewer = this.getView().byId("ProcessViewer");
 				this._oModel = this._oComponent.getModel();
 				this._oContainer = new ComponentContainer(this.createId("CONTAINTER"));
 				this._oViewModel = new JSONModel({});

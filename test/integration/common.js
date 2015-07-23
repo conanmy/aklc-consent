@@ -3,7 +3,7 @@ sap.ui.define([
 	],
 	function(Opa5) {
 		"use strict";
-
+		// some utility functionality for all Page Objects deriving from it
 		return Opa5.extend("aklc.cm.test.integration.Common", {
 			constructor: function(oConfig) {
 				Opa5.apply(this, arguments);
@@ -30,25 +30,35 @@ sap.ui.define([
 				return this;
 			},
 
-			iShouldSeeProcessViewer: function() {
+
+			iShouldSeeTheDefaultHash: function() {
 				return this.waitFor({
-					id: "__xmlview0--TI",
-					success: function(oProcessViewer) {
-						ok(true, "good");
+					success: function() {
+						var oHashChanger = Opa5.getHashChanger(),
+						sHash = oHashChanger.getHash();
+						QUnit.strictEqual(sHash, "process/P1/step/Default", "The Hash should be empty");
 					},
-					errorMessage: "bad"
+					errorMessage: "The Hash is not Correct!"
 				});
 			},
 
-			iShouldSeeAnEmptyHash: function() {
+			iPressNextAction: function() {
 				return this.waitFor({
-					success: function() {
-						ok(true, "good");
-						// var oHashChanger = Opa5.getHashChanger(),
-						// 	sHash = oHashChanger.getHash();
-						// QUnit.strictEqual(sHash, "process/P1/step/Default", "The Hash should be empty");
+					id: "next",
+					success: function(oButton) {
+						oButton.$().trigger("click");
 					},
-					errorMessage: "The Hash is not Correct!"
+					errorMessage: "Did not find the next button"
+				});
+			},
+
+			iPressPreviousAction: function() {
+				return this.waitFor({
+					id: "previous",
+					success: function(oButton) {
+						oButton.$().trigger("click");
+					},
+					errorMessage: "Did not find the previous button"
 				});
 			}
 

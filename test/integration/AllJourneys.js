@@ -9,22 +9,17 @@ sap.ui.define([
 
 			jQuery.sap.require("sap.ui.qunit.qunit-css");
 			jQuery.sap.require("sap.ui.thirdparty.qunit");
-			jQuery.sap.require("sap.ui.qunit.qunit-junit");
 			jQuery.sap.require("sap.ui.test.opaQunit");
 			jQuery.sap.require("sap.ui.test.Opa5");
 
+			// common functionality
 			jQuery.sap.require("aklc.cm.test.integration.Common");
-			jQuery.sap.require("aklc.cm.test.integration.Browser");
+
+			// components
+			jQuery.sap.require("aklc.cm.test.integration.components.ProcessApp");
+
+			// journeys
 			jQuery.sap.require("aklc.cm.test.integration.JourneyTest");
-			// jQuery.sap.require("aklc.cm.test.integration.components.partner.main");
-
-			var x = new Common(oConfig);
-
-			sap.ui.test.Opa5.extendConfig({
-				actions: x,
-				arrangements: x,
-				assertions: x
-			});
 		}
 	});
 });

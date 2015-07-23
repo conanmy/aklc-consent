@@ -1,8 +1,9 @@
 sap.ui.define([
 	"sap/ui/core/UIComponent",
 	"sap/ui/thirdparty/URI",
-	"./Router"
-], function(UIComponent, URI, Router) {
+	"./Router",
+	"sap/ui/model/odata/v2/ODataModel"
+], function(UIComponent, URI, Router, ODataModel) {
 	"use strict";
 	return UIComponent.extend("aklc.cm.components.processApp.Component", {
 		metadata: {
@@ -13,6 +14,15 @@ sap.ui.define([
 		 * [init description]
 		 */
 		init: function() {
+			jQuery.sap.log.error("Component INIT");
+			var oModel = new ODataModel(
+				"here/goes/your/serviceUrl/",
+				{
+						defaultBindingMode:"TwoWay",
+                useBatch: true
+
+			});
+			this.setModel(oModel);
 			UIComponent.prototype.init.apply(this, arguments);
 			this.getRouter().initialize();
 		},
@@ -21,7 +31,8 @@ sap.ui.define([
 		 * retrofitted from 1.30 no bower yet
 		 * TODO - remove after upgrade
 		 */
-		initComponentModels: function() {
+		initComponentModels1: function() {
+			jQuery.sap.log.error("Component INITMODELS");
 			this._mManifestModels = {};
 			// retrieve the merged sap.app and sap.ui5 sections of the manifest
 			// to create the models for the component + inherited ones
@@ -35,7 +46,7 @@ sap.ui.define([
 				return;
 			}
 
-
+	jQuery.sap.log.error("Component INITMODELS2");
 			var mergeDefinitionSource = function(mDefinitions, mDefinitionSource, mSourceData, oSource) {
 				if (mSourceData) {
 					for (var sName in mDefinitions) {
@@ -72,7 +83,7 @@ sap.ui.define([
 
 				var oModelConfig = mModelConfigs[sModelName];
 				// var bIsDataSourceUri = false;
-
+jQuery.sap.log.error("Component INITMODELS2 " + oModelConfig.type);
 				// normalize dataSource shorthand, e.g.
 				// "myModel": "myDataSource" => "myModel": { dataSource: "myDataSource" }
 				if (typeof oModelConfig === "string") {
@@ -247,21 +258,23 @@ sap.ui.define([
 				if (oModelConfig.settings && !jQuery.isArray(oModelConfig.settings)) {
 					oModelConfig.settings = [oModelConfig.settings];
 				}
-
+jQuery.sap.log.error("Component INITMODELS3 " + oModelConfig.type);
 				// create arguments array with leading "null" value so that it can be passed to the apply function
 				var aArgs = [null].concat(oModelConfig.settings || []);
 
 				// create factory function by calling "Model.bind" with the provided arguments
 				var Factory = ModelClass.bind.apply(ModelClass, aArgs);
-
+jQuery.sap.log.error("Component INITMODELS3.1 " + oModelConfig.type);
 				// the factory will create the model with the arguments above
 				var oModel = new Factory();
-
+				// var oModel = new ODataModel(aArgs);
+jQuery.sap.log.error("Component INITMODELS4 " + oModelConfig.type);
 				// keep the model instance to be able to destroy the created models on component destroy
 				this._mManifestModels[sModelName] = oModel;
 
 				// apply the model to the component with provided name ("" as key means unnamed model)
 				this.setModel(oModel, sModelName || undefined);
+
 			}
 
 		}
