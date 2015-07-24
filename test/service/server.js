@@ -5,7 +5,7 @@ sap.ui.define([
 
 	return {
 		_sServiceUrl: "here/goes/your/serviceUrl/",
-		_sModulePath: "aklc.cm.service",
+		_sModulePath: "test.service",
 
 		/**
 		 * Initializes the mock server. You can configure the delay with the URL parameter "serverDelay"

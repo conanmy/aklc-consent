@@ -1,7 +1,7 @@
-sap.ui.define([
-	"test/unit/components/processApp/controls/VerticalNavigationBar",
-	"test/unit/components/processApp/controls/ProcessViewer",
-	"test/unit/components/processApp/controller/Main.controller"
-], function() {
-	"use strict";
+jQuery.sap.require("sap/ui/qunit/qunit-css");
+jQuery.sap.require("test/unit/components/processApp/controls/VerticalNavigationBar");
+jQuery.sap.require("test/unit/components/processApp/controls/ProcessViewer");
+jQuery.sap.require({
+	modName: "test.unit.components.processApp.controller.Main",
+	type: "controller"
 });

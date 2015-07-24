@@ -4,7 +4,7 @@ sap.ui.define([
 	function(Opa5) {
 		"use strict";
 		// some utility functionality for all Page Objects deriving from it
-		return Opa5.extend("aklc.cm.test.integration.components.Common", {
+		return Opa5.extend("test.integration.components.Common", {
 			constructor: function(oConfig) {
 				Opa5.apply(this, arguments);
 				this._oConfig = oConfig;
@@ -12,7 +12,7 @@ sap.ui.define([
 
 			_getFrameUrl: function(sHash, sUrlParameters) {
 				sHash = sHash || "";
-				var sUrl = jQuery.sap.getResourcePath("aklc/cm/app/test", ".html");
+				var sUrl = jQuery.sap.getResourcePath("aklc/cm/index", ".html");
 
 				sUrlParameters = "?" + (sUrlParameters ? sUrlParameters + "&" : "");
 				return sUrl + sUrlParameters + sHash;
