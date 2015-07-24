@@ -4,23 +4,30 @@
 	"PartnerNumber": 100,
 	"ValidFrom": "\/Date(1414661031000)\/",
 	"ValidTo": "\/Date(1414761031000)\/",
-	"Condition": "readonly"
+	"Readonly": true,
+	"Mandatory": true,
+	"Unassigned": false
 }, {
 	"ProcessKey": "P1",
 	"PartnerFunctionCode": 12,
 	"PartnerNumber": 101,
 	"ValidFrom": "\/Date(1414661031000)\/",
 	"ValidTo": "\/Date(1416661031000)\/",
-	"Condition": "readonly"
+	"Readonly": true,
+	"Mandatory": true,
+	"Unassigned": false
 }, {
 	"ProcessKey": "P1",
 	"PartnerFunctionCode": 16,
-	"Condition": "mandatory"
+	"PartnerNumber": null,
+	"Readonly": false,
+	"Mandatory": true,
+	"Unassigned": true
 }, {
 	"ProcessKey": "P1",
 	"PartnerFunctionCode": 14,
-	"PartnerNumber": 105,
-	"ValidFrom": "\/Date(1414661031000)\/",
-	"ValidTo": "\/Date(1444671031000)\/",
-	"Condition": "mandatory"
+	"PartnerNumber": null,
+	"Readonly": false,
+	"Mandatory": true,
+	"Unassigned": true
 }]

@@ -73,7 +73,10 @@ sap.ui.define(["aklc/cm/controller/BaseController", "sap/m/MessageBox"],
 						PartnerFunctionCode: PartnerFunctionCode,
 						ProcessKey: "P1",
 						ValidFrom: new Date(ValidFrom),
-						ValidTo: new Date(ValidTo)
+						ValidTo: new Date(ValidTo),
+						Mandatory: false,
+						Readonly: false,
+						Unassigned: false
 					}
 				);
 
