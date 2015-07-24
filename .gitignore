@@ -23,6 +23,9 @@ npm-debug.log
 # Ignore bower folder
 bower_components
 
+# Ignore reports folder
+reports
+
 # Ignore dist folder
 dist
 test/service/output.json

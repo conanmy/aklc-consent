@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta charset="UTF-8">
     <title>Process test</title>
-    <script id="sap-ui-bootstrap" src="/resources/sap-ui-core.js" data-sap-ui-libs="sap.m" data-sap-ui-xx-bindingSyntax="complex" data-sap-ui-theme="sap_bluecrystal" data-sap-ui-preload="async"  data-sap-ui-resourceroots='{"aklc.cm": "./src/", "aklc.cm.service": "./test/service/"}'  >
+    <script id="sap-ui-bootstrap" src="/resources/sap-ui-core.js" data-sap-ui-libs="sap.m" data-sap-ui-xx-bindingSyntax="complex" data-sap-ui-theme="sap_bluecrystal" data-sap-ui-preload="async"  data-sap-ui-resourceroots='{"aklc.cm": "./src/", "test": "./test/"}'  >
     // NON-SECURE setting for testing environment
     </script>
     <script>
@@ -18,7 +18,7 @@
 
     sap.ui.getCore().attachInit(function() {
         sap.ui.require([
-            "aklc/cm/service/server",
+            "test/service/server",
             "sap/ui/core/ComponentContainer",
             "aklc/cm/components/processApp/Component"
         ], function(server, ComponentContainer, Component) {

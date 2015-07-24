@@ -1,198 +1,258 @@
 /*eslint-env node*/
 /*global module:false*/
 module.exports = function(grunt) {
+	"use strict";
+	grunt.initConfig({
 
-    grunt.initConfig({
+		dir: {
+			webapp: "src",
+			tests: "test",
+			dist: "dist",
+			bower_components: "bower_components",
+			localServerTestUrl: "http://localhost:<%= port %>/test-resources"
+		},
 
-        dir: {
-            webapp: "src",
-            tests: "test",
-            dist: "dist",
-            bower_components: "bower_components",
-            localServerTestUrl: "http://localhost:<%= port %>/test-resources"
-        },
+		port: (process.env.PORT || 5000),
 
-        port: (process.env.PORT || 5000),
+		tests: {
+			opaTimeout: 900000
+		},
 
-        tests: {
-            opaTimeout: 900000
-        },
+		connect: {
+			options: {
+				port: "<%= port %>",
+				hostname: "*"
+			},
+			src: {
+				options: {
+					open: {
+						target: "http://localhost:<%= port %>/index.html"
+					}
+				}
+			},
+			dist: {
+				options: {
+					open: {
+						target: "http://localhost:<%= port %>/build.html"
+					}
+				}
+			}
+		},
 
-        connect: {
-            options: {
-                port: "<%= port %>",
-                hostname: "*"
-            },
-            src: {
-                options: {
-                    open: {
-                        target: "http://localhost:<%= port %>/index.html"
-                    }
-                }
-            },
-            dist: {
-                options: {
-                    open: {
-                        target: "http://localhost:<%= port %>/build.html"
-                    }
-                }
-            }
-        },
+		openui5_connect: {
+			options: {
+				resources: [
+					"<%= dir.bower_components %>/openui5-sap.ui.core/resources",
+					"<%= dir.bower_components %>/openui5-sap.m/resources",
+					"<%= dir.bower_components %>/openui5-sap.ui.layout/resources",
+					"<%= dir.bower_components %>/openui5-sap.ui.commons/resources",
+					"<%= dir.bower_components %>/openui5-sap.ui.ux3/resources",
+					"<%= dir.bower_components %>/openui5-sap.ui.unified/resources",
+					"<%= dir.bower_components %>/openui5-themelib_sap_bluecrystal/resources",
+				]
+			},
+			src: {
+				options: {
+					appresources: ["."],
+					testresources: ["<%= dir.tests %>"]
+				}
+			},
+			dist: {
+				options: {
+					appresources: ".",
+					testresources: ["<%= dir.tests %>"]
+				}
+			}
+		},
 
-        openui5_connect: {
-            options: {
-                resources: [
-                    "<%= dir.bower_components %>/openui5-sap.ui.core/resources",
-                    "<%= dir.bower_components %>/openui5-sap.m/resources",
-                    "<%= dir.bower_components %>/openui5-sap.ui.layout/resources",
-                    "<%= dir.bower_components %>/openui5-sap.ui.commons/resources",
-                    "<%= dir.bower_components %>/openui5-sap.ui.ux3/resources",
-                    "<%= dir.bower_components %>/openui5-sap.ui.unified/resources",
-                    "<%= dir.bower_components %>/openui5-themelib_sap_bluecrystal/resources",
-                ]
-            },
-            src: {
-                options: {
-                    appresources: ["."],
-                    testresources: ["<%= dir.tests %>"]
-                }
-            },
-            dist: {
-                options: {
-                    appresources: ".",
-                    testresources: ["<%= dir.tests %>"]
-                }
-            }
-        },
+		openui5_preload: {
+			component: {
+				options: {
+					resources: {
+						cwd: "<%= dir.webapp %>",
+						prefix: "aklc/cm"
+					},
+					dest: "<%= dir.dist %>"
+				},
+				components: true,
+				compress: true
+			},
+			library: {
+				options: {
+					resources: {
+						cwd: "<%= dir.webapp %>/library/openui5/ckeditor",
+						prefix: "openui5/ckeditor",
+						src: [
+							"*.js",
+							"{i18n,fragments,utils,view}/*.{js,json,xml,html,properties}"
+						]
+					},
+					dest: "<%= dir.webapp %>/library/openui5/ckeditor",
+					compress: true
+				},
+				libraries: "openui5/ckeditor",
+				prefix: "library/openui5/ckeditor"
+			}
+		},
 
-        openui5_preload: {
-            component: {
-                options: {
-                    resources: {
-                        cwd: "<%= dir.webapp %>",
-                        prefix: "aklc/cm"
-                    },
-                    dest: "<%= dir.dist %>"
-                },
-                components: true,
-                compress: true
-            },
-            library: {
-                options: {
-                    resources: {
-                        cwd: "<%= dir.webapp %>/library/openui5/ckeditor",
-                        prefix: "openui5/ckeditor",
-                        src: [
-                            "*.js",
-                            "{i18n,fragments,utils,view}/*.{js,json,xml,html,properties}"
-                        ]
-                    },
-                    dest: "<%= dir.webapp %>/library/openui5/ckeditor",
-                    compress: true
-                },
-                libraries: "openui5/ckeditor",
-                prefix: "library/openui5/ckeditor"
-            },
-        },
+		clean: {
+			dist: "<%= dir.dist %>/"
+		},
 
-        clean: {
-            dist: "<%= dir.dist %>/"
-        },
+		copy: {
+			dist: {
+				files: [{
+					expand: true,
+					cwd: "<%= dir.webapp %>",
+					src: [
+						"**",
+						"!test/**"
+					],
+					dest: "<%= dir.dist %>"
+				}]
+			}
+		},
 
-        copy: {
-            dist: {
-                files: [{
-                    expand: true,
-                    cwd: "<%= dir.webapp %>",
-                    src: [
-                        "**",
-                        "!test/**"
-                    ],
-                    dest: "<%= dir.dist %>"
-                }]
-            }
-        },
+		eslint: {
+			options: {
+				quiet: true
+			},
 
-        eslint: {
-            options: {
-                quiet: true
-            },
+			all: ["<%= dir.tests %>", "<%= dir.webapp %>"],
+			webapp: ["<%= dir.webapp %>"]
+		},
 
-            all: ["<%= dir.tests %>", "<%= dir.webapp %>"],
-            webapp: ["<%= dir.webapp %>"]
-        },
+		karma: {
+			options: {
+				basePath: "",
+				proxies: {
+					"/resources/": "http://localhost:<%= port %>/resources/",
+					"/index.html": "http://localhost:<%= port %>/index.html",
+					"/src/": "http://localhost:<%= port %>/src/", //this mapping comes from testService.html - see resource mappings there
+					"/test/": "http://localhost:<%= port %>/test/" //this mapping comes from testService.html - see resource mappings there
+				},
+				frameworks: ["openui5", "qunit", "phantomjs-shim"],
+				openui5: {
+					path: "http://localhost:9876/resources/sap-ui-core-dbg.js"
+				},
+				client: {
+					openui5: {
+						config: {
+							bindingSyntax: "complex",
+							language: "en-US",
+							theme: "sap_bluecrystal",
+							libs: "sap.m",
+							resourceroots: {
+								"aklc.cm": "./src/",
+								test: "./test/",
+								// this mapping is required to map the index.html when OPA5 tests run the application in an iFrame
+								"aklc.cm.index": "/index"
+							}
+						}
+					}
+				},
+				files: [{
+					pattern: "test/karma-qunit.js",
+					included: true
+				}, {
+					pattern: "src/**/*",
+					included: false
+				}, {
+					pattern: "test/**/!(allTests.js|AllJourneys.js)",
+					included: false
+				}],
+				port: 9876,
+				colors: true,
+				logLevel: "INFO",
+				browsers: ["PhantomJS"]
+			},
+			unitTests: {
+				files: [{
+					src: ["test/unit/allTests.js"],
+					included: true
+				}],
+				reporters: ["progress"],
+				autoWatch: true,
+				singleRun: false
+			},
+			unitTests_ci: {
+				files: [{
+					src: ["test/unit/allTests.js"],
+					included: true
+				}],
+				reporters: ["progress", "coverage"],
+				preprocessors: {
+					"src/**/*.js": ["coverage"]
+				},
+				coverageReporter: {
+					type: 'html',
+					dir: "reports/coverage/unit"
+				},
+				autoWatch: false,
+				singleRun: true
+			},
+			integrationTests: {
+				files: [{
+					src: ["test/integration/AllJourneys.js"],
+					included: true
+				}],
+				reporters: ["progress"],
+				autoWatch: true,
+				singleRun: false
+			},
+			integrationTests_ci: {
+				files: [{
+					src: ["test/integration/AllJourneys.js"],
+					included: true
+				}],
+				reporters: ["progress", "coverage"],
+				preprocessors: {
+					"src/**/*.js": ["coverage"]
+				},
+				coverageReporter: {
+					type: "text",
+					file: "coverage.txt",
+					dir: "reports/coverage/integration"
+				},
+				autoWatch: false,
+				singleRun: true
+			}
+		}
+	});
 
-        qunit: {
-            options: {
-                /* for debugging*/
-                "--remote-debugger-autorun": "yes",
-                "--remote-debugger-port": 8000
-            },
+	// These plugins provide necessary tasks.
+	grunt.loadNpmTasks("grunt-contrib-connect");
+	grunt.loadNpmTasks("grunt-contrib-clean");
+	grunt.loadNpmTasks("grunt-contrib-copy");
+	grunt.loadNpmTasks("grunt-openui5");
+	grunt.loadNpmTasks("grunt-eslint");
+	grunt.loadNpmTasks("grunt-karma");
+	grunt.loadNpmTasks("grunt-contrib-qunit");
 
-            unit: {
-                options: {
-                    urls: [
-                        "<%= dir.localServerTestUrl %>/unit/unitTests.qunit.html"
-                    ]
-                }
+	// Server task
+	grunt.registerTask("serve", function(target) {
+		grunt.task.run("openui5_connect:" + (target || "src") + ":keepalive");
+	});
 
-            },
-            opa: {
-                options: {
-                    urls: [
-                        "<%= dir.localServerTestUrl %>/integration/opaTests.qunit.html"
-                    ],
-                    // same as qunits timeout 90 seconds since opa test might take a while
-                    timeout: "<%= tests.opaTimeout %>"
-                }
-            },
-            opaPhone: {
-                options: {
-                    urls: [
-                        "<%= dir.localServerTestUrl %>/integration/opaTestsPhone.qunit.html"
-                    ],
-                    // same as qunits timeout 90 seconds since opa test might take a while
-                    timeout: "<%= tests.opaTimeout %>"
-                },
+	// Linting task
+	grunt.registerTask("lint", ["eslint:all"]);
 
-                page: {
-                    settings: {
-                        userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 5_0_1 like Mac OS X) AppleWebKit/534.48 (KHTML, like Gecko) Version/5.1 Mobile/9A406 Safari/7534.48.3" // iOS userAgent string
-                    }
-                }
-            }
-        }
+	// Build task
+	grunt.registerTask("build", ["lint", "clean", "openui5_preload", "copy"]);
+	grunt.registerTask("buildRun", ["build", "serve:dist"]);
 
-    });
-
-    // These plugins provide necessary tasks.
-    grunt.loadNpmTasks("grunt-contrib-connect");
-    grunt.loadNpmTasks("grunt-contrib-clean");
-    grunt.loadNpmTasks("grunt-contrib-copy");
-    grunt.loadNpmTasks("grunt-openui5");
-    grunt.loadNpmTasks("grunt-eslint");
-    grunt.loadNpmTasks("grunt-contrib-qunit");
-
-    // Server task
-    grunt.registerTask("serve", function(target) {
-        grunt.task.run("openui5_connect:" + (target || "src") + ":keepalive");
-    });
-
-    // Linting task
-    grunt.registerTask("lint", ["eslint:all"]);
-
-    // Build task
-    grunt.registerTask("build", ["lint", "clean", "openui5_preload", "copy"]);
-    grunt.registerTask("buildRun", ["build", "serve:dist"]);
-
-    // Test task
-    grunt.registerTask("test", ["openui5_connect:src", "qunit:unit", "qunit:opa"]);
-    grunt.registerTask("unitTest", ["openui5_connect:src", "qunit:unit"]);
-    grunt.registerTask("opaTest", ["openui5_connect:src", "qunit:opa"]);
-
-    // Default task
-    grunt.registerTask("default", [
-        "lint:all",
-        "test"
-    ]);
+	// Test task
+	// grunt.registerTask("test", ["openui5_connect:src", "qunit:unit", "qunit:opa"]);
+	// grunt.registerTask("unitTest", ["openui5_connect:src", "qunit:unit"]);
+	// grunt.registerTask("opaTest", ["openui5_connect:src", "qunit:opa"]);
+	grunt.registerTask("test", ["openui5_connect:src", "karma:unitTests_ci", "karma:integrationTests_ci"]);
+	grunt.registerTask("unitTests", ["openui5_connect:src", "karma:unitTests"]);
+	grunt.registerTask("unitTests_ci", ["openui5_connect:src", "karma:unitTests_ci"]);
+	grunt.registerTask("integrationTests", ["openui5_connect:src", "karma:integrationTests"]);
+	grunt.registerTask("integrationTests_ci", ["openui5_connect:src", "karma:integrationTests_ci"]);
+	// Default task
+	grunt.registerTask("default", [
+		"lint:all",
+		"test"
+	]);
 };

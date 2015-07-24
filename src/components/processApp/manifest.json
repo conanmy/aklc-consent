@@ -52,13 +52,8 @@
             }
         },
         "models": {
-            "i18n": {
-                "type": "sap.ui.model.resource.ResourceModel",
-                "settings": {
-                    "bundleName": "aklc.cm.components.processApp.i18n.i18n"
-                }
-            },
             "": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
                 "settings": {
                     "defaultBindingMode": "TwoWay",
                     "useBatch": true

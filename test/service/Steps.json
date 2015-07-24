@@ -1,49 +1,96 @@
 [{
-    "ProcessKey": "P1",
-    "StepKey": "DETAILS",
-    "Title": "Details",
-    "Icon": "sap-icon://activity-2",
-    "Component": "test1",
-    "Current": true,
-    "Active": true
+	"ProcessKey": "P0",
+	"StepKey": "STEP1",
+	"Title": "STEP1",
+	"Icon": "sap-icon://activity-2",
+	"Component": "test",
+	"Current": true,
+	"Active": true
 }, {
-    "ProcessKey": "P1",
-    "StepKey": "ASSIGNMENTS",
-    "Title": "Assignments",
-    "Icon": "sap-icon://citizen-connect",
-    "Component": "conditions",
-    "Current": false,
-    "Active": true
+	"ProcessKey": "P0",
+	"StepKey": "STEP2",
+	"Title": "STEP2",
+	"Icon": "sap-icon://citizen-connect",
+	"Component": "test",
+	"Current": false,
+	"Active": true
 }, {
-    "ProcessKey": "P1",
-    "StepKey": "PARTNERS",
-    "Title": "Partners Involved",
-    "Icon": "sap-icon://company-view",
-    "Component": "partner",
-    "Current": false,
-    "Active": false
+	"ProcessKey": "P0",
+	"StepKey": "STEP3",
+	"Title": "STEP3",
+	"Icon": "sap-icon://company-view",
+	"Component": "test",
+	"Current": false,
+	"Active": true
 }, {
-    "ProcessKey": "P1",
-    "StepKey": "CORRESPONDENCE",
-    "Title": "Correspondence",
-    "Icon": "sap-icon://email",
-    "Component": "test",
-    "Current": false,
-    "Active": false
+	"ProcessKey": "P0",
+	"StepKey": "STEP4",
+	"Title": "STEP4",
+	"Icon": "sap-icon://email",
+	"Component": "test",
+	"Current": false,
+	"Active": false
 }, {
-    "ProcessKey": "P1",
-    "StepKey": "DOCUMENTS",
-    "Title": "Documents",
-    "Icon": "sap-icon://documents",
-    "Component": "test",
-    "Current": false,
-    "Active": false
+	"ProcessKey": "P0",
+	"StepKey": "STEP5",
+	"Title": "STEP5",
+	"Icon": "sap-icon://documents",
+	"Component": "test",
+	"Current": false,
+	"Active": false
 }, {
-    "ProcessKey": "P1",
-    "StepKey": "TIME_RECORDING",
-    "Title": "Time Recording",
-    "Icon": "sap-icon://lateness",
-    "Component": "test",
-    "Current": false,
-    "Active": false
+	"ProcessKey": "P0",
+	"StepKey": "STEP6",
+	"Title": "STEP6",
+	"Icon": "sap-icon://lateness",
+	"Component": "test",
+	"Current": false,
+	"Active": false
+}, {
+	"ProcessKey": "P1",
+	"StepKey": "DETAILS",
+	"Title": "Details",
+	"Icon": "sap-icon://activity-2",
+	"Component": "test1",
+	"Current": true,
+	"Active": true
+}, {
+	"ProcessKey": "P1",
+	"StepKey": "ASSIGNMENTS",
+	"Title": "Assignments",
+	"Icon": "sap-icon://citizen-connect",
+	"Component": "conditions",
+	"Active": true
+}, {
+	"ProcessKey": "P1",
+	"StepKey": "PARTNERS",
+	"Title": "Partners Involved",
+	"Icon": "sap-icon://company-view",
+	"Component": "partner",
+	"Current": false,
+	"Active": false
+}, {
+	"ProcessKey": "P1",
+	"StepKey": "CORRESPONDENCE",
+	"Title": "Correspondence",
+	"Icon": "sap-icon://email",
+	"Component": "test",
+	"Current": false,
+	"Active": false
+}, {
+	"ProcessKey": "P1",
+	"StepKey": "DOCUMENTS",
+	"Title": "Documents",
+	"Icon": "sap-icon://documents",
+	"Component": "test",
+	"Current": false,
+	"Active": false
+}, {
+	"ProcessKey": "P1",
+	"StepKey": "TIME_RECORDING",
+	"Title": "Time Recording",
+	"Icon": "sap-icon://lateness",
+	"Component": "test",
+	"Current": false,
+	"Active": false
 }]

@@ -138,12 +138,18 @@ sap.ui.define(
 		oProcessViewer.setModel(oModel);
 		oProcessViewer.setActiveSteps(5);
 		oProcessViewer.setSelectedFacet(oProcessViewer.getFacets()[0]);
-		oProcessViewer.placeAt("qunit-fixture");
-		sap.ui.getCore().applyChanges();
 
-		QUnit.module("Appearance");
 
-		QUnit.test("ProcessViewer exists", function() {
+
+		QUnit.module("ProcessViewer", {
+			setup: function() {
+				oProcessViewer.placeAt("qunit-fixture");
+				sap.ui.getCore().applyChanges();
+			},
+			teardown: function() {}
+		});
+
+		QUnit.test("Control exists", function() {
 			var oDomRef = jQuery.sap.domById(oProcessViewer.getId());
 			ok(oDomRef, "Rendered ProcessViewer should exist in the page");
 			equal(oDomRef.className, "sapUiUx3TV", "Rendered ProcessViewer should have the class 'sapUiUx3TV'");
@@ -203,7 +209,6 @@ sap.ui.define(
 
 		});
 
-		QUnit.module("Behaviour");
 		QUnit.asyncTest("FacetSelected Events", function() {
 			expect(13);
 			oFacet = oNavBarData[4];
