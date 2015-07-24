@@ -9,10 +9,9 @@
             <List id="partnerList" mode="Delete"
             delete="handleDelete" items="{path: '/AssignedPartners', sorter: [{path:'PartnerNumber', descending: true}],  parameters: { expand: 'PartnerFunctions,Partners'}}">
                 <items>
-                    <ObjectListItem type="Active" title="{PartnerFunctions/Description}" press="onListItemPress" class="assigned-partner-list-item">
+                    <ObjectListItem type="Active" title="{PartnerFunctions/Description}" press="onListItemPress" class="assigned-partner-list-item" showMarkers="true" markLocked="{Readonly}">
                         <attributes>
-                            <ObjectAttribute text="{Partners/FirstName} {Partners/LastName} ( {PartnerNumber} )" title="Name" />
-                            <ObjectAttribute text="{Partners/Address1}" title="Address" />
+                            <ObjectAttribute text="{Partners/FirstName} {Partners/LastName} ( {PartnerNumber} )" title="Name" visible="{= !${Unassigned} }" />
                         </attributes>
                     </ObjectListItem>
                 </items>

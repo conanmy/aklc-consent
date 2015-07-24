@@ -73,6 +73,9 @@
                 <Property Name="PartnerNumber" Type="Edm.Int32" />
                 <Property Name="ValidFrom" Type="Edm.DateTime" Nullable="false" />
                 <Property Name="ValidTo" Type="Edm.DateTime" Nullable="false" />
+                <Property Name="Readonly" Type="Edm.Boolean" Nullable="false" />
+                <Property Name="Mandatory" Type="Edm.Boolean" Nullable="false" />
+                <Property Name="Unassigned" Type="Edm.Boolean" Nullable="false" />
                 <NavigationProperty Name="Partners" Relationship="ODataDemo.FK_AssignedPartnersPartners" FromRole="AssignedPartners" ToRole="Partners" />
                 <NavigationProperty Name="PartnerFunctions" Relationship="ODataDemo.FK_AssignedPartnersPartnerFunctions" FromRole="AssignedPartners2" ToRole="PartnerFunctions" />
             </EntityType>
