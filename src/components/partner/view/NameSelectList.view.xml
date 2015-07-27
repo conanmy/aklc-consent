@@ -14,7 +14,7 @@
                     <ObjectAttribute text="Address: {Partners/Address1}, PostCode: {Partners/PostCode}" />
                 </attributes>
             </ObjectHeader>
-            <Toolbar height="auto" id="partnerDates">
+            <Toolbar height="auto" id="partnerDates" class="borderless">
                 <Label text="ValidFrom" />
                 <DatePicker
                     id="DPValidFrom"
@@ -24,7 +24,7 @@
                     class="sapUiSmallMarginBottom"
                     width="150px"
                     visible="{= !${Readonly} }" />
-                <Text text="{path:'ValidFrom', type:'sap.ui.model.type.Date'}" visible="{= ${Readonly} }" />
+                <Text text="{path:'ValidFrom', type:'sap.ui.model.type.Date'}" visible="{= ${Readonly} === true }" />
                 <ToolbarSpacer width="50px"/>
                 <Label text="ValidTo" />
                 <DatePicker
@@ -35,15 +35,15 @@
                     class="sapUiSmallMarginBottom"
                     width="150px"
                     visible="{= !${Readonly} }" />
-                <Text text="{path:'ValidTo', type:'sap.ui.model.type.Date'}" visible="{= ${Readonly} }" />
+                <Text text="{path:'ValidTo', type:'sap.ui.model.type.Date'}" visible="{= ${Readonly} === true }" />
             </Toolbar>
             <Button id="partnerObjectSaveBtn" text="Save" press="onSave" visible="{= !${Readonly} }" />
         </Panel>
-        <Panel id="nameSelectList">
+        <Panel id="nameSelectSection" class="borderless">
             <Toolbar>
                 <SearchField liveChange="onSearch" width="100%" />
             </Toolbar>
-            <List items="{path: 'PartnerRelations', parameters: { expand: 'Partners' }}" selectionChange="onSelectionChange" mode="SingleSelectMaster" includeItemInSelection="true">
+            <List id="nameSelectList" items="{path: 'PartnerRelations', parameters: { expand: 'Partners' }}" selectionChange="onSelectionChange" mode="SingleSelectMaster" includeItemInSelection="true">
                 <infoToolbar>
                     <Toolbar visible="false" id="idInfoToolbar">
                         <Label id="idFilterLabel" />

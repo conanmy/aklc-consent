@@ -85,8 +85,8 @@ sap.ui.define(["aklc/cm/controller/BaseController", "sap/m/MessageBox"],
 			reset: function() {
 				this.getView().byId("partnerDetails").unbindElement();
 				this.getView().byId("partnerDetails").setVisible(false);
-				this.getView().byId("nameSelectList").setVisible(true);
-				this.oList.removeSelections && this.oList.removeSelections();
+				this.getView().byId("nameSelectSection").setVisible(true);
+				this.oList.removeSelections();
 			}
 		});
 	});

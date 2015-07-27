@@ -55,7 +55,7 @@ sap.ui.define(["aklc/cm/controller/BaseController", "sap/m/MessageBox"], functio
 						nameList.byId("partnerDetails").bindElement(path);
 						nameList.byId("partnerDetails").setVisible(true);
 						if (partner.Readonly) {
-							nameList.byId("nameSelectList").setVisible(false);
+							nameList.byId("nameSelectSection").setVisible(false);
 						}
 					}
 				}

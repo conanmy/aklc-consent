@@ -1,0 +1,4 @@
+.borderless,
+.borderless .sapMPanelContent {
+	border-bottom: none;
+}

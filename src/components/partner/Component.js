@@ -12,7 +12,7 @@ sap.ui.define([
 					version: "1.8",
 					libs: ["sap.ui.core"]
 				},
-				includes: ["css/PageFixer.css"],
+				includes: ["css/PageFixer.css", "css/base.css"],
 				properties: {
 					componentData: "",
 					eventBusSubscription: {
