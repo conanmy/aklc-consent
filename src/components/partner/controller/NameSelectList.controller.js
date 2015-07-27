@@ -35,8 +35,7 @@ sap.ui.define(["aklc/cm/controller/BaseController", "sap/m/MessageBox"],
 				var itemPath = listItem.getBindingContextPath();
 				this.selectedPath = itemPath;
 
-				this.getView().byId("partnerObject").bindElement(itemPath + "/Partners");
-				this.getView().byId("partnerDetails").setVisible(true);
+				this.getView().byId("partnerDetails").bindElement(itemPath).setVisible(true);
 			},
 
 			goBack: function() {
@@ -84,8 +83,10 @@ sap.ui.define(["aklc/cm/controller/BaseController", "sap/m/MessageBox"],
 			},
 
 			reset: function() {
+				this.getView().byId("partnerDetails").unbindElement();
 				this.getView().byId("partnerDetails").setVisible(false);
-				this.oList.removeSelections();
+				this.getView().byId("nameSelectList").setVisible(true);
+				this.oList.removeSelections && this.oList.removeSelections();
 			}
 		});
 	});

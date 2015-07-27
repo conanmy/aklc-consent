@@ -37,19 +37,27 @@ sap.ui.define(["aklc/cm/controller/BaseController", "sap/m/MessageBox"], functio
 				"selected",
 				function(sChannel, sEventId, oParams) {
 					var path = oParams.path;
+					var partner = that._oModel.getProperty(path);
 					var nameList = that._getView(that._basePath + "NameSelectList");
+
+					var nameListController = nameList.getController();
+					nameListController && nameListController.reset();
+
 					if (!that.isInNameSelectList()) {
 						container.removeAllContent();
 						container.addContent(nameList);
 					}
+
 					nameList.bindElement(
 						"/PartnerFunctions(" + that._getPartnerFunctionCode(path) + ")"
 					);
-					nameList.byId("partnerObject").bindElement(
-						path + "/Partners"
-					);
-					nameList.byId("partnerDates").bindElement(path);
-					nameList.byId("partnerDetails").setVisible(true);
+					if (!partner.Unassigned) {
+						nameList.byId("partnerDetails").bindElement(path);
+						nameList.byId("partnerDetails").setVisible(true);
+						if (partner.Readonly) {
+							nameList.byId("nameSelectList").setVisible(false);
+						}
+					}
 				}
 			);
 		},

@@ -6,12 +6,12 @@
             <Button icon="sap-icon://action" press="goBack" ariaLabelledBy="actionButtonLabel" />
         </Toolbar>
         <Panel id="partnerDetails" visible="false">
-            <ObjectHeader title="Name: {FirstName} {LastName}" id="partnerObject">
+            <ObjectHeader title="Name: {Partners/FirstName} {Partners/LastName}" id="partnerObject">
                 <attributes>
-                    <ObjectAttribute text="Email: {Email}" />
-                    <ObjectAttribute text="Phone: {Telephone}" />
-                    <ObjectAttribute text="Company: {Company}" />
-                    <ObjectAttribute text="Address: {Address1}, PostCode: {PostCode}" />
+                    <ObjectAttribute text="Email: {Partners/Email}" />
+                    <ObjectAttribute text="Phone: {Partners/Telephone}" />
+                    <ObjectAttribute text="Company: {Partners/Company}" />
+                    <ObjectAttribute text="Address: {Partners/Address1}, PostCode: {Partners/PostCode}" />
                 </attributes>
             </ObjectHeader>
             <Toolbar height="auto" id="partnerDates">
@@ -22,7 +22,9 @@
                     placeholder="Enter Date ..."
                     valueFormat="yyyy-MM-dd"
                     class="sapUiSmallMarginBottom"
-                    width="150px" />
+                    width="150px"
+                    visible="{= !${Readonly} }" />
+                <Text text="{path:'ValidFrom', type:'sap.ui.model.type.Date'}" visible="{= ${Readonly} }" />
                 <ToolbarSpacer width="50px"/>
                 <Label text="ValidTo" />
                 <DatePicker
@@ -31,22 +33,26 @@
                     placeholder="Enter Date ..."
                     valueFormat="yyyy-MM-dd"
                     class="sapUiSmallMarginBottom"
-                    width="150px" />
+                    width="150px"
+                    visible="{= !${Readonly} }" />
+                <Text text="{path:'ValidTo', type:'sap.ui.model.type.Date'}" visible="{= ${Readonly} }" />
             </Toolbar>
-            <Button text="Save" press="onSave" />
+            <Button id="partnerObjectSaveBtn" text="Save" press="onSave" visible="{= !${Readonly} }" />
         </Panel>
-        <Toolbar>
-            <SearchField liveChange="onSearch" width="100%" />
-        </Toolbar>
-        <List id="nameSelectList" items="{path: 'PartnerRelations', parameters: { expand: 'Partners' }}" selectionChange="onSelectionChange" mode="SingleSelectMaster" includeItemInSelection="true">
-            <infoToolbar>
-                <Toolbar visible="false" id="idInfoToolbar">
-                    <Label id="idFilterLabel" />
-                </Toolbar>
-            </infoToolbar>
-            <items>
-                <StandardListItem title="{Partners/FirstName} {Partners/LastName} ( {PartnerNumber} )" />
-            </items>
-        </List>
+        <Panel id="nameSelectList">
+            <Toolbar>
+                <SearchField liveChange="onSearch" width="100%" />
+            </Toolbar>
+            <List items="{path: 'PartnerRelations', parameters: { expand: 'Partners' }}" selectionChange="onSelectionChange" mode="SingleSelectMaster" includeItemInSelection="true">
+                <infoToolbar>
+                    <Toolbar visible="false" id="idInfoToolbar">
+                        <Label id="idFilterLabel" />
+                    </Toolbar>
+                </infoToolbar>
+                <items>
+                    <StandardListItem title="{Partners/FirstName} {Partners/LastName} ( {PartnerNumber} )" />
+                </items>
+            </List>
+        </Panel>
     </Panel>
 </mvc:View>
