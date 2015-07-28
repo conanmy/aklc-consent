@@ -4,7 +4,7 @@ sap.ui.define([
 	"use strict";
 
 	return {
-		_sServiceUrl: "here/goes/your/serviceUrl/",
+		_sServiceUrl: "/here/goes/your/serviceUrl/",
 		_sModulePath: "test.service",
 
 		/**
@@ -32,32 +32,32 @@ sap.ui.define([
 			});
 
 			oMockServer.simulate(sPath + "/metadata.xml", sPath);
-			var aRequests = oMockServer.getRequests(),
-				fnResponse = function(iErrCode, sMessage, aRequest) {
-					aRequest.response = function(oXhr) {
-						oXhr.respond(iErrCode, {
-							"Content-Type": "text/plain;charset=utf-8"
-						}, sMessage);
-					};
-				};
+			// var aRequests = oMockServer.getRequests(),
+			// 	fnResponse = function(iErrCode, sMessage, aRequest) {
+			// 		aRequest.response = function(oXhr) {
+			// 			oXhr.respond(iErrCode, {
+			// 				"Content-Type": "text/plain;charset=utf-8"
+			// 			}, sMessage);
+			// 		};
+			// 	};
 
-			// handling the metadata error test
-			if (oUriParameters.get("metadataError")) {
-				aRequests.forEach(function(aEntry) {
-					if (aEntry.path.toString().indexOf("$metadata") > -1) {
-						fnResponse(500, "metadata Error", aEntry);
-					}
-				});
-			}
+			// // handling the metadata error test
+			// if (oUriParameters.get("metadataError")) {
+			// 	aRequests.forEach(function(aEntry) {
+			// 		if (aEntry.path.toString().indexOf("$metadata") > -1) {
+			// 			fnResponse(500, "metadata Error", aEntry);
+			// 		}
+			// 	});
+			// }
 
-			// Handling request errors
-			if (sErrorParam) {
-				aRequests.forEach(function(aEntry) {
-					if (aEntry.path.toString().indexOf(sEntity) > -1) {
-						fnResponse(iErrorCode, sErrorParam, aEntry);
-					}
-				});
-			}
+			// // Handling request errors
+			// if (sErrorParam) {
+			// 	aRequests.forEach(function(aEntry) {
+			// 		if (aEntry.path.toString().indexOf(sEntity) > -1) {
+			// 			fnResponse(iErrorCode, sErrorParam, aEntry);
+			// 		}
+			// 	});
+			// }
 			oMockServer.start();
 
 			jQuery.sap.log.info("Running the app with mock data");

@@ -26,16 +26,14 @@
     "grunt-eslint": "^3.0.0",
     "grunt-karma": "^0.12.0",
     "grunt-openui5": "^0.7.0",
-    "install": "^0.1.8",
     "karma": "^0.13.3",
     "karma-chrome-launcher": "^0.2.0",
-    "karma-coverage": "^0.4.2",
-    "karma-junit-reporter": "^0.3.3",
+    "karma-coverage": "^0.3.1",
+    "karma-junit-reporter": "^0.2.2",
     "karma-openui5": "^0.2.1",
     "karma-phantomjs-launcher": "^0.2.0",
     "karma-phantomjs-shim": "^1.0.0",
     "karma-qunit": "^0.1.5",
-    "phantomjs": "^1.9.17",
     "qunitjs": "^1.18.0"
   }
 }

@@ -128,8 +128,8 @@ module.exports = function(grunt) {
 				proxies: {
 					"/resources/": "http://localhost:<%= port %>/resources/",
 					"/index.html": "http://localhost:<%= port %>/index.html",
-					"/src/": "http://localhost:<%= port %>/src/", //this mapping comes from testService.html - see resource mappings there
-					"/test/": "http://localhost:<%= port %>/test/" //this mapping comes from testService.html - see resource mappings there
+					"/src/": "http://localhost:<%= port %>/src/",
+					"/test/": "http://localhost:<%= port %>/test/"
 				},
 				frameworks: ["openui5", "qunit", "phantomjs-shim"],
 				openui5: {
@@ -145,7 +145,6 @@ module.exports = function(grunt) {
 							resourceroots: {
 								"aklc.cm": "./src/",
 								test: "./test/",
-								// this mapping is required to map the index.html when OPA5 tests run the application in an iFrame
 								"aklc.cm.index": "/index"
 							}
 						}
@@ -205,15 +204,7 @@ module.exports = function(grunt) {
 					src: ["test/integration/AllJourneys.js"],
 					included: true
 				}],
-				reporters: ["progress", "coverage"],
-				preprocessors: {
-					"src/**/*.js": ["coverage"]
-				},
-				coverageReporter: {
-					type: "text",
-					file: "coverage.txt",
-					dir: "reports/coverage/integration"
-				},
+				reporters: ["progress"],
 				autoWatch: false,
 				singleRun: true
 			}
@@ -240,11 +231,6 @@ module.exports = function(grunt) {
 	// Build task
 	grunt.registerTask("build", ["lint", "clean", "openui5_preload", "copy"]);
 	grunt.registerTask("buildRun", ["build", "serve:dist"]);
-
-	// Test task
-	// grunt.registerTask("test", ["openui5_connect:src", "qunit:unit", "qunit:opa"]);
-	// grunt.registerTask("unitTest", ["openui5_connect:src", "qunit:unit"]);
-	// grunt.registerTask("opaTest", ["openui5_connect:src", "qunit:opa"]);
 	grunt.registerTask("test", ["openui5_connect:src", "karma:unitTests_ci", "karma:integrationTests_ci"]);
 	grunt.registerTask("unitTests", ["openui5_connect:src", "karma:unitTests"]);
 	grunt.registerTask("unitTests_ci", ["openui5_connect:src", "karma:unitTests_ci"]);
