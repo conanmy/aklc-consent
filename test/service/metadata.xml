@@ -64,11 +64,10 @@
             </EntityType>
             <EntityType Name="AssignedPartners" sap:content-version="1">
                 <Key>
-                    <PropertyRef Name="ProcessKey" />
-                    <PropertyRef Name="PartnerFunctionCode" />
-                    <PropertyRef Name="PartnerNumber" />
+                    <PropertyRef Name="KEY" />
                 </Key>
                 <Property Name="ProcessKey" Type="Edm.String" Nullable="false" />
+                <Property Name="KEY" Type="Edm.String" Nullable="false" />
                 <Property Name="PartnerFunctionCode" Type="Edm.Int32" Nullable="false" />
                 <Property Name="PartnerNumber" Type="Edm.Int32" />
                 <Property Name="ValidFrom" Type="Edm.DateTime" Nullable="false" />

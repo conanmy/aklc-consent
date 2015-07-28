@@ -47,17 +47,8 @@ sap.ui.define(["aklc/cm/controller/BaseController", "sap/m/MessageBox"],
 			},
 
 			onSave: function() {
-				var path = this.selectedPath;
-				var numberMark = "PartnerNumber=";
-				var codeMark = "PartnerFunctionCode=";
-				var PartnerNumber = path.substring(
-					path.indexOf(numberMark) + numberMark.length,
-					path.indexOf(",")
-				) - 0;
-				var PartnerFunctionCode = path.substring(
-					path.indexOf(codeMark) + codeMark.length,
-					path.indexOf(")")
-				) - 0;
+				var oModel = this.getView().getModel();
+				var partnerRelation = oModel.getProperty(this.selectedPath);
 
 				var ValidFrom = this.getView().byId("DPValidFrom").getValue();
 				var ValidTo = this.getView().byId("DPValidTo").getValue();
@@ -66,17 +57,18 @@ sap.ui.define(["aklc/cm/controller/BaseController", "sap/m/MessageBox"],
 					return false;
 				}
 
-				this.getView().getModel().create(
-					"/AssignedPartners", {
-						PartnerNumber: PartnerNumber,
-						PartnerFunctionCode: PartnerFunctionCode,
-						ProcessKey: "P1",
-						ValidFrom: new Date(ValidFrom),
-						ValidTo: new Date(ValidTo),
-						Mandatory: false,
-						Readonly: false,
-						Unassigned: false
-					}
+				var partnerData = {
+					PartnerNumber: partnerRelation.PartnerNumber,
+					PartnerFunctionCode: partnerRelation.PartnerFunctionCode,
+					ProcessKey: "P1",
+					ValidFrom: new Date(ValidFrom),
+					ValidTo: new Date(ValidTo),
+					Mandatory: false,
+					Readonly: false,
+					Unassigned: false
+				};
+				oModel.create(
+					"/AssignedPartners", partnerData
 				);
 
 				this.goBack();

@@ -49,7 +49,7 @@ sap.ui.define(["aklc/cm/controller/BaseController", "sap/m/MessageBox"], functio
 					}
 
 					nameList.bindElement(
-						"/PartnerFunctions(" + that._getPartnerFunctionCode(path) + ")"
+						"/PartnerFunctions(" + partner.PartnerFunctionCode + ")"
 					);
 					if (!partner.Unassigned) {
 						nameList.byId("partnerDetails").bindElement(path);
@@ -60,19 +60,6 @@ sap.ui.define(["aklc/cm/controller/BaseController", "sap/m/MessageBox"], functio
 					}
 				}
 			);
-		},
-
-		/**
-		 * get function code from path
-		 * @param  {string} path given path of the selected assigned partner
-		 * @return {number} function code
-		 */
-		_getPartnerFunctionCode: function(path) {
-			var codeMark = "PartnerFunctionCode=";
-			return path.substring(
-				path.indexOf(codeMark) + codeMark.length,
-				path.indexOf(",PartnerNumber")
-			) - 0;
 		},
 
 		_getView: function(sStepViewName) {
