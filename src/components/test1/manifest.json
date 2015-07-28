@@ -1,0 +1,28 @@
+{
+	"sap.ui5": {
+		"rootView": "aklc.cm.components.test1.view.Main",
+		"resources": {
+			"css": [{
+				"uri": "css/FormFixer.css",
+				"id": "FormFixerCSS"
+			}]
+		},
+		"dependencies": {
+			"minUI5Version": "1.30",
+			"libs": {
+				"sap.m": {},
+				"sap.ui.layout": {},
+				"sap.ui.commons": {},
+				"sap.ui.ux3": {}
+			}
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "aklc.cm.components.test1.i18n.i18n"
+				}
+			}
+		}
+	}
+}

@@ -16,9 +16,15 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/core/ComponentContainer", "
 				this._oRouter.attachRouteMatched(this.routeMatched.bind(this));
 				this._oProcessViewer = this.getView().byId("ProcessViewer");
 				this._oModel = this._oComponent.getModel();
-				this._oContainer = new ComponentContainer(this.createId("CONTAINTER"));
+				this._oContainer = new ComponentContainer(this.createId("CONTAINTER"), {
+					handleValidation: true
+				});
 				this._oViewModel = new JSONModel({});
 				this.getView().setModel(this._oViewModel, "vm");
+
+				// register the OData model as the message processor
+				sap.ui.getCore().getMessageManager().registerMessageProcessor(this._oModel);
+
 			},
 
 			/**

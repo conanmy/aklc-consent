@@ -72,6 +72,24 @@ sap.ui.define(["sap/ui/ux3/ThingViewer", "sap/ui/ux3/ActionBar", "./ProcessViewe
 				visible: false
 			});
 
+			this._oActionMessages = new sap.ui.commons.Button({
+				id: "messages",
+				icon: "sap-icon://alert",
+				text: {
+					path: "msg>/",
+					formatter: function(aMsg) {
+						return aMsg.length;
+					}
+				},
+				visible: {
+					path: "msg>/",
+					formatter: function(aMsg) {
+						return aMsg.length > 0;
+					}
+				},
+				press: this.showMessages.bind(this)
+			});
+			this._oActionMessages.setModel(sap.ui.getCore().getMessageManager().getMessageModel(), "msg");
 			this.addNavigationActions();
 		};
 
@@ -98,6 +116,7 @@ sap.ui.define(["sap/ui/ux3/ThingViewer", "sap/ui/ux3/ActionBar", "./ProcessViewe
 			if (this.getActionBar()) {
 				this.getActionBar().insertAggregation("_businessActionButtons", this._oActionNext, 0, true);
 				this.getActionBar().insertAggregation("_businessActionButtons", this._oActionPrevious, 0, true);
+				this.getActionBar().insertAggregation("_businessActionButtons", this._oActionMessages, 0, true);
 			}
 		};
 
@@ -169,6 +188,24 @@ sap.ui.define(["sap/ui/ux3/ThingViewer", "sap/ui/ux3/ActionBar", "./ProcessViewe
 
 		ProcessViewer.prototype._getNavBar = function() {
 			return this._oNavBar;
+		};
+
+		ProcessViewer.prototype.showMessages = function(oEvent) {
+			var oMessageTemplate = new sap.m.MessagePopoverItem({
+				type: "{msg>type}",
+				title: "{msg>message}",
+				description: "{msg>description}"
+			});
+
+
+			var oMessagePopover = new sap.m.MessagePopover({
+				items: {
+					path: "msg>/",
+					template: oMessageTemplate
+				}
+			});
+			oMessagePopover.setModel(sap.ui.getCore().getMessageManager().getMessageModel(), "msg");
+			oMessagePopover.openBy(oEvent.getSource());
 		};
 
 		return ProcessViewer;

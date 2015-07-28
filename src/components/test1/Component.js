@@ -5,24 +5,18 @@ sap.ui.define([
 		"use strict";
 
 		var Component = UIComponent.extend("aklc.cm.components.test1.Component", {
-
 			metadata: {
-				rootView: "aklc.cm.components.test1.view.Main",
-				handleValidation: true,
-				dependencies: {
-					libs: ["sap.ui.core", "sap.ui.layout"]
-				},
-				includes: ["css/FormFixer.css"],
-				properties: {
-					componentData: "",
-					eventBusSubscription: {
-						name: "eventBusSubscription",
-						type: "object",
-						defaultValue: {
-							channel: "test1",
-							events: {
-								contextChanged: "contextChanged",
-								checkValid: "checkValid"
+				manifest: "json",
+				"properties": { //TODO manifest property bag
+					"componentData": {},
+					"eventBusSubscription": {
+						"name": "eventBusSubscription",
+						"type": "object",
+						"defaultValue": {
+							"channel": "test1",
+							"events": {
+								"contextChanged": "contextChanged",
+								"checkValid": "checkValid"
 							}
 						}
 					}
