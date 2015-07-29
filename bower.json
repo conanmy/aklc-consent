@@ -1,30 +1,35 @@
 {
-    "name": "masterdetail",
-    "version": "0.0.0",
-    "authors": [
-        "SAP SE"
-    ],
-    "description": "masterdetail",
-    "main": "webapp/index.html",
-    "keywords": [
-        "masterdetail"
-    ],
-    "license": "MIT",
-    "private": true,
-    "ignore": [
-        "**/.*",
-        "node_modules",
-        "bower_components",
-        "test",
-        "tests"
-    ],
-    "dependencies": {
-        "openui5-sap.ui.core": "openui5/packaged-sap.ui.core#1.28.5",
-        "openui5-sap.m": "openui5/packaged-sap.m#1.28.5",
-        "openui5-sap.ui.layout": "openui5/packaged-sap.ui.layout#1.28.5",
-        "openui5-sap.ui.commons": "openui5/packaged-sap.ui.commons#1.28.5",
-        "openui5-sap.ui.ux3": "openui5/packaged-sap.ui.ux3#1.28.5",
-        "openui5-sap.ui.unified": "openui5/packaged-sap.ui.unified#1.28.5",
-        "openui5-themelib_sap_bluecrystal": "openui5/packaged-themelib_sap_bluecrystal#1.28.5"
-    }
+  "name": "Processing App framework",
+  "version": "0.0.1",
+  "authors": [
+    "Frank Ma",
+    "John Patterson"
+  ],
+  "description": "Forms processing app",
+  "main": "src/index.html",
+  "keywords": [
+    "masterdetail"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test"
+  ],
+  "dependencies": {
+    "openui5-sap.ui.core": "openui5/packaged-sap.ui.core#1.30.4",
+    "openui5-sap.m": "openui5/packaged-sap.m#1.30.4",
+    "openui5-sap.ui.layout": "openui5/packaged-sap.ui.layout#1.30.4",
+    "openui5-sap.ui.commons": "openui5/packaged-sap.ui.commons#1.30.4",
+    "openui5-sap.ui.ux3": "openui5/packaged-sap.ui.ux3#1.30.4",
+    "openui5-sap.ui.unified": "openui5/packaged-sap.ui.unified#1.30.4",
+    "openui5-themelib_sap_bluecrystal": "openui5/packaged-themelib_sap_bluecrystal#1.30.4"
+  },
+  "resolutions": {
+    "openui5-sap.ui.core": "1.30.4",
+    "openui5-sap.ui.layout": "1.30.4",
+    "openui5-sap.ui.commons": "1.30.4"
+  }
 }

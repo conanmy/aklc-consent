@@ -185,11 +185,20 @@ sap.ui.define(
 
 		//Action check next and previous
 		QUnit.test("Action - Next", function() {
-			var oActionBar = oProcessViewer.getActionBar();
-			var oButtons = oActionBar.getAggregation("_businessActionButtons");
+			var aButtons = oProcessViewer.getActionBar().getAggregation("_businessActionButtons");
+			var oPreviousBtn, oNextBtn;
 
-			var oPreviousBtn = oButtons[0];
-			var oNextBtn = oButtons[1];
+			aButtons.forEach(function(oButton) {
+				switch (oButton.getId()) {
+					case "previous":
+						oPreviousBtn = oButton;
+						break;
+					case "next":
+						oNextBtn = oButton;
+						break;
+					default:
+				}
+			});
 
 			ok(!oPreviousBtn.getVisible(), "Previous Button should not be visible");
 			ok(oNextBtn.getVisible(), "Next Button should  be visible");
@@ -222,11 +231,20 @@ sap.ui.define(
 					var iIndex = oNavBarData.indexOf(oFacet);
 					var sPreviousTxt = oNavBarData[iIndex - 1].text;
 					var sNextTxt = oNavBarData[iIndex + 1].text;
-					var oActionBar = oProcessViewer.getActionBar();
-					var oButtons = oActionBar.getAggregation("_businessActionButtons");
+					var aButtons = oProcessViewer.getActionBar().getAggregation("_businessActionButtons");
+					var oPreviousBtn, oNextBtn;
 
-					var oPreviousBtn = oButtons[0];
-					var oNextBtn = oButtons[1];
+					aButtons.forEach(function(oButton) {
+						switch (oButton.getId()) {
+							case "previous":
+								oPreviousBtn = oButton;
+								break;
+							case "next":
+								oNextBtn = oButton;
+								break;
+							default:
+						}
+					});
 
 					ok(oPreviousBtn.getVisible(), "Previous Button should be visible");
 					ok(oNextBtn.getVisible(), "Next Button should  be visible");

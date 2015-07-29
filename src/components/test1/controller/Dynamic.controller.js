@@ -6,6 +6,9 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
 		_oForm: null, // Form control
 		onInit: function() {
 			BaseController.prototype.onInit.apply(this);
+
+			this._oBundle = this.getComponent().getModel("i18n").getResourceBundle();
+			this._oMessageManager = sap.ui.getCore().getMessageManager();
 		},
 
 		/**
@@ -42,8 +45,8 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
 		},
 
 		/**
-		 * create form content
-		 * @param  {[type]} oContext current context
+		 * [createFormContent description]
+		 * @param  {[type]} oBinding [description]
 		 */
 		createFormContent: function(oBinding) {
 			if (this.bAlready || !oBinding) {
@@ -99,12 +102,14 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
 		 * @param  {object} oControl field that was changed
 		 */
 		fieldChange: function(oControl) {
-			// this.setDirty();
+			var sPath = oControl.getBindingContext().getPath() + "/Value";
+			var aMessage = this._oModel.getMessagesByPath(sPath);
 
-			// Removes previous error state
-			if (oControl.setValueState) {
-				oControl.setValueState(sap.ui.core.ValueState.None);
+			// remove message
+			if (aMessage && this.fieldHasValue(oControl)) {
+				this._oMessageManager.removeMessages(aMessage);
 			}
+
 		},
 
 		/**
@@ -116,70 +121,59 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
 		},
 
 		/**
-		 * [resetValueStates description]
-		 * @return {[type]} [description]
+		 * [fieldHasValue description]
+		 * @param  {object} oControl [description]
+		 * @return {boolean}          has value
 		 */
-		resetValueStates: function() {
-			this._aInputFields.forEach(function(oControl) {
-				oControl.setValueState(sap.ui.core.ValueState.None);
-			});
+		fieldHasValue: function(oControl) {
+			switch (oControl.getMetadata().getName()) {
+				case "sap.m.ComboBox":
+					if (oControl.getSelectedKey()) {
+						return true;
+					}
+					break;
+				case "sap.m.Input":
+					if (oControl.getValue() && oControl.getValue().trim() !== "") {
+						return true;
+					}
+					break;
+				case "sap.m.MultiComboBox":
+					if (oControl.getSelectedKeys().length > 0) {
+						return true;
+					}
+					break;
+				default:
+					return true;
+			}
 		},
 
 		/**
-		 * determines if fields have error state
-		 */
-		fieldWithErrorState: function() {
-			this._aInputFields.some(function(oControl) {
-				return (oControl.getValueState() === sap.ui.core.ValueState.Error);
-			});
-		},
-
-		/**
-		 * [checkAndMarkEmptyMandatoryFields description]
-		 * @return {[type]} [description]
+		 * check mandatory fields for values
+		 * @return {boolean} errors occured
 		 */
 		checkAndMarkEmptyMandatoryFields: function() {
 			var bErrors = false;
 
-			//TODO - single mm needs to be injected from parent component
-			var oMessageProcessor = new sap.ui.core.message.ControlMessageProcessor();
-			var oMessageManager = sap.ui.getCore().getMessageManager();
-			oMessageManager.registerMessageProcessor(oMessageProcessor);
-
 			// Check that inputs are not empty or space.
 			// This does not happen during data binding because this is only triggered by changes.
 			this._aMandatoryFields.forEach(function(oControl) {
-				switch (oControl.getMetadata().getName()) {
-					case "sap.m.ComboBox":
-						if (!oControl.getSelectedKey()) {
-							bErrors = true;
-							oControl.setValueState(sap.ui.core.ValueState.Error);
-						}
-						break;
-					case "sap.m.Input":
-						if (!oControl.getValue() || oControl.getValue().trim() === "") {
-							bErrors = true;
-							oControl.setValueState(sap.ui.core.ValueState.Error);
+				if (!this.fieldHasValue(oControl)) {
+					var sFieldLabel = this._oModel.getProperty("Label", oControl.getBindingContext());
+					var sTargetId = oControl.getBindingContext().getPath() + "/Value";
+					bErrors = true;
 
-							oMessageManager.addMessages(
-								new sap.ui.core.message.Message({
-									message: "custom message",
-									type: sap.ui.core.MessageType.Error,
-									target: oControl.getId() + "/value",
-									processor: oMessageProcessor
-								})
-							);
-						}
-						break;
-					case "sap.m.MultiComboBox":
-						if (oControl.getSelectedKeys().length === 0) {
-							bErrors = true;
-							oControl.setValueState(sap.ui.core.ValueState.Error);
-						}
-						break;
-					default:
+					if (!this._oModel.getMessagesByPath(sTargetId)) {
+						this._oMessageManager.addMessages(
+							new sap.ui.core.message.Message({
+								message: this._oBundle.getText("MANDATORY_FIELD", [sFieldLabel]),
+								type: sap.ui.core.MessageType.Error,
+								target: sTargetId,
+								processor: this._oModel
+							})
+						);
+					}
 				}
-			});
+			}.bind(this));
 
 			return bErrors;
 		},
@@ -191,8 +185,8 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
 		 */
 		createFormContainer: function(oContext) {
 			var oData = this._oModel.getProperty(null, oContext);
-			var sValuePath = oContext.getPath() + "/Value";
-			var sLookupPath = oContext.getPath() + "/Lookup";
+			var sValuePath = "Value";
+			var sLookupPath = "Lookup";
 			var oControl;
 			var oTemplate = new sap.ui.core.Item({
 				key: "{Key}",
@@ -254,7 +248,7 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
 						value: {
 							path: sValuePath
 						},
-						change: this.onInputChange.bind(this),
+						liveChange: this.onInputChange.bind(this),
 						placeholder: oData.Placeholder,
 						layoutData: oLayoutData
 					});
@@ -262,6 +256,7 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
 				default:
 					break;
 			}
+			// oControl.setBindingContext(oContext);
 			sap.ui.getCore().getMessageManager().registerObject(oControl, true);
 			this._aInputFields.push(oControl);
 			if (oData.Required) {
@@ -271,7 +266,7 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
 			return new sap.ui.layout.form.FormContainer({
 				formElements: new sap.ui.layout.form.FormElement({
 					fields: [oLabel, oControl]
-				})
+				}).setBindingContext(oContext)
 			});
 		}
 	});

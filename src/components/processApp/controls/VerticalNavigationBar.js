@@ -50,7 +50,7 @@ sap.ui.define(["sap/ui/ux3/NavigationBar"],
 		};
 
 		VerticalNavigationBar.prototype.onAfterRendering = function() {
-			sap.ui.ux3.NavigationBar.prototype.onAfterRendering.apply(this);
+			//sap.ui.ux3.NavigationBar.prototype.onAfterRendering.apply(this);
 
 			if (this.getItems().length !== 0) {
 				this._cacheDOMElements();

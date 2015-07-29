@@ -8,8 +8,6 @@
                 </Key>
                 <Property Name="ProcessKey" Type="Edm.String" Nullable="false" />
                 <Property Name="Title" Type="Edm.String" />
-                <Property Name="Icon" Type="Edm.String" />
-                <Property Name="Logo" Type="Edm.String" />
                 <NavigationProperty Name="Steps" Relationship="ODataDemo.FK_ProcessSteps" FromRole="FromRole_ProcessSteps" ToRole="ToRole_ProcessSteps" />
                 <NavigationProperty Name="AssignedPartners" Relationship="ODataDemo.FK_ProcessAssignedPartners" FromRole="FromRole_ProcessAssignedPartners" ToRole="ToRole_ProcessAssignedPartners" />
             </EntityType>
