@@ -4,7 +4,8 @@ sap.ui.define(["aklc/cm/controller/BaseController", "sap/m/MessageBox"],
 		return BaseController.extend("aklc.cm.components.partner.controller.NameSelectList", {
 			sCollection: "/Partners",
 			sExpand: "PartnerRelations",
-			selectedPath: null,
+			selectedPath: null,  // mark selected item in PartnerRelation
+			currentBindingPath: null,  // mark selected item in AssignedPartners
 
 			onInit: function(oEvent) {
 				this.oList = this.getView().byId("nameSelectList");
@@ -62,14 +63,21 @@ sap.ui.define(["aklc/cm/controller/BaseController", "sap/m/MessageBox"],
 					PartnerFunctionCode: partnerRelation.PartnerFunctionCode,
 					ProcessKey: "P1",
 					ValidFrom: new Date(ValidFrom),
-					ValidTo: new Date(ValidTo),
-					Mandatory: false,
-					Readonly: false,
-					Unassigned: false
+					ValidTo: new Date(ValidTo)
 				};
-				oModel.create(
-					"/AssignedPartners", partnerData
-				);
+				if (!this.currentBindingPath) {
+					partnerData.Mandatory = false;
+					partnerData.Readonly = false;
+					partnerData.Unassigned = false;
+					oModel.create(
+						"/AssignedPartners", partnerData
+					);
+				} else {
+					partnerData.Unassigned = false;
+					oModel.update(
+						this.currentBindingPath, partnerData
+					);
+				}
 
 				this.goBack();
 			},
@@ -79,6 +87,7 @@ sap.ui.define(["aklc/cm/controller/BaseController", "sap/m/MessageBox"],
 				this.getView().byId("partnerDetails").setVisible(false);
 				this.getView().byId("nameSelectSection").setVisible(true);
 				this.oList.removeSelections();
+				this.currentBindingPath = null;
 			}
 		});
 	});
