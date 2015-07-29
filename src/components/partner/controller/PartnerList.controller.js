@@ -1,4 +1,6 @@
-sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
+sap.ui.define(
+	["aklc/cm/controller/BaseController", "sap/ui/model/json/JSONModel"],
+	function(BaseController, JSONModel) {
 	"use strict";
 	return BaseController.extend("aklc.cm.components.partner.controller.PartnerList", {
 		onListItemPress: function(oEvent) {
@@ -33,15 +35,42 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
 			}
 		},
 
-		/**
-		 * onCheckValid
-		 * we need to return false when validation not needed for this part
-		 * but needed for other parts of the module.
-		 * as in baseController the default action is resolve
-		 * so the promise will be resolved if any part is default
-		 */
-		onCheckValid: function(sChannel, sEvent, oData) {
-			return false;
+		getViolationData: function() {
+			var partnerFunctions = this._oModel.getProperty("/PartnerFunctions");
+			var partners = this._oModel.getProperty("/AssignedPartners");
+
+			var partnerCount = {};
+			for (var i = 0, partner; partner = partners[i++]; ) {
+				if (partnerCount[partner.partnerFunctionCode]) {
+					partnerCount[partner.partnerFunctionCode] ++;
+				} else {
+					partnerCount[partner.partnerFunctionCode] = 0;
+				}
+			}
+
+			var violationData = {
+				toFill: [],
+			    exceeded: []
+			};
+			for (var i = 0, func; func = partnerFunctions[i++]; ) {
+				var count = 0;
+				if (parnerCount[func.partnerFunctionCode]) {
+					count = parnerCount[func.partnerFunctionCode];
+				}
+				if (count < func.CountLow) {
+					violationData.toFill.push(func);
+				}
+				if (count > func.CountHigh) {
+					violationData.exceeded.push(func);
+				}
+			}
+
+			return violationData;
+		},
+
+		checkPartnerNumber: function() {
+			var violationData = this.getViolationData();
+			return (violationData.toFill.length + violationData.exceeded.length) === 0;
 		}
 	});
 });
