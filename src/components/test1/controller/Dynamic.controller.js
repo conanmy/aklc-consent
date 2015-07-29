@@ -104,12 +104,18 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
 		fieldChange: function(oControl) {
 			var sPath = oControl.getBindingContext().getPath() + "/Value";
 			var aMessage = this._oModel.getMessagesByPath(sPath);
+			var bHasValue = this.fieldHasValue(oControl);
+			var bIsMandatory = (this.getMandatoryFields().indexOf(oControl) !== -1);
 
-			// remove message
-			if (aMessage && this.fieldHasValue(oControl)) {
+			// remove message if exists
+			if (bHasValue && aMessage) {
 				this._oMessageManager.removeMessages(aMessage);
 			}
 
+			// add message if mandatory and no value
+			if (!bHasValue && !aMessage && bIsMandatory) {
+				this.addMandatoryMessage(oControl);
+			}
 		},
 
 		/**
@@ -121,7 +127,7 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
 		},
 
 		/**
-		 * [fieldHasValue description]
+		 * check that the controls value is not initial
 		 * @param  {object} oControl [description]
 		 * @return {boolean}          has value
 		 */
@@ -147,31 +153,33 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
 			}
 		},
 
+		addMandatoryMessage: function(oControl) {
+			var sFieldLabel = this._oModel.getProperty("Label", oControl.getBindingContext());
+			var sTargetId = oControl.getBindingContext().getPath() + "/Value";
+
+			if (!this._oModel.getMessagesByPath(sTargetId)) {
+				this._oMessageManager.addMessages(
+					new sap.ui.core.message.Message({
+						message: this._oBundle.getText("MANDATORY_FIELD", [sFieldLabel]),
+						type: sap.ui.core.MessageType.Error,
+						target: sTargetId,
+						processor: this._oModel
+					})
+				);
+			}
+		},
+
 		/**
-		 * check mandatory fields for values
+		 * Check that inputs are not empty or space.
 		 * @return {boolean} errors occured
 		 */
 		checkAndMarkEmptyMandatoryFields: function() {
 			var bErrors = false;
 
-			// Check that inputs are not empty or space.
-			// This does not happen during data binding because this is only triggered by changes.
 			this._aMandatoryFields.forEach(function(oControl) {
 				if (!this.fieldHasValue(oControl)) {
-					var sFieldLabel = this._oModel.getProperty("Label", oControl.getBindingContext());
-					var sTargetId = oControl.getBindingContext().getPath() + "/Value";
 					bErrors = true;
-
-					if (!this._oModel.getMessagesByPath(sTargetId)) {
-						this._oMessageManager.addMessages(
-							new sap.ui.core.message.Message({
-								message: this._oBundle.getText("MANDATORY_FIELD", [sFieldLabel]),
-								type: sap.ui.core.MessageType.Error,
-								target: sTargetId,
-								processor: this._oModel
-							})
-						);
-					}
+					this.addMandatoryMessage(oControl);
 				}
 			}.bind(this));
 
@@ -256,7 +264,6 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
 				default:
 					break;
 			}
-			// oControl.setBindingContext(oContext);
 			sap.ui.getCore().getMessageManager().registerObject(oControl, true);
 			this._aInputFields.push(oControl);
 			if (oData.Required) {
