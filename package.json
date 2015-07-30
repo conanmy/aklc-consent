@@ -13,11 +13,11 @@
     ""
   ],
   "dependencies": {
-    "grunt-cli": "^0.1.13",
     "grunt": "^0.4.5",
     "bower": "*"
   },
   "devDependencies": {
+    "grunt-cli": "^0.1.13",
     "connect-openui5": "^0.4.0",
     "eslint": "^0.21.0",
     "eslint-plugin-openui5": "^0.1.0",
