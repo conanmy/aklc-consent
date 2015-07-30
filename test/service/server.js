@@ -19,9 +19,9 @@ sap.ui.define([
 				oMockServer = new MockServer({
 					rootUri: this._sServiceUrl
 				}),
-				sPath = jQuery.sap.getModulePath(this._sModulePath),
+				sPath = jQuery.sap.getModulePath(this._sModulePath);
 				// sEntity = "Objects",
-				sErrorParam = oUriParameters.get("errorType");
+				// sErrorParam = oUriParameters.get("errorType");
 				// iErrorCode = sErrorParam === "badRequest" ? 400 : 500;
 
 
