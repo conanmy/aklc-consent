@@ -63,8 +63,9 @@ sap.ui.define(
 					expand: "Partners,PartnerFunctions",
 					operationMode: "Client"
 				};
-
+				this._oModel.sDefaultOperationMode = "Client";
 				this.oList.bindItems(this.sCollection, this.oTemplate, null, null, oParams);
+				this._oModel.sDefaultOperationMode = "Server";
 			},
 
 			/**
@@ -91,19 +92,25 @@ sap.ui.define(
 				oProperties.Mandatory = false;
 				oProperties.Readonly = false;
 				oProperties.Unassigned = false;
+
+				// get guid for new entry
 				var sPath = this._oModel.createKey(this.sCollection, {
 					Guid: oProperties.Guid
 				});
+
+				// set the reference partner
 				oProperties.Partners = {};
 				oProperties.Partners.__ref = this._oModel.createKey("Partners", {
 					PartnerNumber: oProperties.PartnerNumber
 				});
 
+				// set the reference partner function
 				oProperties.PartnerFunctions = {};
 				oProperties.PartnerFunctions.__ref = this._oModel.createKey("PartnerFunctions", {
 					PartnerFunctionCode: oProperties.PartnerFunctionCode
 				});
 
+				// create entry
 				var oContext = this._oModel.createEntry(
 					sPath, {
 						properties: oProperties
