@@ -20,9 +20,9 @@ sap.ui.define([
 					rootUri: this._sServiceUrl
 				}),
 				sPath = jQuery.sap.getModulePath(this._sModulePath),
-				sEntity = "Objects",
-				sErrorParam = oUriParameters.get("errorType"),
-				iErrorCode = sErrorParam === "badRequest" ? 400 : 500;
+				// sEntity = "Objects",
+				sErrorParam = oUriParameters.get("errorType");
+				// iErrorCode = sErrorParam === "badRequest" ? 400 : 500;
 
 
 			// configure mock server with a delay of 1s
