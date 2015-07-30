@@ -93,19 +93,7 @@ sap.ui.define(["aklc/cm/controller/BaseController", "sap/m/MessageBox"], functio
 		},
 
 		onCheckValid: function(sChannel, sEvent, oData) {
-			if (this.isInNameSelectList()) {
-				MessageBox.confirm("Your current editing will be discarded.", {
-					onClose: function(oAction) {
-						if (oAction === "OK") {
-							oData.WhenValid.resolve();
-						} else {
-							jQuery.sap.log.info("Partners - validation errors");
-						}
-					}
-				});
-			} else {
-				oData.WhenValid.resolve();
-			}
+			return false;
 		}
 	});
 });

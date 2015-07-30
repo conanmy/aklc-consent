@@ -69,8 +69,18 @@ sap.ui.define(["aklc/cm/controller/BaseController", "sap/m/MessageBox"],
 					partnerData.Mandatory = false;
 					partnerData.Readonly = false;
 					partnerData.Unassigned = false;
-					oModel.create(
-						"/AssignedPartners", partnerData
+					var newGuid = function() {
+						return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+							var r = Math.random() * 16 | 0,
+							v = c === 'x' ? r : (r & 0x3 | 0x8);
+							return v.toString(16);
+						});
+					};
+					var sPath = oModel.createKey("/AssignedPartners", {Guid: newGuid()});
+					oModel.createEntry(
+						sPath, {
+							properties: partnerData
+						}
 					);
 				} else {
 					partnerData.Unassigned = false;

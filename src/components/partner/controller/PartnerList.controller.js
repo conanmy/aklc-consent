@@ -1,6 +1,6 @@
 sap.ui.define(
-	["aklc/cm/controller/BaseController", "sap/ui/model/json/JSONModel"],
-	function(BaseController, JSONModel) {
+	["aklc/cm/controller/BaseController", "sap/ui/model/json/JSONModel", "sap/m/MessageBox"],
+	function(BaseController, JSONModel, MessageBox) {
 	"use strict";
 	return BaseController.extend("aklc.cm.components.partner.controller.PartnerList", {
 		onListItemPress: function(oEvent) {
@@ -71,6 +71,14 @@ sap.ui.define(
 		checkPartnerNumber: function() {
 			var violationData = this.getViolationData();
 			return (violationData.toFill.length + violationData.exceeded.length) === 0;
+		},
+
+		onCheckValid: function(sChannel, sEvent, oData) {
+			if (!this.checkPartnerNumber()) {
+				MessageBox.alert("Your current editing will be discarded.");
+			} else {
+				oData.WhenValid.resolve();
+			}
 		}
 	});
 });

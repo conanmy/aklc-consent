@@ -1,6 +1,6 @@
 [{
+	"Guid": "658ab487-7cc0-4a4d-a2e7-8fac6eff1825",
 	"ProcessKey": "P1",
-	"KEY": "1223",
 	"PartnerFunctionCode": 11,
 	"PartnerNumber": 100,
 	"ValidFrom": "\/Date(1414661031000)\/",
@@ -9,8 +9,8 @@
 	"Mandatory": true,
 	"Unassigned": false
 }, {
+	"Guid": "b461963e-2d27-4a35-9d3d-fae7aaf94eb3",
 	"ProcessKey": "P1",
-	"KEY": "1222",
 	"PartnerFunctionCode": 12,
 	"PartnerNumber": 101,
 	"ValidFrom": "\/Date(1414661031000)\/",
@@ -19,16 +19,16 @@
 	"Mandatory": true,
 	"Unassigned": false
 }, {
+	"Guid": "5409b1de-295d-43ec-ad69-3aae861cb3c1",
 	"ProcessKey": "P1",
-	"KEY": "1213",
 	"PartnerFunctionCode": 16,
 	"PartnerNumber": null,
 	"Readonly": false,
 	"Mandatory": true,
 	"Unassigned": true
 }, {
+	"Guid": "bae37dd3-a0f4-4913-a4ee-07ed607336a1",
 	"ProcessKey": "P1",
-	"KEY": "1023",
 	"PartnerFunctionCode": 14,
 	"PartnerNumber": null,
 	"Readonly": false,

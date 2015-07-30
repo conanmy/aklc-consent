@@ -62,10 +62,10 @@
             </EntityType>
             <EntityType Name="AssignedPartners" sap:content-version="1">
                 <Key>
-                    <PropertyRef Name="KEY" />
+                    <PropertyRef Name="Guid" />
                 </Key>
+                <Property Name="Guid" Type="Edm.Guid" Nullable="false" sap:label="Object GUID" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
                 <Property Name="ProcessKey" Type="Edm.String" Nullable="false" />
-                <Property Name="KEY" Type="Edm.String" Nullable="false" />
                 <Property Name="PartnerFunctionCode" Type="Edm.Int32" Nullable="false" />
                 <Property Name="PartnerNumber" Type="Edm.Int32" />
                 <Property Name="ValidFrom" Type="Edm.DateTime" Nullable="false" />

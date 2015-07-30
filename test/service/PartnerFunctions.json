@@ -19,7 +19,7 @@
 }, {
     "PartnerFunctionCode": 14,
     "Description": "Debtor",
-    "CountLow": 0,
+    "CountLow": 1,
     "CountHigh": 10,
     "TransactionType": "ZZZZ"
 }, {
@@ -31,7 +31,7 @@
 }, {
     "PartnerFunctionCode": 16,
     "Description": "LBP",
-    "CountLow": 2,
+    "CountLow": 1,
     "CountHigh": 10,
     "TransactionType": "ZZZZ"
 }]
