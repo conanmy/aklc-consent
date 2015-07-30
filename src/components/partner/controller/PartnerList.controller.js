@@ -40,7 +40,8 @@ sap.ui.define(
 			var partners = this._oModel.getProperty("/AssignedPartners");
 
 			var partnerCount = {};
-			for (var i = 0, partner; partner = partners[i++]; ) {
+			for (var i = 0; i < partners.length; i++) {
+				var partner = partners[i];
 				if (partnerCount[partner.partnerFunctionCode]) {
 					partnerCount[partner.partnerFunctionCode] ++;
 				} else {
@@ -52,10 +53,11 @@ sap.ui.define(
 				toFill: [],
 			    exceeded: []
 			};
-			for (var i = 0, func; func = partnerFunctions[i++]; ) {
+			for (var j = 0; j < partnerFunctions.length; j++) {
+				var func = partnerFunctions[j];
 				var count = 0;
-				if (parnerCount[func.partnerFunctionCode]) {
-					count = parnerCount[func.partnerFunctionCode];
+				if (partnerCount[func.partnerFunctionCode]) {
+					count = partnerCount[func.partnerFunctionCode];
 				}
 				if (count < func.CountLow) {
 					violationData.toFill.push(func);

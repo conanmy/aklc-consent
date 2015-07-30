@@ -41,7 +41,9 @@ sap.ui.define(["aklc/cm/controller/BaseController", "sap/m/MessageBox"], functio
 					var nameList = that._getView(that._basePath + "NameSelectList");
 
 					var nameListController = nameList.getController();
-					nameListController && nameListController.reset();
+					if (nameListController) {
+						nameListController.reset();
+					}
 
 					if (!that.isInNameSelectList()) {
 						container.removeAllContent();
