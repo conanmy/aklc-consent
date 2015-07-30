@@ -108,7 +108,7 @@ sap.ui.define(["sap/ui/ux3/NavigationBar"],
 		};
 
 		VerticalNavigationBar.prototype.setSelectedItem = function(vItem) {
-			jQuery.sap.assert(this.getDomRef(), "Should have a domref.");
+			// jQuery.sap.assert(this.getDomRef(), "Should have a domref.");
 
 			var sItemId = (!vItem || (typeof vItem === "string")) ? vItem : vItem.getId();
 

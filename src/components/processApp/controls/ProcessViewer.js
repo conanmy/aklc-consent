@@ -116,7 +116,13 @@ sap.ui.define(["sap/ui/ux3/ThingViewer", "sap/ui/ux3/ActionBar", "./ProcessViewe
 			if (this.getActionBar()) {
 				this.getActionBar().insertAggregation("_businessActionButtons", this._oActionNext, 0, true);
 				this.getActionBar().insertAggregation("_businessActionButtons", this._oActionPrevious, 0, true);
-				this.getActionBar().insertAggregation("_businessActionButtons", this._oActionMessages, 0, true);
+
+				var oHeaderContent = new sap.ui.ux3.ThingGroup({
+					content: this._oActionMessages
+				});
+
+				this.addHeaderContent(oHeaderContent);
+				// this.getActionBar().insertAggregation("_businessActionButtons", this._oActionMessages, 0, true);
 			}
 		};
 

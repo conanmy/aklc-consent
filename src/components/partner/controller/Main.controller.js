@@ -1,4 +1,4 @@
-sap.ui.define(["aklc/cm/controller/BaseController", "sap/m/MessageBox"], function(BaseController, MessageBox) {
+sap.ui.define(["aklc/cm/library/common/controller/BaseController", "sap/m/MessageBox"], function(BaseController, MessageBox) {
 	"use strict";
 	return BaseController.extend("aklc.cm.components.partner.controller.Main", {
 		_oViewRegistry: [],
@@ -11,8 +11,8 @@ sap.ui.define(["aklc/cm/controller/BaseController", "sap/m/MessageBox"], functio
 			var container = that.getView().byId("splitContainer");
 			container.addContent(that._getView(that._basePath + "SelectList"));
 			that.getEventBus().subscribe(
-				'SelectList',
-				'selected',
+				"SelectList",
+				"selected",
 				function(sChannel, sEventId, oParams) {
 					container.removeAllContent();
 					var nameList = that._getView(that._basePath + "NameSelectList");
@@ -75,6 +75,10 @@ sap.ui.define(["aklc/cm/controller/BaseController", "sap/m/MessageBox"], functio
 				oComponent: this.getComponent()
 			};
 
+			//HACK - something destroys owner
+			if (!sap.ui.base.ManagedObject._sOwnerId) {
+				sap.ui.base.ManagedObject._sOwnerId = oViewData.oComponent.getId();
+			}
 			var oView = sap.ui.view({
 				type: sap.ui.core.mvc.ViewType.XML,
 				viewName: sStepViewName,

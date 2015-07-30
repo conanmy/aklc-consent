@@ -14,9 +14,9 @@
 		"dataSources": {
 			"processApi": {
 				"uri": "/here/goes/your/serviceUrl/",
-				"type": "OData",
 				"settings": {
-					"odataVersion": "2.0"
+					"odataVersion": "2.0",
+					"type": "OData"
 				}
 			}
 		}
@@ -48,7 +48,8 @@
 				"sap.m": {},
 				"sap.ui.layout": {},
 				"sap.ui.commons": {},
-				"sap.ui.ux3": {}
+				"sap.ui.ux3": {},
+				"aklc.cm.library.common": {}
 			}
 		},
 		"models": {
@@ -61,7 +62,7 @@
 			"": {
 				"settings": {
 					"defaultBindingMode": "TwoWay",
-					"useBatch": true
+					"useBatch": false
 				},
 				"dataSource": "processApi"
 			}

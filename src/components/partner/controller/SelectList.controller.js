@@ -1,7 +1,8 @@
-sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
+sap.ui.define(["aklc/cm/library/common/controller/BaseController"], function(BaseController) {
 	"use strict";
 	return BaseController.extend("aklc.cm.components.partner.controller.SelectList", {
 		onInit: function(evt) {
+			BaseController.prototype.onInit.apply(this);
 			this.targetList = this.getView().byId("selectList");
 		},
 
@@ -29,8 +30,8 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
 			var listItem = oEvt.mParameters.listItem;
 			var itemPath = listItem.getBindingContextPath();
 			this.getEventBus().publish(
-				'SelectList',
-				'selected', {
+				"SelectList",
+				"selected", {
 					path: itemPath
 				}
 			);

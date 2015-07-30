@@ -1,4 +1,4 @@
-sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
+sap.ui.define(["aklc/cm/library/common/controller/BaseController"], function(BaseController) {
 	"use strict";
 	return BaseController.extend("aklc.cm.components.test1.controller.Dynamic", {
 		_aInputFields: null,
@@ -103,17 +103,18 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
 		 */
 		fieldChange: function(oControl) {
 			var sPath = oControl.getBindingContext().getPath() + "/Value";
-			var aMessage = this._oModel.getMessagesByPath(sPath);
+			var aMessage = this._oModel.getMessagesByPath(sPath) || [];
+			var bHasMessages = aMessage.length !== 0;
 			var bHasValue = this.fieldHasValue(oControl);
 			var bIsMandatory = (this.getMandatoryFields().indexOf(oControl) !== -1);
 
 			// remove message if exists
-			if (bHasValue && aMessage) {
+			if (bHasValue && bHasMessages) {
 				this._oMessageManager.removeMessages(aMessage);
 			}
 
 			// add message if mandatory and no value
-			if (!bHasValue && !aMessage && bIsMandatory) {
+			if (!bHasValue && !bHasMessages && bIsMandatory) {
 				this.addMandatoryMessage(oControl);
 			}
 		},
@@ -151,18 +152,21 @@ sap.ui.define(["aklc/cm/controller/BaseController"], function(BaseController) {
 				default:
 					return true;
 			}
+			return false;
 		},
 
 		addMandatoryMessage: function(oControl) {
 			var sFieldLabel = this._oModel.getProperty("Label", oControl.getBindingContext());
-			var sTargetId = oControl.getBindingContext().getPath() + "/Value";
+			var sPath = oControl.getBindingContext().getPath() + "/Value";
+			var aMessages = this._oModel.getMessagesByPath(sPath) || [];
+			var bHasMessages = aMessages.length !== 0;
 
-			if (!this._oModel.getMessagesByPath(sTargetId)) {
+			if (!bHasMessages) {
 				this._oMessageManager.addMessages(
 					new sap.ui.core.message.Message({
 						message: this._oBundle.getText("MANDATORY_FIELD", [sFieldLabel]),
 						type: sap.ui.core.MessageType.Error,
-						target: sTargetId,
+						target: sPath,
 						processor: this._oModel
 					})
 				);

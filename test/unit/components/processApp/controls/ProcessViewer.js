@@ -3,12 +3,10 @@ sap.ui.define(
 		"aklc/cm/components/processApp/controls/ProcessViewer",
 		"aklc/cm/components/processApp/controls/NavigationItem",
 		"sap/ui/model/json/JSONModel",
-		"aklc/cm/components/processApp/controls/VerticalNavigationBar",
-		"sap/ui/qunit/QUnitUtils"
+		"aklc/cm/components/processApp/controls/VerticalNavigationBar"
 	],
 	function(ProcessViewer, NavigationItem, JSONModel) {
 		"use strict";
-		var QUtils = window.qutils;
 		jQuery.sap.includeStyleSheet("../../src/components/processApp/css/ThreePanelViewer.css", "ThreePanelViewer");
 		jQuery.sap.includeStyleSheet("../../src/components/processApp/css/VerticalNavigationBar.css", "VerticalNavigationBar");
 
@@ -224,7 +222,7 @@ sap.ui.define(
 			var oItem = oProcessViewer.getFacets().filter(function(o) {
 				return o.getKey() === oFacet.key;
 			})[0];
-			QUtils.triggerMouseEvent(jQuery.sap.domById(oItem.sId), "click", 1, 1, 1, 1);
+			qutils.triggerMouseEvent(jQuery.sap.domById(oItem.sId), "click", 1, 1, 1, 1);
 			setTimeout(
 				function() {
 					ok(jQuery.sap.domById(oProcessViewer.getId() + oFacet.key + "FacetButton"), "Rendered Facet Content for facet " + oFacet.key + " should exist in the page");
@@ -252,13 +250,13 @@ sap.ui.define(
 					equal(oNextBtn.getText(), sNextTxt, "Previous button text should be" + sNextTxt);
 
 					oFacet = oNavBarData[iIndex + 1];
-					QUtils.triggerMouseEvent(jQuery.sap.domById(oNextBtn.sId), "click", 1, 1, 1, 1);
+					qutils.triggerMouseEvent(jQuery.sap.domById(oNextBtn.sId), "click", 1, 1, 1, 1);
 					setTimeout(
 						function() {
 							ok(jQuery.sap.domById(oProcessViewer.getId() + oFacet.key + "FacetButton"), "Rendered Facet Content for facet " + oFacet.key + " should exist in the page");
 							iIndex = oNavBarData.indexOf(oFacet);
 							oFacet = oNavBarData[iIndex - 1];
-							QUtils.triggerMouseEvent(jQuery.sap.domById(oPreviousBtn.sId), "click", 1, 1, 1, 1);
+							qutils.triggerMouseEvent(jQuery.sap.domById(oPreviousBtn.sId), "click", 1, 1, 1, 1);
 							setTimeout(
 								function() {
 									ok(jQuery.sap.domById(oProcessViewer.getId() + oFacet.key + "FacetButton"), "Rendered Facet Content for facet " + oFacet.key + " should exist in the page");

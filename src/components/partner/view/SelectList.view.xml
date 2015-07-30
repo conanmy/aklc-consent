@@ -16,7 +16,6 @@
                     <FacetFilterList
                         title="{Type}"
                         key="{Key}"
-                        multiselect="true"
                         listClose="handleListClose">
                     </FacetFilterList>
                 </lists>

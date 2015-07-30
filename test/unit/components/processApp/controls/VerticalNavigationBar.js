@@ -1,12 +1,10 @@
 sap.ui.define(
 	[
 		"aklc/cm/components/processApp/controls/VerticalNavigationBar",
-		"aklc/cm/components/processApp/controls/NavigationItem",
-		"sap/ui/qunit/QUnitUtils"
+		"aklc/cm/components/processApp/controls/NavigationItem"
 	],
 	function(VerticalNavigationBar, NavigationItem) {
 		"use strict";
-		var QUtils = window.qutils;
 		jQuery.sap.includeStyleSheet("../../src/components/processApp/css/VerticalNavigationBar.css", "VerticalNavigationBar");
 
 		var sExpectedItemId;
@@ -117,7 +115,7 @@ sap.ui.define(
 			expect(3); // including event handler
 			var target = jQuery.sap.domById(oItem2.getId()).firstChild;
 			sExpectedItemId = oItem2.getId();
-			QUtils.triggerMouseEvent(target, "click");
+			qutils.triggerMouseEvent(target, "click");
 		});
 
 		QUnit.test("Destroy and remove control", function() {

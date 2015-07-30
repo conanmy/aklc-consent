@@ -1,14 +1,20 @@
-sap.ui.define(["aklc/cm/controller/BaseController", "sap/m/MessageBox"],
+sap.ui.define(["aklc/cm/library/common/controller/BaseController", "sap/m/MessageBox"],
 	function(BaseController, MessageBox) {
 		"use strict";
 		return BaseController.extend("aklc.cm.components.partner.controller.NameSelectList", {
 			sCollection: "/Partners",
 			sExpand: "PartnerRelations",
-			selectedPath: null,  // mark selected item in PartnerRelation
-			currentBindingPath: null,  // mark selected item in AssignedPartners
+			selectedPath: null, // mark selected item in PartnerRelation
+			currentBindingPath: null, // mark selected item in AssignedPartners
 
 			onInit: function(oEvent) {
+				BaseController.prototype.onInit.apply(this);
 				this.oList = this.getView().byId("nameSelectList");
+
+				this.oValidFrom = this.getView().byId("DPValidFrom");
+				this.oValidTo = this.getView().byId("DPValidTo");
+				this._oToday = new Date();
+				this._oForever = new Date(this.oValidTo._oMaxDate._oInnerDate);
 			},
 
 			onSearch: function(oEvent) {
@@ -37,6 +43,8 @@ sap.ui.define(["aklc/cm/controller/BaseController", "sap/m/MessageBox"],
 				this.selectedPath = itemPath;
 
 				this.getView().byId("partnerDetails").bindElement(itemPath).setVisible(true);
+				this.oValidFrom.setDateValue(this._oToday);
+				this.oValidTo.setDateValue(this._oForever);
 			},
 
 			goBack: function() {
@@ -48,12 +56,11 @@ sap.ui.define(["aklc/cm/controller/BaseController", "sap/m/MessageBox"],
 			},
 
 			onSave: function() {
-				var oModel = this.getView().getModel();
-				var partnerRelation = oModel.getProperty(this.selectedPath);
+				var partnerRelation = this._oModel.getProperty(this.selectedPath);
 
-				var ValidFrom = this.getView().byId("DPValidFrom").getValue();
-				var ValidTo = this.getView().byId("DPValidTo").getValue();
-				if (!ValidTo || !ValidFrom) {
+				// var ValidFrom = this.getView().byId("DPValidFrom").getValue();
+				// var ValidTo = this.getView().byId("DPValidTo").getValue();
+				if (!this.oValidTo.getValue() || !this.oValidFrom.getValue()) {
 					MessageBox.alert("You should select the valid dates.");
 					return false;
 				}
@@ -61,30 +68,25 @@ sap.ui.define(["aklc/cm/controller/BaseController", "sap/m/MessageBox"],
 				var partnerData = {
 					PartnerNumber: partnerRelation.PartnerNumber,
 					PartnerFunctionCode: partnerRelation.PartnerFunctionCode,
-					ProcessKey: "P1",
-					ValidFrom: new Date(ValidFrom),
-					ValidTo: new Date(ValidTo)
+					ValidFrom: this.oValidFrom.getDateValue(),
+					ValidTo: this.oValidTo.getDateValue()
 				};
 				if (!this.currentBindingPath) {
-					partnerData.Mandatory = false;
-					partnerData.Readonly = false;
-					partnerData.Unassigned = false;
-					var newGuid = function() {
-						return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-							var r = Math.random() * 16 | 0,
-							v = c === 'x' ? r : (r & 0x3 | 0x8);
-							return v.toString(16);
-						});
-					};
-					var sPath = oModel.createKey("/AssignedPartners", {Guid: newGuid()});
-					oModel.createEntry(
-						sPath, {
-							properties: partnerData
-						}
-					);
+					this.getEventBus().publish("NameSelectList", "onCreate", partnerData);
+					// partnerData.Mandatory = false;
+					// partnerData.Readonly = false;
+					// partnerData.Unassigned = false;
+					// var sPath = this._oModel.createKey("/AssignedPartners", {
+					// 	Guid: this.Formatter.newGuid()
+					// });
+					// this._oModel.createEntry(
+					// 	sPath, {
+					// 		properties: partnerData
+					// 	}
+					// );
 				} else {
 					partnerData.Unassigned = false;
-					oModel.update(
+					this._oModel.update(
 						this.currentBindingPath, partnerData
 					);
 				}

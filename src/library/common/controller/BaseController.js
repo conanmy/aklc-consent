@@ -1,11 +1,12 @@
-sap.ui.define(["sap/ui/core/mvc/Controller"],
-	function(Controller) {
+sap.ui.define(["sap/ui/core/mvc/Controller", "aklc/cm/library/common/utils/Formatter"],
+	function(Controller, Formatter) {
 		"use strict";
 
-		var BaseController = Controller.extend("aklc.cm.controller.BaseController", {
+		var BaseController = Controller.extend("aklc.cm.library.common.controller.BaseController", {
 			onInit: function() {
 				this._oView = this.getView();
 				this._oModel = this.getComponent().getModel();
+				this.Formatter = Formatter;
 
 				var oSubscription = this.getComponent().getEventBusSubscription();
 				this.getEventBus().subscribe(oSubscription.channel, oSubscription.events.contextChanged, this.onContextChanged, this);
@@ -37,7 +38,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller"],
 			 */
 			onContextChanged: function(sChannel, sEvent, oData) {
 				//default behviour
-				this.getView().setBindingContext(oData.context);
+				//this.getView().setBindingContext(oData.context);
 			},
 
 			/**
@@ -50,8 +51,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller"],
 				//default behaviour
 				oData.WhenValid.resolve();
 			}
-
-
 		});
 
 		return BaseController;

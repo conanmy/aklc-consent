@@ -49,17 +49,55 @@ sap.ui.define(["sap/ui/ux3/ThingViewerRenderer", "sap/ui/core/Renderer"],
 		ProcessViewerRenderer.renderBanner = function(oRm, oControl) {
 			var iLeft = parseInt(oControl.getSidebarWidth(), 10) + 20 + "px";
 
-			oRm.write("<div");
-			oRm.writeAttribute("role", "Navigation");
+			// oRm.write("<div");
+			// oRm.writeAttribute("role", "Navigation");
+			// oRm.addClass("sapUiUx3TVBanner");
+			// oRm.writeClasses();
+			// oRm.addStyle("left", iLeft);
+			// oRm.writeStyles();
+			// oRm.write(">");
+			// oRm.renderControl(oControl._oActionMessages);
+			// // oRm.write("<div role='Navigation' class='sapUiUx3TVBanner'>");
+			// // oRm.renderControl(oControl._getNavBar());
+			// oRm.write("</div>");
+
+			// render Header Content
+			oRm.write("<div id='" + oControl.getId() + "-headerContent'");
 			oRm.addClass("sapUiUx3TVBanner");
 			oRm.writeClasses();
 			oRm.addStyle("left", iLeft);
 			oRm.writeStyles();
 			oRm.write(">");
-			// oRm.write("<div role='Navigation' class='sapUiUx3TVBanner'>");
-			// oRm.renderControl(oControl._getNavBar());
+			this.renderHeaderContent(oRm, oControl);
 			oRm.write("</div>");
 
+		};
+
+		ProcessViewerRenderer.renderHeaderContent = function(oRm, oControl) {
+			var headerContentList = oControl.getHeaderContent();
+
+			for (var i = 0; i < headerContentList.length; i++) {
+				var headerContent = headerContentList[i];
+				oRm.write("<div");
+				oRm.addClass("sapUiUx3TVhorizontal");
+				oRm.writeClasses();
+				oRm.write(">");
+
+				oRm.write("<div");
+				oRm.addClass("sapUiUx3TVHeaderGroupContent");
+				oRm.writeClasses();
+				oRm.addStyle("float", "right");
+				oRm.writeStyles();
+
+				oRm.write(">");
+				var childContent = headerContent.getContent();
+				for (var j = 0; j < childContent.length; j++) {
+					var childControl = childContent[j];
+					oRm.renderControl(childControl);
+				}
+				oRm.write("</div>");
+				oRm.write("</div>");
+			}
 		};
 
 		ProcessViewerRenderer.renderToolbar = function(oRm, oControl) {

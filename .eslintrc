@@ -14,6 +14,7 @@
 		"strictEqual": true,
 		"module": true,
 		"QUnit": true,
+		"qutils": true,
 		"asyncTest": false,
 		"deepEqual": false,
 		"equal": false,
