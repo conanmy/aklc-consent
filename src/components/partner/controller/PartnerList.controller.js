@@ -126,7 +126,17 @@ sap.ui.define(
 			handleDelete: function(oEvent) {
 				var oModel = oEvent.getSource().getBindingContext().oModel;
 				var itemPath = oEvent.getParameters().listItem.getBindingContextPath();
-				oModel.remove(itemPath);
+				var item = oModel.getProperty(itemPath);
+				if (!!item.__metadata.created) {
+					var oContext = this._oModel.createEntry(
+						itemPath, {
+							properties: item
+						}
+					);
+					oModel.deleteCreatedEntry(oContext);
+				} else {
+					oModel.remove(itemPath);
+				}
 			},
 
 			handleIconTabBarSelect: function(oEvent) {
