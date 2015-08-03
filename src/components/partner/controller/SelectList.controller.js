@@ -36,6 +36,10 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController"], function(Bas
 				}
 			);
 			this.targetList.removeSelections();
+		},
+
+		onCheckValid: function(sChannel, sEvent, oData) {
+			return false;
 		}
 	});
 });

@@ -28,7 +28,7 @@ sap.ui.define(
 
 			/**
 			 * get Data
-			 * 			 */
+			 */
 			getData: function() {
 				var fnCallback = this.bindView.bind(this);
 				var oParams = {
@@ -145,52 +145,13 @@ sap.ui.define(
 				}
 			},
 
-			getViolationData: function() {
-				var partnerFunctions = this._oModel.getProperty("/PartnerFunctions");
-				var partners = this._oModel.getProperty("/AssignedPartners");
-
-				var partnerCount = {};
-				for (var i = 0; i < partners.length; i++) {
-					var partner = partners[i];
-					if (partnerCount[partner.partnerFunctionCode]) {
-						partnerCount[partner.partnerFunctionCode]++;
-					} else {
-						partnerCount[partner.partnerFunctionCode] = 0;
-					}
-				}
-
-				var violationData = {
-					toFill: [],
-					exceeded: []
-				};
-				for (var j = 0; j < partnerFunctions.length; j++) {
-					var func = partnerFunctions[j];
-					var count = 0;
-					if (partnerCount[func.partnerFunctionCode]) {
-						count = partnerCount[func.partnerFunctionCode];
-					}
-					if (count < func.CountLow) {
-						violationData.toFill.push(func);
-					}
-					if (count > func.CountHigh) {
-						violationData.exceeded.push(func);
-					}
-				}
-
-				return violationData;
-			},
-
 			checkPartnerNumber: function() {
 				var violationData = this.getViolationData();
 				return (violationData.toFill.length + violationData.exceeded.length) === 0;
 			},
 
 			onCheckValid: function(sChannel, sEvent, oData) {
-				if (!this.checkPartnerNumber()) {
-					MessageBox.alert("Your current editing will be discarded.");
-				} else {
-					oData.WhenValid.resolve();
-				}
+				return false;
 			}
 		});
 	});

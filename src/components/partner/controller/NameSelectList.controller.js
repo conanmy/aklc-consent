@@ -100,6 +100,10 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController", "sap/m/Messag
 				this.getView().byId("nameSelectSection").setVisible(true);
 				this.oList.removeSelections();
 				this.currentBindingPath = null;
+			},
+
+			onCheckValid: function(sChannel, sEvent, oData) {
+				return false;
 			}
 		});
 	});

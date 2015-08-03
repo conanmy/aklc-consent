@@ -2,6 +2,7 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController", "sap/m/Messag
 	"use strict";
 	return BaseController.extend("aklc.cm.components.partner.controller.Main", {
 		_oViewRegistry: [],
+		sProcesKey: "",
 		_basePath: "aklc.cm.components.partner.view.",
 
 		onInit: function() {
@@ -98,8 +99,115 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController", "sap/m/Messag
 			return this.getView().byId("splitContainer").getContent()[0].sViewName === (this._basePath + "NameSelectList");
 		},
 
+		/**
+		 * On Context change need to get Assigned Partners relative to process
+		 * @param  {[type]} sChannel [description]
+		 * @param  {[type]} sEvent   [description]
+		 * @param  {[type]} oData    [description]
+		 */
+		onContextChanged: function(sChannel, sEvent, oData) {
+			this.sProcesKey = this._oModel.getProperty("ProcessKey", oData.context);
+		},
+
+		/**
+		 * getTodoData
+		 * @return {Object}
+		 */
+		getTodoData: function() {
+			return this.calculateTodoData(
+				this.getPartnerFunctions(),
+				this.getAssignedPartners()
+			);
+		},
+
+		/**
+		 * calculate todo data, get to fill and exceeded
+		 * @param  {Array} partnerFunctions
+		 * @param  {Array} partners
+		 * @return {Object}
+		 */
+		calculateTodoData: function(partnerFunctions, partners) {
+			var partnerCount = {};
+			for (var i = 0; i < partners.length; i++) {
+				var partner = partners[i];
+				if (partner.Unassigned !== true) {
+					if (partnerCount[partner.PartnerFunctionCode]) {
+						partnerCount[partner.PartnerFunctionCode]++;
+					} else {
+						partnerCount[partner.PartnerFunctionCode] = 1;
+					}
+				}
+			}
+
+			var violationData = {
+				toFill: [],
+				exceeded: []
+			};
+			for (var j = 0; j < partnerFunctions.length; j++) {
+				var func = partnerFunctions[j];
+				var count = 0;
+				if (partnerCount[func.PartnerFunctionCode]) {
+					count = partnerCount[func.PartnerFunctionCode];
+				}
+				if (count < func.CountLow) {
+					violationData.toFill.push(func);
+				}
+				if (count > func.CountHigh) {
+					violationData.exceeded.push(func);
+				}
+			}
+
+			return violationData;
+		},
+
+		getAssignedPartners: function() {
+			var that = this;
+			return that._oModel.getProperty(
+				"AssignedPartners",
+				that._oModel.getContext(
+					this._oModel.createKey("/Process", {ProcessKey: this.sProcesKey})
+				)
+			).map(function (path) {
+				return that._oModel.getProperty("/" + path)
+			});
+		},
+
+		getPartnerFunctions: function() {
+		    var that = this;
+			return that._getView(that._basePath + "SelectList").byId("selectList")
+				.mBindingInfos.items.binding.getContexts()
+				.map(function (value, path) {
+					return that._oModel.getProperty(value.sPath)
+				});
+		},
+
+		/**
+		 * check partners we have, whether obeying the countlow and counthigh restriction
+		 * @return {boolean}
+		 */
+		checkPartner: function() {
+			var todoData = this.getTodoData();
+			return (todoData.toFill.length + todoData.exceeded.length) === 0;
+		},
+
 		onCheckValid: function(sChannel, sEvent, oData) {
-			return false;
+			var todoData = this.getTodoData();
+			if ((todoData.toFill.length + todoData.exceeded.length) !== 0) {
+				var toFillInfo = "In order to save what you have done. You need to fill in another ";
+				for (var key in todoData.toFill) {
+					toFillInfo = toFillInfo + todoData.toFill[key].Description + ", ";
+				}
+				toFillInfo = toFillInfo + "Click ok to go anyway.";
+				MessageBox.confirm(toFillInfo, {
+					onClose: function(oAction){
+						if (oAction === "OK") {
+							oData.WhenValid.resolve();
+						}
+					}
+				});
+			} else {
+				oData.WhenValid.resolve();
+			}
 		}
 	});
 });
