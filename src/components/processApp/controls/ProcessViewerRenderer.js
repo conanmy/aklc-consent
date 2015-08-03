@@ -74,19 +74,22 @@ sap.ui.define(["sap/ui/ux3/ThingViewerRenderer", "sap/ui/core/Renderer"],
 		};
 
 		ProcessViewerRenderer.renderHeaderContent = function(oRm, oControl) {
+			var iRight = parseInt(oControl.getSidebarWidth(), 10) + 30 + "px";
 			var headerContentList = oControl.getHeaderContent();
 
 			for (var i = 0; i < headerContentList.length; i++) {
 				var headerContent = headerContentList[i];
 				oRm.write("<div");
 				oRm.addClass("sapUiUx3TVhorizontal");
+				oRm.addClass("pull-right");
 				oRm.writeClasses();
 				oRm.write(">");
 
 				oRm.write("<div");
 				oRm.addClass("sapUiUx3TVHeaderGroupContent");
+				oRm.addClass("pull-right");
 				oRm.writeClasses();
-				oRm.addStyle("float", "right");
+				oRm.addStyle("margin-right", iRight);
 				oRm.writeStyles();
 
 				oRm.write(">");
