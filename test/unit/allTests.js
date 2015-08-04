@@ -5,3 +5,7 @@ jQuery.sap.require({
 	modName: "test.unit.components.processApp.controller.Main",
 	type: "controller"
 });
+jQuery.sap.require({
+	modName: "test.unit.components.partner.controller.Main",
+	type: "controller"
+});

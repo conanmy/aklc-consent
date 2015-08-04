@@ -155,11 +155,6 @@ sap.ui.define(
 				}
 			},
 
-			checkPartnerNumber: function() {
-				var violationData = this.getViolationData();
-				return (violationData.toFill.length + violationData.exceeded.length) === 0;
-			},
-
 			onCheckValid: function(sChannel, sEvent, oData) {
 				return false;
 			}
