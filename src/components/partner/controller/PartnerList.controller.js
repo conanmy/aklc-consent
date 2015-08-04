@@ -6,10 +6,27 @@ sap.ui.define(
 			sCollection: "AssignedPartners",
 			sExpand: "PartnerRelations",
 			sProcesKey: "",
+			currentSelection: {
+				path: null,
+				active: false
+			},
 			onInit: function(oEvent) {
-				BaseController.prototype.onInit.apply(this);
-				this.oList = this.getView().byId("partnerList");
-				this.getEventBus().subscribe("NameSelectList", "onCreate", this.onCreateEntry, this);
+				var that = this;
+				BaseController.prototype.onInit.apply(that);
+				that.oList = that.getView().byId("partnerList");
+				that.getEventBus().subscribe(
+					"NameSelectList",
+					"onSave",
+					that.onSave,
+					that
+				);
+				that.getEventBus().subscribe(
+					"NameSelectList",
+					"goBack",
+					function() {
+						that.currentSelection.active = false;
+					}
+				);
 			},
 
 			/**
@@ -77,50 +94,72 @@ sap.ui.define(
 				this.getEventBus().publish("PartnerList", "selected", {
 					path: itemPath
 				});
+				this.currentSelection.path = itemPath;
+				this.currentSelection.active = true;
 			},
 
 			/**
-			 * [onCreateEntry description]
-			 * @param  {[type]} sChannel [description]
-			 * @param  {[type]} sEvent   [description]
-			 * @param  {[type]} oData    [description]
+			 * on name select list saves
+			 * @param  {[type]} sChannel
+			 * @param  {[type]} sEvent
+			 * @param  {[type]} newPartner new partner data
 			 */
-			onCreateEntry: function(sChannel, sEvent, oData) {
-				var oProperties = jQuery.extend({}, oData);
-				oProperties.Guid = this.Formatter.newGuid();
-				oProperties.ProcessKey = this.sProcesKey;
-				oProperties.Mandatory = false;
-				oProperties.Readonly = false;
-				oProperties.Unassigned = false;
+			onSave: function(sChannel, sEvent, newPartner) {
+				if (this.currentSelection.active) {
+					var currentPartner = this._oModel.getProperty(
+						this.currentSelection.path
+					);
+					// set the reference partner
+					newPartner.Partners = {};
+					newPartner.Partners.__ref = this._oModel.createKey("Partners", {
+						PartnerNumber: newPartner.PartnerNumber
+					});
+					newPartner.Unassigned = false;
+					this._oModel.setProperty(
+						this.currentSelection.path,
+						jQuery.extend(
+							currentPartner,
+							newPartner
+						)
+					);
+					this._oModel.updateBindings();
+				} else {
+					var oProperties = jQuery.extend({}, newPartner);
+					oProperties.Guid = this.Formatter.newGuid();
+					oProperties.ProcessKey = this.sProcesKey;
+					oProperties.Mandatory = false;
+					oProperties.Readonly = false;
+					oProperties.Unassigned = false;
 
-				// get guid for new entry
-				var sPath = this._oModel.createKey(this.sCollection, {
-					Guid: oProperties.Guid
-				});
+					// get guid for new entry
+					var sPath = this._oModel.createKey(this.sCollection, {
+						Guid: oProperties.Guid
+					});
 
-				// set the reference partner
-				oProperties.Partners = {};
-				oProperties.Partners.__ref = this._oModel.createKey("Partners", {
-					PartnerNumber: oProperties.PartnerNumber
-				});
+					// set the reference partner
+					oProperties.Partners = {};
+					oProperties.Partners.__ref = this._oModel.createKey("Partners", {
+						PartnerNumber: oProperties.PartnerNumber
+					});
 
-				// set the reference partner function
-				oProperties.PartnerFunctions = {};
-				oProperties.PartnerFunctions.__ref = this._oModel.createKey("PartnerFunctions", {
-					PartnerFunctionCode: oProperties.PartnerFunctionCode
-				});
+					// set the reference partner function
+					oProperties.PartnerFunctions = {};
+					oProperties.PartnerFunctions.__ref = this._oModel.createKey("PartnerFunctions", {
+						PartnerFunctionCode: oProperties.PartnerFunctionCode
+					});
 
-				// create entry
-				var oContext = this._oModel.createEntry(
-					sPath, {
-						properties: oProperties
-					}
-				);
+					// create entry
+					var oContext = this._oModel.createEntry(
+						sPath, {
+							properties: oProperties
+						}
+					);
 
-				// add new entry to list
-				var aList = this._oModel.getProperty(this.sPath).AssignedPartners.__list;
-				aList.push(oContext.getPath().split("/")[1]);
-				this.bindList();
+					// add new entry to list
+					var aList = this._oModel.getProperty(this.sPath).AssignedPartners.__list;
+					aList.push(oContext.getPath().split("/")[1]);
+					this.bindList();
+				}
 			},
 
 			handleDelete: function(oEvent) {

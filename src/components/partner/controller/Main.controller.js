@@ -60,8 +60,6 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController", "sap/m/Messag
 						if (partner.Readonly) {
 							nameList.byId("nameSelectSection").setVisible(false);
 						}
-					} else {
-						nameListController.currentBindingPath = path;
 					}
 				}
 			);

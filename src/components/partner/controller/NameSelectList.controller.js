@@ -5,7 +5,6 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController", "sap/m/Messag
 			sCollection: "/Partners",
 			sExpand: "PartnerRelations",
 			selectedPath: null, // mark selected item in PartnerRelation
-			currentBindingPath: null, // mark selected item in AssignedPartners
 
 			onInit: function(oEvent) {
 				BaseController.prototype.onInit.apply(this);
@@ -58,8 +57,6 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController", "sap/m/Messag
 			onSave: function() {
 				var partnerRelation = this._oModel.getProperty(this.selectedPath);
 
-				// var ValidFrom = this.getView().byId("DPValidFrom").getValue();
-				// var ValidTo = this.getView().byId("DPValidTo").getValue();
 				if (!this.oValidTo.getValue() || !this.oValidFrom.getValue()) {
 					MessageBox.alert("You should select the valid dates.");
 					return false;
@@ -71,25 +68,7 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController", "sap/m/Messag
 					ValidFrom: this.oValidFrom.getDateValue(),
 					ValidTo: this.oValidTo.getDateValue()
 				};
-				if (!this.currentBindingPath) {
-					this.getEventBus().publish("NameSelectList", "onCreate", partnerData);
-					// partnerData.Mandatory = false;
-					// partnerData.Readonly = false;
-					// partnerData.Unassigned = false;
-					// var sPath = this._oModel.createKey("/AssignedPartners", {
-					// 	Guid: this.Formatter.newGuid()
-					// });
-					// this._oModel.createEntry(
-					// 	sPath, {
-					// 		properties: partnerData
-					// 	}
-					// );
-				} else {
-					partnerData.Unassigned = false;
-					this._oModel.update(
-						this.currentBindingPath, partnerData
-					);
-				}
+				this.getEventBus().publish("NameSelectList", "onSave", partnerData);
 
 				this.goBack();
 			},
@@ -99,7 +78,6 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController", "sap/m/Messag
 				this.getView().byId("partnerDetails").setVisible(false);
 				this.getView().byId("nameSelectSection").setVisible(true);
 				this.oList.removeSelections();
-				this.currentBindingPath = null;
 			},
 
 			onCheckValid: function(sChannel, sEvent, oData) {
