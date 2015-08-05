@@ -5,9 +5,6 @@ before_script:
     - npm install -g grunt-cli
     - npm install -g bower
     - bower install
-# Running the tests with grunt
-script:
-    - grunt test
 after_success:
     - git push -f git@heroku.com:aklc-consent-demo.git master
 notifications:
