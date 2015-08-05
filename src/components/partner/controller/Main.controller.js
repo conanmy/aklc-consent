@@ -166,7 +166,7 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController", "sap/m/Messag
 					this._oModel.createKey("/Process", {ProcessKey: this.sProcesKey})
 				)
 			).map(function (path) {
-				return that._oModel.getProperty("/" + path)
+				return that._oModel.getProperty("/" + path);
 			});
 		},
 
@@ -175,7 +175,7 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController", "sap/m/Messag
 			return that._getView(that._basePath + "SelectList").byId("selectList")
 				.mBindingInfos.items.binding.getContexts()
 				.map(function (value, path) {
-					return that._oModel.getProperty(value.sPath)
+					return that._oModel.getProperty(value.sPath);
 				});
 		},
 
@@ -194,7 +194,7 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController", "sap/m/Messag
 				var toFillInfo = "You need to fill in another ";
 				for (var key in todoData.toFill) {
 					toFillInfo = toFillInfo + todoData.toFill[key].Description + " ";
-				};
+				}
 				var sPath = 'step/partner';
 				var messageManager = sap.ui.getCore().getMessageManager();
 				messageManager.removeMessages(this._oModel.getMessagesByPath(sPath) || []);

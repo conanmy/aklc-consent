@@ -5,8 +5,7 @@ sap.ui.require([
 	function(Opa5, Common) {
 		"use strict";
 
-		var baseViewPath = "aklc.cm.components.partner.view.",
-			sAppControl = "ProcessViewer";
+		var baseViewPath = "aklc.cm.components.partner.view.";
 
 		Opa5.createPageObjects({
 			onPartnerStep: {
