@@ -191,18 +191,21 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController", "sap/m/Messag
 		onCheckValid: function(sChannel, sEvent, oData) {
 			var todoData = this.getTodoData();
 			if ((todoData.toFill.length + todoData.exceeded.length) !== 0) {
-				var toFillInfo = "In order to save what you have done. You need to fill in another ";
+				var toFillInfo = "You need to fill in another ";
 				for (var key in todoData.toFill) {
-					toFillInfo = toFillInfo + todoData.toFill[key].Description + ", ";
-				}
-				toFillInfo = toFillInfo + "Click ok to go anyway.";
-				MessageBox.confirm(toFillInfo, {
-					onClose: function(oAction){
-						if (oAction === "OK") {
-							oData.WhenValid.resolve();
-						}
-					}
-				});
+					toFillInfo = toFillInfo + todoData.toFill[key].Description + " ";
+				};
+				var sPath = 'step/partner';
+				var messageManager = sap.ui.getCore().getMessageManager();
+				messageManager.removeMessages(this._oModel.getMessagesByPath(sPath) || []);
+				messageManager.addMessages(
+					new sap.ui.core.message.Message({
+						message: toFillInfo,
+						type: sap.ui.core.MessageType.Error,
+						target: sPath,
+						processor: this._oModel
+					})
+				);
 			} else {
 				oData.WhenValid.resolve();
 			}

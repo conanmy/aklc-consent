@@ -9,7 +9,7 @@
             <List id="partnerList" mode="Delete"
             delete="handleDelete" items="{path:'AssignedPartners', parameters: {operationMode: 'Client', expand: 'Partners,PartnerFunctions'}}">
                 <items>
-                    <ObjectListItem type="Active" title="{PartnerFunctions/Description}" press="onListItemPress" class="assigned-partner-list-item" showMarkers="true" markLocked="{Mandatory}">
+                    <ObjectListItem type="Active" title="{PartnerFunctions/Description}" press="onListItemPress" class="assigned-partner-list-item">
                         <attributes>
                             <ObjectAttribute text="{Partners/FirstName} {Partners/LastName} ( {PartnerNumber} )" title="Name" visible="{= !${Unassigned} }" />
                         </attributes>
