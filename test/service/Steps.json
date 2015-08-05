@@ -93,4 +93,12 @@
 	"Component": "test",
 	"Current": false,
 	"Active": false
+}, {
+	"ProcessKey": "P2",
+	"StepKey": "PARTNERS",
+	"Title": "Partners Involved",
+	"Icon": "sap-icon://company-view",
+	"Component": "partner",
+	"Current": false,
+	"Active": false
 }]

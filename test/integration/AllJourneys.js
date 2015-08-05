@@ -7,6 +7,8 @@ jQuery.sap.require("test.integration.components.Common");
 
 // components
 jQuery.sap.require("test.integration.components.ProcessApp");
-
+jQuery.sap.require("test.integration.components.partner.Partner");
 // journeys
 jQuery.sap.require("test.integration.JourneyTest");
+
+jQuery.sap.require("test.integration.components.partner.JourneyTest");

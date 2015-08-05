@@ -34,4 +34,14 @@
 	"Readonly": false,
 	"Mandatory": true,
 	"Unassigned": true
+}, {
+	"Guid": "36a51f79-fbe2-43b1-8ba1-3fa61c7f8513",
+	"ProcessKey": "P2",
+	"PartnerFunctionCode": 11,
+	"PartnerNumber": 100,
+	"ValidFrom": "\/Date(1414661031000)\/",
+	"ValidTo": "\/Date(1414761031000)\/",
+	"Readonly": true,
+	"Mandatory": true,
+	"Unassigned": false
 }]
