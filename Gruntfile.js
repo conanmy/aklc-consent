@@ -218,7 +218,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks("grunt-openui5");
 	grunt.loadNpmTasks("grunt-eslint");
 	grunt.loadNpmTasks("grunt-karma");
-	grunt.loadNpmTasks("grunt-contrib-qunit");
 
 	// Server task
 	grunt.registerTask("serve", function(target) {
