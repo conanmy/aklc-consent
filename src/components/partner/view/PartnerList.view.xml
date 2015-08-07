@@ -1,4 +1,4 @@
-<mvc:View controllerName="aklc.cm.components.partner.controller.PartnerList" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc">
+<mvc:View controllerName="aklc.cm.components.partner.controller.PartnerList" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:suite="aklc.cm.components.partner.controls">
     <IconTabBar select="handleIconTabBarSelect">
         <items>
             <IconTabFilter text="All" key="All" />
@@ -9,11 +9,11 @@
             <List id="partnerList" mode="Delete"
             delete="handleDelete" items="{path:'AssignedPartners', parameters: {operationMode: 'Client', expand: 'Partners,PartnerFunctions'}}">
                 <items>
-                    <ObjectListItem type="Active" title="{PartnerFunctions/Description}" press="onListItemPress" class="assigned-partner-list-item">
-                        <attributes>
+                    <suite:PartnerObjectListItem type="Active" title="{PartnerFunctions/Description}" press="onListItemPress" class="assigned-partner-list-item" deletable="{= !${Mandatory} }">
+                        <suite:attributes>
                             <ObjectAttribute text="{Partners/FirstName} {Partners/LastName} ( {PartnerNumber} )" title="Name" visible="{= !${Unassigned} }" />
-                        </attributes>
-                    </ObjectListItem>
+                        </suite:attributes>
+                    </suite:PartnerObjectListItem>
                 </items>
             </List>
         </content>
