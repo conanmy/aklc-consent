@@ -5,8 +5,8 @@ sap.ui.require(
 	function(Opa5) {
 		"use strict";
 
-		QUnit.module("Partner involved");
-		opaTest("Should see partner list", function(Given, When, Then) {
+		QUnit.module("Partners Involved Initial Screen");
+		opaTest("Should see partner list and select list", function(Given, When, Then) {
 			// Arrange
 			Given.onPartnerStep.iStartTheAppWithDelay("#/process/P2/step/PARTNERS", "5000");
 
@@ -14,7 +14,17 @@ sap.ui.require(
 			When.onPartnerStep.iLookAtTheScreen();
 
 			// Assertions
-			Then.onPartnerStep.iShouldSeeThePartnerList();
+			Then.onPartnerStep.iShouldSeeThePartnerList()
+			.and.iShouldSeeTheSelectList();
+		});
+
+		QUnit.module("Add a partner");
+		opaTest("Should see name list after selecting", function(Given, When, Then) {
+			//Act
+			When.onPartnerStep.iPressOnSelectListItem();
+
+			// Assertions
+			Then.onPartnerStep.iShouldSeeTheNameSelectList();
 		});
 
 	});

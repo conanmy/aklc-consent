@@ -1,7 +1,9 @@
 sap.ui.define(["sap/m/ObjectListItem"],
 	function(ObjectListItem) {
 		"use strict";
-		var PartnerObjectListItem = ObjectListItem.extend("aklc.cm.components.partner.controls.PartnerObjectListItem", {
+		var PartnerObjectListItem = ObjectListItem.extend(
+		"aklc.cm.components.partner.controls.PartnerObjectListItem",
+		{
 			metadata: {
 				properties: {
 					deletable: {
