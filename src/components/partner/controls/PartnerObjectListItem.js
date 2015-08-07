@@ -3,7 +3,6 @@ sap.ui.define(["sap/m/ObjectListItem"],
 		"use strict";
 		var PartnerObjectListItem = ObjectListItem.extend("aklc.cm.components.partner.controls.PartnerObjectListItem", {
 			metadata: {
-				library : "sap.m",
 				properties: {
 					deletable: {
 						type : "boolean",
