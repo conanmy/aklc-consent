@@ -2,3 +2,6 @@
 .borderless .sapMPanelContent {
 	border-bottom: none;
 }
+.inactive-list-item {
+	background-color: WhiteSmoke!important;
+}

@@ -26,13 +26,11 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController"], function(Bas
 		},
 
 		onSelectionChange: function(oEvt) {
-
-			var listItem = oEvt.mParameters.listItem;
-			var itemPath = listItem.getBindingContextPath();
 			this.getEventBus().publish(
 				"SelectList",
-				"selected", {
-					path: itemPath
+				"selected",
+				{
+					path: oEvt.oSource.getBindingContext().sPath
 				}
 			);
 			this.targetList.removeSelections();

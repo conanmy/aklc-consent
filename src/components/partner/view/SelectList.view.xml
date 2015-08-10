@@ -21,9 +21,9 @@
                 </lists>
             </FacetFilter>
         </Toolbar>
-        <List id="selectList" items="{/PartnerFunctions}" selectionChange="onSelectionChange" mode="SingleSelectMaster" includeItemInSelection="true">
+        <List id="selectList" items="{/PartnerFunctions}">
             <items>
-                <StandardListItem title="{Description}" />
+                <StandardListItem title="{Description}" type="Active" press="onSelectionChange" />
             </items>
         </List>
     </Panel>
