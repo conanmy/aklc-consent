@@ -13,7 +13,8 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController", "sap/m/Messag
 				this.oValidFrom = this.getView().byId("DPValidFrom");
 				this.oValidTo = this.getView().byId("DPValidTo");
 				this._oToday = new Date();
-				this._oForever = new Date(this.oValidTo._oMaxDate._oInnerDate);
+				this._oMonthLater = new Date();
+				this._oMonthLater.setMonth(this._oToday.getMonth() + 1);
 			},
 
 			onSearch: function(oEvent) {
@@ -43,7 +44,7 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController", "sap/m/Messag
 
 				this.getView().byId("partnerDetails").bindElement(itemPath).setVisible(true);
 				this.oValidFrom.setDateValue(this._oToday);
-				this.oValidTo.setDateValue(this._oForever);
+				this.oValidTo.setDateValue(this._oMonthLater);
 			},
 
 			goBack: function() {
