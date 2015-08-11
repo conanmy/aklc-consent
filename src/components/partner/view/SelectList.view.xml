@@ -21,7 +21,7 @@
                 </lists>
             </FacetFilter>
         </Toolbar>
-        <List id="selectList" items="{/PartnerFunctions}">
+        <List id="selectList" items="{/PartnerFunctions}" updateFinished="onUpdateFinished">
             <items>
                 <StandardListItem title="{Description}" type="Active" press="onSelectionChange" />
             </items>

@@ -74,11 +74,11 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController", "sap/m/Messag
 
 			onUpdateFinished: function(oEvt) {
 				if (!this.firstUpdated) {
-					this.getEventBus().publish("NameSelectList", "firstupdate", {
-						path: oEvt.oSource.getBindingContext().sPath
-					});
 					this.firstUpdated = true;
 				}
+				this.getEventBus().publish("NameSelectList", "firstupdate", {
+					path: oEvt.oSource.getBindingContext().sPath
+				});
 			},
 
 			reset: function() {

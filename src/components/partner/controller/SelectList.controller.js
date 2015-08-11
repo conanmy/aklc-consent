@@ -36,6 +36,10 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController"], function(Bas
 			this.targetList.removeSelections();
 		},
 
+		onUpdateFinished: function() {
+			this.getEventBus().publish("SelectList", "firstupdate");
+		},
+
 		onCheckValid: function(sChannel, sEvent, oData) {
 			return false;
 		}

@@ -32,6 +32,12 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController", "sap/m/Messag
 			);
 
 			that.getEventBus().subscribe(
+				"SelectList",
+				"firstupdate",
+				that.handleSelectListRestriction.bind(this)
+			);
+
+			that.getEventBus().subscribe(
 				"NameSelectList",
 				"goBack",
 				function() {
@@ -108,22 +114,17 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController", "sap/m/Messag
 			that._getView(that._basePath + "SelectList")
 				.byId('selectList').getAggregation('items')
 				.map(function(item) {
-					var functionCode = that._oModel.getProperty(
-						item.getBindingContext().sPath
-					).PartnerFunctionCode;
-					if (functionMap[functionCode]) {
-						item.setType(sap.m.ListType.Inactive);
-						item.addStyleClass("inactive-list-item");
-					} else {
-						item.setType(sap.m.ListType.Active);
-						item.removeStyleClass("inactive-list-item");
-					}
+					that.setItemInactive(item, !!functionMap[
+						that._oModel.getProperty(
+							item.getBindingContext().sPath
+						).PartnerFunctionCode
+					]);
 				});
 		},
 
 		/**
 		 * handleNameSelectListRestriction
-		 * @param  {[type]} functionPath
+		 * @param  {string} functionPath
 		 */
 		handleNameSelectListRestriction: function(functionPath) {
 			var that = this;
@@ -138,17 +139,27 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController", "sap/m/Messag
 			that._getView(that._basePath + "NameSelectList")
 				.byId('nameSelectList').getAggregation('items')
 				.map(function(item) {
-					var partnerNumber = that._oModel.getProperty(
-						item.getBindingContext().sPath
-					).PartnerNumber;
-					if (partnerMap[partnerNumber]) {
-						item.setType(sap.m.ListType.Inactive);
-						item.addStyleClass("inactive-list-item");
-					} else {
-						item.setType(sap.m.ListType.Active);
-						item.removeStyleClass("inactive-list-item");
-					}
+					that.setItemInactive(item, !!partnerMap[
+						that._oModel.getProperty(
+							item.getBindingContext().sPath
+						).PartnerNumber
+					]);
 				});
+		},
+
+		/**
+		 * setItemInactive
+		 * @param {Obejct} item     listItem
+		 * @param {boolean} inactive
+		 */
+		setItemInactive: function(item, inactive) {
+			if (inactive) {
+				item.setType(sap.m.ListType.Inactive);
+				item.addStyleClass("inactive-list-item");
+			} else {
+				item.setType(sap.m.ListType.Active);
+				item.removeStyleClass("inactive-list-item");
+			}
 		},
 
 		_getView: function(sStepViewName) {
