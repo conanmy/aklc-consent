@@ -44,11 +44,6 @@
                 <SearchField liveChange="onSearch" width="100%" />
             </Toolbar>
             <List id="nameSelectList" items="{path: 'PartnerRelations', parameters: {operationMode: 'Client', expand: 'Partners'}}" updateFinished="onUpdateFinished">
-                <infoToolbar>
-                    <Toolbar visible="false" id="idInfoToolbar">
-                        <Label id="idFilterLabel" />
-                    </Toolbar>
-                </infoToolbar>
                 <items>
                     <StandardListItem title="{Partners/FirstName} {Partners/LastName} ( {PartnerNumber} )" type="Active" press="onSelectionChange" />
                 </items>

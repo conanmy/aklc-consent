@@ -215,6 +215,17 @@ sap.ui.define(
 				}
 			},
 
+			checkUnassigned: function() {
+				this.getView().byId('partnerList').getAggregation('items')
+					.map(function(item) {
+						if (that._oModel.getProperty(
+							item.getBindingContext().sPath
+						).Unassigned === true) {
+							item.setStyleClass("inerror-list-item");
+						}
+					});
+			},
+
 			onCheckValid: function(sChannel, sEvent, oData) {
 				return false;
 			}

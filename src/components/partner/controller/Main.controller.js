@@ -304,6 +304,7 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController", "sap/m/Messag
 						processor: this._oModel
 					})
 				);
+				// this._getView(this._basePath + "PartnerList").getController().checkUnassigned();
 			} else {
 				oData.WhenValid.resolve();
 			}

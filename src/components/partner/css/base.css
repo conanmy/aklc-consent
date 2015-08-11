@@ -5,3 +5,10 @@
 .inactive-list-item {
 	background-color: WhiteSmoke!important;
 }
+.inerror-list-item {
+    border-bottom-width: 2px;
+    border-color: red;
+}
+.inerror-list-item .sapMText.sapMObjLTitle {
+    color: red;
+}
