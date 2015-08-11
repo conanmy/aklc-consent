@@ -16,7 +16,7 @@ sap.ui.define(
 				that.oList = that.getView().byId("partnerList");
 				that.getEventBus().subscribe(
 					"NameSelectList",
-					"onSave",
+					"save",
 					that.onSave,
 					that
 				);

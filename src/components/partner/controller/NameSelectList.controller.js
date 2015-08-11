@@ -5,6 +5,7 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController", "sap/m/Messag
 			sCollection: "/Partners",
 			sExpand: "PartnerRelations",
 			selectedPath: null, // mark selected item in PartnerRelation
+			firstUpdated: false,
 
 			onInit: function(oEvent) {
 				BaseController.prototype.onInit.apply(this);
@@ -36,13 +37,10 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController", "sap/m/Messag
 				oBinding.filter(aFilters);
 			},
 
-			onSelectionChange: function(oEvent) {
+			onSelectionChange: function(oEvt) {
+				this.selectedPath = oEvt.oSource.getBindingContext().sPath;
 
-				var listItem = oEvent.getParameters().listItem;
-				var itemPath = listItem.getBindingContextPath();
-				this.selectedPath = itemPath;
-
-				this.getView().byId("partnerDetails").bindElement(itemPath).setVisible(true);
+				this.getView().byId("partnerDetails").bindElement(this.selectedPath).setVisible(true);
 				this.oValidFrom.setDateValue(this._oToday);
 				this.oValidTo.setDateValue(this._oMonthLater);
 			},
@@ -69,9 +67,18 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController", "sap/m/Messag
 					ValidFrom: this.oValidFrom.getDateValue(),
 					ValidTo: this.oValidTo.getDateValue()
 				};
-				this.getEventBus().publish("NameSelectList", "onSave", partnerData);
+				this.getEventBus().publish("NameSelectList", "save", partnerData);
 
 				this.goBack();
+			},
+
+			onUpdateFinished: function(oEvt) {
+				if (!this.firstUpdated) {
+					this.getEventBus().publish("NameSelectList", "firstupdate", {
+						path: oEvt.oSource.getBindingContext().sPath
+					});
+					this.firstUpdated = true;
+				}
 			},
 
 			reset: function() {

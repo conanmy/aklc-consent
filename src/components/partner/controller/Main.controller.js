@@ -24,6 +24,10 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController", "sap/m/Messag
 					var nameList = that._getView(that._basePath + "NameSelectList");
 					nameList.bindElement(oParams.path);
 					that.container.addContent(nameList);
+
+					if (nameList.getController().firstUpdated) {
+						that.handleNameSelectListRestriction(oParams.path);
+					}
 				}
 			);
 
@@ -39,10 +43,19 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController", "sap/m/Messag
 			);
 
 			that.getEventBus().subscribe(
+				"NameSelectList",
+				"firstupdate",
+				function(sChannel, sEvent, oParams) {
+					that.handleNameSelectListRestriction(oParams.path);
+				}
+			);
+
+			that.getEventBus().subscribe(
 				"PartnerList",
 				"selected",
 				function(sChannel, sEventId, oParams) {
-					that.handlePartnerSelected(oParams, that.container);
+					that.handlePartnerSelected(oParams.path);
+					that.handleNameSelectListRestriction(oParams.path);
 				}
 			);
 
@@ -55,11 +68,10 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController", "sap/m/Messag
 
 		/**
 		 * handlePartnerSelected
-		 * @param  {Object} oParams
+		 * @param  {string} assignedPartnerPath
 		 */
-		handlePartnerSelected: function(oParams) {
-			var path = oParams.path;
-			var partner = this._oModel.getProperty(path);
+		handlePartnerSelected: function(assignedPartnerPath) {
+			var partner = this._oModel.getProperty(assignedPartnerPath);
 			var nameList = this._getView(this._basePath + "NameSelectList");
 
 			var nameListController = nameList.getController();
@@ -76,7 +88,7 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController", "sap/m/Messag
 				"/PartnerFunctions(" + partner.PartnerFunctionCode + ")"
 			);
 			if (!partner.Unassigned) {
-				nameList.byId("partnerDetails").bindElement(path);
+				nameList.byId("partnerDetails").bindElement(assignedPartnerPath);
 				nameList.byId("partnerDetails").setVisible(true);
 				if (partner.Readonly) {
 					nameList.byId("nameSelectSection").setVisible(false);
@@ -87,10 +99,10 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController", "sap/m/Messag
 		handleSelectListRestriction: function() {
 			var that = this;
 			var partners = that.getAssignedPartners();
-			var partnerMap = {};
+			var functionMap = {};
 			for (var i = 0; i < partners.length; i++) {
 				if (partners[i].Unassigned) {
-					partnerMap[partners[i].PartnerFunctionCode] = true;
+					functionMap[partners[i].PartnerFunctionCode] = true;
 				}
 			}
 			that._getView(that._basePath + "SelectList")
@@ -99,7 +111,37 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController", "sap/m/Messag
 					var functionCode = that._oModel.getProperty(
 						item.getBindingContext().sPath
 					).PartnerFunctionCode;
-					if (partnerMap[functionCode]) {
+					if (functionMap[functionCode]) {
+						item.setType(sap.m.ListType.Inactive);
+						item.addStyleClass("inactive-list-item");
+					} else {
+						item.setType(sap.m.ListType.Active);
+						item.removeStyleClass("inactive-list-item");
+					}
+				});
+		},
+
+		/**
+		 * handleNameSelectListRestriction
+		 * @param  {[type]} functionPath
+		 */
+		handleNameSelectListRestriction: function(functionPath) {
+			var that = this;
+			var targetFunctionCode = that._oModel.getProperty(functionPath).PartnerFunctionCode;
+			var partners = that.getAssignedPartners();
+			var partnerMap = {};
+			for (var i = 0; i < partners.length; i++) {
+				if (partners[i].PartnerFunctionCode === targetFunctionCode) {
+					partnerMap[partners[i].PartnerNumber] = true;
+				}
+			}
+			that._getView(that._basePath + "NameSelectList")
+				.byId('nameSelectList').getAggregation('items')
+				.map(function(item) {
+					var partnerNumber = that._oModel.getProperty(
+						item.getBindingContext().sPath
+					).PartnerNumber;
+					if (partnerMap[partnerNumber]) {
 						item.setType(sap.m.ListType.Inactive);
 						item.addStyleClass("inactive-list-item");
 					} else {
