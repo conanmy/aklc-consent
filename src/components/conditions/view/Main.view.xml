@@ -99,16 +99,6 @@
                         <layout:GridData span="L6 M7 S12" />
                     </f:layoutData>
                 </f:FormContainer>
-                <f:FormContainer>
-                    <f:formElements>
-                        <f:FormElement>
-                            <Button text="save" press="saveIt" />
-                        </f:FormElement>
-                    </f:formElements>
-                    <f:layoutData>
-                        <layout:GridData span="L12 M12 S12" />
-                    </f:layoutData>
-                </f:FormContainer>
             </f:formContainers>
         </f:Form>
     </commons:RowRepeater>

@@ -163,7 +163,20 @@ module.exports = function(grunt) {
 				port: 9876,
 				colors: true,
 				logLevel: "INFO",
-				browsers: ["PhantomJS"]
+				browsers: ["PhantomJS_custom"],
+				customLaunchers: {
+					"PhantomJS_custom": {
+						base: "PhantomJS",
+						options: {
+							windowName: "my-window",
+							settings: {
+								webSecurityEnabled: false
+							}
+						},
+						flags: ["--load-images=true"],
+						debug: true
+					}
+				}
 			},
 			unitTests: {
 				files: [{
@@ -184,7 +197,7 @@ module.exports = function(grunt) {
 					"src/**/*.js": ["coverage"]
 				},
 				coverageReporter: {
-					type: 'html',
+					type: "html",
 					dir: "reports/coverage/unit"
 				},
 				autoWatch: false,
@@ -205,7 +218,7 @@ module.exports = function(grunt) {
 					included: true
 				}],
 				reporters: ["progress"],
-				autoWatch: false,
+				autoWatch: true,  //??
 				singleRun: true
 			}
 		}
@@ -218,6 +231,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks("grunt-openui5");
 	grunt.loadNpmTasks("grunt-eslint");
 	grunt.loadNpmTasks("grunt-karma");
+	// grunt.loadNpmTasks("grunt-contrib-qunit");
 
 	// Server task
 	grunt.registerTask("serve", function(target) {

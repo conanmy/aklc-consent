@@ -62,7 +62,7 @@
 			"": {
 				"settings": {
 					"defaultBindingMode": "TwoWay",
-					"useBatch": false
+					"useBatch": true
 				},
 				"dataSource": "processApi"
 			}

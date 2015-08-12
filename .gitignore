@@ -25,6 +25,7 @@ bower_components
 
 # Ignore reports folder
 reports
+coverage
 
 # Ignore dist folder
 dist

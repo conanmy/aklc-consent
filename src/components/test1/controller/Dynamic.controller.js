@@ -29,8 +29,9 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController"], function(Bas
 		getData: function(oContext) {
 			return new Promise(function(fnResolve, fnReject) {
 				// use separate binding with filters to avoid rerendering on changes
-				var oFilter = new sap.ui.model.Filter("StepKey", "EQ", this._oModel.getProperty("StepKey", oContext));
-				var oBinding = this._oModel.bindList("/Fields", null, null, [oFilter], {
+				var oFilter = [ //new sap.ui.model.Filter("ProcessKey", "EQ", this._oModel.getProperty("ProcessKey", oContext)),
+				new sap.ui.model.Filter("StepKey", "EQ", this._oModel.getProperty("StepKey", oContext))];
+				var oBinding = this._oModel.bindList("/Fields", null, null, oFilter, {
 					expand: "Lookup"
 				}).initialize();
 

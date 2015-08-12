@@ -53,7 +53,7 @@ sap.ui.define(
 
 		QUnit.module("VerticalNavigationBar", {
 			setup: function() {
-			//Karma runner kills the fixture before each call
+				//Karma runner kills the fixture before each call
 				oVerticalNavigationBar.placeAt("qunit-fixture");
 				sap.ui.getCore().applyChanges();
 			},
