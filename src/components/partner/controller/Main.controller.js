@@ -10,6 +10,7 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController", "sap/m/Messag
 
 			this.container = this.getView().byId("splitContainer");
 			this.container.addContent(this._getView(this._basePath + "SelectList"));
+			this.container.addSecondaryContent(this._getView(this._basePath + "PartnerList"));
 
 			this.addSubscriptions();
 		},
@@ -304,7 +305,8 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController", "sap/m/Messag
 						processor: this._oModel
 					})
 				);
-				// this._getView(this._basePath + "PartnerList").getController().checkUnassigned();
+				var partnerController = this._getView(this._basePath + "PartnerList").getController();
+				partnerController.checkUnassigned();
 			} else {
 				oData.WhenValid.resolve();
 			}

@@ -7,7 +7,7 @@
         </items>
         <content>
             <List id="partnerList" mode="Delete"
-            delete="handleDelete" items="{path:'AssignedPartners', parameters: {operationMode: 'Client', expand: 'Partners,PartnerFunctions'}}">
+            delete="handleDelete" items="{path:'AssignedPartners', parameters: {operationMode: 'Client', expand: 'Partners,PartnerFunctions'}}" updateFinished="onUpdateFinished">
                 <items>
                     <suite:PartnerObjectListItem type="Active" title="{PartnerFunctions/Description}" press="onListItemPress" class="assigned-partner-list-item" deletable="{= !${Mandatory} }">
                         <suite:attributes>

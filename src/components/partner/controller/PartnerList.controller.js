@@ -14,6 +14,8 @@ sap.ui.define(
 				var that = this;
 				BaseController.prototype.onInit.apply(that);
 				that.oList = that.getView().byId("partnerList");
+				that._triggeredCheck = false;
+
 				that.getEventBus().subscribe(
 					"NameSelectList",
 					"save",
@@ -65,7 +67,7 @@ sap.ui.define(
 				}
 
 				this.getView().setBindingContext(oContext);
-				this.bindList();
+				// this.bindList();
 			},
 
 			/**
@@ -91,11 +93,12 @@ sap.ui.define(
 			 */
 			onListItemPress: function(oEvent) {
 				var itemPath = oEvent.oSource.getBindingContextPath();
+				this.currentSelection.path = itemPath;
+				this.currentSelection.active = true;
+
 				this.getEventBus().publish("PartnerList", "selected", {
 					path: itemPath
 				});
-				this.currentSelection.path = itemPath;
-				this.currentSelection.active = true;
 			},
 
 			/**
@@ -215,13 +218,24 @@ sap.ui.define(
 				}
 			},
 
+			onUpdateFinished: function() {
+				if (this._triggeredCheck) {
+					this.checkUnassigned();
+				}
+			},
+
 			checkUnassigned: function() {
+				var that = this;
+				that._triggeredCheck = true;
+
 				this.getView().byId('partnerList').getAggregation('items')
 					.map(function(item) {
-						if (this._oModel.getProperty(
+						if (that._oModel.getProperty(
 							item.getBindingContext().sPath
 						).Unassigned === true) {
-							item.setStyleClass("inerror-list-item");
+							item.addStyleClass("inerror-list-item");
+						} else {
+							item.removeStyleClass("inerror-list-item");
 						}
 					});
 			},

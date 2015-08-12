@@ -1,7 +1,4 @@
 <mvc:View controllerName="aklc.cm.components.partner.controller.Main" xmlns:unified="sap.ui.unified" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
     <unified:SplitContainer id="splitContainer" showSecondaryContent="true" secondaryContentSize="460px">
-        <unified:secondaryContent>
-            <mvc:XMLView viewName="aklc.cm.components.partner.view.PartnerList" />
-        </unified:secondaryContent>
     </unified:SplitContainer>
 </mvc:View>
