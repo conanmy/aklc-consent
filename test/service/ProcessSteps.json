@@ -1,0 +1,37 @@
+[{
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Description": "Lodge application",
+	"Icon": "sap-icon://activity-2",
+	"Component": "test1",
+	"Active": true,
+	"Current": true,
+	"Dirty": false
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "20",
+	"Description": "Allocate application",
+	"Icon": "sap-icon://citizen-connect",
+	"Component": "partner",
+	"Active": false,
+	"Current": false,
+	"Dirty": false
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "30",
+	"Description": "Engineering input",
+	"Icon": "sap-icon://company-view",
+	"Component": "test",
+	"Active": false,
+	"Current": false,
+	"Dirty": false
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "40",
+	"Description": "Accept or Incomplete?",
+	"Icon": "sap-icon://email",
+	"Component": "test",
+	"Active": false,
+	"Current": false,
+	"Dirty": false
+}]

@@ -75,7 +75,7 @@
 				"pattern": "",
 				"name": "empty"
 			}, {
-				"pattern": "process/{processkey}/step/{stepkey}",
+				"pattern": "process/{processkey}/step/{stepno}",
 				"name": "process"
 			}]
 		}

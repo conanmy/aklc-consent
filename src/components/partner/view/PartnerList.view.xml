@@ -7,11 +7,11 @@
         </items>
         <content>
             <List id="partnerList" mode="Delete"
-            delete="handleDelete" items="{path:'AssignedPartners', parameters: {operationMode: 'Client', expand: 'Partners,PartnerFunctions'}}">
+            delete="handleDelete" items="{path:'AssignedPartners', parameters: {operationMode: 'Client'}}">
                 <items>
-                    <suite:PartnerObjectListItem type="Active" title="{PartnerFunctions/Description}" press="onListItemPress" class="assigned-partner-list-item" deletable="{= !${Mandatory} }">
+                    <suite:PartnerObjectListItem type="Active" title="{PartnerFunction}" press="onListItemPress" class="assigned-partner-list-item" deletable="{= !${Mandatory} }">
                         <suite:attributes>
-                            <ObjectAttribute text="{Partners/FirstName} {Partners/LastName} ( {PartnerNumber} )" title="Name" visible="{= !${Unassigned} }" />
+                            <ObjectAttribute text="{Fullname} ( {PartnerNumber} )" title="Name"  />
                         </suite:attributes>
                     </suite:PartnerObjectListItem>
                 </items>

@@ -1,37 +1,51 @@
-[{
-    "PartnerFunctionCode": 11,
-    "Description": "Owner",
-    "CountLow": 1,
-    "CountHigh": 1,
-    "TransactionType": "ZZZZ"
-}, {
-    "PartnerFunctionCode": 12,
-    "Description": "Applicant",
-    "CountLow": 1,
-    "CountHigh": 2,
-    "TransactionType": "ZZZZ"
-}, {
-    "PartnerFunctionCode": 13,
-    "Description": "Agent",
-    "CountLow": 0,
-    "CountHigh": 1,
-    "TransactionType": "ZZZZ"
-}, {
-    "PartnerFunctionCode": 14,
-    "Description": "Debtor",
-    "CountLow": 1,
-    "CountHigh": 10,
-    "TransactionType": "ZZZZ"
-}, {
-    "PartnerFunctionCode": 15,
-    "Description": "Engineer",
-    "CountLow": 1,
-    "CountHigh": 10,
-    "TransactionType": "ZZZZ"
-}, {
-    "PartnerFunctionCode": 16,
-    "Description": "LBP",
-    "CountLow": 1,
-    "CountHigh": 10,
-    "TransactionType": "ZZZZ"
-}]
+[
+  {
+    "PartnerFunction":"Z0000025",
+    "Description":"Owner",
+    "CountLow":"1",
+    "CountHigh":1,
+    "TransactionType":"YRCA"
+  },
+  {
+    "PartnerFunction":"00000151",
+    "Description":"Reporter",
+    "CountLow":"1",
+    "CountHigh":1,
+    "TransactionType":"YRCA"
+  },
+  {
+    "PartnerFunction":"00000056",
+    "Description":"Service Employee Group",
+    "CountLow":"0",
+    "CountHigh":1,
+    "TransactionType":"YRCA"
+  },
+  {
+    "PartnerFunction":"00000001",
+    "Description":"Sold-to Party",
+    "CountLow":"1",
+    "CountHigh":10,
+    "TransactionType":"YRCA"
+  },
+  {
+    "PartnerFunction":"Z0000031",
+    "Description":"Applicant",
+    "CountLow":"0",
+    "CountHigh":10,
+    "TransactionType":"YRCA"
+  },
+  {
+    "PartnerFunction":"Z0000041",
+    "Description":"Designer (Architect)",
+    "CountLow":"0",
+    "CountHigh":10,
+    "TransactionType":"YRCA"
+  },
+  {
+    "PartnerFunction":"Z0000049",
+    "Description":"LBP Blocklaying",
+    "CountLow":"0",
+    "CountHigh":5,
+    "TransactionType":"YRCA"
+  }
+]

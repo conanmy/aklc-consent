@@ -4,7 +4,7 @@ sap.ui.define(
 		"use strict";
 		return BaseController.extend("aklc.cm.components.partner.controller.PartnerList", {
 			sCollection: "AssignedPartners",
-			sExpand: "PartnerRelations",
+			// sExpand: "PartnerRelations",
 			sProcesKey: "",
 			currentSelection: {
 				path: null,
@@ -58,6 +58,7 @@ sap.ui.define(
 			/**
 			 * call back from getdata, passes a context for the data, this should be bound to view
 			 * @param  {Object} oContext newly create data context
+			 * @return false
 			 */
 			bindView: function(oContext) {
 				if (!oContext) {

@@ -2,10 +2,10 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/core/ComponentContainer", "
 	function(Controller, ComponentContainer, JSONModel) {
 		"use strict";
 		return Controller.extend("aklc.cm.components.processApp.controller.Main", {
-			_sProceessCollection: "/Process", //Process Collection
-			_sStepsCollection: "Steps", //Step Collection
+			_sProcessCollection: "/Process", //Process Collection
+			_sStepsCollection: "ProcessSteps", //Step Collection
 			_sProcessKey: "", //Current Process
-			_sStepKey: "", //Current Task
+			_sStepNo: "", //Current Task
 			_oProcessViewer: null, //Thing Inspector control
 			_bNewProcess: false,
 			_oViewModel: null, //View Model
@@ -46,12 +46,12 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/core/ComponentContainer", "
 			/**
 			 * Navigate to step via route
 			 * @param  {[type]} sProcesKey [description]
-			 * @param  {[type]} sStepKey   [description]
+			 * @param  {[type]} sStepNo   [description]
 			 */
-			navToProcess: function(sProcesKey, sStepKey) {
+			navToProcess: function(sProcesKey, sStepNo) {
 				this._oRouter.navTo("process", {
 					processkey: sProcesKey,
-					stepkey: sStepKey
+					stepno: sStepNo
 				}, true);
 			},
 
@@ -84,8 +84,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/core/ComponentContainer", "
 					this._bNewProcess = false;
 				}
 
-				if (oArguments.stepkey !== "Default") {
-					this._sStepKey = oArguments.stepkey;
+				if (oArguments.stepno !== "Default") {
+					this._sStepNo = oArguments.stepno;
 				} else {
 					bReload = true;
 				}
@@ -98,7 +98,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/core/ComponentContainer", "
 			 * @param  {boolean} bReload [description]
 			 */
 			getData: function(bReload) {
-				this._sPath = this._sProceessCollection + "('" + this._sProcessKey + "')";
+				this._sPath = this._sProcessCollection + "('" + this._sProcessKey + "')";
 				var fnCallback = this.bindView.bind(this);
 				var oParams = {
 					expand: this._sStepsCollection
@@ -114,18 +114,18 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/core/ComponentContainer", "
 			getStepPathContext: function() {
 				var sPath = "/" + this._oModel.createKey(this._sStepsCollection, {
 					ProcessKey: this._sProcessKey,
-					StepKey: this._sStepKey
+					StepNo: this._sStepNo
 				});
 				return this._oModel.getContext(sPath);
 			},
 
 			/**
 			 * Set the step key selected
-			 * @param {number} sStepKey [description]
+			 * @param {number} sStepNo [description]
 			 */
-			setSelectedFacet: function(sStepKey) {
+			setSelectedFacet: function(sStepNo) {
 				var fnFilter = function(item) {
-					return item.getKey() === sStepKey;
+					return item.getKey() === sStepNo;
 				};
 				var oItem = this._oProcessViewer.getFacets().filter(fnFilter)[0];
 				this._oProcessViewer.setSelectedFacet(oItem);
@@ -151,11 +151,11 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/core/ComponentContainer", "
 				this._oProcessViewer.setActiveSteps(this.getActiveSteps(oContext));
 
 				// if step key wasnt provided navigate to the active step key
-				if (!this._sStepKey) {
+				if (!this._sStepNo) {
 					return this.navToProcess(this._sProcessKey, this.getCurrentKey(oContext));
 				}
 
-				this.setSelectedFacet(this._sStepKey);
+				this.setSelectedFacet(this._sStepNo);
 				this.setContent(this.getStepPathContext());
 			},
 
@@ -166,13 +166,13 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/core/ComponentContainer", "
 			newProcess: function(oContext) {
 				var fnMap = function(obj) {
 					return {
-						Title: obj.Title,
-						StepKey: obj.StepKey,
+						Description: obj.Description,
+						StepNo: obj.StepNo,
 						Icon: obj.Icon
 					};
 				};
 
-				var aSteps = this._oModel.getProperty(null, oContext, true).Steps.results.map(fnMap);
+				var aSteps = this._oModel.getProperty(null, oContext, true)[this._sStepsCollection].results.map(fnMap);
 				this._oViewModel.setData({
 					Steps: aSteps
 				});
@@ -210,7 +210,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/core/ComponentContainer", "
 					sCurrentStepPath = sDefaultStepPath;
 				}
 
-				return this._oModel.getProperty(sCurrentStepPath).StepKey;
+				return this._oModel.getProperty(sCurrentStepPath).StepNo;
 			},
 
 			/**
@@ -300,10 +300,10 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/core/ComponentContainer", "
 				this._oProcessViewer.removeAllFacetContent();
 
 				var oFacetContent = new sap.ui.ux3.ThingGroup({
-					title: oStep.Title
+					title: oStep.Description
 				});
 
-				var sId = this.createId("COMP_" + oStep.StepKey);
+				var sId = this.createId("COMP_" + oStep.StepNo);
 				var sCompName = sComponentPath + oStep.Component;
 				var oComponent = this.getComponentById(sId, sCompName);
 				this._oContainer.setComponent(oComponent);

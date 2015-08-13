@@ -7,6 +7,7 @@
 				"id": "FormFixerCSS"
 			}]
 		},
+
 		"dependencies": {
 			"minUI5Version": "1.30",
 			"libs": {
