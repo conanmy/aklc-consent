@@ -191,12 +191,9 @@ sap.ui.define(
 				var itemPath = oEvent.getParameters().listItem.getBindingContextPath();
 				var item = oModel.getProperty(itemPath);
 				if (!!item.__metadata.created) {
-					var oContext = this._oModel.createEntry(
-						itemPath, {
-							properties: item
-						}
-					);
+					var oContext = oEvent.getParameters().listItem.getBindingContext();
 					oModel.deleteCreatedEntry(oContext);
+					this.getData();
 				} else {
 					oModel.remove(itemPath);
 				}
