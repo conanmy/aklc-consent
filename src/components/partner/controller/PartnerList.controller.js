@@ -162,18 +162,6 @@ sap.ui.define(
 					Guid: oProperties.Guid
 				});
 
-				// set the reference partner
-				oProperties.Partners = {};
-				oProperties.Partners.__ref = this._oModel.createKey("Partners", {
-					PartnerNumber: oProperties.PartnerNumber
-				});
-
-				// set the reference partner function
-				oProperties.PartnerFunctions = {};
-				oProperties.PartnerFunctions.__ref = this._oModel.createKey("PartnerFunctions", {
-					PartnerFunctionCode: oProperties.PartnerFunctionCode
-				});
-
 				// create entry
 				var oContext = this._oModel.createEntry(
 					sPath, {

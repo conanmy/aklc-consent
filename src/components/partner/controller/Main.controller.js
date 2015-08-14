@@ -92,7 +92,7 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController", "sap/m/Messag
 			}
 
 			nameList.bindElement(
-				"/PartnerFunctions(" + partner.PartnerFunctionCode + ")"
+				"/PartnerFunctions('" + partner.PartnerFunction + "')"
 			);
 			if (!partner.Unassigned) {
 				nameList.byId("partnerDetails").bindElement(assignedPartnerPath);
@@ -109,7 +109,7 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController", "sap/m/Messag
 			var functionMap = {};
 			for (var i = 0; i < partners.length; i++) {
 				if (partners[i].Unassigned) {
-					functionMap[partners[i].PartnerFunctionCode] = true;
+					functionMap[partners[i].PartnerFunction] = true;
 				}
 			}
 			that._getView(that._basePath + "SelectList")
@@ -118,7 +118,7 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController", "sap/m/Messag
 					that.setItemInactive(item, !!functionMap[
 						that._oModel.getProperty(
 							item.getBindingContext().sPath
-						).PartnerFunctionCode
+						).PartnerFunction
 					]);
 				});
 		},
@@ -129,11 +129,11 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController", "sap/m/Messag
 		 */
 		handleNameSelectListRestriction: function(functionPath) {
 			var that = this;
-			var targetFunctionCode = that._oModel.getProperty(functionPath).PartnerFunctionCode;
+			var targetFunctionCode = that._oModel.getProperty(functionPath).PartnerFunction;
 			var partners = that.getAssignedPartners();
 			var partnerMap = {};
 			for (var i = 0; i < partners.length; i++) {
-				if (partners[i].PartnerFunctionCode === targetFunctionCode) {
+				if (partners[i].PartnerFunction === targetFunctionCode) {
 					partnerMap[partners[i].PartnerNumber] = true;
 				}
 			}
@@ -228,10 +228,10 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController", "sap/m/Messag
 			for (var i = 0; i < partners.length; i++) {
 				var partner = partners[i];
 				if (partner.Unassigned !== true) {
-					if (partnerCount[partner.PartnerFunctionCode]) {
-						partnerCount[partner.PartnerFunctionCode]++;
+					if (partnerCount[partner.PartnerFunction]) {
+						partnerCount[partner.PartnerFunction]++;
 					} else {
-						partnerCount[partner.PartnerFunctionCode] = 1;
+						partnerCount[partner.PartnerFunction] = 1;
 					}
 				}
 			}
@@ -243,8 +243,8 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController", "sap/m/Messag
 			for (var j = 0; j < partnerFunctions.length; j++) {
 				var func = partnerFunctions[j];
 				var count = 0;
-				if (partnerCount[func.PartnerFunctionCode]) {
-					count = partnerCount[func.PartnerFunctionCode];
+				if (partnerCount[func.PartnerFunction]) {
+					count = partnerCount[func.PartnerFunction];
 				}
 				if (count < func.CountLow) {
 					violationData.toFill.push(func);

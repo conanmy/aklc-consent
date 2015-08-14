@@ -1,53 +1,53 @@
 <mvc:View controllerName="aklc.cm.components.partner.controller.NameSelectList" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:form="sap.ui.layout.form" xmlns="sap.m">
-    <Panel>
-        <Toolbar class="sapUiExploredInfo">
-            <Title text="{Description}"/>
-            <ToolbarSpacer/>
-            <Button icon="sap-icon://action" press="goBack" ariaLabelledBy="actionButtonLabel" />
-        </Toolbar>
-        <Panel id="partnerDetails" visible="false">
-            <ObjectHeader title="Name: {Partners/FirstName} {Partners/LastName}" id="partnerObject">
-                <attributes>
-                    <ObjectAttribute text="Email: {Partners/Email}" />
-                    <ObjectAttribute text="Phone: {Partners/Telephone}" />
-                    <ObjectAttribute text="Company: {Partners/Company}" />
-                    <ObjectAttribute text="Address: {Partners/Address1}, PostCode: {Partners/PostCode}" />
-                </attributes>
-            </ObjectHeader>
-            <Toolbar height="auto" id="partnerDates" class="borderless">
-                <Label text="ValidFrom" />
-                <DatePicker
-                    id="DPValidFrom"
-                    value="{path:'ValidFrom', type:'sap.ui.model.type.Date'}"
-                    placeholder="Enter Date ..."
-                    valueFormat="yyyy-MM-dd"
-                    class="sapUiSmallMarginBottom"
-                    width="150px"
-                    visible="{= !${Readonly} }" />
-                <Text text="{path:'ValidFrom', type:'sap.ui.model.type.Date'}" visible="{= ${Readonly} === true }" />
-                <ToolbarSpacer width="50px"/>
-                <Label text="ValidTo" />
-                <DatePicker
-                    id="DPValidTo"
-                    value="{path:'ValidTo', type:'sap.ui.model.type.Date'}"
-                    placeholder="Enter Date ..."
-                    valueFormat="yyyy-MM-dd"
-                    class="sapUiSmallMarginBottom"
-                    width="150px"
-                    visible="{= !${Readonly} }" />
-                <Text text="{path:'ValidTo', type:'sap.ui.model.type.Date'}" visible="{= ${Readonly} === true }" />
-            </Toolbar>
-            <Button id="partnerObjectSaveBtn" text="Save" press="onSave" visible="{= !${Readonly} }" />
-        </Panel>
-        <Panel id="nameSelectSection" class="borderless">
-            <Toolbar>
-                <SearchField liveChange="onSearch" width="100%" />
-            </Toolbar>
-            <List id="nameSelectList" items="{path: 'PartnerRelations', parameters: {operationMode: 'Client', expand: 'Partners'}}" updateFinished="onUpdateFinished">
-                <items>
-                    <StandardListItem title="{Partners/FirstName} {Partners/LastName} ( {PartnerNumber} )" type="Active" press="onSelectionChange" />
-                </items>
-            </List>
-        </Panel>
-    </Panel>
+	<Panel>
+		<Toolbar class="sapUiExploredInfo">
+			<Title text="{Description}"/>
+			<ToolbarSpacer/>
+			<Button icon="sap-icon://action" press="goBack" ariaLabelledBy="actionButtonLabel" />
+		</Toolbar>
+		<Panel id="partnerDetails" visible="false">
+			<ObjectHeader title="Name: {FirstName} {LastName}" id="partnerObject">
+				<attributes>
+					<ObjectAttribute text="Email: {Email}" />
+					<ObjectAttribute text="Phone: {Telephone}" />
+					<ObjectAttribute text="Company: {Company}" />
+					<ObjectAttribute text="Address: {Address1}, PostCode: {PostCode}" />
+				</attributes>
+			</ObjectHeader>
+			<Toolbar height="auto" id="partnerDates" class="borderless">
+				<Label text="ValidFrom" />
+				<DatePicker
+					id="DPValidFrom"
+					value="{path:'ValidFrom', type:'sap.ui.model.type.Date'}"
+					placeholder="Enter Date ..."
+					valueFormat="yyyy-MM-dd"
+					class="sapUiSmallMarginBottom"
+					width="150px"
+					visible="{= !${Readonly} }" />
+				<Text text="{path:'ValidFrom', type:'sap.ui.model.type.Date'}" visible="{= ${Readonly} === true }" />
+				<ToolbarSpacer width="50px"/>
+				<Label text="ValidTo" />
+				<DatePicker
+					id="DPValidTo"
+					value="{path:'ValidTo', type:'sap.ui.model.type.Date'}"
+					placeholder="Enter Date ..."
+					valueFormat="yyyy-MM-dd"
+					class="sapUiSmallMarginBottom"
+					width="150px"
+					visible="{= !${Readonly} }" />
+				<Text text="{path:'ValidTo', type:'sap.ui.model.type.Date'}" visible="{= ${Readonly} === true }" />
+			</Toolbar>
+			<Button id="partnerObjectSaveBtn" text="Save" press="onSave" visible="{= !${Readonly} }" />
+		</Panel>
+		<Panel id="nameSelectSection" class="borderless">
+			<Toolbar>
+				<SearchField liveChange="onSearch" width="100%" />
+			</Toolbar>
+			<List id="nameSelectList" items="{path: 'PartnerSearch', parameters: {operationMode: 'Client'}}" updateFinished="onUpdateFinished">
+				<items>
+					<StandardListItem title="{FirstName} {LastName} ( {PartnerNumber} )" type="Active" press="onSelectionChange" />
+				</items>
+			</List>
+		</Panel>
+	</Panel>
 </mvc:View>

@@ -9,7 +9,7 @@
             <List id="partnerList" mode="Delete"
             delete="handleDelete" items="{path:'AssignedPartners', parameters: {operationMode: 'Client'}}" updateFinished="onUpdateFinished">
                 <items>
-                    <suite:PartnerObjectListItem type="Active" title="{PartnerFunction}" press="onListItemPress" class="assigned-partner-list-item" deletable="{= !${Mandatory} }">
+                    <suite:PartnerObjectListItem type="Active" title="{PartnerFunctionText}" press="onListItemPress" class="assigned-partner-list-item" deletable="{= !${Mandatory} }">
                         <suite:attributes>
                             <ObjectAttribute text="{Fullname} ( {PartnerNumber} )" title="Name"  />
                         </suite:attributes>

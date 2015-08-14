@@ -1,45 +1,49 @@
 [{
 	"Guid": "705fa6c9-a4d8-4f5c-964c-846b83f5b850",
 	"ProcessKey": "8360000648",
-	"PartnerFunction": "Sold-to Party",
+	"PartnerFunction":"00000001",
 	"PartnerNumber": "2600000915",
 	"ValidFrom": "\/Date(141661031000)\/",
 	"ValidTo": "\/Date(141661031000)\/",
 	"ReadOnly": false,
 	"Mandatory": true,
 	"PartnerFunctionText": "Sold-to Party",
-	"Fullname": "Alan Castle"
+	"FirstName":"Alan",
+	"LastName":"Castle"
 }, {
 	"Guid": "8f87deb4-1452-4d78-9284-cd4c79499e70",
 	"ProcessKey": "8360000648",
-	"PartnerFunction": "Service Employee Group",
+	"PartnerFunction":"00000056",
 	"PartnerNumber": "2400001403",
 	"ValidFrom": "\/Date(141661031000)\/",
 	"ValidTo": "\/Date(141661031000)\/",
 	"ReadOnly": false,
 	"Mandatory": false,
 	"PartnerFunctionText": "Service Employee Group",
-	"Fullname": "Takapuna"
+	"FirstName":"Takapuna",
+	"LastName":""
 }, {
 	"Guid": "5d1db5b1-4d6d-4273-aa13-e04861119f24",
 	"ProcessKey": "8360000648",
-	"PartnerFunction": "Owner",
+	"PartnerFunction":"Z0000025",
 	"PartnerNumber": "2600000683",
 	"ValidFrom": "\/Date(141661031000)\/",
 	"ValidTo": "\/Date(141661031000)\/",
 	"ReadOnly": false,
 	"Mandatory": false,
 	"PartnerFunctionText": "Owner",
-	"Fullname": "Jamie Clark"
+	"FirstName":"Jamie",
+	"LastName":"Clark"
 }, {
 	"Guid": "cb6255c2-e588-482b-a998-de5367850994",
 	"ProcessKey": "8360000648",
-	"PartnerFunction": "Reporter",
+	"PartnerFunction":"00000151",
 	"PartnerNumber": "D012667",
 	"ValidFrom": "\/Date(141661031000)\/",
 	"ValidTo": "\/Date(141661031000)\/",
 	"ReadOnly": true,
 	"Mandatory": false,
 	"PartnerFunctionText": "Reporter",
-	"Fullname": "Rachel Thompson"
+	"FirstName":"Rachel",
+	"LastName":"Thompson"
 }]

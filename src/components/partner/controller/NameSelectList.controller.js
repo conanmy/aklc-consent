@@ -25,7 +25,7 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController", "sap/m/Messag
 				var sQuery = oEvent.getSource().getValue();
 				if (sQuery && sQuery.length > 0) {
 					var oFilter = new sap.ui.model.Filter(
-						"Partners/FirstName",
+						"SearchTerm",
 						sap.ui.model.FilterOperator.Contains,
 						sQuery
 					);
@@ -63,7 +63,7 @@ sap.ui.define(["aklc/cm/library/common/controller/BaseController", "sap/m/Messag
 
 				var partnerData = {
 					PartnerNumber: partnerRelation.PartnerNumber,
-					PartnerFunctionCode: partnerRelation.PartnerFunctionCode,
+					PartnerFunction: partnerRelation.PartnerFunction,
 					ValidFrom: this.oValidFrom.getDateValue(),
 					ValidTo: this.oValidTo.getDateValue()
 				};

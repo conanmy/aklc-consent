@@ -71,7 +71,8 @@
                     <Property Name="ReadOnly" Type="Edm.String" Nullable="false" MaxLength="1" />
                     <Property Name="Mandatory" Type="Edm.String" Nullable="false" MaxLength="1" />
                     <Property Name="PartnerFunctionText" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Text" />
-                    <Property Name="Fullname" Type="Edm.String" Nullable="false" MaxLength="80" sap:label="Full Name" />
+                    <Property Name="FirstName" Type="Edm.String" Nullable="false" MaxLength="80" sap:label="First Name" />
+                    <Property Name="LastName" Type="Edm.String" Nullable="false" MaxLength="80" sap:label="Last Name" />
                 </EntityType>
                 <EntityType Name="PartnerSearch" sap:content-version="1">
                     <Key>
@@ -101,7 +102,20 @@
                     <Property Name="CountLow" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="No. of occurrences" />
                     <Property Name="CountHigh" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="No. of occurrences" />
                     <Property Name="TransactionType" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Transaction Type" />
+                    <NavigationProperty Name="PartnerSearch" Relationship="ODataDemo.FK_PartnerFunctionsPartnerSearch" FromRole="FromRole_PartnerFunctionsPartnerSearch" ToRole="ToRole_PartnerFunctionsPartnerSearch" />
                 </EntityType>
+                <Association Name="FK_PartnerFunctionsPartnerSearch">
+                    <End Type="ODataDemo.PartnerFunctions" Multiplicity="1" Role="FromRole_PartnerFunctionsPartnerSearch" />
+                    <End Type="ODataDemo.PartnerSearch" Multiplicity="*" Role="ToRole_PartnerFunctionsPartnerSearch" />
+                    <ReferentialConstraint>
+                        <Principal Role="FromRole_PartnerFunctionsPartnerSearch">
+                            <PropertyRef Name="PartnerFunction" />
+                        </Principal>
+                        <Dependent Role="ToRole_PartnerFunctionsPartnerSearch">
+                            <PropertyRef Name="PartnerFunction" />
+                        </Dependent>
+                    </ReferentialConstraint>
+                </Association>
                 <Association Name="FK_ProcessAssignedPartners">
                     <End Type="ZPNC_PROCESS_APP_SRV.Process" Multiplicity="1" Role="FromRole_FK_ProcessAssignedPartners" />
                     <End Type="ZPNC_PROCESS_APP_SRV.AssignedPartners" Multiplicity="*" Role="ToRole_FK_ProcessAssignedPartners" />
@@ -156,6 +170,7 @@
                         </Dependent>
                     </ReferentialConstraint>
                 </Association>
+
                 <EntityContainer Name="ZPNC_PROCESS_APP_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
                     <EntitySet Name="ProcessSteps" EntityType="ZPNC_PROCESS_APP_SRV.ProcessSteps" sap:content-version="1" />
                     <EntitySet Name="FormData" EntityType="ZPNC_PROCESS_APP_SRV.FormData" sap:content-version="1" />
@@ -179,6 +194,10 @@
                     <AssociationSet Name="FK_FormDataFormDataLookup" Association="ZPNC_PROCESS_APP_SRV.FK_FormDataFormDataLookup" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                         <End EntitySet="FormData" Role="FromRole_FK_FormDataFormDataLookup" />
                         <End EntitySet="FormDataLookup" Role="ToRole_FK_FormDataFormDataLookup" />
+                    </AssociationSet>
+                    <AssociationSet Name="FK_PartnerFunctionsPartnerSearch_Assoc" Association="ODataDemo.FK_PartnerFunctionsPartnerSearch" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                        <End EntitySet="PartnerFunctions" Role="FromRole_PartnerFunctionsPartnerSearch" />
+                        <End EntitySet="PartnerSearch" Role="ToRole_PartnerFunctionsPartnerSearch" />
                     </AssociationSet>
                 </EntityContainer>
                 <atom:link rel="self" href="http://vsapxd1ap1.aklc.govt.nz:8003/sap/opu/odata/sap/ZPNC_PROCESS_APP_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom" />
