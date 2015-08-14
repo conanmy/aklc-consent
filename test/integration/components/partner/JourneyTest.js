@@ -19,7 +19,7 @@ sap.ui.require(
 		});
 
 		QUnit.module("Add a partner");
-		opaTest("Should see name list after selecting", function(Given, When, Then) {
+		opaTest("Should see name list after selecting function", function(Given, When, Then) {
 			//Act
 			When.onPartnerStep.iPressOnSelectListItem();
 
@@ -27,4 +27,19 @@ sap.ui.require(
 			Then.onPartnerStep.iShouldSeeTheNameSelectList();
 		});
 
+		opaTest("Should see partner detail after selecting name", function(Given, When, Then) {
+			//Act
+			When.onPartnerStep.iPressOnNameSelectListItem();
+
+			// Assertions
+			Then.onPartnerStep.iShouldSeeThePartnerDetails();
+		});
+
+		opaTest("Should see partner added after saving", function(Given, When, Then) {
+			//Act
+			When.onPartnerStep.iPressOnSaveBtn();
+
+			// Assertions
+			Then.onPartnerStep.iShouldSeeThePartnerAdded();
+		});
 	});

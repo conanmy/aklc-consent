@@ -17,9 +17,29 @@ sap.ui.require([
 							viewName: baseViewPath + "SelectList",
 							controlType: "sap.m.StandardListItem",
 							success: function(aItems) {
+								aItems[1].$().trigger("tap");
+							},
+							errorMessage: "Did not find the item"
+						});
+					},
+					iPressOnNameSelectListItem: function() {
+						return this.waitFor({
+							viewName: baseViewPath + "NameSelectList",
+							controlType: "sap.m.StandardListItem",
+							success: function(aItems) {
 								aItems[0].$().trigger("tap");
 							},
-							errorMessage: "Did not find the icon"
+							errorMessage: "Did not find the item"
+						});
+					},
+					iPressOnSaveBtn: function() {
+						return this.waitFor({
+							viewName: baseViewPath + "NameSelectList",
+							id: "partnerObjectSaveBtn",
+							success: function(btn) {
+								btn.$().trigger("tap");
+							},
+							errorMessage: "Did not find the btn"
 						});
 					}
 				},
@@ -30,7 +50,7 @@ sap.ui.require([
 							viewName: baseViewPath + "PartnerList",
 							controlType: "aklc.cm.components.partner.controls.PartnerObjectListItem",
 							success: function(partnerList) {
-								QUnit.ok(partnerList.length > 0, "Found the partnerList with content.");
+								QUnit.ok(partnerList.length === 1, "Found the partnerList with content.");
 							},
 							errorMessage: "cannot see partnerList"
 						});
@@ -53,6 +73,26 @@ sap.ui.require([
 								QUnit.ok(nameSelectList.length > 0, "Found the nameSelectList with content.");
 							},
 							errorMessage: "cannot see nameSelectList"
+						});
+					},
+					iShouldSeeThePartnerDetails: function() {
+						return this.waitFor({
+							viewName: baseViewPath + "NameSelectList",
+							id: "partnerDetails",
+							success: function(partnerDetails) {
+								QUnit.ok(partnerDetails.getVisible() === true, "Partner details visible.");
+							},
+							errorMessage: "cannot see partnerDetails"
+						});
+					},
+					iShouldSeeThePartnerAdded: function() {
+						return this.waitFor({
+							viewName: baseViewPath + "PartnerList",
+							controlType: "aklc.cm.components.partner.controls.PartnerObjectListItem",
+							success: function(partnerList) {
+								QUnit.ok(partnerList.length === 2, "Found the partner added.");
+							},
+							errorMessage: "cannot see partner added"
 						});
 					}
 				}
