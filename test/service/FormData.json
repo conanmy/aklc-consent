@@ -1,0 +1,64 @@
+[{
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "ACCEPT_INCOMPLETE",
+	"Label": "Accepted or Incomplete?",
+	"Type": "COMBO",
+	"Value": "ACPT",
+	"Placeholder": "",
+	"Required": true
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "CONETENTIOUS",
+	"Label": "Contentious?",
+	"Type": "CBOX",
+	"Value": "",
+	"Placeholder": "",
+	"Required": false
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "PROJECT_VALUE",
+	"Label": "Project Value",
+	"Type": "CURR",
+	"Value": "",
+	"Placeholder": "",
+	"Required": false
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "CHANGE_OF_USE_DETAILS",
+	"Label": "Record the details of the change of use",
+	"Type": "FREE",
+	"Value": "",
+	"Placeholder": "",
+	"Required": false
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "ACCEPT_INCOMPLETE_DATE",
+	"Label": "Accepted or incomplete date",
+	"Type": "DATE",
+	"Value": "",
+	"Placeholder": "",
+	"Required": false
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APPROVAL_LOTS",
+	"Label": "Number of lots completion certificate approving",
+	"Type": "NUMC",
+	"Value": "",
+	"Placeholder": "",
+	"Required": false
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Label": "Application Subtypes",
+	"Type": "MCOMBO",
+	"Value": "AAA,BIL",
+	"Placeholder": "",
+	"Required": false
+}]

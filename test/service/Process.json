@@ -1,10 +1,7 @@
 [{
-	"ProcessKey": "P0",
-	"Title": "Test Process"
+	"ProcessKey": "8360000648",
+	"Description": "Test Process"
 }, {
-	"ProcessKey": "P1",
-	"Title": "Test Process"
-}, {
-	"ProcessKey": "P2",
-	"Title": "Test Process"
+	"ProcessKey": "8360000649",
+	"Description": "Test Process2"
 }]

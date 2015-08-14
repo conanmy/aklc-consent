@@ -1,0 +1,277 @@
+[{
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "ACCEPT_INCOMPLETE",
+	"Key": "ACPT",
+	"Value": "Accepted"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "ACCEPT_INCOMPLETE",
+	"Key": "INCOM",
+	"Value": "Incomplete"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "ACCEPT_INCOMPLETE",
+	"Key": "ACPT",
+	"Value": "Accepted"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "ACCEPT_INCOMPLETE",
+	"Key": "INCOM",
+	"Value": "Incomplete"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "AAA",
+	"Value": "Additions & Alterations"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "ACB",
+	"Value": "Accessory Building"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "BAA",
+	"Value": "Business Activity - Alterations"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "BAC",
+	"Value": "Change to existing business"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "BAN",
+	"Value": "Business Activity - New"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "BIL",
+	"Value": "Billboard"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "COU",
+	"Value": "Change of Use"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "CPK",
+	"Value": "Carpark"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "DAB",
+	"Value": "Drill or Alter Bore"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "DEM",
+	"Value": "Demolition"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "DWG",
+	"Value": "Dwelling(s)"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "EWN",
+	"Value": "Earthworks Non-Residential"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "EWR",
+	"Value": "Earthworks Residential"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "MHU",
+	"Value": "Minor Household Unit"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "NWK",
+	"Value": "Network Utilities/Infrastructure"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "PBR",
+	"Value": "Pre 1987 Bores"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "QUY",
+	"Value": "Quarry"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "RLD",
+	"Value": "Relocatable Dwelling"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "SGN",
+	"Value": "Signs"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "SKY",
+	"Value": "Skylights/Solar Tubes"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "STM",
+	"Value": "Stream Work"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "AAA",
+	"Value": "Additions & Alterations"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "ACB",
+	"Value": "Accessory Building"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "BAA",
+	"Value": "Business Activity - Alterations"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "BAC",
+	"Value": "Change to existing business"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "BAN",
+	"Value": "Business Activity - New"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "BIL",
+	"Value": "Billboard"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "COU",
+	"Value": "Change of Use"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "CPK",
+	"Value": "Carpark"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "DAB",
+	"Value": "Drill or Alter Bore"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "DEM",
+	"Value": "Demolition"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "DWG",
+	"Value": "Dwelling(s)"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "EWN",
+	"Value": "Earthworks Non-Residential"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "EWR",
+	"Value": "Earthworks Residential"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "MHU",
+	"Value": "Minor Household Unit"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "NWK",
+	"Value": "Network Utilities/Infrastructure"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "PBR",
+	"Value": "Pre 1987 Bores"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "QUY",
+	"Value": "Quarry"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "RLD",
+	"Value": "Relocatable Dwelling"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "SGN",
+	"Value": "Signs"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "SKY",
+	"Value": "Skylights/Solar Tubes"
+}, {
+	"ProcessKey": "8360000648",
+	"StepNo": "10",
+	"Attribute": "APP_SUBTYPES",
+	"Key": "STM",
+	"Value": "Stream Work"
+}]

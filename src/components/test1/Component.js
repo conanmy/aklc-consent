@@ -8,8 +8,8 @@ sap.ui.define([
 			"metadata": {
 				// manifest: "json",
 				"rootView": "aklc.cm.components.test1.view.Main",
+				"includes": ["css/FormFixer.css"],
 				"dependencies": {
-					"includes": ["css/FormFixer.css"],
 					"libs": ["sap.m",
 						"sap.ui.layout",
 						"sap.ui.commons",
